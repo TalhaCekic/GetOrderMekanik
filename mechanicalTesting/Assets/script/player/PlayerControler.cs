@@ -96,12 +96,12 @@ public class PlayerControler : NetworkBehaviour
 
         if (pickUp.handFull == true)
         {
-            //   anim.SetBool("hand", true);
+     // anim.SetBool("hand", true);
             
         }
         else
         {
-            //anim.SetBool("hand", false);
+          //  anim.SetBool("hand", false);
         }
     }
     void InputRotation()
@@ -128,12 +128,13 @@ public class PlayerControler : NetworkBehaviour
             if (isSprint)
             {
                 currentSpeed = Mathf.Max(currentSpeed + acceleration * Time.deltaTime, 7);
-                //anim.SetBool("isSprint", true);
+               // anim.SetBool("isSprint", true);
             }
             // Dönüþ
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
             //anim.SetBool("move", true);
+            
         }
         else
         {
@@ -145,7 +146,8 @@ public class PlayerControler : NetworkBehaviour
         }
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
-        //anim.SetFloat("Speed", currentSpeed / speedd);
+        anim.SetFloat("Speed", currentSpeed / speedd);
+        
 
     }
     public void sprint()
@@ -157,9 +159,9 @@ public class PlayerControler : NetworkBehaviour
         isSprint = false;
     }
   
-    [ServerRpc]
-    public void UpdatePlayerState(PlayerSettings newState)
-    {
-        networkVariable.Value = newState;
-    }
+//    [ServerRpc]
+//    public void UpdatePlayerState(PlayerSettings newState)
+//    {
+//        networkVariable.Value = newState;
+//    }
 }
