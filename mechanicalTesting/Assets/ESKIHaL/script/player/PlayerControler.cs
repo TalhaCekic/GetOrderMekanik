@@ -108,6 +108,22 @@ public class PlayerControler : NetworkBehaviour
         {
             anim.SetBool("hand", false);
         }
+        if (IsOwner) return;
+        if (!pickUp.cutting)
+        {
+            InputRotation();
+            Move();
+        }
+
+        if (pickUp.handFull == true)
+        {
+            anim.SetBool("hand", true);
+
+        }
+        else
+        {
+            anim.SetBool("hand", false);
+        }
     }
     void InputRotation()
     {
