@@ -3515,14 +3515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc7a82d30f411124686cd8f776983e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customerPrefab: {fileID: 2507683973558596609, guid: 1e157ca5c37ba464da8a7cb40a24eafd,
-    type: 3}
-  spawnPoint: {fileID: 1010700991}
-  spawnDelay: 10
-  spawnInterval: 35
-  timer: 0
-  lastSpawnTime: 10
-  isSpawned: 0
 --- !u!1001 &1731115102
 PrefabInstance:
   m_ObjectHideFlags: 0
