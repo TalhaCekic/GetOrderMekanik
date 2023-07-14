@@ -85,10 +85,9 @@ public class PlayerControler : NetworkBehaviour
         randomPlayerPosition = new Vector3(Random.Range(53,63),1,Random.Range(75,78));
         transform.position = randomPlayerPosition;
     }
-    private void Update()
+    private void FixedUpdate()
     {
-     //   anim = GetComponent<Animator>();
-        if (!pickUp.cutting)
+           if (!pickUp.cutting)
         {
             InputRotation();
             Move();
@@ -104,6 +103,11 @@ public class PlayerControler : NetworkBehaviour
         {
               anim.SetBool("hand", false);
         }
+    }
+    private void Update()
+    {
+     //   anim = GetComponent<Animator>();
+     
     }
     void InputRotation()
     {
