@@ -47,6 +47,7 @@ public class PlayerControler : NetworkBehaviour
     private Vector3 movement;
     private float currentSpeed;
 
+
     private bool isSprint = false;
 
     public struct MyCustomData : INetworkSerializable
@@ -73,7 +74,8 @@ public class PlayerControler : NetworkBehaviour
     private void Awake()
     {
         if (!IsOwner) return;
-        anim = GetComponent<Animator>();
+
+
         pickUp.handFull = false;
 
         movement = transform.position;
@@ -83,6 +85,10 @@ public class PlayerControler : NetworkBehaviour
         InputAction.performed += ctx => sprint();
         InputAction.canceled += ctx => StopSprint();
         InputAction.Enable();
+    }
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -116,6 +122,8 @@ public class PlayerControler : NetworkBehaviour
     }
     void Move()
     {
+
+
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         movement.Normalize();
 
@@ -123,31 +131,43 @@ public class PlayerControler : NetworkBehaviour
 
         if (movement.magnitude > 0f)
         {
+
             // Hýz artýþý
             currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
             if (isSprint)
             {
                 currentSpeed = Mathf.Max(currentSpeed + acceleration * Time.deltaTime, 7);
-               // anim.SetBool("isSprint", true);
+                //anim.SetBool("isSprint", true);
+                // anim.SetFloat("Speed", currentSpeed);
             }
             // Dönüþ
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-            //anim.SetBool("move", true);
-            
+
+
         }
         else
         {
             // Hýz azalýþý
             currentSpeed = Mathf.Max(currentSpeed * -2 - deceleration * Time.deltaTime, 0f);
-            //anim.SetBool("move", false);
-            
-            //anim.SetBool("isSprint", false);
+
+
+
+           // anim.SetBool("isSprint", false);
+            //anim.SetFloat("Speed", currentSpeed);
         }
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
-        anim.SetFloat("Speed", currentSpeed / speedd);
-        
+
+       
+            anim.SetFloat("Speed", currentSpeed / speedd);
+         
+
+
+
+
+
+
 
     }
     public void sprint()
