@@ -2936,7 +2936,7 @@ GameObject:
   - component: {fileID: 1805646143019126347}
   - component: {fileID: -6701801519925395205}
   - component: {fileID: -8925366375108370231}
-  - component: {fileID: -5457599778353694678}
+  - component: {fileID: 7674617947665515507}
   m_Layer: 0
   m_Name: character
   m_TagString: Untagged
@@ -3318,7 +3318,7 @@ MonoBehaviour:
   SceneMigrationSynchronization: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &-5457599778353694678
+--- !u!114 &7674617947665515507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3327,7 +3327,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8985881394206135957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8418359ddf6b9ed47a9116e828b5b1a8, type: 3}
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
