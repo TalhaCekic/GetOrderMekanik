@@ -11,15 +11,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerControler : NetworkBehaviour
 {
-    [SerializeField] private Transform spawnObjectPrefab;
-    private Transform spawnObjectPrefabTransform;
-
     private NetworkVariable<MyCustomData> randomNumber = new NetworkVariable<MyCustomData>(
     new MyCustomData
     {
         _int = 56,
         _bool = true,
     }, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+    private Vector3 randomPlayerPosition;
 
     Animator anim;
     public float speedd = 6f;
@@ -94,6 +93,8 @@ public class PlayerControler : NetworkBehaviour
         InputAction.canceled += ctx => StopSprint();
         InputAction.Enable();
 
+        randomPlayerPosition = new Vector3(Random.Range(53,63),1,Random.Range(75,78));
+        transform.position = randomPlayerPosition;
     }
     private void Update()
     {
