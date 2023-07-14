@@ -66,11 +66,13 @@ public class PlayerControler : NetworkBehaviour
     }
     private void Awake()
     {
- anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+        randomPlayerPosition = new Vector3(Random.Range(53, 63), 1, Random.Range(75, 78));
+        transform.position = randomPlayerPosition;
     }
     private void Start()
     {
-       
+
         if (!IsOwner) return;
         pickUp.handFull = false;
 
@@ -82,12 +84,11 @@ public class PlayerControler : NetworkBehaviour
         InputAction.canceled += ctx => StopSprint();
         InputAction.Enable();
 
-        randomPlayerPosition = new Vector3(Random.Range(53,63),1,Random.Range(75,78));
-        transform.position = randomPlayerPosition;
+
     }
     private void FixedUpdate()
     {
-           if (!pickUp.cutting)
+        if (!pickUp.cutting)
         {
             InputRotation();
             Move();
@@ -96,18 +97,18 @@ public class PlayerControler : NetworkBehaviour
 
         if (pickUp.handFull == true)
         {
-             anim.SetBool("hand", true);
+            anim.SetBool("hand", true);
 
         }
         else
         {
-              anim.SetBool("hand", false);
+            anim.SetBool("hand", false);
         }
     }
     private void Update()
     {
-     //   anim = GetComponent<Animator>();
-     
+        //   anim = GetComponent<Animator>();
+
     }
     void InputRotation()
     {
@@ -144,7 +145,7 @@ public class PlayerControler : NetworkBehaviour
             // Hýz azalýþý
             currentSpeed = Mathf.Max(currentSpeed * -2 - deceleration * Time.deltaTime, 0f);
 
-             anim.SetBool("isSprint", false);
+            anim.SetBool("isSprint", false);
         }
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
