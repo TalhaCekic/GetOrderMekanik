@@ -6,7 +6,6 @@ using Unity.Netcode;
 using Unity.Services.Authentication;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.Animations.Rigging;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,11 +20,6 @@ public class PlayerControler : NetworkBehaviour
         _int = 56,
         _bool = true,
     }, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
-    [SerializeField]
-    private NetworkVariable<PlayerSettings> networkVariable = new NetworkVariable<PlayerSettings>();
-
-    private NetworkVariable<Vector3> networkPlayerState = new NetworkVariable<Vector3>();
 
     Animator anim;
     public float speedd = 6f;
@@ -113,12 +107,12 @@ public class PlayerControler : NetworkBehaviour
 
         if (pickUp.handFull == true)
         {
-            // anim.SetBool("hand", true);
+             anim.SetBool("hand", true);
 
         }
         else
         {
-            //  anim.SetBool("hand", false);
+              anim.SetBool("hand", false);
         }
     }
     void InputRotation()
@@ -133,8 +127,6 @@ public class PlayerControler : NetworkBehaviour
     }
     void Move()
     {
-
-
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         movement.Normalize();
 
@@ -142,44 +134,27 @@ public class PlayerControler : NetworkBehaviour
 
         if (movement.magnitude > 0f)
         {
-
             // Hýz artýþý
             currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
             if (isSprint)
             {
                 currentSpeed = Mathf.Max(currentSpeed + acceleration * Time.deltaTime, 7);
-                //anim.SetBool("isSprint", true);
-                // anim.SetFloat("Speed", currentSpeed);
+                anim.SetBool("isSprint", true);
             }
             // Dönüþ
             Quaternion targetRotation = Quaternion.LookRotation(movement);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-
-
         }
         else
         {
             // Hýz azalýþý
             currentSpeed = Mathf.Max(currentSpeed * -2 - deceleration * Time.deltaTime, 0f);
 
-
-
-            // anim.SetBool("isSprint", false);
-            //anim.SetFloat("Speed", currentSpeed);
+             anim.SetBool("isSprint", false);
         }
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
-
-
         anim.SetFloat("Speed", currentSpeed / speedd);
-
-
-
-
-
-
-
-
     }
     public void sprint()
     {
@@ -190,9 +165,4 @@ public class PlayerControler : NetworkBehaviour
         isSprint = false;
     }
 
-    //    [ServerRpc]
-    //    public void UpdatePlayerState(PlayerSettings newState)
-    //    {
-    //        networkVariable.Value = newState;
-    //    }
 }
