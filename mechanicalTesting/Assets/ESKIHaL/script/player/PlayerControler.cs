@@ -66,22 +66,11 @@ public class PlayerControler : NetworkBehaviour
     }
     private void Awake()
     {
-        //if (!IsOwner) return;
-
-
-        //pickUp.handFull = false;
-
-        //movement = transform.position;
-        //stationaryFrames = 0;
-
-        ////   InputAction = new InputAction("Sprint", InputActionType.Button, null);
-        //InputAction.performed += ctx => sprint();
-        //InputAction.canceled += ctx => StopSprint();
-        //InputAction.Enable();
+ anim = GetComponent<Animator>();
     }
     private void Start()
     {
-        anim = GetComponent<Animator>();
+       
         if (!IsOwner) return;
         pickUp.handFull = false;
 
@@ -98,7 +87,7 @@ public class PlayerControler : NetworkBehaviour
     }
     private void Update()
     {
-
+     //   anim = GetComponent<Animator>();
         if (!pickUp.cutting)
         {
             InputRotation();
