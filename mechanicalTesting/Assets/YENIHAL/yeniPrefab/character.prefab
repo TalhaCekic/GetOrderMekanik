@@ -2936,7 +2936,7 @@ GameObject:
   - component: {fileID: 1805646143019126347}
   - component: {fileID: -6701801519925395205}
   - component: {fileID: -8925366375108370231}
-  - component: {fileID: 7674617947665515507}
+  - component: {fileID: -7846254676694246527}
   m_Layer: 0
   m_Name: character
   m_TagString: Untagged
@@ -3293,12 +3293,8 @@ MonoBehaviour:
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
   InLocalSpace: 0
   Interpolate: 1
-  SlerpPosition: 0
 --- !u!114 &-8925366375108370231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3313,12 +3309,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 951099334
   AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &7674617947665515507
+--- !u!114 &-7846254676694246527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
