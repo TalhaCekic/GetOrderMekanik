@@ -81,8 +81,8 @@ public class PlayerControler : NetworkBehaviour
     }
     private void Start()
     {
-        if (!IsOwner) return;
         anim = GetComponent<Animator>();
+        if (!IsOwner) return;
         pickUp.handFull = false;
 
         movement = transform.position;
