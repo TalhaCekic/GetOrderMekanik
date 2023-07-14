@@ -3031,7 +3031,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91b226058a9312459ea83719499f02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObjectPrefab: {fileID: 0}
+  spawnObjectPrefab: {fileID: 3640583817927176372, guid: 2f62f8e06603935489385ded614a7707,
+    type: 3}
   networkVariable:
     m_InternalValue: {fileID: 0}
   speedd: 5
@@ -3296,8 +3297,12 @@ MonoBehaviour:
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
   InLocalSpace: 0
   Interpolate: 1
+  SlerpPosition: 0
 --- !u!114 &-8925366375108370231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3312,6 +3317,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 951099334
   AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
 --- !u!114 &7850640516462875639

@@ -23,9 +23,9 @@ public class PlayerControler : NetworkBehaviour
     }, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [SerializeField]
-    private NetworkVariable<PlayerSettings> networkVariable = new NetworkVariable<PlayerSettings> ();
+    private NetworkVariable<PlayerSettings> networkVariable = new NetworkVariable<PlayerSettings>();
 
-    private NetworkVariable<Vector3> networkPlayerState = new NetworkVariable<Vector3> ();
+    private NetworkVariable<Vector3> networkPlayerState = new NetworkVariable<Vector3>();
 
     Animator anim;
     public float speedd = 6f;
@@ -73,9 +73,23 @@ public class PlayerControler : NetworkBehaviour
     }
     private void Awake()
     {
+        //if (!IsOwner) return;
+
+
+        //pickUp.handFull = false;
+
+        //movement = transform.position;
+        //stationaryFrames = 0;
+
+        ////   InputAction = new InputAction("Sprint", InputActionType.Button, null);
+        //InputAction.performed += ctx => sprint();
+        //InputAction.canceled += ctx => StopSprint();
+        //InputAction.Enable();
+    }
+    private void Start()
+    {
         if (!IsOwner) return;
-
-
+        anim = GetComponent<Animator>();
         pickUp.handFull = false;
 
         movement = transform.position;
@@ -85,14 +99,11 @@ public class PlayerControler : NetworkBehaviour
         InputAction.performed += ctx => sprint();
         InputAction.canceled += ctx => StopSprint();
         InputAction.Enable();
-    }
-    private void Start()
-    {
-        anim = GetComponent<Animator>();
+
     }
     private void Update()
     {
-        
+
         if (!pickUp.cutting)
         {
             InputRotation();
@@ -102,12 +113,12 @@ public class PlayerControler : NetworkBehaviour
 
         if (pickUp.handFull == true)
         {
-     // anim.SetBool("hand", true);
-            
+            // anim.SetBool("hand", true);
+
         }
         else
         {
-          //  anim.SetBool("hand", false);
+            //  anim.SetBool("hand", false);
         }
     }
     void InputRotation()
@@ -153,15 +164,15 @@ public class PlayerControler : NetworkBehaviour
 
 
 
-           // anim.SetBool("isSprint", false);
+            // anim.SetBool("isSprint", false);
             //anim.SetFloat("Speed", currentSpeed);
         }
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
 
-       
-            anim.SetFloat("Speed", currentSpeed / speedd);
-         
+
+        anim.SetFloat("Speed", currentSpeed / speedd);
+
 
 
 
@@ -178,10 +189,10 @@ public class PlayerControler : NetworkBehaviour
     {
         isSprint = false;
     }
-  
-//    [ServerRpc]
-//    public void UpdatePlayerState(PlayerSettings newState)
-//    {
-//        networkVariable.Value = newState;
-//    }
+
+    //    [ServerRpc]
+    //    public void UpdatePlayerState(PlayerSettings newState)
+    //    {
+    //        networkVariable.Value = newState;
+    //    }
 }
