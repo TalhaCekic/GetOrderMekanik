@@ -2,7 +2,6 @@ using Unity.Netcode.Components;
 using Unity.Netcode;
 using UnityEngine;
 
-
 public class AnimationSender : NetworkBehaviour
 {
     public NetworkAnimator networkAnimator;
@@ -13,7 +12,7 @@ public class AnimationSender : NetworkBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                networkAnimator.SetTrigger("Jump"); // "Jump" adýndaki animasyonu tetikle
+                networkAnimator.SetTrigger("test"); // "Jump" adýndaki animasyonu tetikle
             }
         }
     }
