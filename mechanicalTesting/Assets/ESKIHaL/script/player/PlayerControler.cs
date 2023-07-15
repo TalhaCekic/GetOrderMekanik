@@ -89,10 +89,6 @@ public class PlayerControler : NetworkBehaviour
         transform.position = randomPlayerPosition;
 
     }
-    private void FixedUpdate()
-    {
-
-    }
     private void Update()
     {
         //   anim = GetComponent<Animator>();
@@ -102,16 +98,15 @@ public class PlayerControler : NetworkBehaviour
             InputRotation();
             Move();
         }
-
         if (pickUp.handFull == true)
         {
-            anim.SetBool("hand", true);
-
+            networkAnimator.SetTrigger("handTg");
         }
         else
         {
-            anim.SetBool("hand", false);
+            networkAnimator.SetTrigger("handTc");
         }
+    
     }
     void InputRotation()
     {
@@ -164,4 +159,50 @@ public class PlayerControler : NetworkBehaviour
         isSprint = false;
     }
 
+
+
+    //yedeklemeler
+
+    //private void eskiMove()
+    //{
+    //    movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+    //    movement.Normalize();
+
+    //    velocity.y += Physics.gravity.y * Time.deltaTime; // Yerçekimi ivmesini uygula
+
+    //    if (movement.magnitude > 0f)
+    //    {
+    //        // Hýz artýþý
+    //        currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
+    //        if (isSprint)
+    //        {
+    //            currentSpeed = Mathf.Max(currentSpeed + acceleration * Time.deltaTime, 7);
+    //            anim.SetBool("isSprint", true);
+    //        }
+    //        // Dönüþ
+    //        Quaternion targetRotation = Quaternion.LookRotation(movement);
+    //        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+    //    }
+    //    else
+    //    {
+    //        // Hýz azalýþý
+    //        currentSpeed = Mathf.Max(currentSpeed * -2 - deceleration * Time.deltaTime, 0f);
+    //        anim.SetBool("isSprint", false);
+    //    }
+    //    // Hareket etme
+    //    controller.Move(transform.forward * currentSpeed * Time.deltaTime);
+    //    anim.SetFloat("Speed", currentSpeed / speedd);
+    //}
+     
+    private void yedekalmak()
+    {
+        if (pickUp.handFull == true)
+        {
+            anim.SetBool("hand", true);
+        }
+        else
+        {
+            anim.SetBool("hand", false);
+        }
+    }
 }

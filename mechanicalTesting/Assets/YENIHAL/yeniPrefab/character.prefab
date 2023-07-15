@@ -3331,7 +3331,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionStateInfoList: []
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 2
+    OriginatingState: -601574123
+    DestinationState: 1349952704
+    TransitionDuration: 0.25
+    TriggerNameHash: 1528318979
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 2
+    OriginatingState: 1349952704
+    DestinationState: -601574123
+    TransitionDuration: 0.25
+    TriggerNameHash: 1475855021
+    TransitionIndex: 0
   m_Animator: {fileID: 2891651886347725174}
 --- !u!1 &9066197832745718086
 GameObject:
