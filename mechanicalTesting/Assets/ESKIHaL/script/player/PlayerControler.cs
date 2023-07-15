@@ -70,7 +70,7 @@ public class PlayerControler : NetworkBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        networkAnimator.Animator = anim;
+       
     }
     private void Start()
     {
@@ -134,6 +134,7 @@ public class PlayerControler : NetworkBehaviour
         {
             // Hýz artýþý
             currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
+            anim.SetBool("test,",true);
             if (isSprint)
             {
                 currentSpeed = Mathf.Max(currentSpeed + acceleration * Time.deltaTime, 7);
@@ -147,7 +148,7 @@ public class PlayerControler : NetworkBehaviour
         {
             // Hýz azalýþý
             currentSpeed = Mathf.Max(currentSpeed * -2 - deceleration * Time.deltaTime, 0f);
-
+            anim.SetBool("test,", false);
             anim.SetBool("isSprint", false);
         }
         // Hareket etme

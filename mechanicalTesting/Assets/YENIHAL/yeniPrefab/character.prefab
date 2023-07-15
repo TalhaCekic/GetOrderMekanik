@@ -2936,7 +2936,7 @@ GameObject:
   - component: {fileID: 1805646143019126347}
   - component: {fileID: -6701801519925395205}
   - component: {fileID: -8925366375108370231}
-  - component: {fileID: -7846254676694246527}
+  - component: {fileID: -2487328864266797945}
   m_Layer: 0
   m_Name: character
   m_TagString: Untagged
@@ -3031,7 +3031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91b226058a9312459ea83719499f02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkAnimator: {fileID: -7846254676694246527}
+  networkAnimator: {fileID: -2487328864266797945}
   speedd: 5
   turnSpeed: 5
   controller: {fileID: 1001939364451475693}
@@ -3319,7 +3319,7 @@ MonoBehaviour:
   SceneMigrationSynchronization: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &-7846254676694246527
+--- !u!114 &-2487328864266797945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3331,21 +3331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TransitionStateInfoList:
-  - IsCrossFadeExit: 0
-    Layer: 3
-    OriginatingState: 1590390009
-    DestinationState: 545524378
-    TransitionDuration: 0.12
-    TriggerNameHash: -662733300
-    TransitionIndex: 0
-  - IsCrossFadeExit: 0
-    Layer: 3
-    OriginatingState: 545524378
-    DestinationState: 1590390009
-    TransitionDuration: 0.071485996
-    TriggerNameHash: -662733300
-    TransitionIndex: 0
+  TransitionStateInfoList: []
   m_Animator: {fileID: 2891651886347725174}
 --- !u!1 &9066197832745718086
 GameObject:
