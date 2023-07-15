@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using Unity.Services.Authentication;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -11,6 +12,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerControler : NetworkBehaviour
 {
+    public NetworkAnimator networkAnimator;
+
     private NetworkVariable<MyCustomData> randomNumber = new NetworkVariable<MyCustomData>(
     new MyCustomData
     {
@@ -148,7 +151,8 @@ public class PlayerControler : NetworkBehaviour
         }
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
-        anim.SetFloat("Speed", currentSpeed / speedd);
+        networkAnimator.GetComponent<Animator>().SetFloat("Speed", currentSpeed / speedd);
+        //anim.SetFloat("Speed", currentSpeed / speedd);
     }
     public void sprint()
     {

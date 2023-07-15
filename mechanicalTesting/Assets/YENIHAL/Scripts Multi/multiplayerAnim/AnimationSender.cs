@@ -2,34 +2,35 @@ using Unity.Netcode.Components;
 using Unity.Netcode;
 using UnityEngine;
 
-public class AnimationSender : NetworkBehaviour
+public class AnimationSender : NetworkAnimator
 {
-    //public NetworkAnimator networkAnimator;
-
-    //void Update()
-    //{
-    //    if (IsLocalPlayer) // Sadece yerel oyuncu için animasyon oynatma iþlemi yapýlacak
-    //    {
-    //        if (Input.GetKeyDown(KeyCode.Space))
-    //        {
-    //            networkAnimator.SetTrigger("test"); // "Jump" adýndaki animasyonu tetikle
-
-    //        }
-    //    }
-    //}
-
-    public NetworkVariable<float> animationState = new NetworkVariable<float>(0f); // Senkronize edilecek animasyon durumu
+    public NetworkAnimator networkAnimator;
 
     void Update()
     {
-        if (IsLocalPlayer)
+        if (IsLocalPlayer) // Sadece yerel oyuncu için animasyon oynatma iþlemi yapýlacak
         {
-            // Animasyon durumunu güncelleme iþlemleri
-            float newState = CalculateAnimationState();
-            SetAnimationState(newState);
-            SendAnimationState(newState);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                networkAnimator.SetTrigger("test"); // "Jump" adýndaki animasyonu tetikle
+          //      networkAnimator.GetComponent<Animator>().SetFloat("Speed", 1);
+
+            }
         }
     }
+
+    public NetworkVariable<float> animationState = new NetworkVariable<float>(0f); // Senkronize edilecek animasyon durumu
+
+    //void Update()
+    //{
+    //    if (IsLocalPlayer)
+    //    {
+    //        // Animasyon durumunu güncelleme iþlemleri
+    //        float newState = CalculateAnimationState();
+    //        SetAnimationState(newState);
+    //        SendAnimationState(newState);
+    //    }
+    //}
 
     void SetAnimationState(float state)
     {
