@@ -8,8 +8,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-public class pickUp : MonoBehaviour
+public class pickUp : NetworkBehaviour;
 {
     // public static pickUp instance;
     // RAY
