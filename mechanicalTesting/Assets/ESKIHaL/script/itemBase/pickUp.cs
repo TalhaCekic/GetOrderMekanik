@@ -67,6 +67,7 @@ public class pickUp : NetworkBehaviour
     public GameObject testIK;
     void Start()
     {
+        if (!IsOwner) return;
         rigBuilder = GetComponent<RigBuilder>();
         playerInput = new controller();
         gameController = GameObject.FindGameObjectWithTag("GameController");
@@ -80,6 +81,7 @@ public class pickUp : NetworkBehaviour
     }
     void Update()
     {
+        if (!IsOwner) return;
         playerInput.Player.Interact.performed += x => Interact();
         playerInput.Player.Drop.performed += x => Drop();
 
