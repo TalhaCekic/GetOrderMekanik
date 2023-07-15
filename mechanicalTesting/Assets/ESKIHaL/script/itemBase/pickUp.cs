@@ -10,7 +10,7 @@ using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
 
-public class pickUp : NetworkBehaviour;
+public class pickUp : NetworkBehaviour
 {
     // public static pickUp instance;
     // RAY
