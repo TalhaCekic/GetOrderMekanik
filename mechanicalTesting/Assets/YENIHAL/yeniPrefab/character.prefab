@@ -3001,7 +3001,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8985881394206135957}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 057786c15438ace49bb70a4f20e151a9, type: 3}
+  m_Avatar: {fileID: 9000000, guid: c61463cf19e93534d8448d926c68fe00, type: 3}
   m_Controller: {fileID: 9100000, guid: acc39dde0661b1c469553357d2d981d3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -3293,8 +3293,12 @@ MonoBehaviour:
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
   InLocalSpace: 0
   Interpolate: 1
+  SlerpPosition: 0
 --- !u!114 &-8925366375108370231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3309,6 +3313,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 951099334
   AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
 --- !u!114 &-7846254676694246527
