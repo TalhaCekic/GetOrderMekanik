@@ -151,7 +151,7 @@ public class PlayerControler : NetworkBehaviour
         }
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
-        networkAnimator.GetComponent<Animator>().SetFloat("Speed", currentSpeed / speedd);
+        networkAnimator.Animator.SetFloat("Speed", currentSpeed / speedd);
         //anim.SetFloat("Speed", currentSpeed / speedd);
     }
     public void sprint()
