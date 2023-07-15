@@ -7,7 +7,7 @@ public class AnimationReceiver : NetworkBehaviour
 {
     public NetworkAnimator networkAnimator;
 
- 
+
 
     void OnAnimationEventTriggered(NetworkAnimator animator, byte triggerIndex)
     {
@@ -18,4 +18,8 @@ public class AnimationReceiver : NetworkBehaviour
             networkAnimator.SetTrigger(triggerIndex);
         }
     }
+
+
+
 }
+
