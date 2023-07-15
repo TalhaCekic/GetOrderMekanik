@@ -92,7 +92,7 @@ public class PlayerControler : NetworkBehaviour
     private void Update()
     {
         //   anim = GetComponent<Animator>();
-        if (!IsOwner && !IsLocalPlayer) return;
+        if (!IsOwner && IsLocalPlayer) return;
         if (!pickUp.cutting)
         {
             InputRotation();
