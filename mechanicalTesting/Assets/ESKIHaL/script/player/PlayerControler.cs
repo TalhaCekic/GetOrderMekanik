@@ -70,6 +70,7 @@ public class PlayerControler : NetworkBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        networkAnimator.Animator = anim;
     }
     private void Start()
     {
