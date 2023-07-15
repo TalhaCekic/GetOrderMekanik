@@ -134,7 +134,7 @@ public class PlayerControler : NetworkBehaviour
         {
             // Hýz artýþý
             currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
-            anim.SetBool("test,",true);
+            networkAnimator.SetTrigger("test");
             if (isSprint)
             {
                 currentSpeed = Mathf.Max(currentSpeed + acceleration * Time.deltaTime, 7);
@@ -153,7 +153,6 @@ public class PlayerControler : NetworkBehaviour
         }
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
-        networkAnimator.Animator.SetFloat("Speed", currentSpeed / speedd);
         //anim.SetFloat("Speed", currentSpeed / speedd);
     }
     public void sprint()
