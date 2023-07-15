@@ -13,6 +13,7 @@ public class AnimationSender : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 networkAnimator.SetTrigger("test"); // "Jump" adýndaki animasyonu tetikle
+
             }
         }
     }
