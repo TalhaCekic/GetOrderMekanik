@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1514,7 +1514,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 557347618}
-  - component: {fileID: 557347619}
   - component: {fileID: 557347620}
   m_Layer: 0
   m_Name: tezgahlar
@@ -1545,27 +1544,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &557347619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557347617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efbe7155117d23b44b04c8cfa3d8d473, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameObject:
-  - {fileID: 5801441931819564634, guid: 5c36ade1ceffc6f45979677d97000e91, type: 3}
-  - {fileID: 8377663201098477449, guid: e44494038222cbe498648a33b2846669, type: 3}
-  - {fileID: 5059772715391443399, guid: 00f7756e17c716f439c303610d0b1823, type: 3}
-  - {fileID: 6143019382153120898, guid: e890c41cb27a47a40b39ead673f9d095, type: 3}
-  - {fileID: 6400644800522198005, guid: 407b69c064d49a84fa10e6a6df083591, type: 3}
-  - {fileID: 4184815018899113591, guid: 14dd50fe9d03a114c8a2253becee2d98, type: 3}
-  - {fileID: 8491038144867298371, guid: ab3c3a4fa6ee269498b0da4fc30fd355, type: 3}
-  - {fileID: 8336410331273868510, guid: 30736db03d17ce742add0165c391482f, type: 3}
 --- !u!114 &557347620
 MonoBehaviour:
   m_ObjectHideFlags: 0
