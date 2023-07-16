@@ -3082,7 +3082,8 @@ MonoBehaviour:
   tomatoSlicegonder: 0
   lettuceogonder: 0
   lettuceSlicegonder: 0
-  ID: 0
+  ID:
+    m_InternalValue: 0
   Hand: ' Null '
   rigBuilder: {fileID: 0}
   objectToRemove: {fileID: 0}
@@ -3488,7 +3489,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4184815018899113544, guid: 14dd50fe9d03a114c8a2253becee2d98, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3578,7 +3580,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4184815018899113544, guid: 14dd50fe9d03a114c8a2253becee2d98, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3878,7 +3881,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7794830834367712403, guid: 00f7756e17c716f439c303610d0b1823, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3968,7 +3972,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5801441931819564632, guid: 5c36ade1ceffc6f45979677d97000e91, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4148,7 +4153,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2425098887204764963, guid: e44494038222cbe498648a33b2846669, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
