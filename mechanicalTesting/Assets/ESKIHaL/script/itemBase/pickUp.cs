@@ -54,6 +54,8 @@ public class pickUp : NetworkBehaviour
     public static bool handFull = false;
     // karakterin elindeki tanýma ýd si0
     public NetworkVariable<float> ID = new NetworkVariable<float>();
+    //kasalarýn id si
+    NetworkVariable<float> id = new NetworkVariable<float>();
     public string Hand = " Null ";
 
     private bool notCombine;
@@ -2973,44 +2975,44 @@ public class pickUp : NetworkBehaviour
         //ele obje alýmý;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask))
         {
-            float id = hit.transform.GetComponent<itemID>().ItemID;
-            if (id == 1 && handFull == false)
+             id.Value = hit.transform.GetComponent<itemID>().ItemID.Value;
+            if (id.Value == 1 && handFull == false)
             {
                 ID.Value = 1;
                 handFull = true;
             }
-            if (id == 2 && handFull == false)
+            if (id.Value == 2 && handFull == false)
             {
                 ID.Value = 2;
                 handFull = true;
             }
-            if (id == 3.3f && handFull == false)
+            if (id.Value == 3.3f && handFull == false)
             {
                 ID.Value = 3.3f;
                 handFull = true;
             }
-            if (id == 4.4f && handFull == false)
+            if (id.Value == 4.4f && handFull == false)
             {
                 ID.Value = 4.4f;
                 handFull = true;
             }
-            if (id == 5.5f && handFull == false)
+            if (id.Value == 5.5f && handFull == false)
             {
                 ID.Value = 5.5f;
                 handFull = true;
             }
-            if (id == 6f && handFull == false)
+            if (id.Value == 6f && handFull == false)
             {
                 ID.Value = 6f;
                 handFull = true;
             }
-            if (id == 6 && handFull == false)
+            if (id.Value == 6 && handFull == false)
             {
                 ID.Value = 6f;
                 handFull = true;
             }
             // elde item varken kombinasyon yapmamýzý saðlar.
-            if (id == 1)
+            if (id.Value == 1)
             {
                 if (ID.Value == 2)
                 {
@@ -3137,7 +3139,7 @@ public class pickUp : NetworkBehaviour
                     ID.Value = 123456;
                 }
             }
-            if (id == 2)
+            if (id.Value == 2)
             {
                 if (ID.Value == 1)
                 {
