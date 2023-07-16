@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4184815018899113546}
   - component: {fileID: 4184815018899113545}
   - component: {fileID: 4184815018899113544}
-  - component: {fileID: 6316477317619353746}
+  - component: {fileID: -9036829691292728801}
   m_Layer: 6
   m_Name: plate
   m_TagString: plate
@@ -146,7 +146,7 @@ MonoBehaviour:
   ItemID:
     m_InternalValue: 0
   Name: tabak
---- !u!114 &6316477317619353746
+--- !u!114 &-9036829691292728801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

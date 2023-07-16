@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8377663201098477455}
   - component: {fileID: 8377663201098477454}
   - component: {fileID: 2425098887204764963}
-  - component: {fileID: 8414383878723337910}
+  - component: {fileID: 7066873781870947187}
   m_Layer: 0
   m_Name: kofteBaked
   m_TagString: Untagged
@@ -122,7 +122,7 @@ MonoBehaviour:
   ItemID:
     m_InternalValue: 0
   Name: kofteBaked
---- !u!114 &8414383878723337910
+--- !u!114 &7066873781870947187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
