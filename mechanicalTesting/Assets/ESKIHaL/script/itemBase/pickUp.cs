@@ -60,7 +60,7 @@ public class pickUp : NetworkBehaviour
     public static bool cutting = false;
 
 
-    public NetworkVariable<controller>  playerInput = new NetworkVariable<controller>();
+ //   public NetworkVariable<controller>  playerInput = new NetworkVariable<controller>();
 
     public RigBuilder rigBuilder;
     public GameObject objectToRemove; // Kaldýrýlacak objeyi atan deðiþken
@@ -69,7 +69,7 @@ public class pickUp : NetworkBehaviour
     {
         if (!IsOwner) return;
         rigBuilder = GetComponent<RigBuilder>();
-        playerInput.Value = new controller();
+      //  playerInput.Value = new controller();
         gameController = GameObject.FindGameObjectWithTag("GameController");
         Counter = FindObjectOfType<counter>();
 
