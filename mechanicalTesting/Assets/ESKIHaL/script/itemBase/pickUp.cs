@@ -81,7 +81,7 @@ public class pickUp : NetworkBehaviour
     }
     void Update()
     {
-      //  if (!IsOwner) return;
+        if (!IsOwner) return;
         playerInput.Player.Interact.performed += x => Interact();
         playerInput.Player.Drop.performed += x => Drop();
 
