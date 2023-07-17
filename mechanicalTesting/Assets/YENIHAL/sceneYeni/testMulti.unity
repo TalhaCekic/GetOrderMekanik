@@ -5240,7 +5240,7 @@ MonoBehaviour:
   offlineScene: 
   onlineScene: 
   transport: {fileID: 2082627841}
-  networkAddress: localhost
+  networkAddress: 192.168.1.142
   maxConnections: 100
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 5365395402361522226, guid: e8522aba77892d74c8df14208d321fb3,
