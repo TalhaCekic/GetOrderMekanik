@@ -81,7 +81,7 @@ namespace kcp2k
                 {
                     Log.Warning($"Failed to set Dual Mode, continuing with IPv6 without Dual Mode. Error: {e}");
                 }
-               // socket.Bind(new IPEndPoint(IPAddress.IPv6Any, port));
+                socket.Bind(new IPEndPoint(IPAddress.IPv6Any, port));
                 return socket;
             }
             else

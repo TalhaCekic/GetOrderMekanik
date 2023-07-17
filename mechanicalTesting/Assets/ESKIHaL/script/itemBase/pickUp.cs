@@ -39,6 +39,7 @@ public class pickUp : NetworkBehaviour
     public GameObject lettuce;        //id : 5.5
     public GameObject SliceLettuce;   //id : 5
     public GameObject cheddarCheese;  //id : 6
+    
 
     public bool Burgergonder;
     public bool Plategonder;
@@ -52,7 +53,7 @@ public class pickUp : NetworkBehaviour
     // elimizi kontrole eder.
     public static bool handFull = false;
     // karakterin elindeki tanýma ýd si0
-    public float ID;
+    [SyncVar]public float ID;
     //kasalarýn id si
     
     public string Hand = " Null ";
@@ -83,8 +84,10 @@ public class pickUp : NetworkBehaviour
     void Update()
     {
         if (!isLocalPlayer) return;
+            playerInput.Player.Drop.performed += x => Drop();
+      
         playerInput.Player.Interact.performed += x => Interact();
-        playerInput.Player.Drop.performed += x => Drop();
+        
 
         playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
 
@@ -92,14 +95,15 @@ public class pickUp : NetworkBehaviour
 
 
         //rig sistemini aktif ve deaktif 
-     //   rigBuilder.enabled = cutting;
+        //   rigBuilder.enabled = cutting;
         //if (rigBuilder.enabled == true) // kol animasyonunu tetikler
         //{
-    
+
         //}
     }
 
     //input sistemi etkileþimler
+
     public void Drop()
     {
         //counter
@@ -2860,6 +2864,8 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
+
+
     public void Interact()
     {
         //counter;

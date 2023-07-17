@@ -917,11 +917,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 29557449-c385-4b80-b86d-e7554136e42a
+  cloudProjectId: 4fc70499-54ba-4c71-a6aa-976e2c0522db
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: testMultiplayer
-  organizationId: talhacekicc123
+  projectName: testco
+  organizationId: unity_ansmcllhazx-qw
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

@@ -40,7 +40,9 @@ public class PlayerControler : NetworkBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
-       
+        randomPlayerPosition = new Vector3(Random.Range(53, 63), 1, Random.Range(75, 78));
+        transform.position = randomPlayerPosition;
+
     }
     private void Start()
     {
@@ -54,8 +56,7 @@ public class PlayerControler : NetworkBehaviour
         InputAction.performed += ctx => sprint();
         InputAction.canceled += ctx => StopSprint();
         InputAction.Enable();
-        randomPlayerPosition = new Vector3(Random.Range(53, 63), 1, Random.Range(75, 78));
-        transform.position = randomPlayerPosition;
+        
 
     }
     private void Update()
