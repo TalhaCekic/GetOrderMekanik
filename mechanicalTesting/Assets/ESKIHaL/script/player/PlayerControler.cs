@@ -7,8 +7,9 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Mirror;
 
-public class PlayerControler : MonoBehaviour
+public class PlayerControler : NetworkBehaviour
 {
 
     private Vector3 randomPlayerPosition;
@@ -59,7 +60,7 @@ public class PlayerControler : MonoBehaviour
     }
     private void Update()
     {
-           anim = GetComponent<Animator>();
+        if (!isLocalPlayer) return;
 
         if (!pickUp.cutting)
         {

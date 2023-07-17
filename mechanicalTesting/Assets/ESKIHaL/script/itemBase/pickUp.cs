@@ -7,8 +7,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
+using Mirror;
 
-public class pickUp : MonoBehaviour
+public class pickUp : NetworkBehaviour
 {
     // public static pickUp instance;
     // RAY
@@ -81,7 +82,7 @@ public class pickUp : MonoBehaviour
     }
     void Update()
     {
-        
+        if (!isLocalPlayer) return;
         playerInput.Player.Interact.performed += x => Interact();
         playerInput.Player.Drop.performed += x => Drop();
 
@@ -92,10 +93,10 @@ public class pickUp : MonoBehaviour
 
         //rig sistemini aktif ve deaktif 
      //   rigBuilder.enabled = cutting;
-        if (rigBuilder.enabled == true) // kol animasyonunu tetikler
-        {
+        //if (rigBuilder.enabled == true) // kol animasyonunu tetikler
+        //{
     
-        }
+        //}
     }
 
     //input sistemi etkileþimler
