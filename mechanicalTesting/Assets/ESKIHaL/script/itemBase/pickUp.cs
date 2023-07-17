@@ -2,15 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Netcode.Components;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
-using Unity.Netcode;
 
-public class pickUp : NetworkBehaviour
+public class pickUp : MonoBehaviour
 {
     // public static pickUp instance;
     // RAY
@@ -53,9 +51,9 @@ public class pickUp : NetworkBehaviour
     // elimizi kontrole eder.
     public static bool handFull = false;
     // karakterin elindeki tanýma ýd si0
-    public NetworkVariable<float> ID = new NetworkVariable<float>();
+    public float ID;
     //kasalarýn id si
-    NetworkVariable<float> id = new NetworkVariable<float>();
+    
     public string Hand = " Null ";
 
     private bool notCombine;
@@ -69,7 +67,7 @@ public class pickUp : NetworkBehaviour
     public GameObject testIK;
     void Start()
     {
-        if (!IsOwner) return;
+        
         rigBuilder = GetComponent<RigBuilder>();
         playerInput = new controller();
         gameController = GameObject.FindGameObjectWithTag("GameController");
@@ -83,7 +81,7 @@ public class pickUp : NetworkBehaviour
     }
     void Update()
     {
-        if (!IsOwner) return;
+        
         playerInput.Player.Interact.performed += x => Interact();
         playerInput.Player.Drop.performed += x => Drop();
 
@@ -112,392 +110,392 @@ public class pickUp : NetworkBehaviour
                 float value = counter.counterID;
                 if (!counter.notCombine)
                 {
-                    if (ID.Value == 1)
+                    if (ID == 1)
                     {
                         if (!counter.burgerdolu)
                         {
                             counter.burgerdolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2)
+                    if (ID == 2)
                     {
                         if (!counter.cleanPlatedolu)
                         {
                             counter.cleanPlatedolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 3)
+                    if (ID == 3)
                     {
                         if (!counter.meatbakeddolu)
                         {
                             counter.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 4)
+                    if (ID == 4)
                     {
                         if (!counter.tomatoSliceDolu)
                         {
                             counter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 5)
+                    if (ID == 5)
                     {
                         if (!counter.lettuceSliceDolu)
                         {
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 6)
+                    if (ID == 6)
                     {
                         if (!counter.cheddarCheeseDolu)
                         {
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12)
+                    if (ID == 12)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.burgerdolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 13)
+                    if (ID == 13)
                     {
                         if (!counter.burgerdolu && !counter.meatbakeddolu)
                         {
                             counter.burgerdolu = true;
                             counter.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 14)
+                    if (ID == 14)
                     {
                         if (!counter.burgerdolu && !counter.tomatoSliceDolu)
                         {
                             counter.burgerdolu = true;
                             counter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 15)
+                    if (ID == 15)
                     {
                         if (!counter.burgerdolu && !counter.lettuceSliceDolu)
                         {
                             counter.burgerdolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 16)
+                    if (ID == 16)
                     {
                         if (!counter.burgerdolu && !counter.cheddarCheeseDolu)
                         {
                             counter.burgerdolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 23)
+                    if (ID == 23)
                     {
                         if (!counter.cleanPlatedolu && !counter.meatbakeddolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 24)
+                    if (ID == 24)
                     {
                         if (!counter.cleanPlatedolu && !counter.tomatoSliceDolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 25)
+                    if (ID == 25)
                     {
                         if (!counter.cleanPlatedolu && !counter.lettuceSliceDolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 26)
+                    if (ID == 26)
                     {
                         if (!counter.cleanPlatedolu && !counter.cheddarCheeseDolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 34)
+                    if (ID == 34)
                     {
                         if (!counter.meatbakeddolu && !counter.tomatoSliceDolu)
                         {
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 35)
+                    if (ID == 35)
                     {
                         if (!counter.meatbakeddolu && !counter.lettuceSliceDolu)
                         {
                             counter.meatbakeddolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 36)
+                    if (ID == 36)
                     {
                         if (!counter.meatbakeddolu && !counter.cheddarCheeseDolu)
                         {
                             counter.meatbakeddolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 45)
+                    if (ID == 45)
                     {
                         if (!counter.tomatoSliceDolu && !counter.lettuceSliceDolu)
                         {
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 46)
+                    if (ID == 46)
                     {
                         if (!counter.tomatoSliceDolu && !counter.cheddarCheeseDolu)
                         {
                             counter.tomatoSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 56)
+                    if (ID == 56)
                     {
                         if (!counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 123)
+                    if (ID == 123)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.meatbakeddolu)
                         {
                             counter.burgerdolu = true;
                             counter.cleanPlatedolu = true;
                             counter.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 124)
+                    if (ID == 124)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.tomatoSliceDolu)
                         {
                             counter.burgerdolu = true;
                             counter.cleanPlatedolu = true;
                             counter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 125)
+                    if (ID == 125)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.lettuceSliceDolu)
                         {
                             counter.burgerdolu = true;
                             counter.cleanPlatedolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 126)
+                    if (ID == 126)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.cheddarCheeseDolu)
                         {
                             counter.burgerdolu = true;
                             counter.cleanPlatedolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 134)
+                    if (ID == 134)
                     {
                         if (!counter.burgerdolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu)
                         {
                             counter.burgerdolu = true;
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 135)
+                    if (ID == 135)
                     {
                         if (!counter.burgerdolu && !counter.meatbakeddolu && !counter.lettuceSliceDolu)
                         {
                             counter.burgerdolu = true;
                             counter.meatbakeddolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 136)
+                    if (ID == 136)
                     {
                         if (!counter.burgerdolu && !counter.meatbakeddolu && !counter.cheddarCheeseDolu)
                         {
                             counter.burgerdolu = true;
                             counter.meatbakeddolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 145)
+                    if (ID == 145)
                     {
                         if (!counter.burgerdolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu)
                         {
                             counter.burgerdolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 146)
+                    if (ID == 146)
                     {
                         if (!counter.burgerdolu && !counter.tomatoSliceDolu && !counter.cheddarCheeseDolu)
                         {
                             counter.burgerdolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 156)
+                    if (ID == 156)
                     {
                         if (!counter.burgerdolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
                             counter.burgerdolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 234)
+                    if (ID == 234)
                     {
                         if (!counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 235)
+                    if (ID == 235)
                     {
                         if (!counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.lettuceSliceDolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.meatbakeddolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 236)
+                    if (ID == 236)
                     {
                         if (!counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.cheddarCheeseDolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.meatbakeddolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 245)
+                    if (ID == 245)
                     {
                         if (!counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.lettuceSliceDolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.meatbakeddolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 246)
+                    if (ID == 246)
                     {
                         if (!counter.cleanPlatedolu && !counter.tomatoSliceDolu && !counter.cheddarCheeseDolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 256)
+                    if (ID == 256)
                     {
                         if (!counter.cleanPlatedolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
                             counter.cleanPlatedolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 345)
+                    if (ID == 345)
                     {
                         if (!counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu)
                         {
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 346)
+                    if (ID == 346)
                     {
                         if (!counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.cheddarCheeseDolu)
                         {
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 356)
+                    if (ID == 356)
                     {
                         if (!counter.meatbakeddolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
                             counter.meatbakeddolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 456)
+                    if (ID == 456)
                     {
                         if (!counter.tomatoSliceDolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 1234)
+                    if (ID == 1234)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu)
                         {
@@ -505,10 +503,10 @@ public class pickUp : NetworkBehaviour
                             counter.cleanPlatedolu = true;
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1235)
+                    if (ID == 1235)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.lettuceSliceDolu)
                         {
@@ -516,10 +514,10 @@ public class pickUp : NetworkBehaviour
                             counter.cleanPlatedolu = true;
                             counter.meatbakeddolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1236)
+                    if (ID == 1236)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.cheddarCheeseDolu)
                         {
@@ -527,10 +525,10 @@ public class pickUp : NetworkBehaviour
                             counter.cleanPlatedolu = true;
                             counter.meatbakeddolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1245)
+                    if (ID == 1245)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu)
                         {
@@ -538,10 +536,10 @@ public class pickUp : NetworkBehaviour
                             counter.cleanPlatedolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1246)
+                    if (ID == 1246)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.tomatoSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -549,10 +547,10 @@ public class pickUp : NetworkBehaviour
                             counter.cleanPlatedolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1256)
+                    if (ID == 1256)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -560,10 +558,10 @@ public class pickUp : NetworkBehaviour
                             counter.cleanPlatedolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1345)
+                    if (ID == 1345)
                     {
                         if (!counter.burgerdolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu)
                         {
@@ -571,10 +569,10 @@ public class pickUp : NetworkBehaviour
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1346)
+                    if (ID == 1346)
                     {
                         if (!counter.burgerdolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -582,10 +580,10 @@ public class pickUp : NetworkBehaviour
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1356)
+                    if (ID == 1356)
                     {
                         if (!counter.burgerdolu && !counter.meatbakeddolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -593,10 +591,10 @@ public class pickUp : NetworkBehaviour
                             counter.meatbakeddolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1456)
+                    if (ID == 1456)
                     {
                         if (!counter.burgerdolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -604,10 +602,10 @@ public class pickUp : NetworkBehaviour
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2345)
+                    if (ID == 2345)
                     {
                         if (!counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu)
                         {
@@ -615,10 +613,10 @@ public class pickUp : NetworkBehaviour
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2346)
+                    if (ID == 2346)
                     {
                         if (!counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -626,10 +624,10 @@ public class pickUp : NetworkBehaviour
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2356)
+                    if (ID == 2356)
                     {
                         if (!counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -637,10 +635,10 @@ public class pickUp : NetworkBehaviour
                             counter.meatbakeddolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2456)
+                    if (ID == 2456)
                     {
                         if (!counter.cleanPlatedolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -648,10 +646,10 @@ public class pickUp : NetworkBehaviour
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 3456)
+                    if (ID == 3456)
                     {
                         if (!counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -659,11 +657,11 @@ public class pickUp : NetworkBehaviour
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 12345)
+                    if (ID == 12345)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu)
                         {
@@ -672,10 +670,10 @@ public class pickUp : NetworkBehaviour
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12346)
+                    if (ID == 12346)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -684,10 +682,10 @@ public class pickUp : NetworkBehaviour
                             counter.meatbakeddolu = true;
                             counter.tomatoSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12356)
+                    if (ID == 12356)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -696,10 +694,10 @@ public class pickUp : NetworkBehaviour
                             counter.meatbakeddolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12456)
+                    if (ID == 12456)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -708,11 +706,11 @@ public class pickUp : NetworkBehaviour
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
-                            ID.Value = 0;
+                            ID = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 13456)
+                    if (ID == 13456)
                     {
                         if (!counter.burgerdolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -721,10 +719,10 @@ public class pickUp : NetworkBehaviour
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 23456)
+                    if (ID == 23456)
                     {
                         if (!counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -733,11 +731,11 @@ public class pickUp : NetworkBehaviour
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 123456)
+                    if (ID == 123456)
                     {
                         if (!counter.burgerdolu && !counter.cleanPlatedolu && !counter.meatbakeddolu && !counter.tomatoSliceDolu && !counter.lettuceSliceDolu && !counter.cheddarCheeseDolu)
                         {
@@ -747,44 +745,44 @@ public class pickUp : NetworkBehaviour
                             counter.tomatoSliceDolu = true;
                             counter.lettuceSliceDolu = true;
                             counter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
                 }
-                if (ID.Value == 2.2f)
+                if (ID == 2.2f)
                 {
                     if (counter.counterID == 0)
                     {
                         counter.counterID = 2.2f;
                         counter.dirtyPlatedolu = false;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 3.3f)
+                if (ID == 3.3f)
                 {
                     if (counter.counterID == 0)
                     {
                         counter.counterID = 3.3f;
                         counter.meatRawdolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 4.4f)
+                if (ID == 4.4f)
                 {
                     if (counter.counterID == 0)
                     {
                         counter.counterID = 4.4f;
                         counter.tomatodolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 5.5f)
+                if (ID == 5.5f)
                 {
                     if (counter.counterID == 0)
                     {
                         counter.counterID = 5.5f;
                         counter.lettucedolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
             }
@@ -797,392 +795,392 @@ public class pickUp : NetworkBehaviour
                 float value = furnace.counterID;
                 if (!furnace.notCombine)
                 {
-                    if (ID.Value == 1)
+                    if (ID == 1)
                     {
                         if (!furnace.burgerdolu)
                         {
                             furnace.burgerdolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2)
+                    if (ID == 2)
                     {
                         if (!furnace.cleanPlatedolu)
                         {
                             furnace.cleanPlatedolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 3)
+                    if (ID == 3)
                     {
                         if (!furnace.meatbakeddolu)
                         {
                             furnace.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 4)
+                    if (ID == 4)
                     {
                         if (!furnace.tomatoSliceDolu)
                         {
                             furnace.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 5)
+                    if (ID == 5)
                     {
                         if (!furnace.lettuceSliceDolu)
                         {
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 6)
+                    if (ID == 6)
                     {
                         if (!furnace.cheddarCheeseDolu)
                         {
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12)
+                    if (ID == 12)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.burgerdolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 13)
+                    if (ID == 13)
                     {
                         if (!furnace.burgerdolu && !furnace.meatbakeddolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 14)
+                    if (ID == 14)
                     {
                         if (!furnace.burgerdolu && !furnace.tomatoSliceDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 15)
+                    if (ID == 15)
                     {
                         if (!furnace.burgerdolu && !furnace.lettuceSliceDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 16)
+                    if (ID == 16)
                     {
                         if (!furnace.burgerdolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 23)
+                    if (ID == 23)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.meatbakeddolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 24)
+                    if (ID == 24)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.tomatoSliceDolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 25)
+                    if (ID == 25)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.lettuceSliceDolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 26)
+                    if (ID == 26)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 34)
+                    if (ID == 34)
                     {
                         if (!furnace.meatbakeddolu && !furnace.tomatoSliceDolu)
                         {
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 35)
+                    if (ID == 35)
                     {
                         if (!furnace.meatbakeddolu && !furnace.lettuceSliceDolu)
                         {
                             furnace.meatbakeddolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 36)
+                    if (ID == 36)
                     {
                         if (!furnace.meatbakeddolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.meatbakeddolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 45)
+                    if (ID == 45)
                     {
                         if (!furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu)
                         {
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 46)
+                    if (ID == 46)
                     {
                         if (!furnace.tomatoSliceDolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.tomatoSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 56)
+                    if (ID == 56)
                     {
                         if (!furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 123)
+                    if (ID == 123)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.meatbakeddolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.cleanPlatedolu = true;
                             furnace.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 124)
+                    if (ID == 124)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.tomatoSliceDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.cleanPlatedolu = true;
                             furnace.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 125)
+                    if (ID == 125)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.lettuceSliceDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.cleanPlatedolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 126)
+                    if (ID == 126)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.cleanPlatedolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 134)
+                    if (ID == 134)
                     {
                         if (!furnace.burgerdolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 135)
+                    if (ID == 135)
                     {
                         if (!furnace.burgerdolu && !furnace.meatbakeddolu && !furnace.lettuceSliceDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.meatbakeddolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 136)
+                    if (ID == 136)
                     {
                         if (!furnace.burgerdolu && !furnace.meatbakeddolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.meatbakeddolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 145)
+                    if (ID == 145)
                     {
                         if (!furnace.burgerdolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 146)
+                    if (ID == 146)
                     {
                         if (!furnace.burgerdolu && !furnace.tomatoSliceDolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 156)
+                    if (ID == 156)
                     {
                         if (!furnace.burgerdolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.burgerdolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 234)
+                    if (ID == 234)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 235)
+                    if (ID == 235)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.lettuceSliceDolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.meatbakeddolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 236)
+                    if (ID == 236)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.meatbakeddolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 245)
+                    if (ID == 245)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.lettuceSliceDolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.meatbakeddolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 246)
+                    if (ID == 246)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.tomatoSliceDolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 256)
+                    if (ID == 256)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.cleanPlatedolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 345)
+                    if (ID == 345)
                     {
                         if (!furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu)
                         {
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 346)
+                    if (ID == 346)
                     {
                         if (!furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 356)
+                    if (ID == 356)
                     {
                         if (!furnace.meatbakeddolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.meatbakeddolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 456)
+                    if (ID == 456)
                     {
                         if (!furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 1234)
+                    if (ID == 1234)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu)
                         {
@@ -1190,10 +1188,10 @@ public class pickUp : NetworkBehaviour
                             furnace.cleanPlatedolu = true;
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1235)
+                    if (ID == 1235)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.lettuceSliceDolu)
                         {
@@ -1201,10 +1199,10 @@ public class pickUp : NetworkBehaviour
                             furnace.cleanPlatedolu = true;
                             furnace.meatbakeddolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1236)
+                    if (ID == 1236)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1212,10 +1210,10 @@ public class pickUp : NetworkBehaviour
                             furnace.cleanPlatedolu = true;
                             furnace.meatbakeddolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1245)
+                    if (ID == 1245)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu)
                         {
@@ -1223,10 +1221,10 @@ public class pickUp : NetworkBehaviour
                             furnace.cleanPlatedolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1246)
+                    if (ID == 1246)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.tomatoSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1234,10 +1232,10 @@ public class pickUp : NetworkBehaviour
                             furnace.cleanPlatedolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1256)
+                    if (ID == 1256)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1245,10 +1243,10 @@ public class pickUp : NetworkBehaviour
                             furnace.cleanPlatedolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1345)
+                    if (ID == 1345)
                     {
                         if (!furnace.burgerdolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu)
                         {
@@ -1256,10 +1254,10 @@ public class pickUp : NetworkBehaviour
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1346)
+                    if (ID == 1346)
                     {
                         if (!furnace.burgerdolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1267,10 +1265,10 @@ public class pickUp : NetworkBehaviour
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1356)
+                    if (ID == 1356)
                     {
                         if (!furnace.burgerdolu && !furnace.meatbakeddolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1278,10 +1276,10 @@ public class pickUp : NetworkBehaviour
                             furnace.meatbakeddolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1456)
+                    if (ID == 1456)
                     {
                         if (!furnace.burgerdolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1289,10 +1287,10 @@ public class pickUp : NetworkBehaviour
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2345)
+                    if (ID == 2345)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu)
                         {
@@ -1300,10 +1298,10 @@ public class pickUp : NetworkBehaviour
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2346)
+                    if (ID == 2346)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1311,10 +1309,10 @@ public class pickUp : NetworkBehaviour
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2356)
+                    if (ID == 2356)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1322,10 +1320,10 @@ public class pickUp : NetworkBehaviour
                             furnace.meatbakeddolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2456)
+                    if (ID == 2456)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1333,10 +1331,10 @@ public class pickUp : NetworkBehaviour
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 3456)
+                    if (ID == 3456)
                     {
                         if (!furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1344,11 +1342,11 @@ public class pickUp : NetworkBehaviour
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 12345)
+                    if (ID == 12345)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu)
                         {
@@ -1357,10 +1355,10 @@ public class pickUp : NetworkBehaviour
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12346)
+                    if (ID == 12346)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1369,10 +1367,10 @@ public class pickUp : NetworkBehaviour
                             furnace.meatbakeddolu = true;
                             furnace.tomatoSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12356)
+                    if (ID == 12356)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1381,10 +1379,10 @@ public class pickUp : NetworkBehaviour
                             furnace.meatbakeddolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12456)
+                    if (ID == 12456)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1393,10 +1391,10 @@ public class pickUp : NetworkBehaviour
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 13456)
+                    if (ID == 13456)
                     {
                         if (!furnace.burgerdolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1405,10 +1403,10 @@ public class pickUp : NetworkBehaviour
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 23456)
+                    if (ID == 23456)
                     {
                         if (!furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1417,11 +1415,11 @@ public class pickUp : NetworkBehaviour
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 123456)
+                    if (ID == 123456)
                     {
                         if (!furnace.burgerdolu && !furnace.cleanPlatedolu && !furnace.meatbakeddolu && !furnace.tomatoSliceDolu && !furnace.lettuceSliceDolu && !furnace.cheddarCheeseDolu)
                         {
@@ -1431,44 +1429,44 @@ public class pickUp : NetworkBehaviour
                             furnace.tomatoSliceDolu = true;
                             furnace.lettuceSliceDolu = true;
                             furnace.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
                 }
-                if (ID.Value == 2.2f)
+                if (ID == 2.2f)
                 {
                     if (furnace.counterID == 0)
                     {
                         furnace.counterID = 2.2f;
                         furnace.dirtyPlatedolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 3.3f)
+                if (ID == 3.3f)
                 {
                     if (furnace.counterID == 0)
                     {
                         furnace.counterID = 3.3f;
                         furnace.meatRawdolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 4.4f)
+                if (ID == 4.4f)
                 {
                     if (furnace.counterID == 0)
                     {
                         furnace.counterID = 4.4f;
                         furnace.tomatodolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 5.5f)
+                if (ID == 5.5f)
                 {
                     if (furnace.counterID == 0)
                     {
                         furnace.counterID = 5.5f;
                         furnace.lettucedolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
             }
@@ -1481,392 +1479,392 @@ public class pickUp : NetworkBehaviour
                 float value = dinnerTable.counterID;
                 if (!dinnerTable.notCombine)
                 {
-                    if (ID.Value == 1)
+                    if (ID == 1)
                     {
                         if (!dinnerTable.burgerdolu)
                         {
                             dinnerTable.burgerdolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2)
+                    if (ID == 2)
                     {
                         if (!dinnerTable.cleanPlatedolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 3)
+                    if (ID == 3)
                     {
                         if (!dinnerTable.meatbakeddolu)
                         {
                             dinnerTable.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 4)
+                    if (ID == 4)
                     {
                         if (!dinnerTable.tomatoSliceDolu)
                         {
                             dinnerTable.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 5)
+                    if (ID == 5)
                     {
                         if (!dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 6)
+                    if (ID == 6)
                     {
                         if (!dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12)
+                    if (ID == 12)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.burgerdolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 13)
+                    if (ID == 13)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.meatbakeddolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 14)
+                    if (ID == 14)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.tomatoSliceDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 15)
+                    if (ID == 15)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 16)
+                    if (ID == 16)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 23)
+                    if (ID == 23)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 24)
+                    if (ID == 24)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.tomatoSliceDolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 25)
+                    if (ID == 25)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 26)
+                    if (ID == 26)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 34)
+                    if (ID == 34)
                     {
                         if (!dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu)
                         {
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 35)
+                    if (ID == 35)
                     {
                         if (!dinnerTable.meatbakeddolu && !dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 36)
+                    if (ID == 36)
                     {
                         if (!dinnerTable.meatbakeddolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 45)
+                    if (ID == 45)
                     {
                         if (!dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 46)
+                    if (ID == 46)
                     {
                         if (!dinnerTable.tomatoSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 56)
+                    if (ID == 56)
                     {
                         if (!dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 123)
+                    if (ID == 123)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 124)
+                    if (ID == 124)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.tomatoSliceDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 125)
+                    if (ID == 125)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 126)
+                    if (ID == 126)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 134)
+                    if (ID == 134)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 135)
+                    if (ID == 135)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.meatbakeddolu && !dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 136)
+                    if (ID == 136)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.meatbakeddolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 145)
+                    if (ID == 145)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 146)
+                    if (ID == 146)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 156)
+                    if (ID == 156)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.burgerdolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 234)
+                    if (ID == 234)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 235)
+                    if (ID == 235)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 236)
+                    if (ID == 236)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 245)
+                    if (ID == 245)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 246)
+                    if (ID == 246)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 256)
+                    if (ID == 256)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 345)
+                    if (ID == 345)
                     {
                         if (!dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu)
                         {
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 346)
+                    if (ID == 346)
                     {
                         if (!dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 356)
+                    if (ID == 356)
                     {
                         if (!dinnerTable.meatbakeddolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 456)
+                    if (ID == 456)
                     {
                         if (!dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 1234)
+                    if (ID == 1234)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu)
                         {
@@ -1874,10 +1872,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1235)
+                    if (ID == 1235)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.lettuceSliceDolu)
                         {
@@ -1885,10 +1883,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1236)
+                    if (ID == 1236)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -1896,10 +1894,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1245)
+                    if (ID == 1245)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu)
                         {
@@ -1907,10 +1905,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1246)
+                    if (ID == 1246)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -1918,10 +1916,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1256)
+                    if (ID == 1256)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -1929,10 +1927,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.cleanPlatedolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1345)
+                    if (ID == 1345)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu)
                         {
@@ -1940,10 +1938,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1346)
+                    if (ID == 1346)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -1951,10 +1949,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1356)
+                    if (ID == 1356)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.meatbakeddolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -1962,10 +1960,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1456)
+                    if (ID == 1456)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -1973,10 +1971,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2345)
+                    if (ID == 2345)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu)
                         {
@@ -1984,10 +1982,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2346)
+                    if (ID == 2346)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -1995,10 +1993,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2356)
+                    if (ID == 2356)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -2006,10 +2004,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2456)
+                    if (ID == 2456)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -2017,10 +2015,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 3456)
+                    if (ID == 3456)
                     {
                         if (!dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -2028,11 +2026,11 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 12345)
+                    if (ID == 12345)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu)
                         {
@@ -2041,10 +2039,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12346)
+                    if (ID == 12346)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -2053,10 +2051,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12356)
+                    if (ID == 12356)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -2065,10 +2063,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.meatbakeddolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12456)
+                    if (ID == 12456)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -2077,10 +2075,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 13456)
+                    if (ID == 13456)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -2089,10 +2087,10 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 23456)
+                    if (ID == 23456)
                     {
                         if (!dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -2101,11 +2099,11 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 123456)
+                    if (ID == 123456)
                     {
                         if (!dinnerTable.burgerdolu && !dinnerTable.cleanPlatedolu && !dinnerTable.meatbakeddolu && !dinnerTable.tomatoSliceDolu && !dinnerTable.lettuceSliceDolu && !dinnerTable.cheddarCheeseDolu)
                         {
@@ -2115,44 +2113,44 @@ public class pickUp : NetworkBehaviour
                             dinnerTable.tomatoSliceDolu = true;
                             dinnerTable.lettuceSliceDolu = true;
                             dinnerTable.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
                 }
-                if (ID.Value == 2.2f)
+                if (ID == 2.2f)
                 {
                     if (dinnerTable.counterID == 0)
                     {
                         dinnerTable.counterID = 2.2f;
                         dinnerTable.dirtyPlatedolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 3.3f)
+                if (ID == 3.3f)
                 {
                     if (dinnerTable.counterID == 0)
                     {
                         dinnerTable.counterID = 3.3f;
                         dinnerTable.meatRawdolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 4.4f)
+                if (ID == 4.4f)
                 {
                     if (dinnerTable.counterID == 0)
                     {
                         dinnerTable.counterID = 4.4f;
                         dinnerTable.tomatodolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 5.5f)
+                if (ID == 5.5f)
                 {
                     if (dinnerTable.counterID == 0)
                     {
                         dinnerTable.counterID = 5.5f;
                         dinnerTable.lettucedolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
             }
@@ -2165,392 +2163,392 @@ public class pickUp : NetworkBehaviour
                 float value = CuttingBoardCounter.counterID;
                 if (!CuttingBoardCounter.notCombine)
                 {
-                    if (ID.Value == 1)
+                    if (ID == 1)
                     {
                         if (!CuttingBoardCounter.burgerdolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2)
+                    if (ID == 2)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 3)
+                    if (ID == 3)
                     {
                         if (!CuttingBoardCounter.meatbakeddolu)
                         {
                             CuttingBoardCounter.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 4)
+                    if (ID == 4)
                     {
                         if (!CuttingBoardCounter.tomatoSliceDolu)
                         {
                             CuttingBoardCounter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 5)
+                    if (ID == 5)
                     {
                         if (!CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 6)
+                    if (ID == 6)
                     {
                         if (!CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12)
+                    if (ID == 12)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.burgerdolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 13)
+                    if (ID == 13)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.meatbakeddolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 14)
+                    if (ID == 14)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.tomatoSliceDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 15)
+                    if (ID == 15)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 16)
+                    if (ID == 16)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 23)
+                    if (ID == 23)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 24)
+                    if (ID == 24)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.tomatoSliceDolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 25)
+                    if (ID == 25)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 26)
+                    if (ID == 26)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 34)
+                    if (ID == 34)
                     {
                         if (!CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu)
                         {
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 35)
+                    if (ID == 35)
                     {
                         if (!CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 36)
+                    if (ID == 36)
                     {
                         if (!CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 45)
+                    if (ID == 45)
                     {
                         if (!CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 46)
+                    if (ID == 46)
                     {
                         if (!CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 56)
+                    if (ID == 56)
                     {
                         if (!CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 123)
+                    if (ID == 123)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 124)
+                    if (ID == 124)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.tomatoSliceDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 125)
+                    if (ID == 125)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 126)
+                    if (ID == 126)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 134)
+                    if (ID == 134)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 135)
+                    if (ID == 135)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 136)
+                    if (ID == 136)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 145)
+                    if (ID == 145)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 146)
+                    if (ID == 146)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 156)
+                    if (ID == 156)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.burgerdolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 234)
+                    if (ID == 234)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 235)
+                    if (ID == 235)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 236)
+                    if (ID == 236)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 245)
+                    if (ID == 245)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 246)
+                    if (ID == 246)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 256)
+                    if (ID == 256)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 345)
+                    if (ID == 345)
                     {
                         if (!CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 346)
+                    if (ID == 346)
                     {
                         if (!CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 356)
+                    if (ID == 356)
                     {
                         if (!CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 456)
+                    if (ID == 456)
                     {
                         if (!CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 1234)
+                    if (ID == 1234)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu)
                         {
@@ -2558,10 +2556,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1235)
+                    if (ID == 1235)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
@@ -2569,10 +2567,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1236)
+                    if (ID == 1236)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2580,10 +2578,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1245)
+                    if (ID == 1245)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
@@ -2591,10 +2589,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1246)
+                    if (ID == 1246)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2602,10 +2600,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1256)
+                    if (ID == 1256)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2613,10 +2611,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.cleanPlatedolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1345)
+                    if (ID == 1345)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
@@ -2624,10 +2622,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1346)
+                    if (ID == 1346)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2635,10 +2633,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1356)
+                    if (ID == 1356)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2646,10 +2644,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 1456)
+                    if (ID == 1456)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2657,10 +2655,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2345)
+                    if (ID == 2345)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
@@ -2668,10 +2666,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2346)
+                    if (ID == 2346)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2679,10 +2677,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2356)
+                    if (ID == 2356)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2690,10 +2688,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 2456)
+                    if (ID == 2456)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2701,10 +2699,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 3456)
+                    if (ID == 3456)
                     {
                         if (!CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2712,11 +2710,11 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 12345)
+                    if (ID == 12345)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu)
                         {
@@ -2725,10 +2723,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12346)
+                    if (ID == 12346)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2737,10 +2735,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12356)
+                    if (ID == 12356)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2749,10 +2747,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.meatbakeddolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 12456)
+                    if (ID == 12456)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2761,10 +2759,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 13456)
+                    if (ID == 13456)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2773,10 +2771,10 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
-                    if (ID.Value == 23456)
+                    if (ID == 23456)
                     {
                         if (!CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2785,11 +2783,11 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
 
-                    if (ID.Value == 123456)
+                    if (ID == 123456)
                     {
                         if (!CuttingBoardCounter.burgerdolu && !CuttingBoardCounter.cleanPlatedolu && !CuttingBoardCounter.meatbakeddolu && !CuttingBoardCounter.tomatoSliceDolu && !CuttingBoardCounter.lettuceSliceDolu && !CuttingBoardCounter.cheddarCheeseDolu)
                         {
@@ -2799,44 +2797,44 @@ public class pickUp : NetworkBehaviour
                             CuttingBoardCounter.tomatoSliceDolu = true;
                             CuttingBoardCounter.lettuceSliceDolu = true;
                             CuttingBoardCounter.cheddarCheeseDolu = true;
-                            ID.Value = 0;
+                            ID = 0;
                         }
                     }
                 }
-                if (ID.Value == 2.2f)
+                if (ID == 2.2f)
                 {
                     if (CuttingBoardCounter.counterID == 0)
                     {
                         CuttingBoardCounter.counterID = 2.2f;
                         CuttingBoardCounter.dirtyPlatedolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 3.3f)
+                if (ID == 3.3f)
                 {
                     if (CuttingBoardCounter.counterID == 0)
                     {
                         CuttingBoardCounter.counterID = 3.3f;
                         CuttingBoardCounter.meatRawdolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 4.4f)
+                if (ID == 4.4f)
                 {
                     if (CuttingBoardCounter.counterID == 0)
                     {
                         CuttingBoardCounter.counterID = 4.4f;
                         CuttingBoardCounter.tomatodolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
-                if (ID.Value == 5.5f)
+                if (ID == 5.5f)
                 {
                     if (CuttingBoardCounter.counterID == 0)
                     {
                         CuttingBoardCounter.counterID = 5.5f;
                         CuttingBoardCounter.lettucedolu = true;
-                        ID.Value = 0;
+                        ID = 0;
                     }
                 }
             }
@@ -2844,7 +2842,7 @@ public class pickUp : NetworkBehaviour
         //çöp kutusu etkileþimi;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask3))
         {
-            if (ID.Value == 1 || ID.Value == 3.3f || ID.Value == 3 || ID.Value == 4.4f || ID.Value == 4 || ID.Value == 5.5f || ID.Value == 5 || ID.Value == 6f)
+            if (ID == 1 || ID == 3.3f || ID == 3 || ID == 4.4f || ID == 4 || ID == 5.5f || ID == 5 || ID == 6f)
             {
                 if (cleanPlate.activeSelf == true)
                 {
@@ -2852,11 +2850,11 @@ public class pickUp : NetworkBehaviour
                     meatRaw.SetActive(false);
                     meatBaked.SetActive(false);
                     handFull = true;
-                    ID.Value = 2;
+                    ID = 2;
                 }
                 else
                 {
-                    ID.Value = 0;
+                    ID = 0;
                 }
             }
         }
@@ -2870,11 +2868,11 @@ public class pickUp : NetworkBehaviour
             {
                 float value = counter.counterID;
 
-                if (ID.Value == 0)
+                if (ID == 0)
                 {
                     if (counter.counterID != 0)
                     {
-                        ID.Value = counter.counterID;
+                        ID = counter.counterID;
 
                         counter.counterID = 0;
                         counter.burgerdolu = false;
@@ -2897,9 +2895,9 @@ public class pickUp : NetworkBehaviour
             if (hit.collider.gameObject.TryGetComponent<furnace>(out var furnace) && handFull == false)
             {
                 float value = furnace.counterID;
-                if (ID.Value == 0)
+                if (ID == 0)
                 {
-                    ID.Value = furnace.counterID;
+                    ID = furnace.counterID;
                     if (furnace.counterID != 0)
                     {
                         furnace.counterID = 0;
@@ -2923,11 +2921,11 @@ public class pickUp : NetworkBehaviour
             if (hit.collider.gameObject.TryGetComponent<dinnerTable>(out var dinnerTable) && handFull == false)
             {
                 float value = dinnerTable.counterID;
-                if (ID.Value == 0)
+                if (ID == 0)
                 {
                     if (dinnerTable.counterID != 0)
                     {
-                        ID.Value = dinnerTable.counterID;
+                        ID = dinnerTable.counterID;
 
                         dinnerTable.counterID = 0;
                         dinnerTable.burgerdolu = false;
@@ -2950,11 +2948,11 @@ public class pickUp : NetworkBehaviour
             if (hit.collider.gameObject.TryGetComponent<CuttingBoardCounter>(out var CuttingBoardCounter) && handFull == false)
             {
                 float value = CuttingBoardCounter.counterID;
-                if (ID.Value == 0)
+                if (ID == 0)
                 {
                     if (CuttingBoardCounter.counterID != 0)
                     {
-                        ID.Value = CuttingBoardCounter.counterID;
+                        ID = CuttingBoardCounter.counterID;
 
                         CuttingBoardCounter.counterID = 0;
                         CuttingBoardCounter.burgerdolu = false;
@@ -2975,295 +2973,295 @@ public class pickUp : NetworkBehaviour
         //ele obje alýmý;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask))
         {
-             id.Value = hit.transform.GetComponent<itemID>().ItemID.Value;
-            if (id.Value == 1 && handFull == false)
+            float id = hit.transform.GetComponent<itemID>().ItemID;
+            if (id == 1 && handFull == false)
             {
-                ID.Value = 1;
+                ID = 1;
                 handFull = true;
             }
-            if (id.Value == 2 && handFull == false)
+            if (id == 2 && handFull == false)
             {
-                ID.Value = 2;
+                ID = 2;
                 handFull = true;
             }
-            if (id.Value == 3.3f && handFull == false)
+            if (id == 3.3f && handFull == false)
             {
-                ID.Value = 3.3f;
+                ID = 3.3f;
                 handFull = true;
             }
-            if (id.Value == 4.4f && handFull == false)
+            if (id == 4.4f && handFull == false)
             {
-                ID.Value = 4.4f;
+                ID = 4.4f;
                 handFull = true;
             }
-            if (id.Value == 5.5f && handFull == false)
+            if (id == 5.5f && handFull == false)
             {
-                ID.Value = 5.5f;
+                ID = 5.5f;
                 handFull = true;
             }
-            if (id.Value == 6f && handFull == false)
+            if (id == 6f && handFull == false)
             {
-                ID.Value = 6f;
+                ID = 6f;
                 handFull = true;
             }
-            if (id.Value == 6 && handFull == false)
+            if (id == 6 && handFull == false)
             {
-                ID.Value = 6f;
+                ID = 6f;
                 handFull = true;
             }
             // elde item varken kombinasyon yapmamýzý saðlar.
-            if (id.Value == 1)
+            if (id == 1)
             {
-                if (ID.Value == 2)
+                if (ID == 2)
                 {
-                    ID.Value = 12;
+                    ID = 12;
                 }
-                if (ID.Value == 3)
+                if (ID == 3)
                 {
-                    ID.Value = 13;
+                    ID = 13;
                 }
-                if (ID.Value == 4)
+                if (ID == 4)
                 {
-                    ID.Value = 14;
+                    ID = 14;
                 }
-                if (ID.Value == 5)
+                if (ID == 5)
                 {
-                    ID.Value = 15;
+                    ID = 15;
                 }
-                if (ID.Value == 6)
+                if (ID == 6)
                 {
-                    ID.Value = 16;
+                    ID = 16;
                 }
-                if (ID.Value == 23)
+                if (ID == 23)
                 {
-                    ID.Value = 123;
+                    ID = 123;
                 }
-                if (ID.Value == 24)
+                if (ID == 24)
                 {
-                    ID.Value = 124;
+                    ID = 124;
                 }
-                if (ID.Value == 25)
+                if (ID == 25)
                 {
-                    ID.Value = 125;
+                    ID = 125;
                 }
-                if (ID.Value == 26)
+                if (ID == 26)
                 {
-                    ID.Value = 126;
+                    ID = 126;
                 }
-                if (ID.Value == 34)
+                if (ID == 34)
                 {
-                    ID.Value = 134;
+                    ID = 134;
                 }
-                if (ID.Value == 35)
+                if (ID == 35)
                 {
-                    ID.Value = 135;
+                    ID = 135;
                 }
-                if (ID.Value == 36)
+                if (ID == 36)
                 {
-                    ID.Value = 136;
+                    ID = 136;
                 }
-                if (ID.Value == 45)
+                if (ID == 45)
                 {
-                    ID.Value = 145;
+                    ID = 145;
                 }
-                if (ID.Value == 46)
+                if (ID == 46)
                 {
-                    ID.Value = 146;
+                    ID = 146;
                 }
-                if (ID.Value == 56)
+                if (ID == 56)
                 {
-                    ID.Value = 156;
+                    ID = 156;
                 }
-                if (ID.Value == 234)
+                if (ID == 234)
                 {
-                    ID.Value = 1234;
+                    ID = 1234;
                 }
-                if (ID.Value == 235)
+                if (ID == 235)
                 {
-                    ID.Value = 1235;
+                    ID = 1235;
                 }
-                if (ID.Value == 236)
+                if (ID == 236)
                 {
-                    ID.Value = 1236;
+                    ID = 1236;
                 }
-                if (ID.Value == 245)
+                if (ID == 245)
                 {
-                    ID.Value = 1245;
+                    ID = 1245;
                 }
-                if (ID.Value == 246)
+                if (ID == 246)
                 {
-                    ID.Value = 1246;
+                    ID = 1246;
                 }
-                if (ID.Value == 256)
+                if (ID == 256)
                 {
-                    ID.Value = 1256;
+                    ID = 1256;
                 }
-                if (ID.Value == 345)
+                if (ID == 345)
                 {
-                    ID.Value = 1345;
+                    ID = 1345;
                 }
-                if (ID.Value == 346)
+                if (ID == 346)
                 {
-                    ID.Value = 1346;
+                    ID = 1346;
                 }
-                if (ID.Value == 356)
+                if (ID == 356)
                 {
-                    ID.Value = 1356;
+                    ID = 1356;
                 }
-                if (ID.Value == 456)
+                if (ID == 456)
                 {
-                    ID.Value = 1456;
+                    ID = 1456;
                 }
-                if (ID.Value == 2345)
+                if (ID == 2345)
                 {
-                    ID.Value = 12345;
+                    ID = 12345;
                 }
-                if (ID.Value == 2346)
+                if (ID == 2346)
                 {
-                    ID.Value = 12346;
+                    ID = 12346;
                 }
-                if (ID.Value == 2356)
+                if (ID == 2356)
                 {
-                    ID.Value = 12356;
+                    ID = 12356;
                 }
-                if (ID.Value == 2456)
+                if (ID == 2456)
                 {
-                    ID.Value = 12456;
+                    ID = 12456;
                 }
-                if (ID.Value == 3456)
+                if (ID == 3456)
                 {
-                    ID.Value = 13456;
+                    ID = 13456;
                 }
-                if (ID.Value == 23456)
+                if (ID == 23456)
                 {
-                    ID.Value = 123456;
+                    ID = 123456;
                 }
             }
-            if (id.Value == 2)
+            if (id == 2)
             {
-                if (ID.Value == 1)
+                if (ID == 1)
                 {
-                    ID.Value = 12;
+                    ID = 12;
                 }
-                if (ID.Value == 3)
+                if (ID == 3)
                 {
-                    ID.Value = 23;
+                    ID = 23;
                 }
-                if (ID.Value == 4)
+                if (ID == 4)
                 {
-                    ID.Value = 24;
+                    ID = 24;
                 }
-                if (ID.Value == 5)
+                if (ID == 5)
                 {
-                    ID.Value = 25;
+                    ID = 25;
                 }
-                if (ID.Value == 6)
+                if (ID == 6)
                 {
-                    ID.Value = 26;
+                    ID = 26;
                 }
-                if (ID.Value == 13)
+                if (ID == 13)
                 {
-                    ID.Value = 123;
+                    ID = 123;
                 }
-                if (ID.Value == 14)
+                if (ID == 14)
                 {
-                    ID.Value = 124;
+                    ID = 124;
                 }
-                if (ID.Value == 15)
+                if (ID == 15)
                 {
-                    ID.Value = 125;
+                    ID = 125;
                 }
-                if (ID.Value == 16)
+                if (ID == 16)
                 {
-                    ID.Value = 126;
+                    ID = 126;
                 }
-                if (ID.Value == 34)
+                if (ID == 34)
                 {
-                    ID.Value = 234;
+                    ID = 234;
                 }
-                if (ID.Value == 35)
+                if (ID == 35)
                 {
-                    ID.Value = 235;
+                    ID = 235;
                 }
-                if (ID.Value == 36)
+                if (ID == 36)
                 {
-                    ID.Value = 236;
+                    ID = 236;
                 }
-                if (ID.Value == 45)
+                if (ID == 45)
                 {
-                    ID.Value = 245;
+                    ID = 245;
                 }
-                if (ID.Value == 46)
+                if (ID == 46)
                 {
-                    ID.Value = 246;
+                    ID = 246;
                 }
-                if (ID.Value == 56)
+                if (ID == 56)
                 {
-                    ID.Value = 256;
+                    ID = 256;
                 }
-                if (ID.Value == 134)
+                if (ID == 134)
                 {
-                    ID.Value = 1234;
+                    ID = 1234;
                 }
-                if (ID.Value == 135)
+                if (ID == 135)
                 {
-                    ID.Value = 1235;
+                    ID = 1235;
                 }
-                if (ID.Value == 136)
+                if (ID == 136)
                 {
-                    ID.Value = 1236;
+                    ID = 1236;
                 }
-                if (ID.Value == 145)
+                if (ID == 145)
                 {
-                    ID.Value = 1245;
+                    ID = 1245;
                 }
-                if (ID.Value == 146)
+                if (ID == 146)
                 {
-                    ID.Value = 1246;
+                    ID = 1246;
                 }
-                if (ID.Value == 156)
+                if (ID == 156)
                 {
-                    ID.Value = 1256;
+                    ID = 1256;
                 }
-                if (ID.Value == 345)
+                if (ID == 345)
                 {
-                    ID.Value = 2345;
+                    ID = 2345;
                 }
-                if (ID.Value == 346)
+                if (ID == 346)
                 {
-                    ID.Value = 2346;
+                    ID = 2346;
                 }
-                if (ID.Value == 356)
+                if (ID == 356)
                 {
-                    ID.Value = 2356;
+                    ID = 2356;
                 }
-                if (ID.Value == 456)
+                if (ID == 456)
                 {
-                    ID.Value = 2456;
+                    ID = 2456;
                 }
-                if (ID.Value == 1345)
+                if (ID == 1345)
                 {
-                    ID.Value = 12345;
+                    ID = 12345;
                 }
-                if (ID.Value == 1346)
+                if (ID == 1346)
                 {
-                    ID.Value = 12346;
+                    ID = 12346;
                 }
-                if (ID.Value == 1356)
+                if (ID == 1356)
                 {
-                    ID.Value = 12356;
+                    ID = 12356;
                 }
-                if (ID.Value == 1456)
+                if (ID == 1456)
                 {
-                    ID.Value = 12456;
+                    ID = 12456;
                 }
-                if (ID.Value == 3456)
+                if (ID == 3456)
                 {
-                    ID.Value = 23456;
+                    ID = 23456;
                 }
-                if (ID.Value == 13456)
+                if (ID == 13456)
                 {
-                    ID.Value = 123456;
+                    ID = 123456;
                 }
             }
         }
@@ -3308,7 +3306,7 @@ public class pickUp : NetworkBehaviour
 
     private void IDcheck()
     {
-        if (ID.Value == 0)
+        if (ID == 0)
         {
             notCombine = false;
             burger.SetActive(false);
@@ -3323,11 +3321,11 @@ public class pickUp : NetworkBehaviour
             cheddarCheese.SetActive(false);
             handFull = false;
         }
-        if (ID.Value > 0)
+        if (ID > 0)
         {
             handFull = true;
             // Tekli Kombinasyon
-            if (ID.Value == 1)
+            if (ID == 1)
             {
                 handFull = true;
                 notCombine = false;
@@ -3342,7 +3340,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 2)
+            if (ID == 2)
             {
                 handFull = true;
                 notCombine = false;
@@ -3357,7 +3355,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 2.2)
+            if (ID == 2.2)
             {
                 handFull = true;
                 notCombine = true;
@@ -3372,7 +3370,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 3)
+            if (ID == 3)
             {
                 handFull = true;
                 notCombine = false;
@@ -3387,7 +3385,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 3.3f)
+            if (ID == 3.3f)
             {
                 handFull = true;
                 notCombine = true;
@@ -3402,7 +3400,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 4)
+            if (ID == 4)
             {
                 handFull = true;
                 notCombine = false;
@@ -3417,7 +3415,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 4.4f)
+            if (ID == 4.4f)
             {
                 handFull = true;
                 notCombine = true;
@@ -3432,7 +3430,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 5)
+            if (ID == 5)
             {
                 handFull = true;
                 notCombine = false;
@@ -3447,7 +3445,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 5.5f)
+            if (ID == 5.5f)
             {
                 handFull = true;
                 notCombine = true;
@@ -3462,7 +3460,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 6)
+            if (ID == 6)
             {
                 handFull = true;
                 notCombine = false;
@@ -3479,7 +3477,7 @@ public class pickUp : NetworkBehaviour
             }
 
             // 2 li kombinasyon
-            if (ID.Value == 12)
+            if (ID == 12)
             {
                 handFull = true;
                 notCombine = false;
@@ -3494,7 +3492,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 13)
+            if (ID == 13)
             {
                 handFull = true;
                 notCombine = false;
@@ -3509,7 +3507,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 14)
+            if (ID == 14)
             {
                 handFull = true;
                 notCombine = false;
@@ -3524,7 +3522,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 15)
+            if (ID == 15)
             {
                 handFull = true;
                 notCombine = false;
@@ -3539,7 +3537,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);      // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 16)
+            if (ID == 16)
             {
                 handFull = true;
                 notCombine = false;
@@ -3554,7 +3552,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);         // TRUE
             }
-            if (ID.Value == 23)
+            if (ID == 23)
             {
                 handFull = true;
                 notCombine = false;
@@ -3569,7 +3567,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 24)
+            if (ID == 24)
             {
                 handFull = true;
                 notCombine = false;
@@ -3584,7 +3582,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 25)
+            if (ID == 25)
             {
                 handFull = true;
                 notCombine = false;
@@ -3599,7 +3597,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 26)
+            if (ID == 26)
             {
                 handFull = true;
                 notCombine = false;
@@ -3614,7 +3612,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);     // TRUE
             }
-            if (ID.Value == 34)
+            if (ID == 34)
             {
                 handFull = true;
                 notCombine = false;
@@ -3629,7 +3627,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 35)
+            if (ID == 35)
             {
                 handFull = true;
                 notCombine = false;
@@ -3644,7 +3642,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // true
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 36)
+            if (ID == 36)
             {
                 handFull = true;
                 notCombine = false;
@@ -3659,7 +3657,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);      // TRUE
             }
-            if (ID.Value == 45)
+            if (ID == 45)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3673,7 +3671,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);         // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 46)
+            if (ID == 46)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3687,7 +3685,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);       // TRUE
             }
-            if (ID.Value == 56)
+            if (ID == 56)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3703,7 +3701,7 @@ public class pickUp : NetworkBehaviour
             }
 
             // 3 li kombinasyon
-            if (ID.Value == 123)
+            if (ID == 123)
             {
                 notCombine = false;
                 burger.SetActive(true);         // TRUE
@@ -3717,7 +3715,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 124)
+            if (ID == 124)
             {
                 notCombine = false;
                 burger.SetActive(true);            // TRUE
@@ -3731,7 +3729,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 125)
+            if (ID == 125)
             {
                 notCombine = false;
                 burger.SetActive(true);           // TRUE
@@ -3745,7 +3743,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 126)
+            if (ID == 126)
             {
                 notCombine = false;
                 burger.SetActive(true);          // TRUE
@@ -3759,7 +3757,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);     // TRUE
             }
-            if (ID.Value == 134)
+            if (ID == 134)
             {
                 notCombine = false;
                 burger.SetActive(true);        // TRUE
@@ -3773,7 +3771,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 135)
+            if (ID == 135)
             {
                 notCombine = false;
                 burger.SetActive(true);         // TRUE
@@ -3787,7 +3785,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);   // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 136)
+            if (ID == 136)
             {
                 notCombine = false;
                 burger.SetActive(true);             // TRUE
@@ -3801,7 +3799,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);      // TRUE
             }
-            if (ID.Value == 145)
+            if (ID == 145)
             {
                 notCombine = false;
                 burger.SetActive(true);           // TRUE
@@ -3815,7 +3813,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 146)
+            if (ID == 146)
             {
                 notCombine = false;
                 burger.SetActive(true);           // TRUE
@@ -3829,7 +3827,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);    // TRUE
             }
-            if (ID.Value == 156)
+            if (ID == 156)
             {
                 notCombine = false;
                 burger.SetActive(true);        // TRUE
@@ -3843,7 +3841,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);  // TRUE
             }
-            if (ID.Value == 234)
+            if (ID == 234)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3857,7 +3855,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 235)
+            if (ID == 235)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3871,7 +3869,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);    // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 236)
+            if (ID == 236)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3885,7 +3883,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);     // TRUE
             }
-            if (ID.Value == 245)
+            if (ID == 245)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3899,7 +3897,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 246)
+            if (ID == 246)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3913,7 +3911,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true); // TRUE
             }
-            if (ID.Value == 256)
+            if (ID == 256)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3927,7 +3925,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);   // TRUE
                 cheddarCheese.SetActive(true);  // TRUE
             }
-            if (ID.Value == 345)
+            if (ID == 345)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3941,7 +3939,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);       // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 346)
+            if (ID == 346)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3955,7 +3953,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);   // TRUE
             }
-            if (ID.Value == 356)
+            if (ID == 356)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3969,7 +3967,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(true);    // TRUE
             }
-            if (ID.Value == 456)
+            if (ID == 456)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -3985,7 +3983,7 @@ public class pickUp : NetworkBehaviour
             }
 
             // 4 li kombinasyon
-            if (ID.Value == 1234)
+            if (ID == 1234)
             {
                 notCombine = false;
                 burger.SetActive(true);         // TRUE
@@ -3999,7 +3997,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 1235)
+            if (ID == 1235)
             {
                 notCombine = false;
                 burger.SetActive(true);            // TRUE
@@ -4013,7 +4011,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);      // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 1236)
+            if (ID == 1236)
             {
                 notCombine = false;
                 burger.SetActive(true);           // TRUE
@@ -4027,7 +4025,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 1245)
+            if (ID == 1245)
             {
                 notCombine = false;
                 burger.SetActive(true);          // TRUE
@@ -4041,7 +4039,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);     // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 1246)
+            if (ID == 1246)
             {
                 notCombine = false;
                 burger.SetActive(true);        // TRUE
@@ -4055,7 +4053,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);   // TRUE
             }
-            if (ID.Value == 1256)
+            if (ID == 1256)
             {
                 notCombine = false;
                 burger.SetActive(true);         // TRUE
@@ -4069,7 +4067,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);   // TRUE
                 cheddarCheese.SetActive(true);  // TRUE
             }
-            if (ID.Value == 1345)
+            if (ID == 1345)
             {
                 notCombine = false;
                 burger.SetActive(true);            // TRUE
@@ -4083,7 +4081,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);      // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 1346)
+            if (ID == 1346)
             {
                 notCombine = false;
                 burger.SetActive(true);           // TRUE
@@ -4097,7 +4095,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);    // TRUE
             }
-            if (ID.Value == 1356)
+            if (ID == 1356)
             {
                 notCombine = false;
                 burger.SetActive(true);           // TRUE
@@ -4111,7 +4109,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(true);    // TRUE
             }
-            if (ID.Value == 1456)
+            if (ID == 1456)
             {
                 notCombine = false;
                 burger.SetActive(true);        // TRUE
@@ -4125,7 +4123,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);   // TRUE
                 cheddarCheese.SetActive(true);  // TRUE
             }
-            if (ID.Value == 2345)
+            if (ID == 2345)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -4139,7 +4137,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 2346)
+            if (ID == 2346)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -4153,7 +4151,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);      // TRUE
             }
-            if (ID.Value == 2356)
+            if (ID == 2356)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -4167,7 +4165,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);      // TRUE
                 cheddarCheese.SetActive(true);     // TRUE
             }
-            if (ID.Value == 2456)
+            if (ID == 2456)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -4181,7 +4179,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(true);    // TRUE
             }
-            if (ID.Value == 3456)
+            if (ID == 3456)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -4197,7 +4195,7 @@ public class pickUp : NetworkBehaviour
             }
 
             // 5 li kombinasyon
-            if (ID.Value == 12345)
+            if (ID == 12345)
             {
                 notCombine = false;
                 burger.SetActive(true);         // TRUE
@@ -4211,7 +4209,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);   // TRUE
                 cheddarCheese.SetActive(false);
             }
-            if (ID.Value == 12346)
+            if (ID == 12346)
             {
                 notCombine = false;
                 burger.SetActive(true);           // TRUE
@@ -4225,7 +4223,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(false);
                 cheddarCheese.SetActive(true);        // TRUE
             }
-            if (ID.Value == 12356)
+            if (ID == 12356)
             {
                 notCombine = false;
                 burger.SetActive(true);          // TRUE
@@ -4239,7 +4237,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(true);   // TRUE
             }
-            if (ID.Value == 12456)
+            if (ID == 12456)
             {
                 notCombine = false;
                 burger.SetActive(true);          // TRUE
@@ -4253,7 +4251,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(true);    // TRUE
             }
-            if (ID.Value == 13456)
+            if (ID == 13456)
             {
                 notCombine = false;
                 burger.SetActive(true);           // TRUE
@@ -4267,7 +4265,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);    // TRUE
                 cheddarCheese.SetActive(true);   // TRUE
             }
-            if (ID.Value == 23456)
+            if (ID == 23456)
             {
                 notCombine = false;
                 burger.SetActive(false);
@@ -4281,7 +4279,7 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);     // TRUE
                 cheddarCheese.SetActive(true);    // TRUE
             }
-            if (ID.Value == 123456)
+            if (ID == 123456)
             {
                 notCombine = true;
                 burger.SetActive(true);         // TRUE

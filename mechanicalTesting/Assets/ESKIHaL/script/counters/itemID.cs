@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Netcode;
+
 using UnityEngine;
 
-public class itemID : NetworkBehaviour 
+public class itemID : MonoBehaviour 
 {
- 
-    public NetworkVariable<float> ItemID = new NetworkVariable<float>();
+
+    public float ItemID;
     public string Name;
 }

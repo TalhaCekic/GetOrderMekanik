@@ -5064,9 +5064,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2082627838}
-  - component: {fileID: 2082627841}
+  - component: {fileID: 2082627844}
   - component: {fileID: 2082627840}
+  - component: {fileID: 2082627843}
   - component: {fileID: 2082627842}
+  - component: {fileID: 2082627841}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: gameManager
@@ -5115,24 +5117,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2082627837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ProtocolType: 1
-  m_MaxPacketQueueSize: 128
-  m_MaxPayloadSize: 6144
-  m_HeartbeatTimeoutMS: 500
-  m_ConnectTimeoutMS: 1000
-  m_MaxConnectAttempts: 60
-  m_DisconnectTimeoutMS: 30000
-  ConnectionData:
-    Address: 127.0.0.1
-    Port: 7777
-    ServerListenAddress: 127.0.0.1
-  DebugSimulator:
-    PacketDelayMS: 0
-    PacketJitterMS: 0
-    PacketDropRate: 0
+  port: 7777
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+  RecvBufferSize: 7361536
+  SendBufferSize: 7361536
+  FastResend: 2
+  ReceiveWindowSize: 4096
+  SendWindowSize: 4096
+  MaxRetransmit: 40
+  MaximizeSocketBuffers: 1
+  ReliableMaxMessageSize: 297433
+  UnreliableMaxMessageSize: 1195
+  debugLog: 0
+  statisticsGUI: 0
+  statisticsLog: 0
 --- !u!114 &2082627842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5142,86 +5146,81 @@ MonoBehaviour:
   m_GameObject: {fileID: 2082627837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 593a2fe42fa9d37498c96f9a383b6521, type: 3}
+  m_Script: {fileID: 11500000, guid: 88c37d3deca7a834d80cfd8d3cfcc510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunInBackground: 1
-  LogLevel: 0
-  NetworkConfig:
-    ProtocolVersion: 0
-    NetworkTransport: {fileID: 2082627841}
-    PlayerPrefab: {fileID: 8985881394206135957, guid: e8522aba77892d74c8df14208d321fb3,
-      type: 3}
-    NetworkPrefabs:
-    - Override: 0
-      Prefab: {fileID: 8985881394206135957, guid: e8522aba77892d74c8df14208d321fb3,
-        type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
-      Prefab: {fileID: 5801441931819564634, guid: 5c36ade1ceffc6f45979677d97000e91,
-        type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
-      Prefab: {fileID: 8377663201098477449, guid: e44494038222cbe498648a33b2846669,
-        type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
-      Prefab: {fileID: 5059772715391443399, guid: 00f7756e17c716f439c303610d0b1823,
-        type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
-      Prefab: {fileID: 6143019382153120898, guid: e890c41cb27a47a40b39ead673f9d095,
-        type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
-      Prefab: {fileID: 6400644800522198005, guid: 407b69c064d49a84fa10e6a6df083591,
-        type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
-      Prefab: {fileID: 4184815018899113591, guid: 14dd50fe9d03a114c8a2253becee2d98,
-        type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
-      Prefab: {fileID: 8491038144867298371, guid: ab3c3a4fa6ee269498b0da4fc30fd355,
-        type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
-      Prefab: {fileID: 8336410331273868510, guid: 30736db03d17ce742add0165c391482f,
-        type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
-    TickRate: 30
-    ClientConnectionBufferTimeout: 10
-    ConnectionApproval: 0
-    ConnectionData: 
-    EnableTimeResync: 0
-    TimeResyncInterval: 30
-    EnsureNetworkVariableLengthSafety: 0
-    EnableSceneManagement: 1
-    ForceSamePrefabs: 1
-    RecycleNetworkIds: 1
-    NetworkIdRecycleDelay: 120
-    RpcHashSize: 0
-    LoadSceneTimeOut: 120
-    SpawnTimeout: 1
-    EnableNetworkLogs: 1
+  networkDiscovery: {fileID: 2082627843}
+--- !u!114 &2082627843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082627837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c761308e733c51245b2e8bb4201f46dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableActiveDiscovery: 1
+  BroadcastAddress: 
+  serverBroadcastListenPort: 47777
+  ActiveDiscoveryInterval: 3
+  transport: {fileID: 2082627841}
+  OnServerFound:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2082627842}
+        m_TargetAssemblyTypeName: Mirror.Discovery.NetworkDiscoveryHUD, Mirror.Components
+        m_MethodName: OnDiscoveredServer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  secretHandshake: 5440089292738214193
+--- !u!114 &2082627844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082627837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  runInBackground: 1
+  autoStartServerBuild: 1
+  autoConnectClientBuild: 0
+  sendRate: 30
+  offlineScene: 
+  onlineScene: 
+  transport: {fileID: 0}
+  networkAddress: localhost
+  maxConnections: 100
+  authenticator: {fileID: 0}
+  playerPrefab: {fileID: 0}
+  autoCreatePlayer: 1
+  playerSpawnMethod: 0
+  spawnPrefabs: []
+  snapshotSettings:
+    bufferTimeMultiplier: 2
+    catchupNegativeThreshold: -1
+    catchupPositiveThreshold: 1
+    catchupSpeed: 0.019999999552965164
+    slowdownSpeed: 0.03999999910593033
+    driftEmaDuration: 1
+    dynamicAdjustment: 1
+    dynamicAdjustmentTolerance: 1
+    deliveryTimeEmaDuration: 2
+  timeInterpolationGui: 0
 --- !u!1001 &2091257023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5579,8 +5578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: kofteEkmek
 --- !u!4 &208712801242669011
 Transform:
@@ -5720,8 +5718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: kofteBaked
 --- !u!4 &543450652179468789
 Transform:
@@ -6057,8 +6054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: kofteEkmek
 --- !u!4 &1008040654705505829
 Transform:
@@ -7498,8 +7494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 4.4
+  ItemID: 0
   Name: tomato
 --- !u!114 &2269721831453771457
 MonoBehaviour:
@@ -7846,8 +7841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: kofteBaked
 --- !u!33 &3469287836789945099
 MeshFilter:
@@ -7869,8 +7863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 2
+  ItemID: 0
   Name: tabak
 --- !u!65 &3469287836789945101
 BoxCollider:
@@ -7929,8 +7922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 1
+  ItemID: 0
   Name: ekmek
 --- !u!65 &3469287838176222802
 BoxCollider:
@@ -8054,8 +8046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: kofteRaw
 --- !u!33 &4171737032373990418
 MeshFilter:
@@ -8157,8 +8148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: tabak
 --- !u!65 &4171737032373990423
 BoxCollider:
@@ -8243,8 +8233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: kofteRaw
 --- !u!33 &4876933052663537623
 MeshFilter:
@@ -8287,8 +8276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: tabak
 --- !u!65 &4898567353568346281
 BoxCollider:
@@ -8563,8 +8551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: kofteBaked
 --- !u!1 &6965942363357170928
 GameObject:
@@ -9043,8 +9030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: tabak
 --- !u!65 &7399453894903271095
 BoxCollider:
@@ -9312,8 +9298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 5.5
+  ItemID: 0
   Name: marul
 --- !u!114 &7922724773443433331
 MonoBehaviour:
@@ -9650,8 +9635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: tabak
 --- !u!65 &8509055660053730607
 BoxCollider:
@@ -9707,8 +9691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: kofteEkmek
 --- !u!4 &8638623260288058011
 Transform:
@@ -9937,8 +9920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5782c5514ce0b3749829eef7c2fdb1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID:
-    m_InternalValue: 0
+  ItemID: 0
   Name: kofteRaw
 --- !u!65 &8713621968376660883
 BoxCollider:
