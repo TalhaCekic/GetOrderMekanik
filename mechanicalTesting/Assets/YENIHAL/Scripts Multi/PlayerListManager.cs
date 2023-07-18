@@ -29,7 +29,7 @@ public class PlayerListManager : NetworkBehaviour
         if (!SteamManager.Initialized) return;
 
         OnStartClient();
-        m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+      //  m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
     }
 
@@ -54,17 +54,20 @@ public class PlayerListManager : NetworkBehaviour
     public void OnLobbyEntered(LobbyEnter_t pCallback)
     {
         int playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
-        Debug.Log("Player joined. Current players in lobby: " + playerCount);
+        
         for (int i = 0; i < playerCount; i++)
         {
             Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
-
+Debug.Log("Player joined. Current players in lobby: " + playerCount);
             playerNameText[i].text = playerNamePrefabs.GetComponent<TMPro.TextMeshPro>().text;
             playerNameText[i].text = playerName;
         }
 
     }
-
+    public void Update()
+    {
+        m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+    }
     public void OnLobbyExited(GameLobbyJoinRequested_t pCallback)
     {
         int playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_steamIDLobby);
