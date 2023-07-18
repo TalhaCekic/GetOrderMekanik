@@ -59,7 +59,7 @@ public class PlayerListManager : NetworkBehaviour
         {
             Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
 
-           // playerNameText[i].text = playerNamePrefabs.GetComponent<TMPro.TextMeshPro>().text;
+            playerNameText[i].text = playerNamePrefabs.GetComponent<TMPro.TextMeshPro>().text;
             playerNameText[i].text = playerName;
         }
 
