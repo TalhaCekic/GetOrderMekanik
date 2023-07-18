@@ -2194,9 +2194,14 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  playerNameText: []
+  playerNameText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerNamePrefabs: {fileID: 8986511298020518663, guid: 1b31d1923b253fe49a47e57d98706c6f,
     type: 3}
+  playerCount: 0
   playerNamePrefabsTransform: {fileID: 909356262}
 --- !u!4 &781214787 stripped
 Transform:
