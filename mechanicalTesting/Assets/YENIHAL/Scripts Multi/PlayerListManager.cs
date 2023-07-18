@@ -6,6 +6,8 @@ using System;
 
 public class PlayerListManager : NetworkBehaviour
 {
+    public static PlayerListManager Instance { get; private set; }
+
     [SyncVar]
     private string playerName;
     
@@ -15,7 +17,7 @@ public class PlayerListManager : NetworkBehaviour
 
     protected Callback<PersonaStateChange_t> m_PersonaStateChange;
 
-   // int playerCount;
+   public int playerCount;
 
     public Transform playerNamePrefabsTransform;
 
@@ -24,12 +26,25 @@ public class PlayerListManager : NetworkBehaviour
     protected Callback<LobbyEnter_t> m_lobbyEntered;
     protected Callback<GameLobbyJoinRequested_t> m_lobbyExited;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("More than one instance of PlayerCounter. Destroying gameObject.");
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         if (!SteamManager.Initialized) return;
 
         OnStartClient();
-      //  m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+       m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
     }
 
@@ -46,12 +61,14 @@ public class PlayerListManager : NetworkBehaviour
         Debug.Log(playerName);
     }
 
+    
     public void OnLobbyEntered(LobbyEnter_t pCallback)
     {
-        int playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
+        playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
         Debug.Log("Player joined. Current players in lobby: " + playerCount);
-        for (int i = 0; i < playerCount; i++)
+        for (int i = 0; i < 4; i++)
         {
+           
             Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
 
             playerNameText[i].text = playerNamePrefabs.GetComponent<TMPro.TextMeshPro>().text;
@@ -60,12 +77,13 @@ public class PlayerListManager : NetworkBehaviour
     }
     public void Update()
     {
-        if (!isLocalPlayer) return;
-        m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+        //if (!isLocalPlayer) return;
+        // m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+        
     }
     public void OnLobbyExited(GameLobbyJoinRequested_t pCallback)
     {
-        int playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_steamIDLobby);
+        playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_steamIDLobby);
         Debug.Log("Player left. Current players in lobby: " + playerCount);
     }
 
