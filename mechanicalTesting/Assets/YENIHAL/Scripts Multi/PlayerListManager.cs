@@ -22,6 +22,7 @@ public class PlayerListManager : NetworkBehaviour
 
     public Transform playerNamePrefabsTransform;
 
+    
 
 
     protected Callback<LobbyEnter_t> m_lobbyEntered;
