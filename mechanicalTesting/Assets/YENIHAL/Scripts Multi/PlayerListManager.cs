@@ -32,7 +32,7 @@ public class PlayerListManager : NetworkBehaviour
         if (!SteamManager.Initialized) return;
 
        
-       m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+   //    m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
     }
 
