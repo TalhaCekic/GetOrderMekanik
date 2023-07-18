@@ -67,8 +67,8 @@ public class PlayerListManager : NetworkBehaviour
     }
     public void Update()
     {
-        //if (!isLocalPlayer) return;
-        // m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+       
+         m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         
     }
     public void OnLobbyExited(GameLobbyJoinRequested_t pCallback)
