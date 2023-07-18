@@ -17,6 +17,7 @@ public class PlayerListManager : NetworkBehaviour
 
     protected Callback<PersonaStateChange_t> m_PersonaStateChange;
 
+    [SyncVar]
     public int playerCount;
 
     public Transform playerNamePrefabsTransform;
@@ -68,7 +69,7 @@ public class PlayerListManager : NetworkBehaviour
     public void Update()
     {
        
-         m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+       //  m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         
     }
     public void OnLobbyExited(GameLobbyJoinRequested_t pCallback)
