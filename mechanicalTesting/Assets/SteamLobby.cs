@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using Steamworks;
 using UnityEngine.UI;
+using TMPro;
 
 public class SteamLobby : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class SteamLobby : MonoBehaviour
     private CustomNetworkManager manager;
 
     public GameObject HostButton;
-    public Text LobbyNameText;
+    public TMP_Text LobbyNameText;
 
     private void Start()
     {
