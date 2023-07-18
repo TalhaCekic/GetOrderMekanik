@@ -8,7 +8,7 @@ public class PlayerListManager : NetworkBehaviour
 {
     [SyncVar]
     private string playerName;
-    [SyncVar]
+    
     public TMP_Text[] playerNameText;
 
     public GameObject playerNamePrefabs;
@@ -43,8 +43,9 @@ public class PlayerListManager : NetworkBehaviour
             CSteamID steamId = SteamUser.GetSteamID();
 
         // Oyuncunun adýný çek
-        
+
         playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
+        Debug.Log(playerName);
 
 
 
@@ -58,7 +59,7 @@ public class PlayerListManager : NetworkBehaviour
         {
             Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
 
-            playerNameText[i].text = playerNamePrefabs.GetComponentInChildren<TMP_Text>().text;
+           // playerNameText[i].text = playerNamePrefabs.GetComponent<TMPro.TextMeshPro>().text;
             playerNameText[i].text = playerName;
         }
 
