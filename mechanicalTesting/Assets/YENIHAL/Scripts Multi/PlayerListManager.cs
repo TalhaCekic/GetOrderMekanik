@@ -15,6 +15,7 @@ public class PlayerListManager : NetworkBehaviour
 
     protected Callback<PersonaStateChange_t> m_PersonaStateChange;
 
+    [SyncVar]
    int playerCount;
 
     public Transform playerNamePrefabsTransform;
