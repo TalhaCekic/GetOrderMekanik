@@ -103,7 +103,11 @@ public class pickUp : NetworkBehaviour
     }
 
     //input sistemi etkileþimler
-
+    [Command]
+    public void CmdDrop()
+    {
+        Drop();
+    }
     public void Drop()
     {
         //counter
@@ -2866,6 +2870,10 @@ public class pickUp : NetworkBehaviour
     }
 
     [Command]
+    public void CmdInteract()
+    {
+        Interact();
+    }
     public void Interact()
     {
         //counter;

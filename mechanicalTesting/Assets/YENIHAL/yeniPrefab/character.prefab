@@ -1769,7 +1769,7 @@ Transform:
   - {fileID: 8242306452952058624}
   - {fileID: 4598030533480698531}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &7026498177609114447
 CharacterController:
@@ -1857,6 +1857,7 @@ MonoBehaviour:
   acceleration: 6
   deceleration: 15
   maxSpeed: 5
+  LoadScene: 0
 --- !u!114 &5252539551839531899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3377,6 +3378,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6378676823260373511}
     m_Modifications:
+    - target: {fileID: 6259286924696556593, guid: e44494038222cbe498648a33b2846669,
+        type: 3}
+      propertyPath: _assetId
+      value: 1445834870
+      objectReference: {fileID: 0}
     - target: {fileID: 8377663201098477449, guid: e44494038222cbe498648a33b2846669,
         type: 3}
       propertyPath: m_Name
@@ -3473,6 +3479,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tomato
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491038144867298371, guid: ab3c3a4fa6ee269498b0da4fc30fd355,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8493382040233732419, guid: ab3c3a4fa6ee269498b0da4fc30fd355,
         type: 3}
@@ -3650,6 +3661,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7817824343875730479, guid: 14dd50fe9d03a114c8a2253becee2d98,
+        type: 3}
+      propertyPath: _assetId
+      value: 1445834870
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -9036829691292728801, guid: 14dd50fe9d03a114c8a2253becee2d98, type: 3}
     m_RemovedGameObjects: []
@@ -3680,6 +3696,11 @@ PrefabInstance:
         type: 3}
       propertyPath: GlobalObjectIdHash
       value: 951099334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186076271794196280, guid: 5c36ade1ceffc6f45979677d97000e91,
+        type: 3}
+      propertyPath: _assetId
+      value: 1445834870
       objectReference: {fileID: 0}
     - target: {fileID: 5801441931819564633, guid: 5c36ade1ceffc6f45979677d97000e91,
         type: 3}
@@ -3837,6 +3858,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: kofteRaw
       objectReference: {fileID: 0}
+    - target: {fileID: 5059772715391443399, guid: 00f7756e17c716f439c303610d0b1823,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8954822638847767759, guid: 00f7756e17c716f439c303610d0b1823,
+        type: 3}
+      propertyPath: _assetId
+      value: 1445834870
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3862,6 +3893,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6378676823260373511}
     m_Modifications:
+    - target: {fileID: -7196084663405993824, guid: 30736db03d17ce742add0165c391482f,
+        type: 3}
+      propertyPath: _assetId
+      value: 1445834870
+      objectReference: {fileID: 0}
     - target: {fileID: 8332629561667158716, guid: 30736db03d17ce742add0165c391482f,
         type: 3}
       propertyPath: m_RootOrder
@@ -3947,6 +3983,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6378676823260373511}
     m_Modifications:
+    - target: {fileID: -1021557996898707600, guid: 407b69c064d49a84fa10e6a6df083591,
+        type: 3}
+      propertyPath: _assetId
+      value: 1445834870
+      objectReference: {fileID: 0}
     - target: {fileID: 6396710956205329237, guid: 407b69c064d49a84fa10e6a6df083591,
         type: 3}
       propertyPath: m_RootOrder
@@ -4102,6 +4143,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7817824343875730479, guid: 14dd50fe9d03a114c8a2253becee2d98,
+        type: 3}
+      propertyPath: _assetId
+      value: 1445834870
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: -9036829691292728801, guid: 14dd50fe9d03a114c8a2253becee2d98, type: 3}
@@ -4129,6 +4175,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6378676823260373511}
     m_Modifications:
+    - target: {fileID: -726174779356153322, guid: e890c41cb27a47a40b39ead673f9d095,
+        type: 3}
+      propertyPath: _assetId
+      value: 1445834870
+      objectReference: {fileID: 0}
     - target: {fileID: 6143019382153120898, guid: e890c41cb27a47a40b39ead673f9d095,
         type: 3}
       propertyPath: m_Name
