@@ -3297,14 +3297,14 @@ public class pickUp : NetworkBehaviour
         }
         if (ID > 0)
         {
+
             // Tekli Kombinasyon
             if (ID == 1)
             {
                 handFull = true;
                 notCombine = false;
                 burger = Instantiate(burger, cam.transform);
-                burger.gameObject.SetActive(true);
-                NetworkServer.Spawn(burger);
+                
             }
             if (ID == 2)
             {
@@ -4263,6 +4263,14 @@ public class pickUp : NetworkBehaviour
         }
 
 
+    }
+
+    [Command]
+    public void CmdIDCheck()
+    {
+        burger.gameObject.SetActive(true);
+
+        NetworkServer.Spawn(burger);
     }
 
 }
