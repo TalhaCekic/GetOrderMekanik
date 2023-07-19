@@ -68,8 +68,15 @@ public class PlayerControler : NetworkBehaviour
             InputRotation();
             Move();
         }
+        if (pickUp.handFull == true)
+        {
+            anim.SetBool("hand", true);
+        }
+        else
+        {
+            anim.SetBool("hand", false);
+        }
 
-    
     }
     void InputRotation()
     {
@@ -157,15 +164,5 @@ public class PlayerControler : NetworkBehaviour
     //    anim.SetFloat("Speed", currentSpeed / speedd);
     //}
      
-    private void yedekalmak()
-    {
-        if (pickUp.handFull == true)
-        {
-            anim.SetBool("hand", true);
-        }
-        else
-        {
-            anim.SetBool("hand", false);
-        }
-    }
+
 }
