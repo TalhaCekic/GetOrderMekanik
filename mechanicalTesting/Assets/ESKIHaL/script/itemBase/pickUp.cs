@@ -3299,8 +3299,10 @@ public class pickUp : NetworkBehaviour
             {
                 handFull = true;
                 notCombine = false;
-                Instantiate(burger, cam.transform);
-                burger.SetActive(true);
+                burger = Instantiate(burger, cam.transform);
+                burger.gameObject.SetActive(true);
+                NetworkServer.Spawn(burger, connectionToClient);
+              
             }
             if (ID == 2)
             {
