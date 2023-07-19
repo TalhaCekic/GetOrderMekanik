@@ -10,7 +10,11 @@ using UnityEngine.InputSystem;
 using Mirror;
 
 public class pickUp : NetworkBehaviour
-{
+{  
+    // karakterin elindeki tanýma ýd si0
+    [SyncVar]public float ID;
+
+    public bool test = false;
     // public static pickUp instance;
     // RAY
     private RaycastHit hit;
@@ -23,9 +27,6 @@ public class pickUp : NetworkBehaviour
     int pickupLayerMask3;
     int pickupLayerMask4;
     int pickupLayerMask5;
-
-    GameObject gameController;
-    private counter Counter;
 
     public GameObject cam;
 
@@ -40,7 +41,6 @@ public class pickUp : NetworkBehaviour
     public GameObject SliceLettuce;   //id : 5
     public GameObject cheddarCheese;  //id : 6
     
-
     public bool Burgergonder;
     public bool Plategonder;
     public bool MeatRawgonder;
@@ -52,28 +52,16 @@ public class pickUp : NetworkBehaviour
 
     // elimizi kontrole eder.
     public static bool handFull = false;
-    // karakterin elindeki tanýma ýd si0
-    [SyncVar]public float ID;
-    //kasalarýn id si
-    
-    public string Hand = " Null ";
-
+  
     private bool notCombine;
     public static bool cutting = false;
 
 
     public controller  playerInput;
 
-    public RigBuilder rigBuilder;
-    public GameObject objectToRemove; // Kaldýrýlacak objeyi atan deðiþken
-    public GameObject testIK;
     void Start()
     {
-        
-        rigBuilder = GetComponent<RigBuilder>();
         playerInput = new controller();
-        gameController = GameObject.FindGameObjectWithTag("GameController");
-        Counter = FindObjectOfType<counter>();
 
         pickupLayerMask = LayerMask.GetMask("Pickup");
         pickupLayerMask2 = LayerMask.GetMask("counter");
@@ -84,29 +72,12 @@ public class pickUp : NetworkBehaviour
     void Update()
     {
         if (!isLocalPlayer) return;
-            playerInput.Player.Drop.performed += x => Drop();
-      
-        playerInput.Player.Interact.performed += x => Interact();
+        //playerInput.Player.Drop.performed += x => Drop();
+        //playerInput.Player.Interact.performed += x => Interact();
+        //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
+
+       
         
-
-        playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
-
-        IDcheck();
-
-
-        //rig sistemini aktif ve deaktif 
-        //   rigBuilder.enabled = cutting;
-        //if (rigBuilder.enabled == true) // kol animasyonunu tetikler
-        //{
-
-        //}
-    }
-
-    //input sistemi etkileþimler
-    [Command]
-    public void CmdDrop()
-    {
-        Drop();
     }
     public void Drop()
     {
@@ -2868,14 +2839,9 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
-
-    [Command]
-    public void CmdInteract()
-    {
-        Interact();
-    }
     public void Interact()
     {
+        if (handFull) { IDcheck(); }
         //counter;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
         {
@@ -3025,260 +2991,260 @@ public class pickUp : NetworkBehaviour
                 handFull = true;
             }
             // elde item varken kombinasyon yapmamýzý saðlar.
-            if (id == 1)
-            {
-                if (ID == 2)
-                {
-                    ID = 12;
-                }
-                if (ID == 3)
-                {
-                    ID = 13;
-                }
-                if (ID == 4)
-                {
-                    ID = 14;
-                }
-                if (ID == 5)
-                {
-                    ID = 15;
-                }
-                if (ID == 6)
-                {
-                    ID = 16;
-                }
-                if (ID == 23)
-                {
-                    ID = 123;
-                }
-                if (ID == 24)
-                {
-                    ID = 124;
-                }
-                if (ID == 25)
-                {
-                    ID = 125;
-                }
-                if (ID == 26)
-                {
-                    ID = 126;
-                }
-                if (ID == 34)
-                {
-                    ID = 134;
-                }
-                if (ID == 35)
-                {
-                    ID = 135;
-                }
-                if (ID == 36)
-                {
-                    ID = 136;
-                }
-                if (ID == 45)
-                {
-                    ID = 145;
-                }
-                if (ID == 46)
-                {
-                    ID = 146;
-                }
-                if (ID == 56)
-                {
-                    ID = 156;
-                }
-                if (ID == 234)
-                {
-                    ID = 1234;
-                }
-                if (ID == 235)
-                {
-                    ID = 1235;
-                }
-                if (ID == 236)
-                {
-                    ID = 1236;
-                }
-                if (ID == 245)
-                {
-                    ID = 1245;
-                }
-                if (ID == 246)
-                {
-                    ID = 1246;
-                }
-                if (ID == 256)
-                {
-                    ID = 1256;
-                }
-                if (ID == 345)
-                {
-                    ID = 1345;
-                }
-                if (ID == 346)
-                {
-                    ID = 1346;
-                }
-                if (ID == 356)
-                {
-                    ID = 1356;
-                }
-                if (ID == 456)
-                {
-                    ID = 1456;
-                }
-                if (ID == 2345)
-                {
-                    ID = 12345;
-                }
-                if (ID == 2346)
-                {
-                    ID = 12346;
-                }
-                if (ID == 2356)
-                {
-                    ID = 12356;
-                }
-                if (ID == 2456)
-                {
-                    ID = 12456;
-                }
-                if (ID == 3456)
-                {
-                    ID = 13456;
-                }
-                if (ID == 23456)
-                {
-                    ID = 123456;
-                }
-            }
-            if (id == 2)
-            {
-                if (ID == 1)
-                {
-                    ID = 12;
-                }
-                if (ID == 3)
-                {
-                    ID = 23;
-                }
-                if (ID == 4)
-                {
-                    ID = 24;
-                }
-                if (ID == 5)
-                {
-                    ID = 25;
-                }
-                if (ID == 6)
-                {
-                    ID = 26;
-                }
-                if (ID == 13)
-                {
-                    ID = 123;
-                }
-                if (ID == 14)
-                {
-                    ID = 124;
-                }
-                if (ID == 15)
-                {
-                    ID = 125;
-                }
-                if (ID == 16)
-                {
-                    ID = 126;
-                }
-                if (ID == 34)
-                {
-                    ID = 234;
-                }
-                if (ID == 35)
-                {
-                    ID = 235;
-                }
-                if (ID == 36)
-                {
-                    ID = 236;
-                }
-                if (ID == 45)
-                {
-                    ID = 245;
-                }
-                if (ID == 46)
-                {
-                    ID = 246;
-                }
-                if (ID == 56)
-                {
-                    ID = 256;
-                }
-                if (ID == 134)
-                {
-                    ID = 1234;
-                }
-                if (ID == 135)
-                {
-                    ID = 1235;
-                }
-                if (ID == 136)
-                {
-                    ID = 1236;
-                }
-                if (ID == 145)
-                {
-                    ID = 1245;
-                }
-                if (ID == 146)
-                {
-                    ID = 1246;
-                }
-                if (ID == 156)
-                {
-                    ID = 1256;
-                }
-                if (ID == 345)
-                {
-                    ID = 2345;
-                }
-                if (ID == 346)
-                {
-                    ID = 2346;
-                }
-                if (ID == 356)
-                {
-                    ID = 2356;
-                }
-                if (ID == 456)
-                {
-                    ID = 2456;
-                }
-                if (ID == 1345)
-                {
-                    ID = 12345;
-                }
-                if (ID == 1346)
-                {
-                    ID = 12346;
-                }
-                if (ID == 1356)
-                {
-                    ID = 12356;
-                }
-                if (ID == 1456)
-                {
-                    ID = 12456;
-                }
-                if (ID == 3456)
-                {
-                    ID = 23456;
-                }
-                if (ID == 13456)
-                {
-                    ID = 123456;
-                }
-            }
+            //if (id == 1)
+            //{
+            //    if (ID == 2)
+            //    {
+            //        ID = 12;
+            //    }
+            //    if (ID == 3)
+            //    {
+            //        ID = 13;
+            //    }
+            //    if (ID == 4)
+            //    {
+            //        ID = 14;
+            //    }
+            //    if (ID == 5)
+            //    {
+            //        ID = 15;
+            //    }
+            //    if (ID == 6)
+            //    {
+            //        ID = 16;
+            //    }
+            //    if (ID == 23)
+            //    {
+            //        ID = 123;
+            //    }
+            //    if (ID == 24)
+            //    {
+            //        ID = 124;
+            //    }
+            //    if (ID == 25)
+            //    {
+            //        ID = 125;
+            //    }
+            //    if (ID == 26)
+            //    {
+            //        ID = 126;
+            //    }
+            //    if (ID == 34)
+            //    {
+            //        ID = 134;
+            //    }
+            //    if (ID == 35)
+            //    {
+            //        ID = 135;
+            //    }
+            //    if (ID == 36)
+            //    {
+            //        ID = 136;
+            //    }
+            //    if (ID == 45)
+            //    {
+            //        ID = 145;
+            //    }
+            //    if (ID == 46)
+            //    {
+            //        ID = 146;
+            //    }
+            //    if (ID == 56)
+            //    {
+            //        ID = 156;
+            //    }
+            //    if (ID == 234)
+            //    {
+            //        ID = 1234;
+            //    }
+            //    if (ID == 235)
+            //    {
+            //        ID = 1235;
+            //    }
+            //    if (ID == 236)
+            //    {
+            //        ID = 1236;
+            //    }
+            //    if (ID == 245)
+            //    {
+            //        ID = 1245;
+            //    }
+            //    if (ID == 246)
+            //    {
+            //        ID = 1246;
+            //    }
+            //    if (ID == 256)
+            //    {
+            //        ID = 1256;
+            //    }
+            //    if (ID == 345)
+            //    {
+            //        ID = 1345;
+            //    }
+            //    if (ID == 346)
+            //    {
+            //        ID = 1346;
+            //    }
+            //    if (ID == 356)
+            //    {
+            //        ID = 1356;
+            //    }
+            //    if (ID == 456)
+            //    {
+            //        ID = 1456;
+            //    }
+            //    if (ID == 2345)
+            //    {
+            //        ID = 12345;
+            //    }
+            //    if (ID == 2346)
+            //    {
+            //        ID = 12346;
+            //    }
+            //    if (ID == 2356)
+            //    {
+            //        ID = 12356;
+            //    }
+            //    if (ID == 2456)
+            //    {
+            //        ID = 12456;
+            //    }
+            //    if (ID == 3456)
+            //    {
+            //        ID = 13456;
+            //    }
+            //    if (ID == 23456)
+            //    {
+            //        ID = 123456;
+            //    }
+            //}
+            //if (id == 2)
+            //{
+            //    if (ID == 1)
+            //    {
+            //        ID = 12;
+            //    }
+            //    if (ID == 3)
+            //    {
+            //        ID = 23;
+            //    }
+            //    if (ID == 4)
+            //    {
+            //        ID = 24;
+            //    }
+            //    if (ID == 5)
+            //    {
+            //        ID = 25;
+            //    }
+            //    if (ID == 6)
+            //    {
+            //        ID = 26;
+            //    }
+            //    if (ID == 13)
+            //    {
+            //        ID = 123;
+            //    }
+            //    if (ID == 14)
+            //    {
+            //        ID = 124;
+            //    }
+            //    if (ID == 15)
+            //    {
+            //        ID = 125;
+            //    }
+            //    if (ID == 16)
+            //    {
+            //        ID = 126;
+            //    }
+            //    if (ID == 34)
+            //    {
+            //        ID = 234;
+            //    }
+            //    if (ID == 35)
+            //    {
+            //        ID = 235;
+            //    }
+            //    if (ID == 36)
+            //    {
+            //        ID = 236;
+            //    }
+            //    if (ID == 45)
+            //    {
+            //        ID = 245;
+            //    }
+            //    if (ID == 46)
+            //    {
+            //        ID = 246;
+            //    }
+            //    if (ID == 56)
+            //    {
+            //        ID = 256;
+            //    }
+            //    if (ID == 134)
+            //    {
+            //        ID = 1234;
+            //    }
+            //    if (ID == 135)
+            //    {
+            //        ID = 1235;
+            //    }
+            //    if (ID == 136)
+            //    {
+            //        ID = 1236;
+            //    }
+            //    if (ID == 145)
+            //    {
+            //        ID = 1245;
+            //    }
+            //    if (ID == 146)
+            //    {
+            //        ID = 1246;
+            //    }
+            //    if (ID == 156)
+            //    {
+            //        ID = 1256;
+            //    }
+            //    if (ID == 345)
+            //    {
+            //        ID = 2345;
+            //    }
+            //    if (ID == 346)
+            //    {
+            //        ID = 2346;
+            //    }
+            //    if (ID == 356)
+            //    {
+            //        ID = 2356;
+            //    }
+            //    if (ID == 456)
+            //    {
+            //        ID = 2456;
+            //    }
+            //    if (ID == 1345)
+            //    {
+            //        ID = 12345;
+            //    }
+            //    if (ID == 1346)
+            //    {
+            //        ID = 12346;
+            //    }
+            //    if (ID == 1356)
+            //    {
+            //        ID = 12356;
+            //    }
+            //    if (ID == 1456)
+            //    {
+            //        ID = 12456;
+            //    }
+            //    if (ID == 3456)
+            //    {
+            //        ID = 23456;
+            //    }
+            //    if (ID == 13456)
+            //    {
+            //        ID = 123456;
+            //    }
+            //}
         }
     }
     public void PressCuttingAndWashing(InputAction.CallbackContext context)
@@ -3324,36 +3290,17 @@ public class pickUp : NetworkBehaviour
         if (ID == 0)
         {
             notCombine = false;
-            burger.SetActive(false);
-            dirtyPlate.SetActive(false);
-            cleanPlate.SetActive(false);
-            meatRaw.SetActive(false);
-            meatBaked.SetActive(false);
-            tomato.SetActive(false);
-            SliceTomato.SetActive(false);
-            lettuce.SetActive(false);
-            SliceLettuce.SetActive(false);
-            cheddarCheese.SetActive(false);
             handFull = false;
         }
         if (ID > 0)
         {
-            handFull = true;
             // Tekli Kombinasyon
             if (ID == 1)
             {
                 handFull = true;
                 notCombine = false;
+                Instantiate(burger, cam.transform);
                 burger.SetActive(true);
-                dirtyPlate.SetActive(false);
-                cleanPlate.SetActive(false);
-                meatRaw.SetActive(false);
-                meatBaked.SetActive(false);
-                tomato.SetActive(false);
-                SliceTomato.SetActive(false);
-                lettuce.SetActive(false);
-                SliceLettuce.SetActive(false);
-                cheddarCheese.SetActive(false);
             }
             if (ID == 2)
             {

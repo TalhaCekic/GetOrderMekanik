@@ -1410,7 +1410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4778950045902334904}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8447981, z: 0}
+  m_LocalPosition: {x: 0, y: 1.671, z: 0.334}
   m_LocalScale: {x: 0.79999995, y: 0.79999995, z: 0.79999995}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1873,8 +1873,10 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  ID: 0
+  test: 0
   hitRange: 1
-  cam: {fileID: 9044080930452573884}
+  cam: {fileID: 4778950045902334904}
   burger: {fileID: 1112036029964895551}
   dirtyPlate: {fileID: 5146814045236931893}
   cleanPlate: {fileID: 7824918570003716536}
@@ -1893,11 +1895,6 @@ MonoBehaviour:
   tomatoSlicegonder: 0
   lettuceogonder: 0
   lettuceSlicegonder: 0
-  ID: 0
-  Hand: ' Null '
-  rigBuilder: {fileID: 0}
-  objectToRemove: {fileID: 0}
-  testIK: {fileID: 789599970370930724}
 --- !u!114 &7268382643249388808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3280,7 +3277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6378676823260373511
 Transform:
   m_ObjectHideFlags: 0
