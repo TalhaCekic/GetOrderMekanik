@@ -2843,7 +2843,6 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
-    [Command]
     public void Interact()
     {
         if (full) { IDcheck(); }
@@ -3252,7 +3251,6 @@ public class pickUp : NetworkBehaviour
             //}
         }
     }
-    [Command]
     public void PressCuttingAndWashing(InputAction.CallbackContext context)
     {
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask5))
@@ -3290,7 +3288,6 @@ public class pickUp : NetworkBehaviour
     {
         Debug.LogError("canceled");
     }
-    [Command]
     private void IDcheck()
     {
         if (ID == 0)
