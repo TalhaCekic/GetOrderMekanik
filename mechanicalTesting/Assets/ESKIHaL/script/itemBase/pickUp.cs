@@ -34,7 +34,6 @@ public class pickUp : NetworkBehaviour
     public GameObject cleanPlate;     //id : 2
     public GameObject meatRaw;        //id : 3.3
     public GameObject meatBaked;      //id : 3
-    [SyncVar]
     public GameObject tomato;         //id : 4.4
     public GameObject SliceTomato;    //id : 4
     public GameObject lettuce;        //id : 5.5
@@ -2866,7 +2865,7 @@ public class pickUp : NetworkBehaviour
         }
     }
 
-
+    [ClientRpc]
     public void Interact()
     {
         //counter;
