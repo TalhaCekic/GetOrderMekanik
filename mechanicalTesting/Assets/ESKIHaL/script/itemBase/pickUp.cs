@@ -4269,7 +4269,7 @@ public class pickUp : NetworkBehaviour
     public void CmdIDCheck()
     {
         burger.gameObject.SetActive(true);
-
+        burger.AddComponent<NetworkIdentity>();
         NetworkServer.Spawn(burger);
     }
 
