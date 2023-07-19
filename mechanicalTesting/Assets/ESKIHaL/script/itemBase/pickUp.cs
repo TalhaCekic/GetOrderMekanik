@@ -3301,11 +3301,8 @@ public class pickUp : NetworkBehaviour
             // Tekli Kombinasyon
             if (ID == 1)
             {
-                handFull = true;
-                notCombine = false;
-                burger = Instantiate(burger, cam.transform);
-                burger.gameObject.SetActive(true);
-                burger.AddComponent<NetworkIdentity>();
+                
+                CmdIDCheck();
 
             }
             if (ID == 2)
@@ -4270,7 +4267,17 @@ public class pickUp : NetworkBehaviour
     [Command]
     public void CmdIDCheck()
     {
-        
+        RpcIDChech();
+    }
+
+    [ClientRpc]
+    public void RpcIDChech()
+    {
+        handFull = true;
+        notCombine = false;
+        burger = Instantiate(burger, cam.transform);
+        burger.gameObject.SetActive(true);
+        burger.AddComponent<NetworkIdentity>();
         NetworkServer.Spawn(burger);
     }
 
