@@ -3301,7 +3301,8 @@ public class pickUp : NetworkBehaviour
             // Tekli Kombinasyon
             if (ID == 1)
             {
-                
+                handFull = true;
+                notCombine = false;
                 CmdIDCheck();
 
             }
@@ -4273,8 +4274,7 @@ public class pickUp : NetworkBehaviour
     [ClientRpc]
     public void RpcIDChech()
     {
-        handFull = true;
-        notCombine = false;
+
         burger = Instantiate(burger, cam.transform);
         burger.gameObject.SetActive(true);
         burger.AddComponent<NetworkIdentity>();
