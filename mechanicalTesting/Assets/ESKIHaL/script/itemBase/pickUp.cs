@@ -3304,7 +3304,9 @@ public class pickUp : NetworkBehaviour
                 handFull = true;
                 notCombine = false;
                 burger = Instantiate(burger, cam.transform);
-                
+                burger.gameObject.SetActive(true);
+                burger.AddComponent<NetworkIdentity>();
+
             }
             if (ID == 2)
             {
@@ -4268,8 +4270,7 @@ public class pickUp : NetworkBehaviour
     [Command]
     public void CmdIDCheck()
     {
-        burger.gameObject.SetActive(true);
-        burger.AddComponent<NetworkIdentity>();
+        
         NetworkServer.Spawn(burger);
     }
 
