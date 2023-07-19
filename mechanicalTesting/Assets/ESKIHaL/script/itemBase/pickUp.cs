@@ -2865,7 +2865,7 @@ public class pickUp : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
+    [TargetRpc]
     public void Interact()
     {
         //counter;
