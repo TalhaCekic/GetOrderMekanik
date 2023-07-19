@@ -10,9 +10,9 @@ using UnityEngine.InputSystem;
 using Mirror;
 
 public class pickUp : NetworkBehaviour
-{  
+{
     // karakterin elindeki tanýma ýd si0
-    [SyncVar]public float ID;
+    [SyncVar] public float ID;
 
     public bool test = false;
     // public static pickUp instance;
@@ -40,7 +40,7 @@ public class pickUp : NetworkBehaviour
     public GameObject lettuce;        //id : 5.5
     public GameObject SliceLettuce;   //id : 5
     public GameObject cheddarCheese;  //id : 6
-    
+
     public bool Burgergonder;
     public bool Plategonder;
     public bool MeatRawgonder;
@@ -58,7 +58,7 @@ public class pickUp : NetworkBehaviour
     public static bool cutting = false;
 
 
-    public controller  playerInput;
+    public controller playerInput;
 
     void Start()
     {
@@ -80,10 +80,15 @@ public class pickUp : NetworkBehaviour
     }
     public void Drop()
     {
+
         //counter
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
         {
+            if (full)
+            {
+                NetworkServer.Destroy(burger);
+            }
             if (hit.collider.gameObject.TryGetComponent<counter>(out var counter) && handFull == true)
             {
                 float value = counter.counterID;
@@ -2838,6 +2843,7 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
+    [Command]
     public void Interact()
     {
         if (full) { IDcheck(); }
@@ -3246,6 +3252,7 @@ public class pickUp : NetworkBehaviour
             //}
         }
     }
+    [Command]
     public void PressCuttingAndWashing(InputAction.CallbackContext context)
     {
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask5))
@@ -3283,7 +3290,7 @@ public class pickUp : NetworkBehaviour
     {
         Debug.LogError("canceled");
     }
-
+    [Command]
     private void IDcheck()
     {
         if (ID == 0)
@@ -3300,7 +3307,7 @@ public class pickUp : NetworkBehaviour
                 notCombine = false;
                 burger = Instantiate(burger, cam.transform);
                 burger.gameObject.SetActive(true);
-                NetworkServer.Spawn(burger, connectionToClient);
+                NetworkServer.Spawn(burger);
             }
             if (ID == 2)
             {
@@ -4255,9 +4262,12 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);   // TRUE
                 cheddarCheese.SetActive(true);  // TRUE
             }
+
         }
 
+
     }
+
 }
 
 
