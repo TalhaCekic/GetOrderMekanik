@@ -3284,7 +3284,8 @@ public class pickUp : NetworkBehaviour
     {
         Debug.LogError("canceled");
     }
-
+    
+    [Command]
     private void IDcheck()
     {
         if (ID == 0)
@@ -3301,7 +3302,7 @@ public class pickUp : NetworkBehaviour
                 notCombine = false;
                 burger = Instantiate(burger, cam.transform);
                 burger.gameObject.SetActive(true);
-                NetworkServer.Spawn(burger, connectionToClient);
+                NetworkServer.Spawn(burger);
               
             }
             if (ID == 2)
