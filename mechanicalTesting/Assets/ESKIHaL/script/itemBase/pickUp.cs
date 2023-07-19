@@ -52,7 +52,8 @@ public class pickUp : NetworkBehaviour
 
     // elimizi kontrole eder.
     public static bool handFull = false;
-  
+    [SyncVar]
+    public bool full = false;
     private bool notCombine;
     public static bool cutting = false;
 
@@ -75,9 +76,7 @@ public class pickUp : NetworkBehaviour
         //playerInput.Player.Drop.performed += x => Drop();
         //playerInput.Player.Interact.performed += x => Interact();
         //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
-
-       
-        
+        full = handFull;
     }
     public void Drop()
     {
@@ -2841,7 +2840,7 @@ public class pickUp : NetworkBehaviour
     }
     public void Interact()
     {
-        if (handFull) { IDcheck(); }
+        if (full) { IDcheck(); }
         //counter;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
         {
@@ -3284,8 +3283,7 @@ public class pickUp : NetworkBehaviour
     {
         Debug.LogError("canceled");
     }
-    
-    
+
     private void IDcheck()
     {
         if (ID == 0)
@@ -3302,8 +3300,7 @@ public class pickUp : NetworkBehaviour
                 notCombine = false;
                 burger = Instantiate(burger, cam.transform);
                 burger.gameObject.SetActive(true);
-                NetworkServer.Spawn(burger);
-              
+                NetworkServer.Spawn(burger, connectionToClient);
             }
             if (ID == 2)
             {
