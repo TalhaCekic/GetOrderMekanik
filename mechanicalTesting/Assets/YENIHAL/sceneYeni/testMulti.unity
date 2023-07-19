@@ -2313,7 +2313,7 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
-  - {fileID: 0}
+  - {fileID: 5801441931819564634, guid: 5c36ade1ceffc6f45979677d97000e91, type: 3}
   snapshotSettings:
     bufferTimeMultiplier: 2
     catchupNegativeThreshold: -1

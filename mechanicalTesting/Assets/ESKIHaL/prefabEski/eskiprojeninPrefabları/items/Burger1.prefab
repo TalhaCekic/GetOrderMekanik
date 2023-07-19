@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5801441931819564639}
   - component: {fileID: 3065441303202226713}
   - component: {fileID: 2186076271794196280}
-  - component: {fileID: -6486091679625601749}
+  - component: {fileID: -8911794563039726432}
   m_Layer: 6
   m_Name: Burger1
   m_TagString: hamburger
@@ -148,7 +148,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 2
   hasSpawned: 0
---- !u!114 &-6486091679625601749
+--- !u!114 &-8911794563039726432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
