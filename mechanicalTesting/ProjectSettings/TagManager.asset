@@ -16,6 +16,7 @@ TagManager:
   - gameManager
   - a
   - spawnPoints
+  - PcScene
   layers:
   - Default
   - TransparentFX

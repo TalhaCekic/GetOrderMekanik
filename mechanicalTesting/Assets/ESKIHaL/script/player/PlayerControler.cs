@@ -11,7 +11,6 @@ using Mirror;
 
 public class PlayerControler : NetworkBehaviour
 {
-
     private Vector3 randomPlayerPosition;
 
     Animator anim;
@@ -37,6 +36,7 @@ public class PlayerControler : NetworkBehaviour
 
     private bool isSprint = false;
 
+    public bool LoadScene=false;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -128,41 +128,4 @@ public class PlayerControler : NetworkBehaviour
     {
         isSprint = false;
     }
-
-
-
-    //yedeklemeler
-
-    //private void eskiMove()
-    //{
-    //    movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-    //    movement.Normalize();
-
-    //    velocity.y += Physics.gravity.y * Time.deltaTime; // Yerçekimi ivmesini uygula
-
-    //    if (movement.magnitude > 0f)
-    //    {
-    //        // Hýz artýþý
-    //        currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
-    //        if (isSprint)
-    //        {
-    //            currentSpeed = Mathf.Max(currentSpeed + acceleration * Time.deltaTime, 7);
-    //            anim.SetBool("isSprint", true);
-    //        }
-    //        // Dönüþ
-    //        Quaternion targetRotation = Quaternion.LookRotation(movement);
-    //        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-    //    }
-    //    else
-    //    {
-    //        // Hýz azalýþý
-    //        currentSpeed = Mathf.Max(currentSpeed * -2 - deceleration * Time.deltaTime, 0f);
-    //        anim.SetBool("isSprint", false);
-    //    }
-    //    // Hareket etme
-    //    controller.Move(transform.forward * currentSpeed * Time.deltaTime);
-    //    anim.SetFloat("Speed", currentSpeed / speedd);
-    //}
-     
-
 }

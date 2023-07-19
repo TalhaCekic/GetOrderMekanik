@@ -6,8 +6,6 @@ using System;
 
 public class PlayerListManager : NetworkBehaviour
 {
-    
-
     [SyncVar]
     private string playerName;
     
@@ -22,12 +20,8 @@ public class PlayerListManager : NetworkBehaviour
 
     public Transform playerNamePrefabsTransform;
 
-    
-
-
     protected Callback<LobbyEnter_t> m_lobbyEntered;
     protected Callback<GameLobbyJoinRequested_t> m_lobbyExited;
-
 
     private void Start()
     {
@@ -38,7 +32,6 @@ public class PlayerListManager : NetworkBehaviour
         m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
     }
 
-
     //public override void OnStartClient()
     //{
     //    base.OnStartClient();
@@ -46,7 +39,6 @@ public class PlayerListManager : NetworkBehaviour
 
         
     //}
-
     
     public void OnLobbyEntered(LobbyEnter_t pCallback)
     {
