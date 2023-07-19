@@ -3285,7 +3285,7 @@ public class pickUp : NetworkBehaviour
         Debug.LogError("canceled");
     }
     
-    [Command]
+    
     private void IDcheck()
     {
         if (ID == 0)
