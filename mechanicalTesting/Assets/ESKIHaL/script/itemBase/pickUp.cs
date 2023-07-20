@@ -4265,25 +4265,6 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
-    //[Command]
-    //public void CmdDrop()
-    //{
-    //    handFull = false;
-    //    NetworkServer.Destroy(burger);
-    //    burger.transform.SetParent(burgerPoint, false);
-    //    burger.AddComponent<NetworkIdentity>();
-    //    NetworkServer.Spawn(burger);
-    //    RpcDrop(burger.GetComponent<NetworkTransform>().netId);
-    //    ID = 0;
-    //}
-
-    //[ClientRpc]
-    //public void RpcDrop(uint objectId)
-    //{
-
-    //    Debug.Log("Serverda gözüküyo hocam : " + objectId);
-    //}
-
     [Command]
     public void CmdIDCheck()
     {
@@ -4293,7 +4274,7 @@ public class pickUp : NetworkBehaviour
     public void RpcIDCheck()
     {
         burger = Instantiate(burger, cam.transform);
-        burger.gameObject.SetActive(true);
+        burger.gameObject.SetActive(false);
     }
 
     //[Command]
