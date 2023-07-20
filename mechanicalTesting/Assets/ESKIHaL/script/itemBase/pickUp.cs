@@ -62,12 +62,20 @@ public class pickUp : NetworkBehaviour
 
     public controller playerInput;
 
+   
 
+    private void Awake()
+    {
+       
+        burger = Instantiate(burger, cam.transform);
+        NetworkServer.Spawn(burger);
+        burger.gameObject.SetActive(false);
+
+
+    }
     void Start()
     {
 
-        burger = Instantiate(burger, cam.transform);
-        burger.gameObject.SetActive(false);
        
 
         playerInput = new controller();
@@ -4297,7 +4305,7 @@ public class pickUp : NetworkBehaviour
     public void IDcheck()
     {
       
-        //burger.AddComponent<NetworkIdentity>();
+        //
         CmdIDCheck();
         //burger = Instantiate(burger, cam.transform);
         //burger.gameObject.SetActive(false);

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5801441931819564638}
   - component: {fileID: 5801441931819564639}
   - component: {fileID: 6759501272269040005}
-  - component: {fileID: 3056853838219891008}
+  - component: {fileID: 4936483107139438390}
   m_Layer: 6
   m_Name: Burger1
   m_TagString: hamburger
@@ -143,7 +143,7 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
---- !u!114 &3056853838219891008
+--- !u!114 &4936483107139438390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
