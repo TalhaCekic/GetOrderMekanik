@@ -4294,13 +4294,13 @@ public class pickUp : NetworkBehaviour
         NetworkServer.Spawn(burger);
        // burger.GetComponent<NetworkIdentity>();
 
-        RpcIDCheck(burger.GetComponent<NetworkIdentity>().netId);
+       // RpcIDCheck(burger.GetComponent<NetworkIdentity>());
     }
 
     [ClientRpc]
     public void RpcIDCheck(uint objectId)
     {
-        Debug.Log("An object was spawned with id: " +  objectId);
+
 
     }
 
