@@ -80,6 +80,7 @@ public class pickUp : NetworkBehaviour
         full = handFull;
         
     }
+    [Command]
     public void Drop()
     {
 
@@ -2848,6 +2849,7 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
+    [Command]
     public void Interact()
     {
         if (full) { IDcheck(); }
@@ -3293,6 +3295,8 @@ public class pickUp : NetworkBehaviour
     {
         Debug.LogError("canceled");
     }
+
+    [ClientRpc]
     private void IDcheck()
     {
         if (ID == 0)
@@ -3308,7 +3312,16 @@ public class pickUp : NetworkBehaviour
             {
                 handFull = true;
                 notCombine = false;
-                CmdIDCheck();
+                burger.SetActive(true);       // TRUE
+                dirtyPlate.SetActive(false);
+                cleanPlate.SetActive(false);  
+                meatRaw.SetActive(false);
+                meatBaked.SetActive(false);
+                tomato.SetActive(false);
+                SliceTomato.SetActive(false);
+                lettuce.SetActive(false);
+                SliceLettuce.SetActive(false);
+                cheddarCheese.SetActive(false);
             }
             if (ID == 2)
             {
@@ -4273,26 +4286,13 @@ public class pickUp : NetworkBehaviour
     [ClientRpc]
     public void RpcIDCheck()
     {
-        burger = Instantiate(burger, cam.transform);
-        burger.gameObject.SetActive(false);
+
+
+
+        //burger = Instantiate(burger, cam.transform);
+        //burger.gameObject.SetActive(false);
     }
 
-    //[Command]
-    //public void CmdDropObject()
-    //{
-    //    if (burger != null)
-    //    {
-    //        burger.transform.parent = null; // Objeyi elin alt objesi olmaktan çýkar.
-    //        burger = null; // Tutulan objeyi null olarak set et.
-    //    }
-    //}
-
-    //[ClientRpc]
-    //public void RpcDropObject(uint objectId)
-    //{
-    //    GameObject droppedObject = NetworkIdentity.;
-    //    droppedObject.transform.parent = null; // Objeyi elin alt objesi olmaktan çýkar.
-    //}
 
 
 }
