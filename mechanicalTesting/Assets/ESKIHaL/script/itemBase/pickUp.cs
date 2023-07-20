@@ -63,6 +63,11 @@ public class pickUp : NetworkBehaviour
 
     void Start()
     {
+
+        burger = Instantiate(burger, cam.transform);
+        burger.gameObject.SetActive(false);
+        burger.AddComponent<NetworkIdentity>();
+
         playerInput = new controller();
 
         pickupLayerMask = LayerMask.GetMask("Pickup");

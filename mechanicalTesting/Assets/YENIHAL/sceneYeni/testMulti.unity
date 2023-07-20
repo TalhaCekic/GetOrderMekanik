@@ -2384,8 +2384,7 @@ MonoBehaviour:
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
-  spawnPrefabs:
-  - {fileID: 5801441931819564634, guid: 5c36ade1ceffc6f45979677d97000e91, type: 3}
+  spawnPrefabs: []
   snapshotSettings:
     bufferTimeMultiplier: 2
     catchupNegativeThreshold: -1
@@ -6787,8 +6786,7 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 5365395402361522226, guid: e8522aba77892d74c8df14208d321fb3,
-    type: 3}
+  playerPrefab: {fileID: 0}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs: []
