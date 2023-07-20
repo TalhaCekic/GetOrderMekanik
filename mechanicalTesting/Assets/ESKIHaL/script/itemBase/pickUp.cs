@@ -4296,15 +4296,15 @@ public class pickUp : NetworkBehaviour
         // Yeni burger'ý aðda spawn et.
         NetworkServer.Spawn(burger);
         burger.GetComponent<NetworkIdentity>();
-        // Debug.Log("An object was spawned with id: " + objectId);
+        
         RpcIDCheck();
     }
 
     [ClientRpc]
     public void RpcIDCheck()
     {
+        Debug.Log("An object was spawned with id: " );
 
-        
     }
 
     //[Command]
