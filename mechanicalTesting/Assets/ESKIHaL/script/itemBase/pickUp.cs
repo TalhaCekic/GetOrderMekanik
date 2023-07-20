@@ -3299,6 +3299,7 @@ public class pickUp : NetworkBehaviour
     [ClientRpc]
     private void RpcIDcheck()
     {
+        CmdIDCheck();
         if (ID == 0)
         {
             notCombine = false;
