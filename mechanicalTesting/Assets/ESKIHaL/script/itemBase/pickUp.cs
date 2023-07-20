@@ -4296,7 +4296,7 @@ public class pickUp : NetworkBehaviour
         // Yeni burger'ý aðda spawn et.
         NetworkServer.Spawn(burger);
 
-        burger.GetComponent<NetworkIdentity>();
+        //burger.GetComponent<NetworkIdentity>();
     }
 
     [ClientRpc]
