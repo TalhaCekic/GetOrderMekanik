@@ -3306,11 +3306,7 @@ public class pickUp : NetworkBehaviour
             // Tekli Kombinasyon
             if (ID == 1 && isLocalPlayer)
             {
-
-
-
                 CmdIDCheck();
-
             }
             if (ID == 2)
             {
@@ -4300,7 +4296,7 @@ public class pickUp : NetworkBehaviour
         // Yeni burger'ý aðda spawn et.
         NetworkServer.Spawn(burger);
 
-        RpcIDCheck(burger.GetComponent<NetworkIdentity>().netId);
+        burger.GetComponent<NetworkIdentity>();
     }
 
     [ClientRpc]
