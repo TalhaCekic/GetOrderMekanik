@@ -3299,7 +3299,7 @@ public class pickUp : NetworkBehaviour
     [ClientRpc]
     private void RpcIDcheck()
     {
-        CmdIDCheck();
+
         if (ID == 0)
         {
             notCombine = false;
@@ -3309,13 +3309,13 @@ public class pickUp : NetworkBehaviour
         {
 
             // Tekli Kombinasyon
-            if (ID == 1 )
+            if (ID == 1)
             {
                 handFull = true;
                 notCombine = false;
                 burger.SetActive(true);       // TRUE
                 dirtyPlate.SetActive(false);
-                cleanPlate.SetActive(false);  
+                cleanPlate.SetActive(false);
                 meatRaw.SetActive(false);
                 meatBaked.SetActive(false);
                 tomato.SetActive(false);
@@ -4278,6 +4278,8 @@ public class pickUp : NetworkBehaviour
                 cheddarCheese.SetActive(true);  // TRUE
             }
         }
+
+        CmdIDCheck();
     }
     [Command]
     public void CmdIDCheck()
