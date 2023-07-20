@@ -1870,6 +1870,8 @@ MonoBehaviour:
   lettuceogonder: 0
   lettuceSlicegonder: 0
   full: 0
+  burgerPoint: {fileID: 8162397812888374642, guid: ba136d07d46a77a448ddc677ebbc607b,
+    type: 3}
 --- !u!114 &7268382643249388808
 MonoBehaviour:
   m_ObjectHideFlags: 0
