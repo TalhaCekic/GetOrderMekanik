@@ -4291,7 +4291,7 @@ public class pickUp : NetworkBehaviour
     {
         handFull = true;
         notCombine = false;
-        burger = Instantiate(burger, cam.transform.rotation);
+        burger = Instantiate(burger, cam.transform);
         burger.transform.SetParent(cam.transform, false);
         //burger.transform.position = cam.transform.position;
         //burger.transform.rotation = cam.transform.rotation;
