@@ -66,7 +66,7 @@ public class pickUp : NetworkBehaviour
 
         burger = Instantiate(burger, cam.transform);
         burger.gameObject.SetActive(false);
-        burger.AddComponent<NetworkIdentity>();
+        burger.AddComponent<NetworkIdentity>().serverOnly=true;
 
         playerInput = new controller();
 
