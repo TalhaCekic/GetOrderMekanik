@@ -4287,28 +4287,13 @@ public class pickUp : NetworkBehaviour
     [Command]
     public void CmdIDCheck()
     {
-
         RpcIDCheck();
-
-        // handFull = true;
-        // notCombine = false;
-        // burger = Instantiate(burger, cam.transform);
-        // burger.SetActive(true);
-
-        // // Yeni burger'ý aðda spawn et.
-        // NetworkServer.Spawn(burger);
-        //// burger.GetComponent<NetworkIdentity>();
-
-        //// RpcIDCheck(burger.GetComponent<NetworkIdentity>());
     }
-
     [ClientRpc]
     public void RpcIDCheck()
     {
-
         burger = Instantiate(burger, cam.transform);
         burger.gameObject.SetActive(true);
-        burger.AddComponent<NetworkIdentity>();
     }
 
     //[Command]
