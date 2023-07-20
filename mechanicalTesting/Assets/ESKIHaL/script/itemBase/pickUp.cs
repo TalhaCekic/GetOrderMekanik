@@ -3304,17 +3304,11 @@ public class pickUp : NetworkBehaviour
         {
 
             // Tekli Kombinasyon
-<<<<<<< HEAD
             if (ID == 1 && isLocalPlayer)
             {
 
 
 
-=======
-            if (ID == 1)
-            {
-                
->>>>>>> parent of d4c85da4 (a)
                 CmdIDCheck();
 
             }
@@ -4312,16 +4306,7 @@ public class pickUp : NetworkBehaviour
     [ClientRpc]
     public void RpcIDCheck(uint objectId)
     {
-<<<<<<< HEAD
         Debug.Log("An object was spawned with id: " + objectId);
-=======
-        handFull = true;
-        notCombine = false;
-        burger = Instantiate(burger, cam.transform);
-        burger.gameObject.SetActive(true);
-        burger.AddComponent<NetworkIdentity>();
-        NetworkServer.Spawn(burger);
->>>>>>> parent of d4c85da4 (a)
     }
 
     //[Command]
