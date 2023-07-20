@@ -17,6 +17,7 @@ TagManager:
   - a
   - spawnPoints
   - PcScene
+  - Burger
   layers:
   - Default
   - TransparentFX
