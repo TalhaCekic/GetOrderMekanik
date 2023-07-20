@@ -3304,7 +3304,7 @@ public class pickUp : NetworkBehaviour
             notCombine = false;
             handFull = false;
         }
-        if (ID > 0)
+        if (ID > 0 && isLocalPlayer)
         {
 
             // Tekli Kombinasyon
