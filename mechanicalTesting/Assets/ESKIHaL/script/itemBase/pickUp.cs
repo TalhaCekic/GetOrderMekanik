@@ -4288,22 +4288,19 @@ public class pickUp : NetworkBehaviour
         handFull = true;
         notCombine = false;
         burger = Instantiate(burger, cam.transform);
-        //burger.transform.SetParent(cam.transform, false);
-        //burger.transform.position = cam.transform.position;
-        //burger.transform.rotation = cam.transform.rotation;
         burger.SetActive(true);
 
         // Yeni burger'ý aðda spawn et.
         NetworkServer.Spawn(burger);
-        burger.GetComponent<NetworkIdentity>();
-        
-        RpcIDCheck();
+       // burger.GetComponent<NetworkIdentity>();
+
+        RpcIDCheck(burger.GetComponent<NetworkIdentity>().netId);
     }
 
     [ClientRpc]
-    public void RpcIDCheck()
+    public void RpcIDCheck(uint objectId)
     {
-        Debug.Log("An object was spawned with id: " );
+        Debug.Log("An object was spawned with id: " +  objectId);
 
     }
 
