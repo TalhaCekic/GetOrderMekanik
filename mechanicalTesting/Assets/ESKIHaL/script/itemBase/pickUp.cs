@@ -80,7 +80,7 @@ public class pickUp : NetworkBehaviour
         full = handFull;
         
     }
-    [Command]
+    
     public void Drop()
     {
 
@@ -2849,11 +2849,11 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
-    [Command]
+   
     public void Interact()
     {
         if (full) { IDcheck(); }
-        //counter;
+      //  counter;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
         {
             if (hit.collider.gameObject.TryGetComponent<counter>(out var counter) && handFull == false)
@@ -3297,7 +3297,7 @@ public class pickUp : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void IDcheck()
+    private void RpcIDcheck()
     {
         if (ID == 0)
         {
@@ -4281,14 +4281,14 @@ public class pickUp : NetworkBehaviour
     [Command]
     public void CmdIDCheck()
     {
-        RpcIDCheck();
+        RpcIDcheck();
     }
-    [ClientRpc]
-    public void RpcIDCheck()
+
+    public void IDcheck()
     {
 
 
-
+        CmdIDCheck();
         //burger = Instantiate(burger, cam.transform);
         //burger.gameObject.SetActive(false);
     }
