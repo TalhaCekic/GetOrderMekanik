@@ -78,19 +78,22 @@ public class pickUp : NetworkBehaviour
         //playerInput.Player.Interact.performed += x => Interact();
         //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
         full = handFull;
+        
     }
     public void Drop()
     {
-        
+
         //counter
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
         {
-            //if (full)
-            //{
-            //    //NetworkServer.Destroy(burger);
-                
-            //}
+            if (full)
+            {
+              //  NetworkServer.Destroy(burger);
+                burger.SetActive(false);
+                //burger = GameObject.FindWithTag("Burger");
+
+            }
             if (hit.collider.gameObject.TryGetComponent<counter>(out var counter) && handFull == true)
             {
                 float value = counter.counterID;
@@ -100,10 +103,8 @@ public class pickUp : NetworkBehaviour
                     {
                         if (!counter.burgerdolu)
                         {
-                            // counter.burgerdolu = true;
-                            CmdDrop();
-
-
+                            counter.burgerdolu = true;
+                            ID = 0;
                         }
                     }
                     if (ID == 2)
@@ -4264,50 +4265,34 @@ public class pickUp : NetworkBehaviour
                 SliceLettuce.SetActive(true);   // TRUE
                 cheddarCheese.SetActive(true);  // TRUE
             }
-
         }
-
-
     }
+    //[Command]
+    //public void CmdDrop()
+    //{
+    //    handFull = false;
+    //    NetworkServer.Destroy(burger);
+    //    burger.transform.SetParent(burgerPoint, false);
+    //    burger.AddComponent<NetworkIdentity>();
+    //    NetworkServer.Spawn(burger);
+    //    RpcDrop(burger.GetComponent<NetworkTransform>().netId);
+    //    ID = 0;
+    //}
 
+    //[ClientRpc]
+    //public void RpcDrop(uint objectId)
+    //{
 
-    [Command]
-    public void CmdDrop()
-    {
-       
-            handFull = false;
-            //NetworkServer.Destroy(burger);
-          burger.transform.SetParent(burgerPoint, false);
-        //burger.AddComponent<NetworkIdentity>();
-        //NetworkServer.Spawn(burger);
-        
-            RpcDrop(burger.GetComponent<NetworkTransform>().netId);
-
-        
-            ID = 0;
-        
-       
-
-    }
-
-    [ClientRpc]
-    public void RpcDrop(uint objectId)
-    {
-        
-        Debug.Log("Serverda gözüküyo hocam : " + objectId);
-    }
+    //    Debug.Log("Serverda gözüküyo hocam : " + objectId);
+    //}
 
     [Command]
     public void CmdIDCheck()
     {
-
-
         handFull = true;
         notCombine = false;
         burger = Instantiate(burger);
         burger.transform.SetParent(cam.transform, false);
-        //burger.transform.position = cam.transform.position;
-        // burger.transform.rotation = cam.transform.rotation;
         burger.SetActive(true);
 
         // Yeni burger'ý aðda spawn et.
