@@ -3304,7 +3304,7 @@ public class pickUp : NetworkBehaviour
         {
 
             // Tekli Kombinasyon
-            if (ID == 1)
+            if (ID == 1 && isLocalPlayer)
             {
                 CmdIDCheck();
             }
@@ -4285,6 +4285,13 @@ public class pickUp : NetworkBehaviour
     [Command]
     public void CmdIDCheck()
     {
+        RpcIDCheck();
+    }
+
+    [ClientRpc]
+    public void RpcIDCheck()
+    {
+
         handFull = true;
         notCombine = false;
         burger = Instantiate(burger, cam.transform);
@@ -4296,13 +4303,8 @@ public class pickUp : NetworkBehaviour
         // Yeni burger'ý aðda spawn et.
         NetworkServer.Spawn(burger);
 
-      //  burger.GetComponent<NetworkIdentity>();
-    }
-
-    [ClientRpc]
-    public void RpcIDCheck(uint objectId)
-    {
-        Debug.Log("An object was spawned with id: " + objectId);
+        //  burger.GetComponent<NetworkIdentity>();
+       // Debug.Log("An object was spawned with id: " + objectId);
     }
 
     //[Command]
