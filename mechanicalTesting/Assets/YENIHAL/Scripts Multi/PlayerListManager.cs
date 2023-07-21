@@ -37,7 +37,7 @@ public class PlayerListManager : NetworkBehaviour
         // Oyuncunun adýný çek
         playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
       //  Debug.Log(playerName);
-        playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
+        playerCount += SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
        // Debug.Log("Player joined. Current players in lobby: " + playerCount);
         for (int i = 0; i < playerCount; i++)
         {
