@@ -72,18 +72,26 @@ public class pickUp : NetworkBehaviour
         pickupLayerMask5 = LayerMask.GetMask("cuttingTableCounter");
 
         float randomNumber = Random.Range(0, 10);
-       
 
+        SpawnObjects();
     }
 
-    public override void OnStartClient()
+    [Command]
+    public void CmdSpawnObjects()
     {
-        
-        base.OnStartClient();
-        if (!isLocalPlayer) return;
         burger = Instantiate(burger, cam.transform);
         NetworkServer.Spawn(burger, netId);
         burger.gameObject.SetActive(false);
+    }
+
+    [ClientRpc]
+    public void RpcSpawnObjects()
+    {
+        CmdSpawnObjects();
+    }
+ public void SpawnObjects()
+    {
+        RpcSpawnObjects();
     }
     void Update()
     {
