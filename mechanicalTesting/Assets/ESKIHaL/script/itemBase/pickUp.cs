@@ -75,9 +75,7 @@ public class pickUp : NetworkBehaviour
 
         burger = Instantiate(burger, cam.transform);
         //burger.AddComponent<NetworkIdentity>();
-        NetworkServer.Spawn(burger, assetId: (uint)netId);
-        burger.GetComponent<NetworkIdentity>().sceneId = (ulong)netId;
-        burger.gameObject.SetActive(false);
+
         
     }
 
@@ -89,7 +87,9 @@ public class pickUp : NetworkBehaviour
         //playerInput.Player.Interact.performed += x => Interact();
         //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
         full = handFull;
-        
+                NetworkServer.Spawn(burger, assetId: (uint)netId);
+        burger.GetComponent<NetworkIdentity>().sceneId = (ulong)netId;
+        burger.gameObject.SetActive(false);
     }
     
     public void Drop()
