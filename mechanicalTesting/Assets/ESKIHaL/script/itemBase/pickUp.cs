@@ -56,8 +56,8 @@ public class pickUp : NetworkBehaviour
 
     public controller playerInput;
 
-    
- 
+
+
     void Start()
     {
         playerInput = new controller();
@@ -69,42 +69,24 @@ public class pickUp : NetworkBehaviour
         pickupLayerMask5 = LayerMask.GetMask("cuttingTableCounter");
 
         int randomNumber = Random.Range(0, 10);
+       
 
-        burger = Instantiate(burger, cam.transform);
-        //burger.AddComponent<NetworkIdentity>();
-        NetworkServer.Spawn(burger);
-        // burger.GetComponent<NetworkIdentity>().sceneId = (ulong)randomNumber;
-        burger.gameObject.SetActive(false);
-        ServerID();
+        ObjectSpawn();
     }
 
-    [Command]
-    public void CmdServerID()
-    {
-        burger.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
-    }
-    [ClientRpc]
-    public void RpcServerID()
-    {
-        CmdServerID();
-    }
 
-    public void ServerID()
-    {
-        RpcServerID();
-    }
 
     void Update()
     {
-       if (!isLocalPlayer) return;
+        if (!isLocalPlayer) return;
         //playerInput.Player.Drop.performed += x => Drop();
         //playerInput.Player.Interact.performed += x => Interact();
         //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
         full = handFull;
 
-       
+
     }
-    
+
     public void Drop()
     {
         //counter
@@ -113,7 +95,7 @@ public class pickUp : NetworkBehaviour
         {
             if (full)
             {
-              //  NetworkServer.Destroy(burger);
+                //  NetworkServer.Destroy(burger);
                 burger.SetActive(false);
                 //burger = GameObject.FindWithTag("Burger");
 
@@ -2872,11 +2854,11 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
-   
+
     public void Interact()
     {
         if (full) { IDcheck(); }
-      //  counter;
+        //  counter;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
         {
             if (hit.collider.gameObject.TryGetComponent<counter>(out var counter) && handFull == false)
@@ -2993,6 +2975,7 @@ public class pickUp : NetworkBehaviour
             {
                 ID = 1;
                 handFull = true;
+                
             }
             if (id == 2 && handFull == false)
             {
@@ -3321,8 +3304,8 @@ public class pickUp : NetworkBehaviour
 
     [ClientRpc]
     private void RpcIDcheck()
-    { 
-        burger.GetComponent<NetworkIdentity>();
+    {
+        if (!isServer) return;
 
         if (ID == 0)
         {
@@ -4315,6 +4298,27 @@ public class pickUp : NetworkBehaviour
         CmdIDCheck();
     }
 
+    public void ObjectSpawn()
+    {
+        CmdObjectSpawn();
+    }
+
+    [Command]
+    public void CmdObjectSpawn()
+    {
+        RpcObjectSpawn();
+    }
+
+    [ClientRpc]
+    public void RpcObjectSpawn()
+    {
+        if (!isServer) return;
+        // cam.transform.position = Vector3.zero;
+        burger = Instantiate(burger, cam.transform);
+        burger.gameObject.SetActive(false);
+        NetworkServer.Spawn(burger);
+
+    }
 
 
 }
