@@ -8,49 +8,57 @@ using TMPro;
 
 public class SceneManager : NetworkBehaviour
 {
-    //[SyncVar]
-    //public int playerCount;
-    //// Start is called before the first frame update
-    //protected Callback<LobbyEnter_t> LobbyEntered;
-    //public ulong CurrentLobbyID;
 
-    //private CustomNetworkManager manager;
-    //private const string HostAddressKey = "HostAddress";
-    //private void Start()
-    //{
-    //    if (!SteamManager.Initialized) { return; }
-    //    manager = GetComponent<CustomNetworkManager>();
-    //    LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
-    //}
+    [SyncVar] public int playerCount;
 
-    ////public void OnLobbyEntered(LobbyEnter_t pCallback)
-    ////{
+    public Collider player;
 
-    ////    CSteamID steamId = SteamUser.GetSteamID();
-    ////    playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
-    ////    Debug.Log("Player joined. Current players in lobby: " + playerCount);
-    ////}
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    print(playerCount);
-    //    //if (playerCount == 1)
-    //    //{
-    //    //    print("aaaaaa");
-    //    //}
-    //}
 
-    //private void OnLobbyEntered(LobbyEnter_t callback)
-    //{
+    private void Update()
+    {
+
+
+    }
+    public void PlayerCount()
+    {
+        CmdPlayerCount();
+    }
+
+    [Command]
+    public void CmdPlayerCount()
+    {
+        RpcPlayerCount();
+    }
+
+    [ClientRpc]
+    public void RpcPlayerCount()
+    {
+        OnTriggerEnter(player);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+       
+        if (other.gameObject.tag == "Player")
+        {
+            playerCount += 1;
+            print(playerCount);
+            if (playerCount == 4)
+            {
+                Debug.Log("Diðer Sahneye Geçiþ Yapýlabilir.");
+            }
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
         
-    //    CurrentLobbyID = callback.m_ulSteamIDLobby;
-        
-    //    playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)callback.m_ulSteamIDLobby);
+        if (other.gameObject.tag == "Player")
+        {
+            playerCount -= 1;
+            print(playerCount);
 
-    //    if (NetworkServer.active) { return; }
-
-    //    manager.networkAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
-
-    //    manager.StartClient();
-
-    //}
+        }
+    }
 }
