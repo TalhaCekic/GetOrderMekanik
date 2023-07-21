@@ -26,14 +26,21 @@ public class PlayerListManager : NetworkBehaviour
 
     private void Start()
     {
+       OnLobbyStateV2();
+     
+    }
+    public void OnLobbyStateV2()
+    {
+        if (!SteamManager.Initialized) return;
         OnLobbyState();
     }
     [Command]
     public void OnLobbyState()
     {
-        if (!SteamManager.Initialized) return;
-        m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+        
+       m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
+
     }
     [ClientRpc]
     public void OnLobbyEntered(LobbyEnter_t pCallback)
@@ -54,6 +61,7 @@ public class PlayerListManager : NetworkBehaviour
     }
     public void Update()
     {
+        
         //m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
 
     }
