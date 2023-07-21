@@ -75,7 +75,6 @@ public class pickUp : NetworkBehaviour
 
         burger = Instantiate(burger, cam.transform);
         NetworkServer.Spawn(burger, netId);
-        burger.gameObject.GetComponent<NetworkIdentity>().netId.ToString();
         burger.gameObject.SetActive(false);
        
     }
@@ -3308,6 +3307,8 @@ public class pickUp : NetworkBehaviour
     [ClientRpc]
     private void RpcIDcheck()
     {
+        burger.GetComponent<NetworkIdentity>();
+
         if (ID == 0)
         {
             notCombine = false;
