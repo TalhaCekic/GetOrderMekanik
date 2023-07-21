@@ -75,7 +75,7 @@ public class pickUp : NetworkBehaviour
 
         burger = Instantiate(burger, cam.transform);
         NetworkServer.Spawn(burger, netId);
-        burger.gameObject.GetComponent<NetworkIdentity>().serverOnly=true;
+        burger.gameObject.GetComponent<NetworkIdentity>().netId.ToString();
         burger.gameObject.SetActive(false);
        
     }
