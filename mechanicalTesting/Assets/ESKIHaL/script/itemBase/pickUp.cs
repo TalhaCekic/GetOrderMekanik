@@ -3306,7 +3306,7 @@ public class pickUp : NetworkBehaviour
 
     [ClientRpc]
     private void RpcIDcheck()
-    {
+    { 
         burger.GetComponent<NetworkIdentity>();
 
         if (ID == 0)
