@@ -8,7 +8,7 @@ public class PlayerListManager : NetworkBehaviour
 {
     [SyncVar]
     private string playerName;
-    
+
     public TMP_Text[] playerNameText;
 
     public GameObject playerNamePrefabs;
@@ -23,12 +23,11 @@ public class PlayerListManager : NetworkBehaviour
     protected Callback<LobbyEnter_t> m_lobbyEntered;
     protected Callback<GameLobbyJoinRequested_t> m_lobbyExited;
 
+    [ClientRpc]
     private void Start()
     {
         if (!SteamManager.Initialized) return;
-
-       
-       m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+        m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
     }
 
@@ -37,33 +36,30 @@ public class PlayerListManager : NetworkBehaviour
     //    base.OnStartClient();
     //    // Oyuncunun Steam ID'sini al
 
-        
+
     //}
-    
+
+    [Command]
     public void OnLobbyEntered(LobbyEnter_t pCallback)
     {
         CSteamID steamId = SteamUser.GetSteamID();
-
         // Oyuncunun adýný çek
-
         playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
         Debug.Log(playerName);
         playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
         Debug.Log("Player joined. Current players in lobby: " + playerCount);
         for (int i = 0; i < playerCount; i++)
         {
-            
             Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
-            
+
             playerNameText[i] = playerNamePrefabs.GetComponent<TMP_Text>();
             playerNameText[i].text = playerName;
         }
     }
     public void Update()
     {
-       
-       //  m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
-        
+        //m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+
     }
     public void OnLobbyExited(GameLobbyJoinRequested_t pCallback)
     {

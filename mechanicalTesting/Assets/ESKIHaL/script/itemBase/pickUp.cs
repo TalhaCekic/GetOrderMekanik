@@ -55,9 +55,6 @@ public class pickUp : NetworkBehaviour
     public Transform burgerPoint;
 
     public controller playerInput;
-
-
-
     void Start()
     {
         playerInput = new controller();
