@@ -73,26 +73,13 @@ public class pickUp : NetworkBehaviour
 
         float randomNumber = Random.Range(0, 10);
 
-        SpawnObjects();
-    }
-
-    [Command]
-    public void CmdSpawnObjects()
-    {
         burger = Instantiate(burger, cam.transform);
         NetworkServer.Spawn(burger, netId);
         burger.gameObject.SetActive(false);
+       
     }
 
-    [ClientRpc]
-    public void RpcSpawnObjects()
-    {
-        CmdSpawnObjects();
-    }
- public void SpawnObjects()
-    {
-        RpcSpawnObjects();
-    }
+    
     void Update()
     {
         if (!isLocalPlayer) return;
