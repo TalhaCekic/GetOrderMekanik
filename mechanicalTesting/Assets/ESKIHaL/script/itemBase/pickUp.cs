@@ -83,7 +83,7 @@ public class pickUp : NetworkBehaviour
     //            NetworkServer.Spawn(burger, assetId: (uint)netId+1);
     //    burger.GetComponent<NetworkIdentity>().sceneId = (ulong)netId;
     //     burger.gameObject.SetActive(false);
-    //}
+    }
 
     
     void Update()
