@@ -26,19 +26,24 @@ public class PlayerListManager : NetworkBehaviour
 
     private void Start()
     {
+        OnLobbyState();
+    }
+    [Command]
+    public void OnLobbyState()
+    {
         if (!SteamManager.Initialized) return;
         m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
     }
-
+    [ClientRpc]
     public void OnLobbyEntered(LobbyEnter_t pCallback)
     {
         CSteamID steamId = SteamUser.GetSteamID();
         // Oyuncunun adýný çek
         playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
-      //  Debug.Log(playerName);
+        //  Debug.Log(playerName);
         playerCount += SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
-       // Debug.Log("Player joined. Current players in lobby: " + playerCount);
+        // Debug.Log("Player joined. Current players in lobby: " + playerCount);
         for (int i = 0; i < playerCount; i++)
         {
             Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
