@@ -75,15 +75,25 @@ public class pickUp : NetworkBehaviour
         NetworkServer.Spawn(burger);
         // burger.GetComponent<NetworkIdentity>().sceneId = (ulong)randomNumber;
         burger.gameObject.SetActive(false);
-        //CmdServerID(burger);
+        ServerID();
     }
 
     [Command]
-    public void CmdServerID(GameObject burger)
+    public void CmdServerID()
     {
         burger.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
     }
-    
+    [ClientRpc]
+    public void RpcServerID()
+    {
+        CmdServerID();
+    }
+
+    public void ServerID()
+    {
+        RpcServerID();
+    }
+
     void Update()
     {
        if (!isLocalPlayer) return;
