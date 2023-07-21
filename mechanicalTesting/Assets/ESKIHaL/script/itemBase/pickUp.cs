@@ -87,7 +87,7 @@ public class pickUp : NetworkBehaviour
         //playerInput.Player.Interact.performed += x => Interact();
         //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
         full = handFull;
-                NetworkServer.Spawn(burger, assetId: (uint)netId);
+                NetworkServer.Spawn(burger, assetId: (uint)netId+1);
         burger.GetComponent<NetworkIdentity>().sceneId = (ulong)netId;
         burger.gameObject.SetActive(false);
     }
