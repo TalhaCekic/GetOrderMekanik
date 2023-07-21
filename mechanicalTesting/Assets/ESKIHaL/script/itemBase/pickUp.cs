@@ -71,12 +71,12 @@ public class pickUp : NetworkBehaviour
         pickupLayerMask4 = LayerMask.GetMask("dinnerTable");
         pickupLayerMask5 = LayerMask.GetMask("cuttingTableCounter");
 
-        float randomNumber = Random.Range(0, 10);
+        int randomNumber = Random.Range(0, 10);
 
         burger = Instantiate(burger, cam.transform);
         NetworkServer.Spawn(burger, netId);
         burger.gameObject.SetActive(false);
-       
+        burger.GetComponent<NetworkIdentity>().sceneId= (ulong)randomNumber;
     }
 
     
