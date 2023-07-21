@@ -1,14 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 using Mirror;
-using UnityEditor.SceneManagement;
 
 public class pickUp : NetworkBehaviour
 {
@@ -62,12 +56,14 @@ public class pickUp : NetworkBehaviour
 
     public controller playerInput;
 
+    
     private void Awake()
     {
      
     }
     void Start()
     {
+        if (!isLocalPlayer) return;
         playerInput = new controller();
 
         pickupLayerMask = LayerMask.GetMask("Pickup");
@@ -76,7 +72,7 @@ public class pickUp : NetworkBehaviour
         pickupLayerMask4 = LayerMask.GetMask("dinnerTable");
         pickupLayerMask5 = LayerMask.GetMask("cuttingTableCounter");
 
-
+        float randomNumber = Random.Range(0, 10);
         burger = Instantiate(burger, cam.transform);
         NetworkServer.Spawn(burger, netId);
         burger.gameObject.SetActive(false);
@@ -3309,7 +3305,6 @@ public class pickUp : NetworkBehaviour
     [ClientRpc]
     private void RpcIDcheck()
     {
-
         if (ID == 0)
         {
             notCombine = false;
