@@ -918,100 +918,6 @@ Transform:
   m_Father: {fileID: 7304946680090751492}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &188605943
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 188605945}
-  - component: {fileID: 188605944}
-  - component: {fileID: 188605947}
-  - component: {fileID: 188605948}
-  m_Layer: 0
-  m_Name: LobbiesManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &188605944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188605943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d9b4093a80b3fd48950a69b19626048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lobbiesMenu: {fileID: 909356261}
-  lobbyDataItemPrefab: {fileID: 6465131881298392920, guid: 4f24f9fed6dc247458731ec340646cef,
-    type: 3}
-  lobbyListContent: {fileID: 0}
-  lobbiesButton: {fileID: 2144574878}
-  hostButton: {fileID: 1822644887}
-  listOfLobbies: []
---- !u!4 &188605945
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188605943}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 232.1376, y: -9.957991, z: -5.4604177}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 29
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &188605947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188605943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e577fc00c46e44eb6e0ad2bab7a90e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  playerNameText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  playerNamePrefabs: {fileID: 8986511298020518663, guid: 1b31d1923b253fe49a47e57d98706c6f,
-    type: 3}
-  playerCount: 0
-  playerNamePrefabsTransform: {fileID: 909356262}
---- !u!114 &188605948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188605943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 276151755
-  _assetId: 0
-  serverOnly: 0
-  visible: 0
-  hasSpawned: 0
 --- !u!1 &282102087 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8474269166946249030, guid: 3b38cc227071fbe47930800625ad0846,
@@ -10237,6 +10143,104 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &4725375356944940101
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2337974050706436489, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: playerNamePrefabsTransform
+      value: 
+      objectReference: {fileID: 909356262}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 232.1376
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.957991
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.4604177
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354680101267883414, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: hostButton
+      value: 
+      objectReference: {fileID: 1822644887}
+    - target: {fileID: 3354680101267883414, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: lobbiesMenu
+      value: 
+      objectReference: {fileID: 909356261}
+    - target: {fileID: 3354680101267883414, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: lobbiesButton
+      value: 
+      objectReference: {fileID: 2144574878}
+    - target: {fileID: 8074743832701348780, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: sceneId
+      value: 276151755
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276702720572267315, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: m_Name
+      value: LobbiesManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8397acec9fb19e74091e04dfec44d4ff, type: 3}
 --- !u!114 &4874972576962875941
 MonoBehaviour:
   m_ObjectHideFlags: 0
