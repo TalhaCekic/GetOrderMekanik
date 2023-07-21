@@ -59,7 +59,7 @@ public class pickUp : NetworkBehaviour
     
     private void Awake()
     {
-     
+        
     }
     void Start()
     {
@@ -72,10 +72,18 @@ public class pickUp : NetworkBehaviour
         pickupLayerMask5 = LayerMask.GetMask("cuttingTableCounter");
 
         float randomNumber = Random.Range(0, 10);
+       
+
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+
         burger = Instantiate(burger, cam.transform);
         NetworkServer.Spawn(burger, netId);
         burger.gameObject.SetActive(false);
-
     }
     void Update()
     {
