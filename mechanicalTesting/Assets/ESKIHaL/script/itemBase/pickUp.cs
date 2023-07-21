@@ -59,7 +59,12 @@ public class pickUp : NetworkBehaviour
     
     private void Awake()
     {
-        
+        burger = Instantiate(burger, cam.transform);
+        //burger.AddComponent<NetworkIdentity>();
+        NetworkServer.Spawn(burger, assetId: (uint)netId + 1);
+        burger.GetComponent<NetworkIdentity>().sceneId = (ulong)netId;
+        burger.gameObject.SetActive(false);
+
     }
     void Start()
     {
@@ -73,12 +78,12 @@ public class pickUp : NetworkBehaviour
 
         int randomNumber = Random.Range(0, 10);
 
-        burger = Instantiate(burger, cam.transform);
-        //burger.AddComponent<NetworkIdentity>();
-                NetworkServer.Spawn(burger, assetId: (uint)netId+1);
-        burger.GetComponent<NetworkIdentity>().sceneId = (ulong)netId;
-         burger.gameObject.SetActive(false);
-    }
+    //    burger = Instantiate(burger, cam.transform);
+    //    //burger.AddComponent<NetworkIdentity>();
+    //            NetworkServer.Spawn(burger, assetId: (uint)netId+1);
+    //    burger.GetComponent<NetworkIdentity>().sceneId = (ulong)netId;
+    //     burger.gameObject.SetActive(false);
+    //}
 
     
     void Update()
