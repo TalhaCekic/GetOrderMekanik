@@ -72,21 +72,21 @@ public class pickUp : NetworkBehaviour
 
         burger = Instantiate(burger, cam.transform);
         //burger.AddComponent<NetworkIdentity>();
-        NetworkServer.Spawn(burger, assetId: (uint)randomNumber);
+        NetworkServer.Spawn(burger, netId);
         // burger.GetComponent<NetworkIdentity>().sceneId = (ulong)randomNumber;
         burger.gameObject.SetActive(false);
-        CmdServerID();
+        CmdServerID(burger);
     }
 
     [Command]
-    public void CmdServerID()
+    public void CmdServerID(GameObject burger)
     {
         burger.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
     }
     
     void Update()
     {
-       // if (!isLocalPlayer) return;
+       if (!isLocalPlayer) return;
         //playerInput.Player.Drop.performed += x => Drop();
         //playerInput.Player.Interact.performed += x => Interact();
         //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
