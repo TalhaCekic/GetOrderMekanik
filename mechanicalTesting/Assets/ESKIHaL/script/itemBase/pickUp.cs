@@ -78,10 +78,9 @@ public class pickUp : NetworkBehaviour
 
     public override void OnStartClient()
     {
-        if (!isLocalPlayer) return;
+        
         base.OnStartClient();
-
-
+        if (!isLocalPlayer) return;
         burger = Instantiate(burger, cam.transform);
         NetworkServer.Spawn(burger, netId);
         burger.gameObject.SetActive(false);
