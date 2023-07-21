@@ -62,22 +62,12 @@ public class pickUp : NetworkBehaviour
 
     public controller playerInput;
 
-   
-
     private void Awake()
     {
-       
-        burger = Instantiate(burger, cam.transform);
-        NetworkServer.Spawn(burger);
-        burger.gameObject.SetActive(false);
-
-
+     
     }
     void Start()
     {
-
-       
-
         playerInput = new controller();
 
         pickupLayerMask = LayerMask.GetMask("Pickup");
@@ -85,6 +75,12 @@ public class pickUp : NetworkBehaviour
         pickupLayerMask3 = LayerMask.GetMask("trash");
         pickupLayerMask4 = LayerMask.GetMask("dinnerTable");
         pickupLayerMask5 = LayerMask.GetMask("cuttingTableCounter");
+
+
+        burger = Instantiate(burger, cam.transform);
+        NetworkServer.Spawn(burger, netId);
+        burger.gameObject.SetActive(false);
+
     }
     void Update()
     {
@@ -98,7 +94,6 @@ public class pickUp : NetworkBehaviour
     
     public void Drop()
     {
-
         //counter
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
@@ -3322,7 +3317,6 @@ public class pickUp : NetworkBehaviour
         }
         if (ID > 0 && isLocalPlayer)
         {
-
             // Tekli Kombinasyon
             if (ID == 1)
             {
@@ -4304,11 +4298,7 @@ public class pickUp : NetworkBehaviour
 
     public void IDcheck()
     {
-      
-        //
         CmdIDCheck();
-        //burger = Instantiate(burger, cam.transform);
-        //burger.gameObject.SetActive(false);
     }
 
 
