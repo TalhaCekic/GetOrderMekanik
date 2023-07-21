@@ -76,7 +76,7 @@ public class pickUp : NetworkBehaviour
         burger = Instantiate(burger, cam.transform);
         //burger.AddComponent<NetworkIdentity>();
 
-        
+         burger.gameObject.SetActive(false);
     }
 
     
@@ -89,7 +89,7 @@ public class pickUp : NetworkBehaviour
         full = handFull;
                 NetworkServer.Spawn(burger, assetId: (uint)netId+1);
         burger.GetComponent<NetworkIdentity>().sceneId = (ulong)netId;
-        burger.gameObject.SetActive(false);
+       
     }
     
     public void Drop()
