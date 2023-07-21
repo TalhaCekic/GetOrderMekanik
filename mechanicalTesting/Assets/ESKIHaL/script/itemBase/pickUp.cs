@@ -74,9 +74,9 @@ public class pickUp : NetworkBehaviour
         int randomNumber = Random.Range(0, 10);
 
         burger = Instantiate(burger, cam.transform);
-        NetworkServer.Spawn(burger, netId);
+        NetworkServer.Spawn(burger, assetId:(uint)randomNumber);
         burger.gameObject.SetActive(false);
-        burger.GetComponent<NetworkIdentity>().sceneId= (ulong)randomNumber;
+       // burger.GetComponent<NetworkIdentity>().sceneId= (ulong)randomNumber;
     }
 
     
