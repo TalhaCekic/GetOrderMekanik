@@ -78,6 +78,7 @@ public class pickUp : NetworkBehaviour
 
     public override void OnStartClient()
     {
+        if (!isLocalPlayer) return;
         base.OnStartClient();
 
 
