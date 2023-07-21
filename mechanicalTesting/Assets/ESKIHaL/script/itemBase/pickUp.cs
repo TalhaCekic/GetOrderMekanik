@@ -63,7 +63,6 @@ public class pickUp : NetworkBehaviour
     }
     void Start()
     {
-        if (!isLocalPlayer) return;
         playerInput = new controller();
 
         pickupLayerMask = LayerMask.GetMask("Pickup");
