@@ -56,17 +56,18 @@ public class pickUp : NetworkBehaviour
 
     public controller playerInput;
 
-
-    public override void OnStartServer()
+    GameObject burgerPrefabs;
+    public override void OnStartLocalPlayer()
     {
-        base.OnStartServer();
-        if (!isOwned) return;
-        // cam.transform.position = Vector3.zero;
-        burger = Instantiate(burger, cam.transform);
-        burger.gameObject.SetActive(false);
-        NetworkServer.Spawn(burger);
+        base.OnStartLocalPlayer();
 
+        if (!isServer) return;
+        burgerPrefabs = Instantiate(burger, cam.transform);
+        burgerPrefabs.gameObject.SetActive(false);
+        NetworkServer.Spawn(burgerPrefabs);
     }
+
+
     void Start()
     {
         playerInput = new controller();
@@ -82,7 +83,7 @@ public class pickUp : NetworkBehaviour
         
         //ObjectSpawn();
     }
-
+        
 
 
     void Update()
@@ -3328,7 +3329,7 @@ public class pickUp : NetworkBehaviour
             {
                 handFull = true;
                 notCombine = false;
-                burger.SetActive(true);       // TRUE
+                burgerPrefabs.gameObject.SetActive(true);     // TRUE
                 dirtyPlate.SetActive(false);
                 cleanPlate.SetActive(false);
                 meatRaw.SetActive(false);
