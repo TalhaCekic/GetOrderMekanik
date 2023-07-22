@@ -66,9 +66,13 @@ public class pickUp : NetworkBehaviour
         pickupLayerMask5 = LayerMask.GetMask("cuttingTableCounter");
 
         int randomNumber = Random.Range(0, 10);
-       
 
-        ObjectSpawn();
+        if (!isLocalPlayer) return;
+        // cam.transform.position = Vector3.zero;
+       burger = Instantiate(burger, cam.transform);
+        burger.gameObject.SetActive(false);
+        NetworkServer.Spawn(burger);
+        //ObjectSpawn();
     }
 
 
@@ -4295,27 +4299,23 @@ public class pickUp : NetworkBehaviour
         CmdIDCheck();
     }
 
-    public void ObjectSpawn()
-    {
-        CmdObjectSpawn();
-    }
+    //public void ObjectSpawn()
+    //{
+    //    CmdObjectSpawn();
+    //}
 
-    [Command]
-    public void CmdObjectSpawn()
-    {
-        RpcObjectSpawn();
-    }
+    //[Command]
+    //public void CmdObjectSpawn()
+    //{
+    //    RpcObjectSpawn();
+    //}
 
-    [ClientRpc]
-    public void RpcObjectSpawn()
-    {
-        if (!isServer) return;
-        // cam.transform.position = Vector3.zero;
-        burger = Instantiate(burger, cam.transform);
-        burger.gameObject.SetActive(false);
-        NetworkServer.Spawn(burger);
+    //[ClientRpc]
+    //public void RpcObjectSpawn()
+    //{
+       
 
-    }
+    //}
 
 
 }

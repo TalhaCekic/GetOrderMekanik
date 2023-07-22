@@ -26,8 +26,9 @@ public class PlayerListManager : NetworkBehaviour
 
     private void Start()
     {
+        m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+      m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
 
-        LobbyEnter();
     }
     //public void OnLobbyStateV2()
     //{
@@ -42,22 +43,22 @@ public class PlayerListManager : NetworkBehaviour
 
     //}
 
-    //public void OnLobbyEntered(LobbyEnter_t pCallback)
-    //{
-    //    CSteamID steamId = SteamUser.GetSteamID();
-    //    // Oyuncunun adýný çek
-    //    playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
-    //    //  Debug.Log(playerName);
-    //    playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
-    //    // Debug.Log("Player joined. Current players in lobby: " + playerCount);
-    //    for (int i = 0; i < playerCount; i++)
-    //    {
-    //        Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
-    //        Debug.Log(playerName);
-    //        playerNameText[i] = playerNamePrefabs.GetComponent<TMP_Text>();
-    //        playerNameText[i].text = playerName;
-    //    }
-    //}
+    public void OnLobbyEntered(LobbyEnter_t pCallback)
+    {
+        CSteamID steamId = SteamUser.GetSteamID();
+        // Oyuncunun adýný çek
+        playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
+        //  Debug.Log(playerName);
+        playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
+        // Debug.Log("Player joined. Current players in lobby: " + playerCount);
+        for (int i = 0; i < playerCount; i++)
+        {
+            Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
+            Debug.Log(playerName);
+            playerNameText[i] = playerNamePrefabs.GetComponent<TMP_Text>();
+            playerNameText[i].text = playerName;
+        }
+    }
     //public void Update()
     //{
 
@@ -66,69 +67,69 @@ public class PlayerListManager : NetworkBehaviour
 
 
     //}
-    //public void OnLobbyExited(GameLobbyJoinRequested_t pCallback)
-    //{
-    //    playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)GameLobbyJoinRequested_t.k_iCallback);
-    //    Debug.Log("Player left. Current players in lobby: " + playerCount);
-    //}
-
-    //// Oyuncu sunucuya baðlandýðýnda çalýþacak metod
-    //void OnPlayerConnected(NetworkConnection conn)
-    //{
-    //    playerCount++;
-    //    Debug.Log("Player Connected. Total players: " + playerCount);
-    //    Instantiate(playerNamePrefabs,playerNameText.transform);
-    //}
-
-    //// Oyuncu sunucudan ayrýldýðýnda çalýþacak metod
-    //void OnPlayerDisconnected(NetworkConnection conn)
-    //{
-    //    playerCount--;
-    //    Debug.Log("Player Disconnected. Total players: " + playerCount);
-    //}
-
-    //public override void OnStopServer()
-    //{
-    //    base.OnStopServer();
-
-    //    // Sunucu durduðunda event'leri temizle
-    //    NetworkServer.OnConnectedEvent -= OnPlayerConnected;
-    //    NetworkServer.OnDisconnectedEvent -= OnPlayerDisconnected;
-    //}
-
-    public void LobbyEnter()
+    public void OnLobbyExited(GameLobbyJoinRequested_t pCallback)
     {
-        //RpcLobbyEnter = Callback<LobbyEnter_t>;
-        //m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(GameLobbyJoinRequested_t.k_iCallback);
-        CmdLobbyEnter();
+        playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)GameLobbyJoinRequested_t.k_iCallback);
+        Debug.Log("Player left. Current players in lobby: " + playerCount);
     }
 
-    [Command]
-    public void CmdLobbyEnter()
+    // Oyuncu sunucuya baðlandýðýnda çalýþacak metod
+    void OnPlayerConnected(NetworkConnection conn)
     {
-        RpcLobbyEnter();
+        playerCount++;
+        Debug.Log("Player Connected. Total players: " + playerCount);
+        Instantiate(playerNamePrefabs);
     }
 
-    [ClientRpc]
-    public void RpcLobbyEnter()
+    // Oyuncu sunucudan ayrýldýðýnda çalýþacak metod
+    void OnPlayerDisconnected(NetworkConnection conn)
     {
-        Debug.Log("Girdi");
-        CSteamID steamId = SteamUser.GetSteamID();
-        // Oyuncunun adýný çek
-        playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
-        Debug.Log(playerName);
-        playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)LobbyEnter_t.k_iCallback);
-        Debug.Log("Player joined. Current players in lobby: " + playerCount);
-        for (int i = 0; i < playerCount; i++)
-        {
-            Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
-            Debug.Log(playerName);
-            playerNameText[i] = playerNamePrefabs.GetComponent<TMP_Text>();
-            playerNameText[i].text = playerName;
-        }
-
-        
+        playerCount--;
+        Debug.Log("Player Disconnected. Total players: " + playerCount);
     }
+
+    public override void OnStopServer()
+    {
+        base.OnStopServer();
+
+        // Sunucu durduðunda event'leri temizle
+        NetworkServer.OnConnectedEvent -= OnPlayerConnected;
+        NetworkServer.OnDisconnectedEvent -= OnPlayerDisconnected;
+    }
+
+    //public void LobbyEnter()
+    //{
+    //    RpcLobbyEnter = Callback<LobbyEnter_t>;
+    //    m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(GameLobbyJoinRequested_t.k_iCallback);
+    //   // CmdLobbyEnter();
+    //}
+
+    //[Command]
+    //public void CmdLobbyEnter()
+    //{
+    //    RpcLobbyEnter();
+    //}
+
+    //[ClientRpc]
+    //public void RpcLobbyEnter()
+    //{
+    //    Debug.Log("Girdi");
+    //    CSteamID steamId = SteamUser.GetSteamID();
+    //    // Oyuncunun adýný çek
+    //    playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
+    //    Debug.Log(playerName);
+    //    playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)LobbyEnter_t.k_iCallback);
+    //    Debug.Log("Player joined. Current players in lobby: " + playerCount);
+    //    for (int i = 0; i < playerCount; i++)
+    //    {
+    //        Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
+    //        Debug.Log(playerName);
+    //        playerNameText[i] = playerNamePrefabs.GetComponent<TMP_Text>();
+    //        playerNameText[i].text = playerName;
+    //    }
+
+
+    //}
 
 
 }
