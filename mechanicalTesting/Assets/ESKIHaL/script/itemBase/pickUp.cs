@@ -55,6 +55,18 @@ public class pickUp : NetworkBehaviour
     public Transform burgerPoint;
 
     public controller playerInput;
+
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        if (!isOwned) return;
+        // cam.transform.position = Vector3.zero;
+        burger = Instantiate(burger, cam.transform);
+        burger.gameObject.SetActive(false);
+        NetworkServer.Spawn(burger);
+
+    }
     void Start()
     {
         playerInput = new controller();
@@ -67,11 +79,7 @@ public class pickUp : NetworkBehaviour
 
         int randomNumber = Random.Range(0, 10);
 
-        if (!isLocalPlayer) return;
-        // cam.transform.position = Vector3.zero;
-       burger = Instantiate(burger, cam.transform);
-        burger.gameObject.SetActive(false);
-        NetworkServer.Spawn(burger);
+        
         //ObjectSpawn();
     }
 

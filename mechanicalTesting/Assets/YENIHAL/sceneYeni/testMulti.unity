@@ -2315,7 +2315,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d436b9a14e2a94d9a4420d0110575c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LobbyIDs: []
+  LobbyIDs:
+  - m_SteamID: 0
+  - m_SteamID: 0
+  - m_SteamID: 0
+  - m_SteamID: 0
   CurrentLobbyID: 0
   HostButton: {fileID: 1822644887}
   LobbyNameText: {fileID: 1355089296}
