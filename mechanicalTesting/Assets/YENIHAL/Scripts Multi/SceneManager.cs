@@ -27,17 +27,11 @@ public class SceneManager : NetworkBehaviour
     }
     public void PlayerCount()
     {
-        CmdPlayerCount();
+        RpcPlayerCount();
     }
 
     [Command]
     public void CmdPlayerCount()
-    {
-        RpcPlayerCount();
-    }
-
-    [ClientRpc]
-    public void RpcPlayerCount()
     {
         //LobbyCount += 1;
         print(LobbyCount);
@@ -46,6 +40,12 @@ public class SceneManager : NetworkBehaviour
         {
             Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
         }
+    }
+
+    [ClientRpc]
+    public void RpcPlayerCount()
+    {
+        CmdPlayerCount();
 
     }
 
