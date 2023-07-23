@@ -42,6 +42,8 @@ public class SceneManager : NetworkBehaviour
             {
                 LobbyCount += 1;
                 Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
+                print(LobbyCount);
+                print(playerListManager.playerCount);
             }
         }
     }
