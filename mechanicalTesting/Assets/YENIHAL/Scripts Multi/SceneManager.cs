@@ -40,7 +40,7 @@ public class SceneManager : NetworkBehaviour
 
             if (LobbyCount == playerListManager.playerCount)
             {
-                LobbyCount += 1;
+               // LobbyCount += 1;
                 Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
                 print(LobbyCount);
                 print(playerListManager.playerCount);
