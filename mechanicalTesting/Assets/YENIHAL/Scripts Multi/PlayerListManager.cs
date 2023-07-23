@@ -30,27 +30,20 @@ public class PlayerListManager : NetworkBehaviour
       m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
 
     }
-    //public void OnLobbyStateV2()
-    //{
-    //    if (!SteamManager.Initialized) return;
-    //    OnLobbyState();
-    //}
 
-    //public void OnLobbyState()
-    //{
-
-
-
-    //}
-
+    private void Update()
+    {
+        
+    }
     public void OnLobbyEntered(LobbyEnter_t pCallback)
     {
         CSteamID steamId = SteamUser.GetSteamID();
         // Oyuncunun adýný çek
         playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
         //  Debug.Log(playerName);
-        playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
+        //playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
          Debug.Log("Player joined. Current players in lobby: " + playerCount);
+        playerCount = NetworkManager.singleton.numPlayers;
         for (int i = 0; i < playerCount; i++)
         {
             Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
@@ -59,14 +52,6 @@ public class PlayerListManager : NetworkBehaviour
             playerNameText[i].text = playerName;
         }
     }
-    //public void Update()
-    //{
-
-    //    //m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
-    //    LobbyEnter();
-
-
-    //}
     public void OnLobbyExited(GameLobbyJoinRequested_t pCallback)
     {
         playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)GameLobbyJoinRequested_t.k_iCallback);
