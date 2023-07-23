@@ -2868,7 +2868,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &936146730
 MonoBehaviour:
@@ -7570,7 +7570,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &543450652269487627
 Transform:
@@ -7607,7 +7607,7 @@ Transform:
   - {fileID: 2177355240640915871}
   - {fileID: 2177355240417350045}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &638683365966659968
 Transform:
@@ -7665,7 +7665,7 @@ PrefabInstance:
     - target: {fileID: 1040927206993384141, guid: 86421c4fd2a3a9c4ab81071294393e3c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1040927206993384141, guid: 86421c4fd2a3a9c4ab81071294393e3c,
         type: 3}
@@ -9480,7 +9480,7 @@ PrefabInstance:
     - target: {fileID: 3195301444208508309, guid: 4524865d17c4d1148b8c63b37d0c07e5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3195301444208508309, guid: 4524865d17c4d1148b8c63b37d0c07e5,
         type: 3}
@@ -9759,7 +9759,7 @@ PrefabInstance:
     - target: {fileID: 3968177031483455254, guid: 7c0e383103a1239468223bb7f28e92f3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3968177031483455254, guid: 7c0e383103a1239468223bb7f28e92f3,
         type: 3}
@@ -11380,7 +11380,7 @@ PrefabInstance:
     - target: {fileID: 8553644334582299471, guid: 404f3818265af5844a1a0596b2b3f737,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8553644334582299471, guid: 404f3818265af5844a1a0596b2b3f737,
         type: 3}

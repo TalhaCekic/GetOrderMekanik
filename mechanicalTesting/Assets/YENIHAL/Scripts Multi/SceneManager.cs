@@ -5,6 +5,7 @@ using UnityEngine;
 using Steamworks;
 using System;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SceneManager : NetworkBehaviour
 {
@@ -29,8 +30,11 @@ public class SceneManager : NetworkBehaviour
             LobbyCount += 1;
             if (LobbyCount == playerListManager.playerCount)
             {
-
-                Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
+                if (isServer)  // Kontrol etmek önemlidir, çünkü bu yalnýzca sunucuda çalýþmalýdýr.
+                {
+                    NetworkManager.singleton.ServerChangeScene("boþ");
+                }
+                Debug.Log("Diðer Sahneye Geçiþ Yapýlabilir.");
                 print(LobbyCount);
                 print(playerListManager.playerCount);
             }
