@@ -17,23 +17,19 @@ public class SceneManager : NetworkBehaviour
     public PlayerListManager playerListManager;
 
 
-    public void PlayerCount()
-    {
+    //public void PlayerCount()
+    //{
  
-    }
+    //}
 
-    [Command]
-    public void CmdPlayerCount()
-    {
-        if (!isLocalPlayer) return;
-        //LobbyCount += 1;
-        print(LobbyCount);
+    ////[Command]
+    ////public void CmdPlayerCount()
+    ////{
+    ////    if (!isLocalPlayer) return;
+    ////    //LobbyCount += 1;
+    ////    print(LobbyCount);
 
-        if (LobbyCount == playerListManager.playerCount)
-        {
-            Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
-        }
-    }
+    //}
 
 
 
@@ -41,7 +37,12 @@ public class SceneManager : NetworkBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            CmdPlayerCount();
+
+            if (LobbyCount == playerListManager.playerCount)
+            {
+                LobbyCount += 1;
+                Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
+            }
         }
     }
 
