@@ -9,11 +9,17 @@ using TMPro;
 public class SceneManager : NetworkBehaviour
 {
 
-    [SyncVar] public int playerCount;
+    [SyncVar] public int LobbyCount;
 
     public Collider player;
 
 
+    public PlayerListManager playerListManager;
+
+    private void Start()
+    {
+
+    }
     private void Update()
     {
 
@@ -38,14 +44,14 @@ public class SceneManager : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       
         if (other.gameObject.tag == "Player")
         {
-            playerCount += 1;
-            print(playerCount);
-            if (playerCount == 4)
+            LobbyCount += 1;
+            print(LobbyCount);
+            
+            if (LobbyCount == playerListManager.playerCount)
             {
-                Debug.Log("Diðer Sahneye Geçiþ Yapýlabilir.");
+                Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
             }
 
         }
@@ -53,11 +59,11 @@ public class SceneManager : NetworkBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        
+
         if (other.gameObject.tag == "Player")
         {
-            playerCount -= 1;
-            print(playerCount);
+            LobbyCount -= 1;
+            print(LobbyCount);
 
         }
     }
