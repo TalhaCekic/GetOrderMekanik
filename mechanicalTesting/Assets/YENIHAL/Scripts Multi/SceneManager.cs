@@ -18,7 +18,7 @@ public class SceneManager : NetworkBehaviour
 
     private void Start()
     {
-
+       
     }
     private void Update()
     {
@@ -39,21 +39,21 @@ public class SceneManager : NetworkBehaviour
     [ClientRpc]
     public void RpcPlayerCount()
     {
-        OnTriggerEnter(player);
+        //LobbyCount += 1;
+        print(LobbyCount);
+
+        if (LobbyCount == playerListManager.playerCount)
+        {
+            Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            LobbyCount += 1;
-            print(LobbyCount);
-            
-            if (LobbyCount == playerListManager.playerCount)
-            {
-                Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
-            }
-
+            PlayerCount();
         }
     }
 
