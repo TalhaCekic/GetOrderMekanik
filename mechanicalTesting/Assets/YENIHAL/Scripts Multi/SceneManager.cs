@@ -16,21 +16,10 @@ public class SceneManager : NetworkBehaviour
 
     public PlayerListManager playerListManager;
 
-
-    //public void PlayerCount()
-    //{
-
-    //}
-
-    ////[Command]
-    ////public void CmdPlayerCount()
-    ////{
-    ////    if (!isLocalPlayer) return;
-    ////    //LobbyCount += 1;
-    ////    print(LobbyCount);
-
-    //}
-
+    private void Update()
+    {
+        playerListManager.playerCount = NetworkManager.singleton.numPlayers;
+    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -43,7 +32,7 @@ public class SceneManager : NetworkBehaviour
 
                 Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
                 print(LobbyCount);
-                // print(playerListManager.playerCount);
+                print(playerListManager.playerCount);
             }
         }
     }
