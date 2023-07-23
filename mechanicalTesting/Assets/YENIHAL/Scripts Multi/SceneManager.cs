@@ -19,7 +19,7 @@ public class SceneManager : NetworkBehaviour
 
     //public void PlayerCount()
     //{
- 
+
     //}
 
     ////[Command]
@@ -31,7 +31,11 @@ public class SceneManager : NetworkBehaviour
 
     //}
 
-
+    private void Update()
+    {
+        LobbyCount = NetworkManager.singleton.numPlayers;
+        Debug.Log(LobbyCount);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -44,6 +48,7 @@ public class SceneManager : NetworkBehaviour
                 Debug.LogError("Diðer Sahneye Geçiþ Yapýlabilir.");
                 print(LobbyCount);
                 print(playerListManager.playerCount);
+              
             }
         }
     }
