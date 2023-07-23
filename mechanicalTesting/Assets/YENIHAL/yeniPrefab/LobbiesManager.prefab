@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3124009677215848877}
-  - component: {fileID: 3354680101267883414}
   - component: {fileID: 2337974050706436489}
   - component: {fileID: 7621625853330386628}
   m_Layer: 0
@@ -18,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3124009677215848877
 Transform:
   m_ObjectHideFlags: 0
@@ -34,25 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3354680101267883414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8276702720572267315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d9b4093a80b3fd48950a69b19626048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lobbiesMenu: {fileID: 0}
-  lobbyDataItemPrefab: {fileID: 6465131881298392920, guid: 4f24f9fed6dc247458731ec340646cef,
-    type: 3}
-  lobbyListContent: {fileID: 0}
-  lobbiesButton: {fileID: 0}
-  hostButton: {fileID: 0}
-  listOfLobbies: []
 --- !u!114 &2337974050706436489
 MonoBehaviour:
   m_ObjectHideFlags: 0

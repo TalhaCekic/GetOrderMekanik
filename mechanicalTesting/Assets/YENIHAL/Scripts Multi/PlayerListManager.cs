@@ -50,7 +50,7 @@ public class PlayerListManager : NetworkBehaviour
         playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
         //  Debug.Log(playerName);
         playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
-        // Debug.Log("Player joined. Current players in lobby: " + playerCount);
+         Debug.Log("Player joined. Current players in lobby: " + playerCount);
         for (int i = 0; i < playerCount; i++)
         {
             Instantiate(playerNamePrefabs, playerNamePrefabsTransform);

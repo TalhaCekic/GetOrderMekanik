@@ -10011,6 +10011,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2337974050706436489, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: playerNamePrefabsTransform
+      value: 
+      objectReference: {fileID: 909356262}
     - target: {fileID: 3124009677215848877, guid: 8397acec9fb19e74091e04dfec44d4ff,
         type: 3}
       propertyPath: m_RootOrder
@@ -10076,13 +10081,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: LobbiesManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8276702720572267315, guid: 8397acec9fb19e74091e04dfec44d4ff,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3354680101267883414, guid: 8397acec9fb19e74091e04dfec44d4ff, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
