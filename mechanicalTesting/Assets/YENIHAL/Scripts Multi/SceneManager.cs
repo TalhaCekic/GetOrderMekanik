@@ -16,23 +16,16 @@ public class SceneManager : NetworkBehaviour
 
     public PlayerListManager playerListManager;
 
-    private void Start()
-    {
-       
-    }
-    private void Update()
-    {
 
-
-    }
     public void PlayerCount()
     {
-        RpcPlayerCount();
+ 
     }
 
     [Command]
     public void CmdPlayerCount()
     {
+        if (!isLocalPlayer) return;
         //LobbyCount += 1;
         print(LobbyCount);
 
@@ -42,18 +35,13 @@ public class SceneManager : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
-    public void RpcPlayerCount()
-    {
-        CmdPlayerCount();
 
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerCount();
+            CmdPlayerCount();
         }
     }
 
