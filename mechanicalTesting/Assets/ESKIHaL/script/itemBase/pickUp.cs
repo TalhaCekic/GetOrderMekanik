@@ -62,9 +62,9 @@ public class pickUp : NetworkBehaviour
         base.OnStartLocalPlayer();
 
         if (!isServer) return;
-        burgerPrefabs = Instantiate(burger, cam.transform);
-        burgerPrefabs.gameObject.SetActive(false);
-        NetworkServer.Spawn(burgerPrefabs);
+        burger = Instantiate(burger, cam.transform);
+        burger.gameObject.SetActive(false);
+        NetworkServer.Spawn(burger);
     }
 
 
@@ -3329,7 +3329,7 @@ public class pickUp : NetworkBehaviour
             {
                 handFull = true;
                 notCombine = false;
-                burgerPrefabs.gameObject.SetActive(true);     // TRUE
+                burger.SetActive(true);     // TRUE
                 dirtyPlate.SetActive(false);
                 cleanPlate.SetActive(false);
                 meatRaw.SetActive(false);

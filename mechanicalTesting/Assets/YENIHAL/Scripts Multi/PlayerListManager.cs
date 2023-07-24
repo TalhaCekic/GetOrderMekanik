@@ -44,7 +44,6 @@ public class PlayerListManager : NetworkBehaviour
         //playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
          Debug.Log("Player joined. Current players in lobby: " + playerCount);
         playerCount = NetworkManager.singleton.numPlayers;
-        playerCount = NetworkManager.singleton.numPlayers;
         for (int i = 0; i < playerCount; i++)
         {
             Instantiate(playerNamePrefabs, playerNamePrefabsTransform);

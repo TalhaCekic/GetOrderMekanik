@@ -47,7 +47,7 @@ public class PlayerControler : NetworkBehaviour
     private void Start()
     {
 
-        DontDestroyOnLoad(this.gameObject);
+       
         pickUp.handFull = false;
 
         movement = transform.position;
