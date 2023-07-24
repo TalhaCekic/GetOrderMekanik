@@ -32,6 +32,8 @@ public class SceneManager : NetworkBehaviour
             {
                 if (isServer)  // Kontrol etmek önemlidir, çünkü bu yalnýzca sunucuda çalýþmalýdýr.
                 {
+                    Destroy(player.gameObject);
+                    NetworkServer.Destroy(player.gameObject);
                     NetworkManager.singleton.ServerChangeScene("boþ");
                 }
                 Debug.Log("Diðer Sahneye Geçiþ Yapýlabilir.");
