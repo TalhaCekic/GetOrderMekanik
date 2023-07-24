@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: "Assets/YENIHAL/sceneYeni/bo\u015F.unity"
+    guid: d57543b71adaea84fb70842cee491d82
+  - enabled: 1
     path: Assets/YENIHAL/sceneYeni/testMulti.unity
     guid: 97122a6fbf0a63049a997597f3a58f31
   - enabled: 1
-    path: "Assets/YENIHAL/sceneYeni/bo\u015F.unity"
-    guid: d57543b71adaea84fb70842cee491d82
+    path: Assets/YENIHAL/sceneYeni/oyun.unity
+    guid: f4a592e95b34da74b9ab9dd2e9271bd6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: fb8cf08c58ae1e646b0b0a13dd48b78d,
       type: 2}

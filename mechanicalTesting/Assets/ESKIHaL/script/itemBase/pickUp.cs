@@ -25,7 +25,7 @@ public class pickUp : NetworkBehaviour
 
     public GameObject cam;
 
-    public GameObject burger;         //id : 1
+     public GameObject burger;         //id : 1
     public GameObject dirtyPlate;     //id : 2.2
     public GameObject cleanPlate;     //id : 2
     public GameObject meatRaw;        //id : 3.3
@@ -56,15 +56,16 @@ public class pickUp : NetworkBehaviour
 
     public controller playerInput;
 
-    GameObject burgerPrefabs;
+    
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
 
         if (!isServer) return;
-        burger = Instantiate(burger, cam.transform);
-        burger.gameObject.SetActive(false);
-        NetworkServer.Spawn(burger);
+        GameObject obj = Instantiate(burger, cam.transform);
+        obj.gameObject.SetActive(false);
+       
+        NetworkServer.Spawn(obj);
     }
 
 
