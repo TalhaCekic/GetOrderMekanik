@@ -27,8 +27,12 @@ public class PlayerListManager : NetworkBehaviour
     private void Start()
     {
         m_lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
-      m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
+        m_lobbyExited = Callback<GameLobbyJoinRequested_t>.Create(OnLobbyExited);
+    }
 
+    private void Update()
+    {
+        playerCount = NetworkManager.singleton.numPlayers;
     }
 
     public void OnLobbyEntered(LobbyEnter_t pCallback)
@@ -40,14 +44,17 @@ public class PlayerListManager : NetworkBehaviour
         //  Debug.Log(playerName);
         //playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
          Debug.Log("Player joined. Current players in lobby: " + playerCount);
-        playerCount = NetworkManager.singleton.numPlayers;
-        //for (int i = 0; i < playerCount; i++)
-        //{
-        //    Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
-        //    Debug.Log(playerName);
-        //    playerNameText[i] = playerNamePrefabs.GetComponent<TMP_Text>();
-        //    playerNameText[i].text = playerName;
-        //}
+        //playerCount = NetworkManager.singleton.numPlayers;
+
+        for (int i = 0; i < playerCount; i++)
+        {
+            Debug.Log("içine girdi");
+            playerNamePrefabs = Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
+            NetworkServer.Spawn(playerNamePrefabs);
+            Debug.Log(playerName);
+            playerNameText[i] = playerNamePrefabs.GetComponent<TMP_Text>();
+            playerNameText[i].text = playerName;
+        }
     }
     public void OnLobbyExited(GameLobbyJoinRequested_t pCallback)
     {

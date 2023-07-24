@@ -62,10 +62,9 @@ public class pickUp : NetworkBehaviour
         base.OnStartLocalPlayer();
 
         if (!isServer) return;
-        GameObject obj = Instantiate(burger, cam.transform);
-        obj.gameObject.SetActive(false);
-       
-        NetworkServer.Spawn(obj);
+        burger = Instantiate(burger, cam.transform);
+        burger.gameObject.SetActive(false);
+        NetworkServer.Spawn(burger);
     }
 
 

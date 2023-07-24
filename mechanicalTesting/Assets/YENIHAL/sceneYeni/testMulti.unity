@@ -9998,6 +9998,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2337974050706436489, guid: 8397acec9fb19e74091e04dfec44d4ff,
         type: 3}
+      propertyPath: syncDirection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337974050706436489, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
+      propertyPath: playerNameText.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337974050706436489, guid: 8397acec9fb19e74091e04dfec44d4ff,
+        type: 3}
       propertyPath: playerNamePrefabsTransform
       value: 
       objectReference: {fileID: 909356262}
@@ -11945,6 +11955,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8630606726963361738, guid: e8522aba77892d74c8df14208d321fb3,
         type: 3}
+    - target: {fileID: 5667840728993311009, guid: d4fbafc0f0fbc5849942bd92308f980b,
+        type: 3}
+      propertyPath: syncInterval
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667840728993311009, guid: d4fbafc0f0fbc5849942bd92308f980b,
+        type: 3}
+      propertyPath: syncDirection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5667840728993311009, guid: d4fbafc0f0fbc5849942bd92308f980b,
         type: 3}
       propertyPath: playerListManager
