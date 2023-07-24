@@ -48,7 +48,7 @@ public class PlayerListManager : NetworkBehaviour
 
         for (int i = 0; i < playerCount; i++)
         {
-            Debug.Log("içine girdi");
+           
             playerNamePrefabs = Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
             NetworkServer.Spawn(playerNamePrefabs);
             Debug.Log(playerName);
