@@ -46,6 +46,7 @@ public class PlayerControler : NetworkBehaviour
     }
     private void Start()
     {
+        if (!isLocalPlayer) return;
         DontDestroyOnLoad(this.gameObject);
         pickUp.handFull = false;
 
