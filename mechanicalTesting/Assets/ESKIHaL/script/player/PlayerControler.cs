@@ -2,8 +2,6 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
-using Unity.Services.Authentication;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
