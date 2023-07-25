@@ -50,7 +50,7 @@ public class PlayerControler : NetworkBehaviour
 
         if (!isLocalPlayer) return;
         pickUp.handFull = false;
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
         movement = transform.position;
         stationaryFrames = 0;
 
