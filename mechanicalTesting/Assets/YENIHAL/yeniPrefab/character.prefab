@@ -755,6 +755,7 @@ MonoBehaviour:
   deceleration: 15
   maxSpeed: 5
   LoadScene: 0
+  hud: {fileID: 1910765841109093970}
 --- !u!114 &5319890875321995062
 MonoBehaviour:
   m_ObjectHideFlags: 0
