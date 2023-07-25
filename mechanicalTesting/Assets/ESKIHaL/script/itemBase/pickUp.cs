@@ -4322,7 +4322,7 @@ public class pickUp : NetworkBehaviour
     //[ClientRpc]
     //public void RpcObjectSpawn()
     //{
-       
+
 
     //}
 
