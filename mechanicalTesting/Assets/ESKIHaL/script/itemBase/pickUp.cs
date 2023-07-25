@@ -56,7 +56,7 @@ public class pickUp : NetworkBehaviour
 
     public controller playerInput;
 
-    
+
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();

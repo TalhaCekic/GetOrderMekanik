@@ -9,14 +9,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneManager1 : NetworkBehaviour
 {
+   
 
     [SyncVar] public int LobbyCount;
 
-    public Collider player;
+    public GameObject[] playerClone;
+
+    //private Scene scene = SceneManager.GetSceneByName("oyun");
 
 
     public PlayerListManager playerListManager;
 
+    
 
     public void OpenFriendsList()
     {
@@ -37,15 +41,22 @@ public class SceneManager1 : NetworkBehaviour
             Debug.Log(playerListManager.playerCount);
             if (LobbyCount == playerListManager.playerCount)
             {
+                //for (int i = 0; i < LobbyCount; i++)
+                //{
+                //    playerClone = GameObject.FindGameObjectsWithTag("Player");
+                //}
                 Debug.Log("Diðer Sahneye Geçiþ Yapýlabilir.");
                 print(LobbyCount);
                 print(playerListManager.playerCount);
-                if (isServer)  // Kontrol etmek önemlidir, çünkü bu yalnýzca sunucuda çalýþmalýdýr.
+
+                if (isServer)
                 {
-                    SceneManager.LoadScene(2);
+                    SceneManager.LoadSceneAsync(2);
                     NetworkManager.singleton.ServerChangeScene("oyun");
+                    //SceneManager.MoveGameObjectToScene(playerClone[LobbyCount], scene);
+
                 }
-             
+
             }
         }
     }

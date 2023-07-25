@@ -6,10 +6,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 public class PlayerControler : NetworkBehaviour
 {
-    private Vector3 randomPlayerPosition;
+    public Vector3 randomPlayerPosition;
 
     Animator anim;
     public float speedd = 6f;
@@ -31,12 +32,14 @@ public class PlayerControler : NetworkBehaviour
     private Vector3 movement;
     private float currentSpeed;
 
+    
 
     private bool isSprint = false;
 
-    public bool LoadScene=false;
+    public bool LoadScene = false;
     private void Awake()
     {
+        // if (!isLocalPlayer) return;
         anim = GetComponent<Animator>();
         randomPlayerPosition = new Vector3(Random.Range(53, 63), 1, Random.Range(75, 78));
         transform.position = randomPlayerPosition;
@@ -45,9 +48,9 @@ public class PlayerControler : NetworkBehaviour
     private void Start()
     {
 
-       
+        if (!isLocalPlayer) return;
         pickUp.handFull = false;
-
+        DontDestroyOnLoad(gameObject);
         movement = transform.position;
         stationaryFrames = 0;
 
@@ -55,9 +58,20 @@ public class PlayerControler : NetworkBehaviour
         InputAction.performed += ctx => sprint();
         InputAction.canceled += ctx => StopSprint();
         InputAction.Enable();
-        
+
 
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     private void Update()
     {
         if (!isLocalPlayer) return;
@@ -98,7 +112,7 @@ public class PlayerControler : NetworkBehaviour
         {
             // Hýz artýþý
             currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
-           
+
             if (isSprint)
             {
                 currentSpeed = Mathf.Max(currentSpeed + acceleration * Time.deltaTime, 7);
@@ -112,12 +126,13 @@ public class PlayerControler : NetworkBehaviour
         {
             // Hýz azalýþý
             currentSpeed = Mathf.Max(currentSpeed * -2 - deceleration * Time.deltaTime, 0f);
-            
+
             anim.SetBool("isSprint", false);
         }
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
         anim.SetFloat("Speed", currentSpeed / speedd);
+
     }
     public void sprint()
     {
@@ -126,5 +141,13 @@ public class PlayerControler : NetworkBehaviour
     private void StopSprint()
     {
         isSprint = false;
+    }
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Sahnede ne olursa olsun, sahne yüklendiðinde bu kod çalýþýr.
+        //Vector3 randomPlayerPosition = new Vector3(Random.Range(53, 63), 1, Random.Range(75, 78));
+        transform.position = randomPlayerPosition;
     }
 }
