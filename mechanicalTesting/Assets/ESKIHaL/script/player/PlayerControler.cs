@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Mirror;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerControler : NetworkBehaviour
 {
@@ -36,6 +37,8 @@ public class PlayerControler : NetworkBehaviour
 
     public bool LoadScene = false;
 
+    public GameObject hud;
+
     private void Awake()
     {
         // if (!isLocalPlayer) return;
@@ -47,6 +50,7 @@ public class PlayerControler : NetworkBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+        hud.SetActive(false);
         if (!isLocalPlayer) return;
         pickUp.handFull = false;
 
@@ -57,7 +61,7 @@ public class PlayerControler : NetworkBehaviour
         InputAction.performed += ctx => sprint();
         InputAction.canceled += ctx => StopSprint();
         InputAction.Enable();
-
+        hud.SetActive(true);
 
     }
 
