@@ -2867,11 +2867,11 @@ public class pickUp : NetworkBehaviour
 
     public void Interact()
     {
-        //if (!NetworkClient.ready)
-        //{
-        //    NetworkClient.Ready();
-        //}
-        if (full && isLocalPlayer) { IDcheck(); }
+        if (!NetworkClient.ready)
+        {
+            NetworkClient.Ready();
+        }
+        if (full) { IDcheck(); }
         //  counter;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
         {
