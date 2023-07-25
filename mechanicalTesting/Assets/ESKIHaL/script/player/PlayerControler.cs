@@ -32,8 +32,6 @@ public class PlayerControler : NetworkBehaviour
     private Vector3 movement;
     private float currentSpeed;
 
-
-
     private bool isSprint = false;
 
     public bool LoadScene = false;
