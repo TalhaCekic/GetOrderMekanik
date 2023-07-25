@@ -15,8 +15,6 @@ public class SceneManager1 : NetworkBehaviour
 
     public GameObject[] playerClone;
 
-    //private Scene scene = SceneManager.GetSceneByName("oyun");
-
 
     public PlayerListManager playerListManager;
 
@@ -41,17 +39,14 @@ public class SceneManager1 : NetworkBehaviour
             Debug.Log(playerListManager.playerCount);
             if (LobbyCount == playerListManager.playerCount)
             {
-                //for (int i = 0; i < LobbyCount; i++)
-                //{
-                //    playerClone = GameObject.FindGameObjectsWithTag("Player");
-                //}
+               
                 Debug.Log("Diðer Sahneye Geçiþ Yapýlabilir.");
                 print(LobbyCount);
                 print(playerListManager.playerCount);
 
                 if (isServer)
                 {
-                    //SceneManager.LoadSceneAsync(2);
+                    SceneManager.LoadScene(2);
                     NetworkManager.singleton.ServerChangeScene("oyun");
                     //SceneManager.MoveGameObjectToScene(playerClone[LobbyCount], scene);
 
