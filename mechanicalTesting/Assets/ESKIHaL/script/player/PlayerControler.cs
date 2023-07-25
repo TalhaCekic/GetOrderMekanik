@@ -46,13 +46,14 @@ public class PlayerControler : NetworkBehaviour
 
     }
     private void Start()
-    {
+    {  
+        movement = transform.position;
+        stationaryFrames = 0;
 DontDestroyOnLoad(gameObject);
         if (!isLocalPlayer) return;
         pickUp.handFull = false;
         
-        movement = transform.position;
-        stationaryFrames = 0;
+
 
         //   InputAction = new InputAction("Sprint", InputActionType.Button, null);
         InputAction.performed += ctx => sprint();
