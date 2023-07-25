@@ -62,15 +62,15 @@ DontDestroyOnLoad(gameObject);
 
     }
 
-    //private void OnEnable()
-    //{
-    //    SceneManager.sceneLoaded += OnSceneLoaded;
-    //}
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
-    //private void OnDisable()
-    //{
-    //    SceneManager.sceneLoaded -= OnSceneLoaded;
-    //}
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     private void Update()
     {
@@ -144,10 +144,10 @@ DontDestroyOnLoad(gameObject);
     }
 
 
-    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    //{
-    //    // Sahnede ne olursa olsun, sahne yüklendiðinde bu kod çalýþýr.
-    //    //Vector3 randomPlayerPosition = new Vector3(Random.Range(53, 63), 1, Random.Range(75, 78));
-    //    transform.position = randomPlayerPosition;
-    //}
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Sahnede ne olursa olsun, sahne yüklendiðinde bu kod çalýþýr.
+        //Vector3 randomPlayerPosition = new Vector3(Random.Range(53, 63), 1, Random.Range(75, 78));
+        transform.position = randomPlayerPosition;
+    }
 }
