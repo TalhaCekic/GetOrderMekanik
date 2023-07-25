@@ -6,7 +6,7 @@ using Steamworks;
 using UnityEngine.UI;
 using TMPro;
 
-public class SteamLobby : MonoBehaviour
+public class SteamLobby : NetworkBehaviour
 {
     public static SteamLobby Instance;
 
