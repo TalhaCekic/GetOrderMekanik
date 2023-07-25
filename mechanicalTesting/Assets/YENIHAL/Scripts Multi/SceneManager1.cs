@@ -51,7 +51,7 @@ public class SceneManager1 : NetworkBehaviour
 
                 if (isServer)
                 {
-                    SceneManager.LoadSceneAsync(2);
+                    //SceneManager.LoadSceneAsync(2);
                     NetworkManager.singleton.ServerChangeScene("oyun");
                     //SceneManager.MoveGameObjectToScene(playerClone[LobbyCount], scene);
 
