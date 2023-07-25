@@ -32,7 +32,7 @@ public class PlayerControler : NetworkBehaviour
     private Vector3 movement;
     private float currentSpeed;
 
-    
+
 
     private bool isSprint = false;
 
@@ -46,14 +46,13 @@ public class PlayerControler : NetworkBehaviour
 
     }
     private void Start()
-    {  
-        movement = transform.position;
-        stationaryFrames = 0;
-DontDestroyOnLoad(gameObject);
+    {
+        DontDestroyOnLoad(gameObject);
         if (!isLocalPlayer) return;
         pickUp.handFull = false;
-        
 
+        movement = transform.position;
+        stationaryFrames = 0;
 
         //   InputAction = new InputAction("Sprint", InputActionType.Button, null);
         InputAction.performed += ctx => sprint();
