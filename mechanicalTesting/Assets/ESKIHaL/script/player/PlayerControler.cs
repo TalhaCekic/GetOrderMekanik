@@ -35,6 +35,7 @@ public class PlayerControler : NetworkBehaviour
     private bool isSprint = false;
 
     public bool LoadScene = false;
+
     private void Awake()
     {
         // if (!isLocalPlayer) return;
