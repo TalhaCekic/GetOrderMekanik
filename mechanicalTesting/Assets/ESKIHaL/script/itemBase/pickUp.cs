@@ -50,6 +50,7 @@ public class pickUp : NetworkBehaviour
 
     void Start()
     {
+        childObject[0].SetActive(false);
         if (!isLocalPlayer) return;
         playerInput = new controller();
 
@@ -59,11 +60,8 @@ public class pickUp : NetworkBehaviour
         pickupLayerMask4 = LayerMask.GetMask("dinnerTable");
         pickupLayerMask5 = LayerMask.GetMask("cuttingTableCounter");
 
-        int randomNumber = Random.Range(0, 10);
-
-        childObject[0].SetActive(false);
+        int randomNumber = Random.Range(0, 10);    
     }
-
     void Update()
     {
         if (!isLocalPlayer) return;
