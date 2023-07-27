@@ -2946,8 +2946,7 @@ public class pickUp : NetworkBehaviour
             float id = hit.transform.GetComponent<itemID>().ItemID;
             if (id == 1 && handFull == false)
             {
-                //ID = 1;
-                //handFull = true;
+                ID = 1;
                 CmdSwitch(0);
             }
             if (id == 2 && handFull == false)
@@ -3000,10 +2999,8 @@ public class pickUp : NetworkBehaviour
         //Activate the selected object, deactivate the others
         if (objectNumber == 0)
         {
-            
              childObject[0].SetActive(true);
-                ID = 1;
-            
+            handFull = true;
         }
     }
 
