@@ -2950,7 +2950,7 @@ public class pickUp : NetworkBehaviour
             {
                 //ID = 1;
                 //handFull = true;
-                CmdSwitch(1);
+                CmdSwitch(0);
             }
             if (id == 2 && handFull == false)
             {
@@ -3000,18 +3000,12 @@ public class pickUp : NetworkBehaviour
     public void Switch(int objectNumber)
     {
         //Activate the selected object, deactivate the others
-        if (objectNumber == 1)
+        if (objectNumber == 0)
         {
-            if (!handFull)
-            {
-                childObject[0].SetActive(false);
-                ID = 0;
-            }
-            else if(handFull)
-            {
-                childObject[0].SetActive(true);
+            
+             childObject[0].SetActive(true);
                 ID = 1;
-            }
+            
         }
     }
 
