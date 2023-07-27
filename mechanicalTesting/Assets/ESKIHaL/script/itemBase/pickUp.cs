@@ -70,7 +70,6 @@ public class pickUp : NetworkBehaviour
     void Start()
     {
 
-        burger.GetComponent<MeshRenderer>().enabled = false;
         playerInput = new controller();
 
         pickupLayerMask = LayerMask.GetMask("Pickup");
@@ -3335,7 +3334,7 @@ public class pickUp : NetworkBehaviour
             {
                 handFull = true;
                 notCombine = false;
-                burger.GetComponent<MeshRenderer>().enabled = true;    // TRUE
+                burger.SetActive(true);    // TRUE
                 dirtyPlate.SetActive(false);
                 cleanPlate.SetActive(false);
                 meatRaw.SetActive(false);
