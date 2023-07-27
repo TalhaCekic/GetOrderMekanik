@@ -25,7 +25,7 @@ public class pickUp : NetworkBehaviour
 
     public GameObject cam;
 
-     public GameObject burger;         //id : 1
+    public GameObject burger;         //id : 1
     public GameObject dirtyPlate;     //id : 2.2
     public GameObject cleanPlate;     //id : 2
     public GameObject meatRaw;        //id : 3.3
@@ -57,16 +57,16 @@ public class pickUp : NetworkBehaviour
     public controller playerInput;
 
 
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-        if (!isServer) return;
-        burger = Instantiate(burger, cam.transform);
-        burger.gameObject.SetActive(false);
-        NetworkServer.Spawn(burger);
-        NetworkIdentity networkIdentity = burger.GetComponent<NetworkIdentity>();
-        networkIdentity.AssignClientAuthority(connectionToClient);
-    }
+    //public override void OnStartServer()
+    //{
+    //    base.OnStartServer();
+    //    if (!isServer) return;
+    //    burger = Instantiate(burger, cam.transform);
+    //    burger.gameObject.SetActive(false);
+    //    NetworkServer.Spawn(burger);
+    //    NetworkIdentity networkIdentity = burger.GetComponent<NetworkIdentity>();
+    //    networkIdentity.AssignClientAuthority(connectionToClient);
+    //}
 
 
     void Start()
@@ -82,22 +82,24 @@ public class pickUp : NetworkBehaviour
 
         int randomNumber = Random.Range(0, 10);
 
-        
+
 
         //ObjectSpawn();
-        
+
     }
-        
+
 
 
     void Update()
     {
         if (!isLocalPlayer) return;
-        playerInput.Player.Drop.performed += x => Drop();
-        playerInput.Player.Interact.performed += x => Interact();
-        playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
-        full = handFull;
-IDcheck();
+        //playerInput.Player.Drop.performed += x => Drop();
+        //playerInput.Player.Interact.performed += x => Interact();
+        //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
+        //full = handFull;
+
+        RpcIDcheck();
+      //  IDcheck();
 
     }
 
@@ -2873,7 +2875,7 @@ IDcheck();
     {
 
         if (!isLocalPlayer) return;
-      
+
         //  counter;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
         {
@@ -4303,7 +4305,7 @@ IDcheck();
             }
         }
 
-     
+
     }
     [Command]
     public void CmdIDCheck()
@@ -4311,11 +4313,11 @@ IDcheck();
         RpcIDcheck();
     }
 
-    public void IDcheck()
-    {
+    //public void IDcheck()
+    //{
 
-        CmdIDCheck();
-    }
+    //    CmdIDCheck();
+    //}
 
     //public void ObjectSpawn()
     //{
