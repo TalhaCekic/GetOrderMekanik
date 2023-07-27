@@ -4300,7 +4300,7 @@ public class pickUp : NetworkBehaviour
             }
         }
 
-        CmdIDCheck();
+     
     }
     [Command]
     public void CmdIDCheck()
