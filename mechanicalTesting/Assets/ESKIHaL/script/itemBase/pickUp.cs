@@ -2866,7 +2866,7 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
-    [Command]
+    [ClientRpc]
     public void Interact()
     {
         if (!NetworkClient.ready)
@@ -2991,7 +2991,7 @@ public class pickUp : NetworkBehaviour
             {
                 ID = 1;
                 handFull = true;
-                
+
             }
             if (id == 2 && handFull == false)
             {
@@ -3279,6 +3279,17 @@ public class pickUp : NetworkBehaviour
             //    }
             //}
         }
+    }
+
+    [Command]
+    public void CmdInteract()
+    {
+        Interact();
+    }
+
+    public void GercekInteract()
+    {
+        CmdInteract();
     }
     public void PressCuttingAndWashing(InputAction.CallbackContext context)
     {

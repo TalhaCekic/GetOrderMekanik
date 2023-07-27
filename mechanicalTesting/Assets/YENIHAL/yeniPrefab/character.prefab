@@ -836,7 +836,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5319890875321995062}
         m_TargetAssemblyTypeName: pickUp, Assembly-CSharp
-        m_MethodName: Interact
+        m_MethodName: GercekInteract
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
