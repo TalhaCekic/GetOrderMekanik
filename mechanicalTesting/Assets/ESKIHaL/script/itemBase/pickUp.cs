@@ -70,7 +70,7 @@ public class pickUp : NetworkBehaviour
         //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
         //full = handFull;
 
-        RpcIDcheck();
+  
         //  IDcheck();
 
     }
