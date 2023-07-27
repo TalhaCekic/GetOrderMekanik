@@ -3000,13 +3000,15 @@ public class pickUp : NetworkBehaviour
         //Activate the selected object, deactivate the others
         if (objectNumber == 1)
         {
-            if (handFull)
+            if (!handFull)
             {
                 childObject[0].SetActive(false);
+                ID = 0;
             }
-            else
+            else if(handFull)
             {
                 childObject[1].SetActive(true);
+                ID = 1;
             }
         }
     }
