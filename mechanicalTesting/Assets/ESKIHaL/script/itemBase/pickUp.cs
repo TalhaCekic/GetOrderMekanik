@@ -57,14 +57,14 @@ public class pickUp : NetworkBehaviour
     public controller playerInput;
 
 
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-        if (!isServer) return;
-        burger = Instantiate(burger, cam.transform);
-        burger.gameObject.SetActive(false);
-        NetworkServer.Spawn(burger);
-    }
+    //public override void OnStartServer()
+    //{
+    //    base.OnStartServer();
+    //    if (!isServer) return;
+    //    burger = Instantiate(burger, cam.transform);
+    //    burger.gameObject.SetActive(false);
+    //    NetworkServer.Spawn(burger);
+    //}
 
 
     void Start()
