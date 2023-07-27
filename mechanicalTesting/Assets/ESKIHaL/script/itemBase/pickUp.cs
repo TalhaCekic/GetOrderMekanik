@@ -95,7 +95,7 @@ public class pickUp : NetworkBehaviour
         playerInput.Player.Interact.performed += x => Interact();
         playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
         full = handFull;
-
+IDcheck();
 
     }
 
@@ -2871,7 +2871,7 @@ public class pickUp : NetworkBehaviour
     {
 
         if (!isLocalPlayer) return;
-        if (full) { IDcheck(); }
+      
         //  counter;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
         {
