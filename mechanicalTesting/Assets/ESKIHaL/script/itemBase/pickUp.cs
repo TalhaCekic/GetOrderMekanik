@@ -81,8 +81,9 @@ public class pickUp : NetworkBehaviour
         int randomNumber = Random.Range(0, 10);
 
         burger.SetActive(false);
-        
+
         //ObjectSpawn();
+        IDcheck();
     }
         
 
