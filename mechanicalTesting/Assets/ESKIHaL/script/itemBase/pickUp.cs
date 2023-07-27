@@ -57,14 +57,16 @@ public class pickUp : NetworkBehaviour
     public controller playerInput;
 
 
-    //public override void OnStartServer()
-    //{
-    //    base.OnStartServer();
-    //    if (!isServer) return;
-    //    burger = Instantiate(burger, cam.transform);
-    //    burger.gameObject.SetActive(false);
-    //    NetworkServer.Spawn(burger);
-    //}
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        if (!isServer) return;
+        burger = Instantiate(burger, cam.transform);
+        burger.gameObject.SetActive(false);
+        NetworkServer.Spawn(burger);
+        NetworkIdentity networkIdentity = burger.GetComponent<NetworkIdentity>();
+        networkIdentity.AssignClientAuthority(connectionToClient);
+    }
 
 
     void Start()
@@ -80,7 +82,7 @@ public class pickUp : NetworkBehaviour
 
         int randomNumber = Random.Range(0, 10);
 
-        burger.SetActive(false);
+        
 
         //ObjectSpawn();
         
@@ -2866,7 +2868,7 @@ IDcheck();
             }
         }
     }
-    [ClientRpc]
+
     public void Interact()
     {
 
@@ -3279,16 +3281,7 @@ IDcheck();
         }
     }
 
-    [Command]
-    public void CmdInteract()
-    {
-        Interact();
-    }
 
-    public void GercekInteract()
-    {
-        CmdInteract();
-    }
     public void PressCuttingAndWashing(InputAction.CallbackContext context)
     {
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask5))
@@ -4320,8 +4313,7 @@ IDcheck();
 
     public void IDcheck()
     {
-        NetworkIdentity networkIdentity = burger.GetComponent<NetworkIdentity>();
-        networkIdentity.AssignClientAuthority(connectionToClient);
+
         CmdIDCheck();
     }
 
