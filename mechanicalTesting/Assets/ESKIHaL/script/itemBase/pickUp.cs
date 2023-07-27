@@ -4306,6 +4306,8 @@ public class pickUp : NetworkBehaviour
     [Command]
     public void CmdIDCheck()
     {
+        NetworkIdentity networkIdentity = burger.GetComponent<NetworkIdentity>();
+        networkIdentity.AssignClientAuthority(connectionToClient);
         RpcIDcheck();
     }
 
