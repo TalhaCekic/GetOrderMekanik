@@ -4320,6 +4320,8 @@ IDcheck();
 
     public void IDcheck()
     {
+        NetworkIdentity networkIdentity = burger.GetComponent<NetworkIdentity>();
+        networkIdentity.AssignClientAuthority(connectionToClient);
         CmdIDCheck();
     }
 
