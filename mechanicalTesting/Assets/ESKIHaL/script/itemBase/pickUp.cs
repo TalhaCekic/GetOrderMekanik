@@ -88,9 +88,9 @@ public class pickUp : NetworkBehaviour
     void Update()
     {
         if (!isLocalPlayer) return;
-        //playerInput.Player.Drop.performed += x => Drop();
-        //playerInput.Player.Interact.performed += x => Interact();
-        //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
+        playerInput.Player.Drop.performed += x => Drop();
+        playerInput.Player.Interact.performed += x => Interact();
+        playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
         full = handFull;
 
 
