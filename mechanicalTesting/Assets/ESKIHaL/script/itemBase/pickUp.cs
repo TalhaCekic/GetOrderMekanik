@@ -83,7 +83,7 @@ public class pickUp : NetworkBehaviour
         burger.SetActive(false);
 
         //ObjectSpawn();
-        IDcheck();
+        
     }
         
 
@@ -2866,7 +2866,7 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
-
+    [ClientRpc]
     public void Interact()
     {
         if (!NetworkClient.ready)
