@@ -3045,29 +3045,6 @@ public class pickUp : NetworkBehaviour
         Debug.LogError("canceled");
     }
 
-    [ClientRpc]
-    private void RpcIDcheck()
-    {
-        if (!isServer) return;
-
-        if (ID == 0)
-        {
-            notCombine = false;
-            handFull = false;
-        }
-        if (ID > 0 && isLocalPlayer)
-        {
-            // Tekli Kombinasyon
-            if (ID == 1)
-            {
-                handFull = true;
-                notCombine = false;
-                // burger.SetActive(true);    // TRUE
-
-            }
-
-        }
-    }
 
 }
 
