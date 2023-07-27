@@ -60,6 +60,8 @@ public class pickUp : NetworkBehaviour
         pickupLayerMask5 = LayerMask.GetMask("cuttingTableCounter");
 
         int randomNumber = Random.Range(0, 10);
+
+        childObject[0].SetActive(false);
     }
 
     void Update()
@@ -3007,7 +3009,7 @@ public class pickUp : NetworkBehaviour
             }
             else if(handFull)
             {
-                childObject[1].SetActive(true);
+                childObject[0].SetActive(true);
                 ID = 1;
             }
         }
