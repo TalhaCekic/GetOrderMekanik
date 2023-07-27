@@ -71,7 +71,7 @@ public class pickUp : NetworkBehaviour
 
     void Start()
     {
-
+        if (!isLocalPlayer) return;
         playerInput = new controller();
 
         pickupLayerMask = LayerMask.GetMask("Pickup");
@@ -82,6 +82,7 @@ public class pickUp : NetworkBehaviour
 
         int randomNumber = Random.Range(0, 10);
 
+        burger.SetActive(false);
 
 
         //ObjectSpawn();
