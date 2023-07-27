@@ -3321,7 +3321,7 @@ public class pickUp : NetworkBehaviour
     [ClientRpc]
     private void RpcIDcheck()
     {
-        if (!isServer) return;
+        if (!isServer && !isLocalPlayer) return;
 
         if (ID == 0)
         {
