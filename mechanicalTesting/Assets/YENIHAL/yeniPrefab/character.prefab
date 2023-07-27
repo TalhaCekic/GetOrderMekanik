@@ -775,22 +775,8 @@ MonoBehaviour:
   test: 0
   hitRange: 1
   cam: {fileID: 3612773049100765963}
-  burger: {fileID: 7681539920479963024}
-  dirtyPlate: {fileID: 4184815018899113591, guid: 14dd50fe9d03a114c8a2253becee2d98,
-    type: 3}
-  cleanPlate: {fileID: 4184815018899113591, guid: 14dd50fe9d03a114c8a2253becee2d98,
-    type: 3}
-  meatRaw: {fileID: 5059772715391443399, guid: 00f7756e17c716f439c303610d0b1823, type: 3}
-  meatBaked: {fileID: 8377663201098477449, guid: e44494038222cbe498648a33b2846669,
-    type: 3}
-  tomato: {fileID: 8491038144867298371, guid: ab3c3a4fa6ee269498b0da4fc30fd355, type: 3}
-  SliceTomato: {fileID: 8336410331273868510, guid: 30736db03d17ce742add0165c391482f,
-    type: 3}
-  lettuce: {fileID: 6143019382153120898, guid: e890c41cb27a47a40b39ead673f9d095, type: 3}
-  SliceLettuce: {fileID: 6400644800522198005, guid: 407b69c064d49a84fa10e6a6df083591,
-    type: 3}
-  cheddarCheese: {fileID: 4184815018899113591, guid: 14dd50fe9d03a114c8a2253becee2d98,
-    type: 3}
+  childObject:
+  - {fileID: 7681539920479963024}
   Burgergonder: 0
   Plategonder: 0
   MeatRawgonder: 0
