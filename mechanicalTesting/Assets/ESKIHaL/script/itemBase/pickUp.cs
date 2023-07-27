@@ -2866,7 +2866,7 @@ public class pickUp : NetworkBehaviour
             }
         }
     }
-    [ClientRpc]
+    [Command]
     public void Interact()
     {
         if (!NetworkClient.ready)
