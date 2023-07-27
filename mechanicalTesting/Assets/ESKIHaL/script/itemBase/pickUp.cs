@@ -2947,6 +2947,7 @@ public class pickUp : NetworkBehaviour
             if (id == 1 && handFull == false)
             {
                 ID = 1;
+                handFull = true;
                 CmdSwitch(0);
             }
             if (id == 2 && handFull == false)
@@ -3000,7 +3001,7 @@ public class pickUp : NetworkBehaviour
         if (objectNumber == 0)
         {
              childObject[0].SetActive(true);
-            handFull = true;
+            
         }
     }
 
