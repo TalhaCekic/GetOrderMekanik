@@ -44,7 +44,7 @@ public class PlayerListManager : NetworkBehaviour
         playerCount = NetworkServer.connections.Count;
         if (playerCount == 0) { return; }
 
-        
+        RpcPlayerNames();
     }
 
     [Command]
@@ -61,10 +61,10 @@ public class PlayerListManager : NetworkBehaviour
 
     public void PlayerNames()
     {
-        
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < playerCount; i++)
         {
-            playerClone[i] = GameObject.FindWithTag("Player");
+            playerClone[i] = players[i];
             playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(SteamUser.GetSteamID());
             Debug.Log(steamId[i]);
             playerName[i] = playerClone[i].GetComponent<PlayerControler>().steamName;
