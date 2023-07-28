@@ -40,10 +40,11 @@ public class PlayerListManager : NetworkBehaviour
     }
     private void Update()
     {
+        CmdPlayerNames();
         playerCount = NetworkServer.connections.Count;
         if (playerCount == 0) { return; }
 
-        CmdPlayerNames();
+        
     }
 
     [Command]

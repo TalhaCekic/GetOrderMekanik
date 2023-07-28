@@ -3001,7 +3001,7 @@ public class pickUp : NetworkBehaviour
     [Command]
     public void CmddropID(int objectNumber)
     {
-        interactID(objectNumber);
+        dropID(objectNumber);
         RpcdropID(objectNumber);
     }
     [ClientRpc]
