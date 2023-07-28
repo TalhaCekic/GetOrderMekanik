@@ -58,6 +58,7 @@ public class PlayerControler : NetworkBehaviour
     [Command]
     public void CmdSetSteamId(CSteamID steamId)
     {
+        steamId = SteamUser.GetSteamID();
         this.steamId = steamId;
     }
 
