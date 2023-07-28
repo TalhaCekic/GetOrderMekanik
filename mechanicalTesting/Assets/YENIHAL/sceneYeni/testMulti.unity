@@ -12786,6 +12786,11 @@ PrefabInstance:
       propertyPath: playerListManager
       value: 
       objectReference: {fileID: 344682198}
+    - target: {fileID: 5667840728993311009, guid: d4fbafc0f0fbc5849942bd92308f980b,
+        type: 3}
+      propertyPath: playerClone.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5736888496765979044, guid: d4fbafc0f0fbc5849942bd92308f980b,
         type: 3}
       propertyPath: m_Name

@@ -25,8 +25,9 @@ public class PlayerListManager : NetworkBehaviour
     protected Callback<LobbyEnter_t> LobbyEntered;
 
     public PlayerControler playerControler;
-
+    
     public CSteamID[] steamId;
+    
     public string[] playerName;
     public List<TMP_Text> childObject = new List<TMP_Text>();
 
@@ -37,7 +38,6 @@ public class PlayerListManager : NetworkBehaviour
     private void Update()
     {
         playerCount = NetworkServer.connections.Count;
-        Debug.Log(playerCount);
         if (playerCount == 0) { return; }
 
         RpcPlayerNames();
@@ -59,15 +59,12 @@ public class PlayerListManager : NetworkBehaviour
     {
         for (int i = 0; i < playerCount; i++)
         {
-                playerClone[i] = GameObject.FindWithTag("Player");
-                playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(steamId[i]);
-                playerName[i] = SteamFriends.GetFriendPersonaName(steamId[i]);
-                childObject[i].gameObject.SetActive(true);
-                childObject[i].text = playerName[i];
-            
-
-
-
+            playerClone[i] = GameObject.FindGameObjectWithTag("Player");
+            playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(SteamUser.GetSteamID());
+            Debug.Log(steamId[i]);
+            playerName[i] = playerClone[i].GetComponent<PlayerControler>().steamName;
+            childObject[i].gameObject.SetActive(true);
+            childObject[i].text = playerName[i];
         }
     }
 

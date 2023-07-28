@@ -44,6 +44,8 @@ public class PlayerControler : NetworkBehaviour
 
     [SyncVar]
     public CSteamID steamId;
+    [SyncVar]
+    public string steamName;
 
     public override void OnStartClient()
     {
@@ -58,8 +60,10 @@ public class PlayerControler : NetworkBehaviour
     [Command]
     public void CmdSetSteamId(CSteamID steamId)
     {
-        steamId = SteamUser.GetSteamID();
         this.steamId = steamId;
+        steamName = SteamFriends.GetFriendPersonaName(steamId);
+       // Debug.Log(steamId);
+
     }
 
 
