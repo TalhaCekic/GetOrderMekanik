@@ -43,7 +43,7 @@ public class PlayerListManager : NetworkBehaviour
         playerCount = NetworkServer.connections.Count;
         if (playerCount == 0) { return; }
 
-        RpcPlayerNames();
+        CmdPlayerNames();
     }
 
     [Command]
