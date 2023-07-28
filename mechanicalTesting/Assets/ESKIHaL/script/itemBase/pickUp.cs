@@ -65,13 +65,6 @@ public class pickUp : NetworkBehaviour
     void Update()
     {
         if (!isLocalPlayer) return;
-        //playerInput.Player.Drop.performed += x => Drop();
-        //playerInput.Player.Interact.performed += x => Interact();
-        //playerInput.Player.CuttingWash.performed += PressCuttingAndWashing;
-        //full = handFull;
-
-  
-        //  IDcheck();
 
     }
 
@@ -92,6 +85,8 @@ public class pickUp : NetworkBehaviour
                         {
                             counter.burgerdolu = true;
                             ID = 0;
+                            CmddropID(0);
+                            handFull = false;
                         }
                     }
                     if (ID == 2)
@@ -2948,7 +2943,7 @@ public class pickUp : NetworkBehaviour
             {
                 ID = 1;
                 handFull = true;
-                CmdSwitch(0);
+                CmdinteractID(0);
             }
             if (id == 2 && handFull == false)
             {
@@ -2983,25 +2978,43 @@ public class pickUp : NetworkBehaviour
         }
     }
     [Command]
-    public void CmdSwitch(int objectNumber)
+    public void CmdinteractID(int objectNumber)
     {
-        Switch(objectNumber);
-        RpcSwitch(objectNumber);
+        interactID(objectNumber);
+        RpcinteractID(objectNumber);
     }
     [ClientRpc]
-    void RpcSwitch(int objectNumber)
+    void RpcinteractID(int objectNumber)
     {
 
-        Switch(objectNumber);
+        interactID(objectNumber);
 
     }
-    public void Switch(int objectNumber)
+    public void interactID(int objectNumber)
     {
         //Activate the selected object, deactivate the others
-        if (objectNumber == 0)
+        if (objectNumber == 0 && childObject[0].activeSelf == false)
         {
              childObject[0].SetActive(true);
-            
+        }
+    }
+    [Command]
+    public void CmddropID(int objectNumber)
+    {
+        interactID(objectNumber);
+        RpcdropID(objectNumber);
+    }
+    [ClientRpc]
+    void RpcdropID(int objectNumber)
+    {
+        dropID(objectNumber);
+    }
+    public void dropID(int objectNumber)
+    {
+        if (  childObject[0].activeSelf == true)
+        {
+            childObject[0].SetActive(false);
+            print("býrakkk");
         }
     }
 
