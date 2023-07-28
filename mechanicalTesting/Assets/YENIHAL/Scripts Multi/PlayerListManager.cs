@@ -32,7 +32,7 @@ public class PlayerListManager : NetworkBehaviour
     public List<TMP_Text> childObject = new List<TMP_Text>();
 
 
-    public GameObject[] playerClone;
+    public List<GameObject> playerClone = new List<GameObject>();
 
     private void Start()
     {
@@ -40,7 +40,7 @@ public class PlayerListManager : NetworkBehaviour
     }
     private void Update()
     {
-        CmdPlayerNames();
+        
         playerCount = NetworkServer.connections.Count;
         if (playerCount == 0) { return; }
 
@@ -57,14 +57,17 @@ public class PlayerListManager : NetworkBehaviour
     public void RpcPlayerNames()
     {
         PlayerNames();
+        CmdPlayerNames();
     }
 
     public void PlayerNames()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        
         for (int i = 0; i < playerCount; i++)
         {
-            playerClone[i] = players[i];
+
+            playerClone[i] = GameObject.FindGameObjectWithTag("Player");
+            playerClone.Add(playerClone[i]);
             playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(SteamUser.GetSteamID());
             Debug.Log(steamId[i]);
             playerName[i] = playerClone[i].GetComponent<PlayerControler>().steamName;
