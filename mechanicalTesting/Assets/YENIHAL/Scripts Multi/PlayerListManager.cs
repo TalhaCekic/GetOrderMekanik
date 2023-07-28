@@ -13,7 +13,7 @@ public class PlayerListManager : NetworkBehaviour
     public List<TMP_Text> childObject = new List<TMP_Text>();
 
 
-   // public List<GameObject> playerClone = new List<GameObject>();
+    public List<GameObject> playerClone = new List<GameObject>();
 
     public GameObject playerNamePrefabs;
     public ulong CurrentLobbyID;
@@ -33,11 +33,7 @@ public class PlayerListManager : NetworkBehaviour
     public string[] playerName;
 
 
-    private void Start()
-    {
 
-        DontDestroyOnLoad(this);
-    }
     private void Update()
     {
         playerCount = NetworkServer.connections.Count;
@@ -63,12 +59,19 @@ public class PlayerListManager : NetworkBehaviour
     {
         for (int i = 0; i < playerCount; i++)
         {
-           // playerClone[i] = GameObject.FindWithTag("Player");
+            playerClone[i] = GameObject.FindWithTag("Player");
+           
             
-                steamId[i] = SteamUser.GetSteamID();
-                playerName[i] = SteamFriends.GetFriendPersonaName(steamId[i]);
-                childObject[i].gameObject.SetActive(true);
-                childObject[i].text = playerName[i];
+
+            for (int j = 0; j < playerClone.Count; j++)
+            {
+               
+                steamId[j] = SteamUser.GetSteamID();
+                playerName[j] = SteamFriends.GetFriendPersonaName(steamId[i]);
+                childObject[j].gameObject.SetActive(true);
+                childObject[j].text = playerName[j];
+            }
+              
             
            
         }
