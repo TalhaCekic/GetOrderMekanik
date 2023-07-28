@@ -13,7 +13,6 @@ using TMPro;
 
 public class PlayerControler : NetworkBehaviour
 {
-    public TMP_Text playerText;
 
     public Vector3 randomPlayerPosition;
 
@@ -43,7 +42,24 @@ public class PlayerControler : NetworkBehaviour
 
     public GameObject hud;
 
+    [SyncVar]
+    public CSteamID steamId;
 
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        if (isLocalPlayer)
+        {
+            CmdSetSteamId(SteamUser.GetSteamID());
+        }
+    }
+
+    [Command]
+    public void CmdSetSteamId(CSteamID steamId)
+    {
+        this.steamId = steamId;
+    }
 
 
     private void Awake()
