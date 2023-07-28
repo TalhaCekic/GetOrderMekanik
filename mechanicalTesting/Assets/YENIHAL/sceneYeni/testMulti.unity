@@ -10749,7 +10749,7 @@ PrefabInstance:
     - target: {fileID: 2337974050706436489, guid: 8397acec9fb19e74091e04dfec44d4ff,
         type: 3}
       propertyPath: steamId.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2337974050706436489, guid: 8397acec9fb19e74091e04dfec44d4ff,
         type: 3}
