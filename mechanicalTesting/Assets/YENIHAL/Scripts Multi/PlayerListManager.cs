@@ -34,7 +34,10 @@ public class PlayerListManager : NetworkBehaviour
 
     public GameObject[] playerClone;
 
-
+    private void Start()
+    {
+        DontDestroyOnLoad(this);
+    }
     private void Update()
     {
         playerCount = NetworkServer.connections.Count;
