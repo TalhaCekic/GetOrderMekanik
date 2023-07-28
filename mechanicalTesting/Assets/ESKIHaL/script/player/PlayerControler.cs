@@ -8,9 +8,13 @@ using UnityEngine.InputSystem;
 using Mirror;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Steamworks;
+using TMPro;
 
 public class PlayerControler : NetworkBehaviour
 {
+    public TMP_Text playerText;
+
     public Vector3 randomPlayerPosition;
 
     Animator anim;
@@ -39,6 +43,9 @@ public class PlayerControler : NetworkBehaviour
 
     public GameObject hud;
 
+
+
+
     private void Awake()
     {
         // if (!isLocalPlayer) return;
@@ -50,6 +57,7 @@ public class PlayerControler : NetworkBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+
         hud.SetActive(false);
         if (!isLocalPlayer) return;
         pickUp.handFull = false;

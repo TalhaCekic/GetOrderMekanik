@@ -29,32 +29,32 @@ public class SceneManager1 : NetworkBehaviour
        
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    //private void OnTriggerEnter(Collider other)
+    //{
         
-        if (other.gameObject.tag == "Player")
-        {
-            LobbyCount += 1;
-            Debug.Log(LobbyCount);
-            Debug.Log(playerListManager.playerCount);
-            if (LobbyCount == playerListManager.playerCount)
-            {
+    //    if (other.gameObject.tag == "Player")
+    //    {
+    //        LobbyCount += 1;
+    //        Debug.Log(LobbyCount);
+    //        Debug.Log(playerListManager.playerCount);
+    //        if (LobbyCount == playerListManager.playerCount)
+    //        {
                
-                Debug.Log("Diðer Sahneye Geçiþ Yapýlabilir.");
-                print(LobbyCount);
-                print(playerListManager.playerCount);
+    //            Debug.Log("Diðer Sahneye Geçiþ Yapýlabilir.");
+    //            print(LobbyCount);
+    //            print(playerListManager.playerCount);
 
-                if (isServer)
-                {
-                    SceneManager.LoadScene(2);
-                    NetworkManager.singleton.ServerChangeScene("oyun");
-                    //SceneManager.MoveGameObjectToScene(playerClone[LobbyCount], scene);
+    //            if (isServer)
+    //            {
+    //                SceneManager.LoadScene(2);
+    //                NetworkManager.singleton.ServerChangeScene("oyun");
+    //                //SceneManager.MoveGameObjectToScene(playerClone[LobbyCount], scene);
 
-                }
+    //            }
 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 
     private void OnTriggerExit(Collider other)
     {

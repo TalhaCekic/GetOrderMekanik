@@ -729,6 +729,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  playerText: {fileID: 4411115914280971086, guid: db81efe695f9f1e4685ba1eff9e8e2f9,
+    type: 3}
   randomPlayerPosition: {x: 0, y: 0, z: 0}
   speedd: 5
   turnSpeed: 5
