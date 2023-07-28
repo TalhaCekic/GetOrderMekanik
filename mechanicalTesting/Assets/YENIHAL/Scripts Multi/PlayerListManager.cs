@@ -36,7 +36,7 @@ public class PlayerListManager : NetworkBehaviour
         Debug.Log(playerCount);
         if (playerCount == 0) { return; }
 
-        CmdPlayerNames();
+        ClientPlayerNames();
     }
 
     [Command]
