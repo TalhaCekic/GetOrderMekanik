@@ -35,11 +35,23 @@ public class PlayerListManager : NetworkBehaviour
         playerCount = NetworkServer.connections.Count;
         Debug.Log(playerCount);
         if (playerCount == 0) { return; }
-       
+
+        CmdPlayerNames();
+    }
+
+    [Command]
+    public void CmdPlayerNames()
+    {
+        PlayerNames();
+        ClientPlayerNames();
+    }
+    [ClientRpc]
+    public void ClientPlayerNames()
+    {
         PlayerNames();
     }
 
-    private void PlayerNames()
+    public void PlayerNames()
     {
         for (int i = 0; i < playerCount; i++)
         {
