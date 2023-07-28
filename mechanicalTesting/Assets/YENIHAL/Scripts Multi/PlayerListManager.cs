@@ -60,10 +60,10 @@ public class PlayerListManager : NetworkBehaviour
 
     public void PlayerNames()
     {
-        playerClone = GameObject.FindGameObjectsWithTag("Player");
+        
         for (int i = 0; i < playerCount; i++)
         {
-            
+            playerClone[i] = GameObject.FindWithTag("Player");
             playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(SteamUser.GetSteamID());
             Debug.Log(steamId[i]);
             playerName[i] = playerClone[i].GetComponent<PlayerControler>().steamName;
