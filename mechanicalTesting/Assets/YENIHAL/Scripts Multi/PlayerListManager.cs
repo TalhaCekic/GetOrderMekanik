@@ -85,7 +85,7 @@ public class PlayerListManager : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CmdPlayerNames(List<GameObject> playerclone)
     {
-        //PlayerNames();
+        PlayerNames(playerclone);
         RpcPlayerNames(playerclone);
     }
     [ClientRpc]
