@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3124009677215848877}
   - component: {fileID: 2337974050706436489}
-  - component: {fileID: 7621625853330386628}
+  - component: {fileID: 8979420034325180194}
   m_Layer: 0
   m_Name: LobbiesManager
   m_TagString: Untagged
@@ -48,16 +48,39 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  playerNameText:
+  playerClone1:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   playerNamePrefabs: {fileID: 8986511298020518663, guid: 1b31d1923b253fe49a47e57d98706c6f,
     type: 3}
+  CurrentLobbyID: 0
   playerCount: 0
-  playerNamePrefabsTransform: {fileID: 0}
---- !u!114 &7621625853330386628
+  manager: {fileID: 0}
+  playerControler: {fileID: 8091650002530726354, guid: e8522aba77892d74c8df14208d321fb3,
+    type: 3}
+  steamId:
+  - m_SteamID: 0
+  - m_SteamID: 0
+  - m_SteamID: 0
+  - m_SteamID: 0
+  playerName:
+  - 
+  - 
+  - 
+  - 
+  childObject:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerClone:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &8979420034325180194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

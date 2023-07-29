@@ -10,8 +10,8 @@ public class PlayerListManager : NetworkBehaviour
 {
 
     // public TMP_Text[] playerNameText;
-    
 
+    public GameObject[] playerClone1;
     public GameObject playerNamePrefabs;
     public ulong CurrentLobbyID;
 
@@ -25,9 +25,9 @@ public class PlayerListManager : NetworkBehaviour
     protected Callback<LobbyEnter_t> LobbyEntered;
 
     public PlayerControler playerControler;
-    
+
     public CSteamID[] steamId;
-    
+
     public string[] playerName;
     public List<TMP_Text> childObject = new List<TMP_Text>();
 
@@ -36,37 +36,78 @@ public class PlayerListManager : NetworkBehaviour
 
     private void Update()
     {
-        
+
         playerCount = NetworkServer.connections.Count;
         if (playerCount == 0) { return; }
 
-        CmdPlayerNames();
+        CmdPlayerNames(playerClone);
     }
 
-    [Command]
-    public void CmdPlayerNames()
+
+    //[Command(requiresAuthority =false)]
+    //public void CmdPlayerNames()
+    //{
+    //    ServerPlayerNames();
+    //    RpcPlayerNames();
+    //}
+
+    //[ClientRpc]
+    //public void RpcPlayerNames()
+    //{
+    //    ClientPlayerNames();
+    //}
+
+    //public void ServerPlayerNames()
+    //{
+    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+    //    for (int i = 0; i < players.Length; i++)
+    //    {
+    //        players[i].GetComponent<PlayerControler>().CmdSetSteamId(SteamUser.GetSteamID());
+    //    }
+    //}
+
+    //public void ClientPlayerNames()
+    //{
+    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+    //    for (int i = 0; i < players.Length; i++)
+    //    {
+    //        playerName[i] = players[i].GetComponent<PlayerControler>().steamName;
+    //        childObject[i].gameObject.SetActive(true);
+    //        childObject[i].text = playerName[i];
+    //    }
+    //}
+
+
+
+
+    [Command(requiresAuthority = false)]
+    public void CmdPlayerNames(List<GameObject> playerclone)
     {
-        PlayerNames();
-        RpcPlayerNames();
+        //PlayerNames();
+        RpcPlayerNames(playerclone);
     }
     [ClientRpc]
-    public void RpcPlayerNames()
+    public void RpcPlayerNames(List<GameObject> playerclone)
     {
-        PlayerNames();
-       
+        PlayerNames(playerclone);
+
     }
 
-    public void PlayerNames()
+    public void PlayerNames(List<GameObject> playerclone)
     {
+        GameObject[] gameObjectArray = GameObject.FindGameObjectsWithTag("Player");
+        playerclone = new List<GameObject>(gameObjectArray);
         
+        //playerClone1 = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < playerCount; i++)
         {
-
-            playerClone[i] = GameObject.FindGameObjectWithTag("Player");
             
-            playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(SteamUser.GetSteamID());
+            
+            playerclone[i].GetComponent<PlayerControler>().CmdSetSteamId(SteamUser.GetSteamID());
             Debug.Log(steamId[i]);
-            playerName[i] = playerClone[i].GetComponent<PlayerControler>().steamName;
+            playerName[i] = playerclone[i].GetComponent<PlayerControler>().steamName;
             childObject[i].gameObject.SetActive(true);
             childObject[i].text = playerName[i];
         }
