@@ -8,138 +8,41 @@ using UnityEngine.UI;
 
 public class PlayerListManager : NetworkBehaviour
 {
+    [SyncVar]
+    private string playerName;
 
-    // public TMP_Text[] playerNameText;
-
-    public GameObject[] playerClone1;
-    public GameObject playerNamePrefabs;
-    public ulong CurrentLobbyID;
+    
+    public TMP_Text[] LobbyNameText;
 
     [SyncVar]
-    public int playerCount;
+    public int playerCount = 0;
 
-    //public Transform playerNamePrefabsTransform;
-    public CustomNetworkManager manager;
+  
+  public  PlayerControler playerControler;
 
-
-    protected Callback<LobbyEnter_t> LobbyEntered;
-
-    public PlayerControler playerControler;
-
-    public CSteamID[] steamId;
-
-    public string[] playerName;
-    public List<TMP_Text> childObject = new List<TMP_Text>();
-
-
-    public List<GameObject> playerClone = new List<GameObject>();
+    
+    public GameObject[] playerClone;
 
     private void Update()
     {
-
         playerCount = NetworkServer.connections.Count;
-        if (playerCount == 0) { return; }
-
-        RpcPlayerNames(playerClone);
+       if(playerCount == 0) return;
+        PlayerNames(SteamUser.GetSteamID());
     }
 
 
-    //[Command(requiresAuthority =false)]
-    //public void CmdPlayerNames()
-    //{
-    //    ServerPlayerNames();
-    //    RpcPlayerNames();
-    //}
-
-    //[ClientRpc]
-    //public void RpcPlayerNames()
-    //{
-    //    ClientPlayerNames();
-    //}
-
-    //public void ServerPlayerNames()
-    //{
-    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-    //    for (int i = 0; i < players.Length; i++)
-    //    {
-    //        players[i].GetComponent<PlayerControler>().CmdSetSteamId(SteamUser.GetSteamID());
-    //    }
-    //}
-
-    //public void ClientPlayerNames()
-    //{
-    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-    //    for (int i = 0; i < players.Length; i++)
-    //    {
-    //        playerName[i] = players[i].GetComponent<PlayerControler>().steamName;
-    //        childObject[i].gameObject.SetActive(true);
-    //        childObject[i].text = playerName[i];
-    //    }
-    //}
-
-
-
-
-    [Command(requiresAuthority = false)]
-    public void CmdPlayerNames(List<GameObject> playerclone)
+    public void PlayerNames(CSteamID steamId)
     {
-        PlayerNames(playerclone);
-        RpcPlayerNames(playerclone);
-    }
-    [ClientRpc]
-    public void RpcPlayerNames(List<GameObject> playerclone)
-    {
-        PlayerNames(playerclone);
-
-    }
-
-    public void PlayerNames(List<GameObject> playerclone)
-    {
-        GameObject[] gameObjectArray = GameObject.FindGameObjectsWithTag("Player");
-        playerclone = new List<GameObject>(gameObjectArray);
-        
-        //playerClone1 = GameObject.FindGameObjectsWithTag("Player");
+        playerClone = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < playerCount; i++)
         {
-            
-            
-            playerclone[i].GetComponent<PlayerControler>().CmdSetSteamId(SteamUser.GetSteamID());
-            Debug.Log(steamId[i]);
-            playerName[i] = playerclone[i].GetComponent<PlayerControler>().steamName;
-            childObject[i].gameObject.SetActive(true);
-            childObject[i].text = playerName[i];
+
+            playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(steamId);
+            playerName = playerClone[i].GetComponent<PlayerControler>().steamName;
+            LobbyNameText[i].gameObject.SetActive(true);
+            LobbyNameText[i].text = playerName;
+
         }
     }
-
-    //public void OnLobbyEntered(LobbyEnter_t pCallback)
-    //{
-    //    Debug.Log("asss");
-
-    //    CSteamID steamId = SteamUser.GetSteamID();
-    //    // Oyuncunun ad�n� �ek
-    //    playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
-    //    //  Debug.Log(playerName);
-    //    //playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
-    //    Debug.Log("Player joined. Current players in lobby: " + playerCount);
-    //    playerCount = NetworkManager.singleton.numPlayers;
-
-    //    for (int i = 0; i < 2; i++)
-    //    {
-
-
-    //        Debug.Log(playerName);
-    //        childObject[i].gameObject.SetActive(true);
-    //        childObject[i].text = playerName;
-    //    }
-
-    //    manager.StartClient();
-    //}
-    //public void OnLobbyExited(GameLobbyJoinRequested_t pCallback)
-    //{
-    //    playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)GameLobbyJoinRequested_t.k_iCallback);
-    //    Debug.Log("Player left. Current players in lobby: " + playerCount);
-    //}
 
 }

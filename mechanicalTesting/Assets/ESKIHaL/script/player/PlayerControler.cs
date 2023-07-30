@@ -42,28 +42,30 @@ public class PlayerControler : NetworkBehaviour
 
     public GameObject hud;
 
-    [SyncVar]
-    public CSteamID steamId;
+    //[SyncVar]
+    //public CSteamID steamId;
     [SyncVar]
     public string steamName;
 
-    public override void OnStartClient()
+    public void OnStartClient1(CSteamID steamId)
     {
-        base.OnStartClient();
+        steamId = SteamUser.GetSteamID();
+        steamName = SteamFriends.GetFriendPersonaName(steamId);
+       // Debug.Log(steamId + steamName);
 
-        if (isLocalPlayer)
-        {
-            CmdSetSteamId(SteamUser.GetSteamID());
-        }
     }
 
     [Command]
     public void CmdSetSteamId(CSteamID steamId)
     {
-        this.steamId = steamId;
-        steamName = SteamFriends.GetFriendPersonaName(steamId);
-       // Debug.Log(steamId);
+        OnStartClient1(steamId);
+        RpcSetSteamId(steamId);
 
+    }
+    [ClientRpc]
+    public void RpcSetSteamId(CSteamID steamId)
+    {
+        OnStartClient1(steamId);
     }
 
 
