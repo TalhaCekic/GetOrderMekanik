@@ -47,6 +47,7 @@ public class PlayerControler : NetworkBehaviour
     [SyncVar]
     public string steamName;
 
+    //isim - id çekme
     public void OnStartClient1(CSteamID steamId)
     {
         steamId = SteamUser.GetSteamID();

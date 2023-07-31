@@ -23,14 +23,27 @@ public class PlayerListManager : NetworkBehaviour
     
     public GameObject[] playerClone;
 
+
     private void Update()
     {
+        DontDestroyOnLoad(gameObject);
         playerCount = NetworkServer.connections.Count;
        if(playerCount == 0) return;
         PlayerNames(SteamUser.GetSteamID());
     }
 
+    [Command]
+    void cmdNames(CSteamID steamId)
+    {
+        PlayerNames(SteamUser.GetSteamID());
+        rpcName(SteamUser.GetSteamID());
+    }
 
+    [ClientRpc]
+    void rpcName(CSteamID steamId)
+    {
+        PlayerNames(SteamUser.GetSteamID());
+    }
     public void PlayerNames(CSteamID steamId)
     {
         playerClone = GameObject.FindGameObjectsWithTag("Player");
