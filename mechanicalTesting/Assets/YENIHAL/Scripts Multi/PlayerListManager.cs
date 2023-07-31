@@ -29,7 +29,7 @@ public class PlayerListManager : NetworkBehaviour
         DontDestroyOnLoad(gameObject);
         playerCount = NetworkServer.connections.Count;
        if(playerCount == 0) return;
-        cmdNames(SteamUser.GetSteamID());
+        rpcName(SteamUser.GetSteamID());
     }
 
     [Command]
