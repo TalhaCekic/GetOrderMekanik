@@ -30,7 +30,7 @@ public class PlayerListManager : NetworkBehaviour
         //DontDestroyOnLoad(gameObject);
         playerCount = NetworkServer.connections.Count;
         if (playerCount == 0) return;
-     //   PlayerNames(SteamUser.GetSteamID());
+        //   PlayerNames(SteamUser.GetSteamID());
 
     }
 
@@ -48,9 +48,10 @@ public class PlayerListManager : NetworkBehaviour
     }
     public void PlayerNames(CSteamID steamId)
     {
-        playerClone = GameObject.FindGameObjectsWithTag("Player");
+
         for (int i = 0; i < playerCount; i++)
         {
+            playerClone = GameObject.FindGameObjectsWithTag("Player");
             playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(steamId);
             playerName = playerClone[i].GetComponent<PlayerControler>().steamName;
             Debug.Log(playerName);
