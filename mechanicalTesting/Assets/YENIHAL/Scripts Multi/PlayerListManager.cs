@@ -35,7 +35,7 @@ public class PlayerListManager : NetworkBehaviour
 
     }
 
-    [Command(requiresAuthority = true)]
+    [Command(requiresAuthority = false)]
     void cmdNames(CSteamID steamId)
     {
         PlayerNames(steamId);
