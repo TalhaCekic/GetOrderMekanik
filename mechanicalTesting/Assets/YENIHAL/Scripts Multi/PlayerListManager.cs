@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class PlayerListManager : NetworkBehaviour
 {
 
-    private string[] playerName;
+    [SyncVar] private string playerName;
 
 
     public TMP_Text[] LobbyNameText;
@@ -51,10 +51,10 @@ public class PlayerListManager : NetworkBehaviour
         for (int i = 0; i < playerCount; i++)
         {
             playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(steamId);
-            playerName[i] = playerClone[i].GetComponent<PlayerControler>().steamName;
+            playerName = playerClone[i].GetComponent<PlayerControler>().steamName;
             Debug.Log(playerName[i]);
             LobbyNameText[i].gameObject.SetActive(true);
-            LobbyNameText[i].text = playerName[i];
+            LobbyNameText[i].text = playerName;
 
         }
     }
