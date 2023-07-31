@@ -35,11 +35,11 @@ public class PlayerListManager : NetworkBehaviour
 
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     void cmdNames(CSteamID steamId)
     {
-      //  PlayerNames(SteamUser.GetSteamID());
-        rpcName(SteamUser.GetSteamID());
+        PlayerNames(steamId);
+        rpcName(steamId);
     }
 
     [ClientRpc]
