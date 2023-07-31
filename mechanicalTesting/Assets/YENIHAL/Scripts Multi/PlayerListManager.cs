@@ -8,19 +8,19 @@ using UnityEngine.UI;
 
 public class PlayerListManager : NetworkBehaviour
 {
-   
+
     private string[] playerName;
 
-    
+
     public TMP_Text[] LobbyNameText;
 
     [SyncVar]
     public int playerCount = 0;
 
-  
-  public  PlayerControler playerControler;
 
-    
+    // public  PlayerControler playerControler;
+
+
     public GameObject[] playerClone;
 
 
@@ -28,30 +28,31 @@ public class PlayerListManager : NetworkBehaviour
     {
         DontDestroyOnLoad(gameObject);
         playerCount = NetworkServer.connections.Count;
-       if(playerCount == 0) return;
-        cmdNames(SteamUser.GetSteamID());
+        if (playerCount == 0) return;
+        PlayerNames(SteamUser.GetSteamID());
+
     }
 
-    [Command]
-    void cmdNames(CSteamID steamId)
-    {
-        PlayerNames(SteamUser.GetSteamID());
-        rpcName(SteamUser.GetSteamID());
-    }
+    //[Command]
+    //void cmdNames(CSteamID steamId)
+    //{
+    //    PlayerNames(SteamUser.GetSteamID());
+    //    rpcName(SteamUser.GetSteamID());
+    //}
 
-    [ClientRpc]
-    void rpcName(CSteamID steamId)
-    {
-        PlayerNames(SteamUser.GetSteamID());
-    }
+    //[ClientRpc]
+    //void rpcName(CSteamID steamId)
+    //{
+    //    PlayerNames(SteamUser.GetSteamID());
+    //}
     public void PlayerNames(CSteamID steamId)
     {
         playerClone = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < playerCount; i++)
         {
-
             playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(steamId);
             playerName[i] = playerClone[i].GetComponent<PlayerControler>().steamName;
+            Debug.Log(playerName[i]);
             LobbyNameText[i].gameObject.SetActive(true);
             LobbyNameText[i].text = playerName[i];
 
