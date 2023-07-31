@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class PlayerListManager : NetworkBehaviour
 {
-    [SyncVar]
-    private string playerName;
+   
+    private string[] playerName;
 
     
     public TMP_Text[] LobbyNameText;
@@ -29,7 +29,7 @@ public class PlayerListManager : NetworkBehaviour
         DontDestroyOnLoad(gameObject);
         playerCount = NetworkServer.connections.Count;
        if(playerCount == 0) return;
-        rpcName(SteamUser.GetSteamID());
+        cmdNames(SteamUser.GetSteamID());
     }
 
     [Command]
@@ -51,9 +51,9 @@ public class PlayerListManager : NetworkBehaviour
         {
 
             playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(steamId);
-            playerName = playerClone[i].GetComponent<PlayerControler>().steamName;
+            playerName[i] = playerClone[i].GetComponent<PlayerControler>().steamName;
             LobbyNameText[i].gameObject.SetActive(true);
-            LobbyNameText[i].text = playerName;
+            LobbyNameText[i].text = playerName[i];
 
         }
     }
