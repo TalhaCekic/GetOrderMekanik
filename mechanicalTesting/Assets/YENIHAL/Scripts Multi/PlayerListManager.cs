@@ -26,30 +26,32 @@ public class PlayerListManager : NetworkBehaviour
 
     private void Update()
     {
-        cmdNames(SteamUser.GetSteamID());
+        
        // rpcName(SteamUser.GetSteamID());
         //DontDestroyOnLoad(gameObject);
         playerCount = NetworkServer.connections.Count;
         if (playerCount == 0) return;
-     //   PlayerNames(SteamUser.GetSteamID());
-
+        //   PlayerNames(SteamUser.GetSteamID());
+        rpcName(SteamUser.GetSteamID());
     }
 
     [Command(requiresAuthority = false)]
     void cmdNames(CSteamID steamId)
     {
         PlayerNames(steamId);
-        rpcName(steamId);
+        
     }
 
     [ClientRpc]
     void rpcName(CSteamID steamId)
     {
-        PlayerNames(SteamUser.GetSteamID());
+        PlayerNames(steamId);
+        cmdNames(steamId);
     }
     public void PlayerNames(CSteamID steamId)
     {
         playerClone = GameObject.FindGameObjectsWithTag("Player");
+
         for (int i = 0; i < playerCount; i++)
         {
             playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(steamId);
