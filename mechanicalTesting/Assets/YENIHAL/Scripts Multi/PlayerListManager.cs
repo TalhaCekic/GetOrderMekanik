@@ -32,7 +32,7 @@ public class PlayerListManager : NetworkBehaviour
         playerCount = NetworkServer.connections.Count;
         if (playerCount == 0) return;
         //   PlayerNames(SteamUser.GetSteamID());
-        rpcName(SteamUser.GetSteamID());
+       // rpcName(SteamUser.GetSteamID());
     }
 
     [Command(requiresAuthority = false)]
