@@ -52,11 +52,12 @@ public class PlayerListManager : NetworkBehaviour
     {
         playerClone = GameObject.FindGameObjectsWithTag("Player");
 
+
         for (int i = 0; i < playerCount; i++)
         {
             playerClone[i].GetComponent<PlayerControler>().CmdSetSteamId(steamId);
             playerName = playerClone[i].GetComponent<PlayerControler>().steamName;
-            Debug.Log(playerName);
+           // Debug.Log(playerName);
             LobbyNameText[i].gameObject.SetActive(true);
             LobbyNameText[i].text = playerName;
 
