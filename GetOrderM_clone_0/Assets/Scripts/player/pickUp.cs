@@ -116,7 +116,7 @@ public class pickUp : NetworkBehaviour
                         counter.kasaDolu = true;
                         CmdinteractID(0);
                         isWork = true;
-                        counter.smoke.Play();
+                     //   counter.smoke.Play();
                     }
                 }
                 if (ID == 2)
@@ -128,7 +128,7 @@ public class pickUp : NetworkBehaviour
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
-                        counter.smoke.Play();
+                     //   counter.smoke.Play();
                     }
                 }
                 if (ID == 3)
@@ -140,7 +140,7 @@ public class pickUp : NetworkBehaviour
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
-                        counter.smoke.Play();
+                      //  counter.smoke.Play();
                     }
                 }
                 if (ID == 4)
@@ -152,7 +152,7 @@ public class pickUp : NetworkBehaviour
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
-                        counter.smoke.Play();
+                      //  counter.smoke.Play();
                     }
                 }
                 if (ID == 5)
@@ -164,7 +164,7 @@ public class pickUp : NetworkBehaviour
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
-                        counter.smoke.Play();
+                      //  counter.smoke.Play();
                     }
                 }
             }

@@ -26,7 +26,7 @@ public class counter : NetworkBehaviour
     public ParticleSystem smoke;
     public void Start()
     {
-        smoke = GetComponent<ParticleSystem>();
+        //smoke = GetComponent<ParticleSystem>();
     }
     private void Update()
     {
@@ -62,38 +62,45 @@ public class counter : NetworkBehaviour
             {
                 childObject[i].SetActive(false);
             }
+            smoke.Pause();
         }
         if (objectNumber == 1) // kasa
         {
             counterID = 1;
             childObject[1].SetActive(true);
+            smoke.Play();
         }
         if (objectNumber == 2) // anakar
         {
             childObject[2].SetActive(true);
             anaKartDolu = true;
             counterID = 2;
+            smoke.Play();
         }
         if (objectNumber == 3) // CPU
         {
             childObject[3].SetActive(true);
             counterID = 3;
+            smoke.Play();
         }
         if (objectNumber == 4) // ekran kartý
         {
             childObject[4].SetActive(true);
             counterID = 4;
+            smoke.Play();
         }
         if (objectNumber == 5) // ram
         {
             childObject[5].SetActive(true);
             counterID = 5;
+            smoke.Play();
         }
         if (objectNumber == 12)
         {
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             counterID = 12;
+            smoke.Play();
         }
         if (objectNumber == 123)
         {
@@ -101,6 +108,7 @@ public class counter : NetworkBehaviour
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
             counterID = 123;
+            smoke.Play();
         }
         if (objectNumber == 124)
         {
