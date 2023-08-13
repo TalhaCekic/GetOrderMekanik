@@ -34,6 +34,7 @@ public class PlayerControler : NetworkBehaviour
 
     private bool isSprint = false;
 
+
     public bool LoadScene = false;
 
     public GameObject hud;
@@ -41,6 +42,7 @@ public class PlayerControler : NetworkBehaviour
     public pickUp PickUp;
 
     private bool isWalking = false;
+    private bool isFall=false;
     private float fallCheckInterval = 1.0f;  // Her 1 saniyede bir kontrol etmek için
     private float nextFallCheckTime = 0.0f;
 
@@ -82,10 +84,11 @@ public class PlayerControler : NetworkBehaviour
     {
         if (!isLocalPlayer) return;
         anim.SetFloat("Speed", currentSpeed / speedd); // animasyonu kontrol etsin
-        if (!PickUp.isWork)
+        if (!PickUp.isWork && isFall ==false)
         {
             InputRotation();
             Move();
+            Debug.Log("hareket ediyo ");
             // Karakter yürüyorsa ve þu anki zaman, sonraki kontrol zamanýndan büyük veya eþitse
             if (isWalking && Time.time >= nextFallCheckTime)
             {
@@ -107,19 +110,29 @@ public class PlayerControler : NetworkBehaviour
         float randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
         Debug.Log(randomValue);
 
-        if (randomValue < 0.4f)  // %5 þansa eþit
+        if (randomValue < 0.1f)  // %5 þansa eþit
         {
+            isFall = true;
             FallDown();
         }
+
     }
     void FallDown()
     {
         // Karakterin düþme iþlevselliði burada gerçekleþtirilir.
-        anim.SetTrigger("Fall");
-        
 
+        anim.SetTrigger("Fall");
+        StartCoroutine(nameof(Animation));
 
         Debug.Log("Karakter düþtü!");
+       
+
+    }
+
+    IEnumerator Animation()
+    {
+        yield return new WaitForSeconds(6.01f);
+        isFall = false;
     }
 
 
