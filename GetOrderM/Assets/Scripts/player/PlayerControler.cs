@@ -41,10 +41,10 @@ public class PlayerControler : NetworkBehaviour
 
     public pickUp PickUp;
 
-    private bool isWalking = false;
-    private bool isFall=false;
-    private float fallCheckInterval = 1.0f;  // Her 1 saniyede bir kontrol etmek için
-    private float nextFallCheckTime = 0.0f;
+   [SyncVar] private bool isWalking = false;
+    [SyncVar] private bool isFall=false;
+    [SyncVar] private float fallCheckInterval = 1.0f;  // Her 1 saniyede bir kontrol etmek için
+    [SyncVar] private float nextFallCheckTime = 0.0f;
 
     private void Awake()
     {
