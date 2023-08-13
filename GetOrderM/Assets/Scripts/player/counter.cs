@@ -24,6 +24,8 @@ public class counter : NetworkBehaviour
     public bool notCombine;
 
     public ParticleSystem smoke;
+    public ParticleSystem affix;
+
     public void Start()
     {
         //smoke = GetComponent<ParticleSystem>();

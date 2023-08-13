@@ -109,79 +109,105 @@ public class pickUp : NetworkBehaviour
                 float value = counter.counterID;
                 if (ID == 1)
                 {
-                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 23 || counter.counterID == 24 || counter.counterID == 234 || counter.counterID == 2345) //masa boþsa
+                    if ( counter.counterID == 2 || counter.counterID == 23 || counter.counterID == 24 || counter.counterID == 234 || counter.counterID == 2345 || counter.counterID != 12345) //masa boþsa
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.kasaDolu = true;
+                        CmdinteractID(0);
+                        isWork = true; 
+                        counter.smoke.Play();
+                    }
+                    if (counter.counterID == 0)
                     {
                         ID = 0;
                         handFull = false;
                         counter.kasaDolu = true;
                         CmdinteractID(0);
                         isWork = true;
-                        if (counter.counterID != 0)
-                        {
-                            counter.smoke.Play();
-                        }
                     }
                 }
                 if (ID == 2)
                 {
-                    if (counter.counterID == 0 || counter.counterID == 1 || counter.counterID == 3 || counter.counterID == 4 || counter.counterID == 5)
+                    if ( counter.counterID == 1 || counter.counterID == 3 || counter.counterID == 4 || counter.counterID == 5 || counter.counterID != 12345)
                     {
                         ID = 0;
                         counter.anaKartDolu = true;
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
-                        if (counter.counterID != 0)
-                        {
-                            counter.smoke.Play();
-                        }
+                        counter.smoke.Play();
+                    }
+                    if (counter.counterID == 0)
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.anaKartDolu = true;
+                        CmdinteractID(0);
+                        isWork = true;
                     }
                 }
                 if (ID == 3)
                 {
-                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 124 || counter.counterID == 125 || counter.counterID == 1245)
+                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 124 || counter.counterID == 125 || counter.counterID == 1245 || counter.counterID != 12345)
                     {
                         ID = 0;
                         counter.cpuDolu = true;
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
-                        if (counter.counterID != 0)
-                        {
-                            counter.smoke.Play();
-                        }
+                        counter.smoke.Play();
+                    }
+                    if (counter.counterID == 0)
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.cpuDolu = true;
+                        CmdinteractID(0);
+                        isWork = true;
                     }
                 }
                 if (ID == 4)
                 {
-                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 125 || counter.counterID == 1235)
+                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 125 || counter.counterID == 1235 || counter.counterID != 12345)
                     {
                         ID = 0;
                         counter.ekranKartýDolu = true;
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
-                        if (counter.counterID != 0)
-                        {
-                            counter.smoke.Play();
-                        }
+                        counter.smoke.Play();
+                    }
+                    if (counter.counterID == 0)
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.ekranKartýDolu = true;
+                        CmdinteractID(0);
+                        isWork = true;
                     }
                 }
                 if (ID == 5)
                 {
-                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 124 || counter.counterID == 1234)
+                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 124 || counter.counterID == 1234 || counter.counterID != 12345)
                     {
                         ID = 0;
                         counter.ramDolu = true;
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
-                        if (counter.counterID != 0)
-                        {
-                            counter.smoke.Play();
-                        }
+                        counter.smoke.Play();
+                    }
+                    if (counter.counterID == 0)
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.ramDolu = true;
+                        CmdinteractID(0);
+                        isWork = true;
                     }
                 }
+             
             }
             if (hit.collider.gameObject.TryGetComponent<counter>(out var counter2) && handFull == false && retakeDelay <= 0)
             {
@@ -332,6 +358,36 @@ public class pickUp : NetworkBehaviour
                 handFull = true;
             }
         }
+        //geri obje býrakmak;
+        //if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask) && retakeDelay <= 0)
+        //{
+        //    float id = hit.transform.GetComponent<itemID>().ItemID;
+        //    if (id == 1 && handFull)
+        //    {
+        //        CmdinteractID(0);
+        //        handFull = false;
+        //    }
+        //    if (id == 2 && handFull == false)
+        //    {
+        //        CmdinteractID(2);
+        //        handFull = true;
+        //    }
+        //    if (id == 3 && handFull == false)
+        //    {
+        //        CmdinteractID(3);
+        //        handFull = true;
+        //    }
+        //    if (id == 4 && handFull == false)
+        //    {
+        //        CmdinteractID(4);
+        //        handFull = true;
+        //    }
+        //    if (id == 5 && handFull == false)
+        //    {
+        //        CmdinteractID(5);
+        //        handFull = true;
+        //    }
+        //}
     }
     [Command]
     public void CmdinteractID(int objectNumber)
