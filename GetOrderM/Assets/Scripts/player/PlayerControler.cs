@@ -94,6 +94,12 @@ public class PlayerControler : NetworkBehaviour
             }
         }
 
+        if (movement.magnitude <= 0)
+        {
+            isWalking = false;
+            Debug.Log(isWalking);
+        }
+
     }
 
     private void CheckForRandomFall()
@@ -101,7 +107,7 @@ public class PlayerControler : NetworkBehaviour
         float randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
         Debug.Log(randomValue);
 
-        if (randomValue < 0.05f)  // %5 þansa eþit
+        if (randomValue < 0.4f)  // %5 þansa eþit
         {
             FallDown();
         }
@@ -109,15 +115,13 @@ public class PlayerControler : NetworkBehaviour
     void FallDown()
     {
         // Karakterin düþme iþlevselliði burada gerçekleþtirilir.
-        // Örneðin bir animasyon tetikleyebilir veya fiziksel bir tepki uygulayabilirsiniz.
+        anim.SetTrigger("Fall");
+        
+
+
         Debug.Log("Karakter düþtü!");
     }
 
-
-    public void StopWalking()
-    {
-        isWalking = false;
-    }
 
     void InputRotation()
     {
