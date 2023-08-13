@@ -40,6 +40,10 @@ public class PlayerControler : NetworkBehaviour
 
     public pickUp PickUp;
 
+    private bool isWalking = false;
+    private float fallCheckInterval = 1.0f;  // Her 1 saniyede bir kontrol etmek için
+    private float nextFallCheckTime = 0.0f;
+
     private void Awake()
     {
         // if (!isLocalPlayer) return;
@@ -82,8 +86,39 @@ public class PlayerControler : NetworkBehaviour
         {
             InputRotation();
             Move();
+            // Karakter yürüyorsa ve þu anki zaman, sonraki kontrol zamanýndan büyük veya eþitse
+            if (isWalking && Time.time >= nextFallCheckTime)
+            {
+                CheckForRandomFall();
+                nextFallCheckTime = Time.time + fallCheckInterval;  // Sonraki kontrol için zamaný ayarla
+            }
+        }
+
+    }
+
+    private void CheckForRandomFall()
+    {
+        float randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
+        Debug.Log(randomValue);
+
+        if (randomValue < 0.05f)  // %5 þansa eþit
+        {
+            FallDown();
         }
     }
+    void FallDown()
+    {
+        // Karakterin düþme iþlevselliði burada gerçekleþtirilir.
+        // Örneðin bir animasyon tetikleyebilir veya fiziksel bir tepki uygulayabilirsiniz.
+        Debug.Log("Karakter düþtü!");
+    }
+
+
+    public void StopWalking()
+    {
+        isWalking = false;
+    }
+
     void InputRotation()
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -96,6 +131,7 @@ public class PlayerControler : NetworkBehaviour
     }
     void Move()
     {
+
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         movement.Normalize();
 
@@ -125,6 +161,8 @@ public class PlayerControler : NetworkBehaviour
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
         anim.SetFloat("Speed", currentSpeed / speedd);
+        isWalking = true;
+        
 
     }
     public void sprint()
