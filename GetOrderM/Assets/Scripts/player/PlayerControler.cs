@@ -44,9 +44,12 @@ public class PlayerControler : NetworkBehaviour
 
     [SyncVar] private bool isWalking = false;
     [SyncVar] private bool isFall = false;
-    [SyncVar] private float fallDelay = 6f;
+    [SyncVar] private bool animationCompleted = false;
     [SyncVar] private float fallCheckInterval = 1.0f;  // Her 1 saniyede bir kontrol etmek için
     [SyncVar] private float nextFallCheckTime = 0.0f;
+   [SyncVar] private float totalAnimationTime = 4.8f; // 1.5 (düþme) + 6.0 (ayaða kalkma) = 7.5 saniye
+    [SyncVar] private float elapsedTime = 0f;
+    [SyncVar] private bool animationsStarted = false;
 
     private void Awake()
     {
@@ -86,90 +89,72 @@ public class PlayerControler : NetworkBehaviour
     {
         if (!isLocalPlayer) return;
 
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         anim.SetFloat("Speed", 0); // animasyonu kontrol etsin
-        anim.SetBool("Fall", isFall);
         if (!PickUp.isWork && isFall == false)
         {
             InputRotation();
             Move();
-            Debug.Log("hareket ediyo ");
+            // Debug.Log("hareket ediyo ");
             // Karakter yürüyorsa ve þu anki zaman, sonraki kontrol zamanýndan büyük veya eþitse
-        }
-        else
-        {
             if (isWalking && Time.time >= nextFallCheckTime)
             {
-                //if (isServer)
-                //{
-                //    RpcCheckForRandomFall();
-                //}
-                //else
-                //{
-                //    CmdCheckForRandomFall();
-                //}
+
                 CheckForRandomFall();
                 nextFallCheckTime = Time.time + fallCheckInterval;  // Sonraki kontrol için zamaný ayarla
+
+            }
+          
+        }
+        if (animationsStarted == true)
+        {
+            elapsedTime += Time.deltaTime;
+            Debug.Log(elapsedTime);
+            if (elapsedTime >= totalAnimationTime)
+            {
+                isFall = false;
+                Debug.Log("Animasyon bitti!");
+                elapsedTime = 0;
+                animationsStarted = false;
+
             }
         }
 
     }
 
-    //[Command]
-    //public void CmdCheckForRandomFall()
-    //{
-    //    CheckForRandomFall();
-    //    RpcCheckForRandomFall();
-    //}
-    //[ClientRpc]
-    //public void RpcCheckForRandomFall()
-    //{
-    //    CheckForRandomFall();
-    //}
+
     private void CheckForRandomFall()
     {
+        
         float randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
-        //Debug.Log(randomValue);
-        Debug.Log(isFall);
+       Debug.Log(randomValue);
 
         if (randomValue < 0.1f)  // %5 þansa eþit
         {
-            FallDown();
-            //if (isServer)
-            //{
-            //    RpcFallDown();
-            //}
-            //else
-            //{
-            //    CmdFallDown();
-            //}
+            isFall = true;
+            anim.SetTrigger("fall");
+            animationsStarted = true;
+            Debug.Log("Karakter düþtü!");
         }
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("fall") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Getup"))
-        {
-
-        }
+ 
     }
-    //[Command] public void CmdFallDown()
-    //{
-    //    FallDown();
-    //    RpcFallDown();
-    //}
-    //[ClientRpc] public void RpcFallDown()
-    //{
-    //    FallDown();
-    //}
+
     void FallDown()
     {
+
         // Karakterin düþme iþlevselliði burada gerçekleþtirilir.
-        //StartCoroutine(nameof(Animation));
-        isFall = true;
+        anim.SetTrigger("fall");
+       animationsStarted = true;
         Debug.Log("Karakter düþtü!");
+
+        if (elapsedTime >= totalAnimationTime)
+        {
+            isFall = false;
+            Debug.Log("Animasyon bitti!");
+        }
+
+
     }
-    //IEnumerator Animation()
-    //{
-    //    yield return new WaitForSeconds(2f);
-    //    isFall = false;
-    //}
 
 
     void InputRotation()
@@ -214,8 +199,15 @@ public class PlayerControler : NetworkBehaviour
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
         anim.SetFloat("Speed", currentSpeed / speedd);
-        isWalking = true;
-
+       // isWalking = true;
+        if (movement.magnitude <= 0f)
+        {
+            isWalking = false;
+        }
+        else
+        {
+            isWalking = true;
+        }
 
     }
     public void sprint()
