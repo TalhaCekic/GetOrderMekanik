@@ -118,13 +118,14 @@ public class pickUp : NetworkBehaviour
                         isWork = true; 
                         counter.smoke.Play();
                     }
-                    if (counter.counterID == 0)
+                   else if (counter.counterID == 0)
                     {
                         ID = 0;
                         handFull = false;
                         counter.kasaDolu = true;
                         CmdinteractID(0);
                         isWork = true;
+                        counter.smoke.Stop();
                     }
                 }
                 if (ID == 2)
@@ -138,13 +139,14 @@ public class pickUp : NetworkBehaviour
                         isWork = true;
                         counter.smoke.Play();
                     }
-                    if (counter.counterID == 0)
+                    else if (counter.counterID == 0)
                     {
                         ID = 0;
                         handFull = false;
                         counter.anaKartDolu = true;
                         CmdinteractID(0);
                         isWork = true;
+                        counter.smoke.Stop();
                     }
                 }
                 if (ID == 3)
@@ -164,6 +166,7 @@ public class pickUp : NetworkBehaviour
                         handFull = false;
                         counter.cpuDolu = true;
                         CmdinteractID(0);
+                        counter.smoke.Stop();
                         isWork = true;
                     }
                 }
@@ -312,7 +315,7 @@ public class pickUp : NetworkBehaviour
                         counter.ramDolu = false;
                         ID = 1235;
                         handFull = true;
-                        CmdinteractID(135);
+                        CmdinteractID(1235);
                     }
                     if (counter.counterID == 12345)
                     {

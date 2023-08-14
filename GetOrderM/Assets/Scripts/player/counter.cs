@@ -110,7 +110,7 @@ public class counter : NetworkBehaviour
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
             counterID = 123;
-            smoke.Play();
+           // smoke.Play();
         }
         if (objectNumber == 124)
         {

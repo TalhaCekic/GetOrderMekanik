@@ -137,7 +137,7 @@ public class PlayerControler : NetworkBehaviour
         randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
         Debug.Log(randomValue);
 
-        if (randomValue < 0.1f)  // %5 þansa eþit
+        if (randomValue < 0.05f)  // %5 þansa eþit
         {
             isFall = true;
             CmdSetAnimation(animationName);
@@ -150,12 +150,12 @@ public class PlayerControler : NetworkBehaviour
     [Command]
     private void CmdSetAnimation(string animationName)
     {
-        // Animasyonu sunucuda güncelle
+        
         currentAnimation = animationName;
         OnAnimationChanged(currentAnimation);
     }
 
-    // SyncVar hook fonksiyonu
+ 
     [ClientRpc]
     private void OnAnimationChanged(string newAnimation)
     {
