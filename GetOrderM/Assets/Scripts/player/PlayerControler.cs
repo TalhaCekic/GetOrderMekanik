@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 using Mirror;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Telepathy;
 
 public class PlayerControler : NetworkBehaviour
 {
@@ -83,7 +84,8 @@ public class PlayerControler : NetworkBehaviour
     private void Update()
     {
         if (!isLocalPlayer) return;
-        anim.SetFloat("Speed", currentSpeed / speedd); // animasyonu kontrol etsin
+        anim.SetFloat("Speed", 0); // animasyonu kontrol etsin
+
         if (!PickUp.isWork && isFall ==false)
         {
             InputRotation();
@@ -92,7 +94,14 @@ public class PlayerControler : NetworkBehaviour
             // Karakter yürüyorsa ve þu anki zaman, sonraki kontrol zamanýndan büyük veya eþitse
             if (isWalking && Time.time >= nextFallCheckTime)
             {
-                CheckForRandomFall();
+                if (isServer)
+                {
+                    RpcCheckForRandomFall();
+                }
+                else
+                {
+                    CmdCheckForRandomFall();
+                }
                 nextFallCheckTime = Time.time + fallCheckInterval;  // Sonraki kontrol için zamaný ayarla
             }
         }
@@ -105,6 +114,15 @@ public class PlayerControler : NetworkBehaviour
 
     }
 
+    [Command] public void CmdCheckForRandomFall()
+    {
+        CheckForRandomFall();
+        RpcCheckForRandomFall();
+    }
+    [ClientRpc] public void RpcCheckForRandomFall()
+    {
+        CheckForRandomFall();
+    }
     private void CheckForRandomFall()
     {
         float randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
