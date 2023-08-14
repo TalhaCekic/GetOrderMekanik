@@ -1853,7 +1853,9 @@ MonoBehaviour:
   lettuceogonder: 0
   lettuceSlicegonder: 0
   handFull: 0
+  isWork: 0
   retakeDelay: 0.5
+  workDelay: 1
 --- !u!143 &1099904854959359831
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1914,6 +1916,7 @@ MonoBehaviour:
   maxSpeed: 5
   LoadScene: 0
   hud: {fileID: 6666224493045225533}
+  PickUp: {fileID: 0}
 --- !u!114 &3316455827567841758
 MonoBehaviour:
   m_ObjectHideFlags: 0

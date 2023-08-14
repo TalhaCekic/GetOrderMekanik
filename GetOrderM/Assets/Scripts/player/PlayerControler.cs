@@ -50,6 +50,10 @@ public class PlayerControler : NetworkBehaviour
    [SyncVar] private float totalAnimationTime = 4.8f; // 1.5 (düþme) + 6.0 (ayaða kalkma) = 7.5 saniye
     [SyncVar] private float elapsedTime = 0f;
     [SyncVar] private bool animationsStarted = false;
+    [SyncVar] private float randomValue;
+
+    [SyncVar]
+    private string currentAnimation = "";
 
     private void Awake()
     {
@@ -87,8 +91,8 @@ public class PlayerControler : NetworkBehaviour
 
     private void Update()
     {
+     
         if (!isLocalPlayer) return;
-
         //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         anim.SetFloat("Speed", 0); // animasyonu kontrol etsin
         if (!PickUp.isWork && isFall == false)
@@ -100,11 +104,11 @@ public class PlayerControler : NetworkBehaviour
             if (isWalking && Time.time >= nextFallCheckTime)
             {
 
-                CheckForRandomFall();
+                CheckForRandomFall("fall");
                 nextFallCheckTime = Time.time + fallCheckInterval;  // Sonraki kontrol için zamaný ayarla
-
+                
             }
-          
+
         }
         if (animationsStarted == true)
         {
@@ -112,49 +116,54 @@ public class PlayerControler : NetworkBehaviour
             Debug.Log(elapsedTime);
             if (elapsedTime >= totalAnimationTime)
             {
+
                 isFall = false;
                 Debug.Log("Animasyon bitti!");
                 elapsedTime = 0;
+               
                 animationsStarted = false;
 
             }
         }
 
+
     }
 
 
-    private void CheckForRandomFall()
+
+    public void CheckForRandomFall(string animationName)
     {
-        
-        float randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
-       Debug.Log(randomValue);
+        if (!isLocalPlayer) return;
+        randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
+        Debug.Log(randomValue);
 
         if (randomValue < 0.1f)  // %5 þansa eþit
         {
             isFall = true;
-            anim.SetTrigger("fall");
+            CmdSetAnimation(animationName);
             animationsStarted = true;
             Debug.Log("Karakter düþtü!");
         }
- 
+
     }
 
-    void FallDown()
+    [Command]
+    private void CmdSetAnimation(string animationName)
     {
-
-        // Karakterin düþme iþlevselliði burada gerçekleþtirilir.
-        anim.SetTrigger("fall");
-       animationsStarted = true;
-        Debug.Log("Karakter düþtü!");
-
-        if (elapsedTime >= totalAnimationTime)
-        {
-            isFall = false;
-            Debug.Log("Animasyon bitti!");
-        }
-
-
+        // Animasyonu sunucuda güncelle
+        currentAnimation = animationName;
+        OnAnimationChanged(currentAnimation);
     }
+
+    // SyncVar hook fonksiyonu
+    [ClientRpc]
+    private void OnAnimationChanged(string newAnimation)
+    {
+        anim.SetTrigger(newAnimation);
+       
+    }
+
+
 
 
     void InputRotation()
@@ -167,6 +176,9 @@ public class PlayerControler : NetworkBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
         }
     }
+
+
+
     void Move()
     {
 
