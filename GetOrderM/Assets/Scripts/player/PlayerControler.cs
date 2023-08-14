@@ -106,11 +106,11 @@ public class PlayerControler : NetworkBehaviour
             }
         }
 
-        if (movement.magnitude <= 0)
-        {
-            isWalking = false;
-            Debug.Log(isWalking);
-        }
+        //if (movement.magnitude <= 0)
+        //{
+        //    isWalking = false;
+        //    Debug.Log(isWalking);
+        //}
 
     }
 
