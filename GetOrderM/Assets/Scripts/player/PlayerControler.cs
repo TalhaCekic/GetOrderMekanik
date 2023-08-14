@@ -42,8 +42,9 @@ public class PlayerControler : NetworkBehaviour
 
     public pickUp PickUp;
 
-   [SyncVar] private bool isWalking = false;
-    [SyncVar] private bool isFall=false;
+    [SyncVar] private bool isWalking = false;
+    [SyncVar] private bool isFall = false;
+    [SyncVar] private float fallDelay = 6f;
     [SyncVar] private float fallCheckInterval = 1.0f;  // Her 1 saniyede bir kontrol etmek için
     [SyncVar] private float nextFallCheckTime = 0.0f;
 
@@ -84,74 +85,91 @@ public class PlayerControler : NetworkBehaviour
     private void Update()
     {
         if (!isLocalPlayer) return;
-        anim.SetFloat("Speed", 0); // animasyonu kontrol etsin
 
-        if (!PickUp.isWork && isFall ==false)
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        anim.SetFloat("Speed", 0); // animasyonu kontrol etsin
+        anim.SetBool("Fall", isFall);
+        if (!PickUp.isWork && isFall == false)
         {
             InputRotation();
             Move();
             Debug.Log("hareket ediyo ");
             // Karakter yürüyorsa ve þu anki zaman, sonraki kontrol zamanýndan büyük veya eþitse
+        }
+        else
+        {
             if (isWalking && Time.time >= nextFallCheckTime)
             {
-                if (isServer)
-                {
-                    RpcCheckForRandomFall();
-                }
-                else
-                {
-                    CmdCheckForRandomFall();
-                }
+                //if (isServer)
+                //{
+                //    RpcCheckForRandomFall();
+                //}
+                //else
+                //{
+                //    CmdCheckForRandomFall();
+                //}
+                CheckForRandomFall();
                 nextFallCheckTime = Time.time + fallCheckInterval;  // Sonraki kontrol için zamaný ayarla
             }
         }
 
-        //if (movement.magnitude <= 0)
-        //{
-        //    isWalking = false;
-        //    Debug.Log(isWalking);
-        //}
-
     }
 
-    [Command] public void CmdCheckForRandomFall()
-    {
-        CheckForRandomFall();
-        RpcCheckForRandomFall();
-    }
-    [ClientRpc] public void RpcCheckForRandomFall()
-    {
-        CheckForRandomFall();
-    }
+    //[Command]
+    //public void CmdCheckForRandomFall()
+    //{
+    //    CheckForRandomFall();
+    //    RpcCheckForRandomFall();
+    //}
+    //[ClientRpc]
+    //public void RpcCheckForRandomFall()
+    //{
+    //    CheckForRandomFall();
+    //}
     private void CheckForRandomFall()
     {
         float randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
-        Debug.Log(randomValue);
+        //Debug.Log(randomValue);
+        Debug.Log(isFall);
 
         if (randomValue < 0.1f)  // %5 þansa eþit
         {
-            isFall = true;
             FallDown();
+            //if (isServer)
+            //{
+            //    RpcFallDown();
+            //}
+            //else
+            //{
+            //    CmdFallDown();
+            //}
         }
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("fall") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Getup"))
+        {
 
+        }
     }
+    //[Command] public void CmdFallDown()
+    //{
+    //    FallDown();
+    //    RpcFallDown();
+    //}
+    //[ClientRpc] public void RpcFallDown()
+    //{
+    //    FallDown();
+    //}
     void FallDown()
     {
         // Karakterin düþme iþlevselliði burada gerçekleþtirilir.
-
-        anim.SetTrigger("Fall");
-        StartCoroutine(nameof(Animation));
-
+        //StartCoroutine(nameof(Animation));
+        isFall = true;
         Debug.Log("Karakter düþtü!");
-       
-
     }
-
-    IEnumerator Animation()
-    {
-        yield return new WaitForSeconds(6.01f);
-        isFall = false;
-    }
+    //IEnumerator Animation()
+    //{
+    //    yield return new WaitForSeconds(2f);
+    //    isFall = false;
+    //}
 
 
     void InputRotation()
@@ -197,7 +215,7 @@ public class PlayerControler : NetworkBehaviour
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
         anim.SetFloat("Speed", currentSpeed / speedd);
         isWalking = true;
-        
+
 
     }
     public void sprint()
