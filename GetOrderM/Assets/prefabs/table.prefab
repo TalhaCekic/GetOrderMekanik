@@ -31525,7 +31525,7 @@ Transform:
   - {fileID: 4118128894645535925}
   - {fileID: 7405243934652316780}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!33 &6621318931618555336
 MeshFilter:
@@ -31615,6 +31615,7 @@ MonoBehaviour:
   counterID: 0
   notCombine: 0
   smoke: {fileID: 7405243934652316783}
+  affix: {fileID: 0}
 --- !u!114 &5853437298752725191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34381,7 +34382,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -39279,7 +39280,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -44177,7 +44178,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -49075,7 +49076,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
