@@ -93,60 +93,42 @@ public class PlayerControler : NetworkBehaviour
     {
      
         if (!isLocalPlayer) return;
-        //AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
         anim.SetFloat("Speed", 0); // animasyonu kontrol etsin
         if (!PickUp.isWork && isFall == false)
         {
             InputRotation();
             Move();
-            // Debug.Log("hareket ediyo ");
+
             // Karakter yürüyorsa ve þu anki zaman, sonraki kontrol zamanýndan büyük veya eþitse
             if (isWalking && Time.time >= nextFallCheckTime)
             {
-
                 CheckForRandomFall("fall");
-                nextFallCheckTime = Time.time + fallCheckInterval;  // Sonraki kontrol için zamaný ayarla
-                
+                nextFallCheckTime = Time.time + fallCheckInterval;  // Sonraki kontrol için zamaný ayarla  
             }
-
         }
         if (animationsStarted == true)
         {
             elapsedTime += Time.deltaTime;
-            Debug.Log(elapsedTime);
             if (elapsedTime >= totalAnimationTime)
             {
-
                 isFall = false;
-                Debug.Log("Animasyon bitti!");
-                elapsedTime = 0;
-               
+                elapsedTime = 0;  
                 animationsStarted = false;
-
             }
         }
-
-
     }
-
-
-
     public void CheckForRandomFall(string animationName)
     {
         if (!isLocalPlayer) return;
         randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
-        Debug.Log(randomValue);
 
         if (randomValue < 0.05f)  // %5 þansa eþit
         {
             isFall = true;
             CmdSetAnimation(animationName);
             animationsStarted = true;
-            Debug.Log("Karakter düþtü!");
         }
-
     }
-
     [Command]
     private void CmdSetAnimation(string animationName)
     {
@@ -154,18 +136,12 @@ public class PlayerControler : NetworkBehaviour
         currentAnimation = animationName;
         OnAnimationChanged(currentAnimation);
     }
-
- 
     [ClientRpc]
     private void OnAnimationChanged(string newAnimation)
     {
         anim.SetTrigger(newAnimation);
        
     }
-
-
-
-
     void InputRotation()
     {
         input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -176,8 +152,6 @@ public class PlayerControler : NetworkBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
         }
     }
-
-
 
     void Move()
     {

@@ -32,14 +32,16 @@ public class counter : NetworkBehaviour
     }
     private void Update()
     {
-        if (isServer)
-        {
-            RpcýdCheck();
-        }
-        else
-        {
-            cmdýdCheck();
-        }
+        //if (isServer)
+        //{
+        //    RpcýdCheck();
+        //}
+        //else if (isClient)
+        //{
+        //    cmdýdCheck();
+        //}
+     //  OnSetHostVisibility(kasaDolu);
+    
 
     }
     [Command(requiresAuthority = false)]
@@ -55,54 +57,52 @@ public class counter : NetworkBehaviour
     }
     public void interactID(int objectNumber)
     {
-        // counterID = objectNumber;
-        //   print(objectNumber);
-        if (objectNumber == 0 && objectNumber != 1) // boþ
+        if (objectNumber == 0) // boþ
         {
             counterID = 0;
             for (int i = 0; i < childObject.Count; i++)
             {
                 childObject[i].SetActive(false);
             }
-          //  smoke.Pause();
+            //  smoke.Pause();
         }
         if (objectNumber == 1) // kasa
         {
             counterID = 1;
             childObject[1].SetActive(true);
-          //  smoke.Play();
+            //  smoke.Play();
         }
         if (objectNumber == 2) // anakar
         {
             childObject[2].SetActive(true);
             anaKartDolu = true;
             counterID = 2;
-          //  smoke.Play();
+            //  smoke.Play();
         }
         if (objectNumber == 3) // CPU
         {
             childObject[3].SetActive(true);
             counterID = 3;
-          //  smoke.Play();
+            //  smoke.Play();
         }
         if (objectNumber == 4) // ekran kartý
         {
             childObject[4].SetActive(true);
             counterID = 4;
-          //  smoke.Play();
+            //  smoke.Play();
         }
         if (objectNumber == 5) // ram
         {
             childObject[5].SetActive(true);
             counterID = 5;
-          //  smoke.Play();
+            //  smoke.Play();
         }
         if (objectNumber == 12)
         {
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             counterID = 12;
-          //  smoke.Play();
+            //  smoke.Play();
         }
         if (objectNumber == 123)
         {
@@ -110,7 +110,7 @@ public class counter : NetworkBehaviour
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
             counterID = 123;
-           // smoke.Play();
+            // smoke.Play();
         }
         if (objectNumber == 124)
         {
@@ -163,7 +163,7 @@ public class counter : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void cmdýdCheck()
     {
-        // ýdCheck();
+         //ýdCheck();
         RpcýdCheck();
     }
     [ClientRpc]
@@ -176,15 +176,17 @@ public class counter : NetworkBehaviour
         if (isLocalPlayer) return;
         if (!kasaDolu && !anaKartDolu && !cpuDolu && !ekranKartýDolu && !ramDolu)
         {
+            //  RpcinteractID(0);
+
             if (isServer)
             {
                 RpcinteractID(0);
             }
-            else
+            else if (isClient)
             {
                 CmdinteractID(0);
             }
-            // counterID = 0;
+
 
         }
         if (kasaDolu || anaKartDolu || cpuDolu || ekranKartýDolu || ramDolu)
@@ -195,7 +197,7 @@ public class counter : NetworkBehaviour
                 {
                     RpcinteractID(1);
                 }
-                else
+                else if (isClient)
                 {
                     CmdinteractID(1);
                 }

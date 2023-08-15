@@ -74,8 +74,16 @@ public class pickUp : NetworkBehaviour
         if (handFull)
         {
             anim.SetBool("hand", true);
-            retakeDelay = 0.5f;
+
             workDelay = 1f;
+            if (retakeDelay > 0)
+            {
+                retakeDelay -= Time.deltaTime;
+            }
+            if (retakeDelay <= 0)
+            {
+                retakeDelay = 0.5f;
+            }
         }
         else
         {
@@ -109,16 +117,16 @@ public class pickUp : NetworkBehaviour
                 float value = counter.counterID;
                 if (ID == 1)
                 {
-                    if ( counter.counterID == 2 || counter.counterID == 23 || counter.counterID == 24 || counter.counterID == 234 || counter.counterID == 2345 || counter.counterID != 12345) //masa boþsa
+                    if (counter.counterID == 2 || counter.counterID == 23 || counter.counterID == 24 || counter.counterID == 234 || counter.counterID == 2345 || counter.counterID != 12345) //masa boþsa
                     {
                         ID = 0;
                         handFull = false;
                         counter.kasaDolu = true;
                         CmdinteractID(0);
-                        isWork = true; 
+                        isWork = true;
                         counter.smoke.Play();
                     }
-                   else if (counter.counterID == 0)
+                    else if (counter.counterID == 0)
                     {
                         ID = 0;
                         handFull = false;
@@ -130,7 +138,7 @@ public class pickUp : NetworkBehaviour
                 }
                 if (ID == 2)
                 {
-                    if ( counter.counterID == 1 || counter.counterID == 3 || counter.counterID == 4 || counter.counterID == 5 || counter.counterID != 12345)
+                    if (counter.counterID == 1 || counter.counterID == 3 || counter.counterID == 4 || counter.counterID == 5 || counter.counterID != 12345)
                     {
                         ID = 0;
                         counter.anaKartDolu = true;
@@ -210,7 +218,7 @@ public class pickUp : NetworkBehaviour
                         isWork = true;
                     }
                 }
-             
+
             }
             if (hit.collider.gameObject.TryGetComponent<counter>(out var counter2) && handFull == false && retakeDelay <= 0)
             {
@@ -362,33 +370,34 @@ public class pickUp : NetworkBehaviour
             }
         }
         //geri obje býrakmak;
-        //if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask) && retakeDelay <= 0)
+        //if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask) && handFull)
         //{
         //    float id = hit.transform.GetComponent<itemID>().ItemID;
-        //    if (id == 1 && handFull)
+        //    if (id == 1 && ID == 1)
+        //    {
+        //        print("girmezmiisn");
+        //        CmdinteractID(0);
+        //        handFull = false;
+        //    }
+        //    if (id == 2 && ID == 2)
         //    {
         //        CmdinteractID(0);
         //        handFull = false;
         //    }
-        //    if (id == 2 && handFull == false)
+        //    if (id == 3 && ID == 3)
         //    {
-        //        CmdinteractID(2);
-        //        handFull = true;
+        //        CmdinteractID(0);
+        //        handFull = false;
         //    }
-        //    if (id == 3 && handFull == false)
+        //    if (id == 4 && ID == 4)
         //    {
-        //        CmdinteractID(3);
-        //        handFull = true;
+        //        CmdinteractID(0);
+        //        handFull = false;
         //    }
-        //    if (id == 4 && handFull == false)
+        //    if (id == 5 && ID == 5)
         //    {
-        //        CmdinteractID(4);
-        //        handFull = true;
-        //    }
-        //    if (id == 5 && handFull == false)
-        //    {
-        //        CmdinteractID(5);
-        //        handFull = true;
+        //        CmdinteractID(0);
+        //        handFull = false;
         //    }
         //}
     }
