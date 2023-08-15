@@ -1,8 +1,10 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Authentication;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class counter : NetworkBehaviour
 {
@@ -18,7 +20,6 @@ public class counter : NetworkBehaviour
     [SyncVar] public bool cheddarCheeseDolu = false;
 
     public List<GameObject> childObject = new List<GameObject>();
-
     [SyncVar] public int counterID = 0;
 
     public bool notCombine;
@@ -32,22 +33,21 @@ public class counter : NetworkBehaviour
     }
     private void Update()
     {
-        //if (isServer)
-        //{
-        //    RpcýdCheck();
-        //}
-        //else if (isClient)
-        //{
-        //    cmdýdCheck();
-        //}
-     //  OnSetHostVisibility(kasaDolu);
-    
+        if (isServer)
+        {
+            RpcýdCheck();
+        }
+        else if (isClient)
+        {
+            cmdýdCheck();
+        }
 
+       
     }
     [Command(requiresAuthority = false)]
     public void CmdinteractID(int objectNumber)
     {
-        //interactID(objectNumber);
+        interactID(objectNumber);
         RpcinteractID(objectNumber);
     }
     [ClientRpc]
@@ -64,18 +64,17 @@ public class counter : NetworkBehaviour
             {
                 childObject[i].SetActive(false);
             }
-            //  smoke.Pause();
         }
         if (objectNumber == 1) // kasa
         {
+            
             counterID = 1;
             childObject[1].SetActive(true);
-            //  smoke.Play();
         }
         if (objectNumber == 2) // anakar
         {
             childObject[2].SetActive(true);
-            anaKartDolu = true;
+          //  anaKartDolu = true;
             counterID = 2;
             //  smoke.Play();
         }
@@ -163,7 +162,7 @@ public class counter : NetworkBehaviour
     [Command(requiresAuthority = false)]
     void cmdýdCheck()
     {
-         //ýdCheck();
+         ýdCheck();
         RpcýdCheck();
     }
     [ClientRpc]
@@ -177,7 +176,6 @@ public class counter : NetworkBehaviour
         if (!kasaDolu && !anaKartDolu && !cpuDolu && !ekranKartýDolu && !ramDolu)
         {
             //  RpcinteractID(0);
-
             if (isServer)
             {
                 RpcinteractID(0);
@@ -186,8 +184,6 @@ public class counter : NetworkBehaviour
             {
                 CmdinteractID(0);
             }
-
-
         }
         if (kasaDolu || anaKartDolu || cpuDolu || ekranKartýDolu || ramDolu)
         {
@@ -201,7 +197,6 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(1);
                 }
-                counterID = 1;
             }
             if (anaKartDolu)
             {
