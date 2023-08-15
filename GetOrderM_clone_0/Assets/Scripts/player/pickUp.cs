@@ -75,15 +75,8 @@ public class pickUp : NetworkBehaviour
         {
             anim.SetBool("hand", true);
 
+            retakeDelay = 0.5f;
             workDelay = 1f;
-            if (retakeDelay > 0)
-            {
-                retakeDelay -= Time.deltaTime;
-            }
-            if (retakeDelay <= 0)
-            {
-                retakeDelay = 0.5f;
-            }
         }
         else
         {
@@ -121,9 +114,111 @@ public class pickUp : NetworkBehaviour
                     {
                         ID = 0;
                         handFull = false;
-                        bool newTableState = counter.kasaDolu;
-                        counter.kasaDolu = true;
-                       // CmdChangeTableState(newTableState);
+                        counter.CmdSetKasaDolu(true);
+                        CmdinteractID(0);
+                        isWork = true;
+                        counter.smoke.Play();
+                    }
+                    else if (counter.counterID == 0)
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.CmdSetKasaDolu(true);
+                        CmdinteractID(0);
+                        isWork = true;
+                        counter.smoke.Stop();
+                    }
+                }
+                if (ID == 2)
+                {
+                    if (counter.counterID == 1 || counter.counterID == 3 || counter.counterID == 4 || counter.counterID == 5 || counter.counterID != 12345)
+                    {
+                        ID = 0;
+                        counter.CmdSetAnakartDolu(true);
+                        handFull = false;
+                        CmdinteractID(0);
+                        isWork = true;
+                        counter.smoke.Play();
+                    }
+                    else if (counter.counterID == 0)
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.CmdSetAnakartDolu(true);
+                        CmdinteractID(0);
+                        isWork = true;
+                        counter.smoke.Stop();
+                    }
+                }
+                if (ID == 3)
+                {
+                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 124 || counter.counterID == 125 || counter.counterID == 1245 || counter.counterID != 12345)
+                    {
+                        ID = 0;
+                        counter.CmdSetCpuDolu(true);
+                        handFull = false;
+                        CmdinteractID(0);
+                        isWork = true;
+                        counter.smoke.Play();
+                    }
+                    if (counter.counterID == 0)
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.CmdSetCpuDolu(true);
+                        CmdinteractID(0);
+                        counter.smoke.Stop();
+                        isWork = true;
+                    }
+                }
+                if (ID == 4)
+                {
+                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 125 || counter.counterID == 1235 || counter.counterID != 12345)
+                    {
+                        ID = 0;
+                        counter.CmdSetEkranKartýDolu(true);
+                        handFull = false;
+                        CmdinteractID(0);
+                        isWork = true;
+                        counter.smoke.Play();
+                    }
+                    if (counter.counterID == 0)
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.CmdSetEkranKartýDolu(true);
+                        CmdinteractID(0);
+                        isWork = true;
+                    }
+                }
+                if (ID == 5)
+                {
+                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 124 || counter.counterID == 1234 || counter.counterID != 12345)
+                    {
+                        ID = 0;
+                        counter.CmdSetRamDolu(true);
+                        handFull = false;
+                        CmdinteractID(0);
+                        isWork = true;
+                        counter.smoke.Play();
+                    }
+                    if (counter.counterID == 0)
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.CmdSetRamDolu(true);
+                        CmdinteractID(0);
+                        isWork = true;
+                    }
+                }
+            {
+                if (ID == 12)
+                {
+                    if (counter.counterID == 2 || counter.counterID == 23 || counter.counterID == 24 || counter.counterID == 234 || counter.counterID == 2345 || counter.counterID != 12345) //masa boþsa
+                    {
+                        ID = 0;
+                        handFull = false;
+                        counter.CmdSetKasaDolu(true);
                         CmdinteractID(0);
                         isWork = true;
                         counter.smoke.Play();
@@ -143,7 +238,7 @@ public class pickUp : NetworkBehaviour
                     if (counter.counterID == 1 || counter.counterID == 3 || counter.counterID == 4 || counter.counterID == 5 || counter.counterID != 12345)
                     {
                         ID = 0;
-                        counter.anaKartDolu = true;
+                        counter.CmdSetAnakartDolu(true);
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
@@ -164,7 +259,7 @@ public class pickUp : NetworkBehaviour
                     if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 124 || counter.counterID == 125 || counter.counterID == 1245 || counter.counterID != 12345)
                     {
                         ID = 0;
-                        counter.cpuDolu = true;
+                        counter.CmdSetCpuDolu(true);
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
@@ -185,7 +280,7 @@ public class pickUp : NetworkBehaviour
                     if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 125 || counter.counterID == 1235 || counter.counterID != 12345)
                     {
                         ID = 0;
-                        counter.ekranKartýDolu = true;
+                        counter.CmdSetEkranKartýDolu(true);
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
@@ -205,7 +300,7 @@ public class pickUp : NetworkBehaviour
                     if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 124 || counter.counterID == 1234 || counter.counterID != 12345)
                     {
                         ID = 0;
-                        counter.ramDolu = true;
+                        counter.CmdSetRamDolu(true);
                         handFull = false;
                         CmdinteractID(0);
                         isWork = true;
@@ -220,7 +315,6 @@ public class pickUp : NetworkBehaviour
                         isWork = true;
                     }
                 }
-
             }
             if (hit.collider.gameObject.TryGetComponent<counter>(out var counter2) && handFull == false && retakeDelay <= 0)
             {
@@ -229,111 +323,111 @@ public class pickUp : NetworkBehaviour
                 {
                     if (counter.counterID == 1)
                     {
-                        counter.kasaDolu = false;
+                        counter.CmdSetKasaDolu(false);
                         ID = 1;
                         handFull = true;
                         CmdinteractID(1);
                     }
                     if (counter.counterID == 2)
                     {
-                        counter.anaKartDolu = false;
+                        counter.CmdSetAnakartDolu(false);
                         ID = 2;
                         handFull = true;
                         CmdinteractID(2);
                     }
                     if (counter.counterID == 3)
                     {
-                        counter.cpuDolu = false;
+                        counter.CmdSetCpuDolu(false);
                         ID = 3;
                         handFull = true;
                         CmdinteractID(3);
                     }
                     if (counter.counterID == 4)
                     {
-                        counter.ekranKartýDolu = false;
+                        counter.CmdSetEkranKartýDolu(false);
                         ID = 4;
                         handFull = true;
                         CmdinteractID(4);
                     }
                     if (counter.counterID == 5)
                     {
-                        counter.ramDolu = false;
+                        counter.CmdSetRamDolu(false);
                         ID = 5;
                         handFull = true;
                         CmdinteractID(5);
                     }
                     if (counter.counterID == 12)
                     {
-                        counter.kasaDolu = false;
-                        counter.anaKartDolu = false;
+                        counter.CmdSetKasaDolu(false);
+                        counter.CmdSetAnakartDolu(false);
                         ID = 12;
                         handFull = true;
                         CmdinteractID(12);
                     }
                     if (counter.counterID == 123)
                     {
-                        counter.kasaDolu = false;
-                        counter.anaKartDolu = false;
-                        counter.cpuDolu = false;
+                        counter.CmdSetKasaDolu(false);
+                        counter.CmdSetAnakartDolu(false);
+                        counter.CmdSetCpuDolu(false);
                         ID = 123;
                         handFull = true;
                         CmdinteractID(123);
                     }
                     if (counter.counterID == 124)
                     {
-                        counter.kasaDolu = false;
-                        counter.anaKartDolu = false;
-                        counter.ekranKartýDolu = false;
+                        counter.CmdSetKasaDolu(false);
+                        counter.CmdSetAnakartDolu(false);
+                        counter.CmdSetEkranKartýDolu(false); 
                         ID = 124;
                         handFull = true;
                         CmdinteractID(124);
                     }
                     if (counter.counterID == 125)
                     {
-                        counter.kasaDolu = false;
-                        counter.anaKartDolu = false;
-                        counter.ramDolu = false;
+                        counter.CmdSetKasaDolu(false);
+                        counter.CmdSetAnakartDolu(false);
+                        counter.CmdSetRamDolu(false);
                         ID = 125;
                         handFull = true;
                         CmdinteractID(125);
                     }
                     if (counter.counterID == 1234)
                     {
-                        counter.kasaDolu = false;
-                        counter.anaKartDolu = false;
-                        counter.cpuDolu = false;
-                        counter.ekranKartýDolu = false;
+                        counter.CmdSetKasaDolu(false);
+                        counter.CmdSetAnakartDolu(false);
+                        counter.CmdSetCpuDolu(false);
+                        counter.CmdSetEkranKartýDolu(false);
                         ID = 1234;
                         handFull = true;
                         CmdinteractID(1234);
                     }
                     if (counter.counterID == 1245)
                     {
-                        counter.kasaDolu = false;
-                        counter.anaKartDolu = false;
-                        counter.ekranKartýDolu = false;
-                        counter.ramDolu = false;
+                        counter.CmdSetKasaDolu(false);
+                        counter.CmdSetAnakartDolu(false);
+                        counter.CmdSetEkranKartýDolu(false);
+                        counter.CmdSetRamDolu(false);
                         ID = 1245;
                         handFull = true;
                         CmdinteractID(1245);
                     }
                     if (counter.counterID == 1235)
                     {
-                        counter.kasaDolu = false;
-                        counter.anaKartDolu = false;
-                        counter.cpuDolu = false;
-                        counter.ramDolu = false;
+                        counter.CmdSetKasaDolu(false);
+                        counter.CmdSetAnakartDolu(false);
+                        counter.CmdSetCpuDolu(false);
+                        counter.CmdSetRamDolu(false);
                         ID = 1235;
                         handFull = true;
                         CmdinteractID(1235);
                     }
                     if (counter.counterID == 12345)
                     {
-                        counter.kasaDolu = false;
-                        counter.anaKartDolu = false;
-                        counter.cpuDolu = false;
-                        counter.ekranKartýDolu = false;
-                        counter.ramDolu = false;
+                        counter.CmdSetKasaDolu(false);
+                        counter.CmdSetAnakartDolu(false);
+                        counter.CmdSetCpuDolu(false);
+                        counter.CmdSetEkranKartýDolu(false);
+                        counter.CmdSetRamDolu(false);
                         ID = 12345;
                         handFull = true;
                         CmdinteractID(12345);
@@ -514,7 +608,6 @@ public class pickUp : NetworkBehaviour
             childObject[5].SetActive(true);
             ID = 12345;
         }
-
     }
 }
 

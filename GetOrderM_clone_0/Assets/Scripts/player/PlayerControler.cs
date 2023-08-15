@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -122,7 +121,7 @@ public class PlayerControler : NetworkBehaviour
         if (!isLocalPlayer) return;
         randomValue = Random.value;  // 0 ile 1 arasýnda bir deðer döner
 
-        if (randomValue < 0.05f)  // %5 þansa eþit
+        if (randomValue < 0.005f)  // %5 þansa eþit
         {
             isFall = true;
             CmdSetAnimation(animationName);
