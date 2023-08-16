@@ -13,15 +13,17 @@ public class counter : NetworkBehaviour
     [SyncVar] public bool cpuDolu = false;
     [SyncVar] public bool ekranKartýDolu = false;
     [SyncVar] public bool ramDolu = false;
-    [SyncVar] public bool tomatodolu = false;
-    [SyncVar] public bool tomatoSliceDolu = false;
-    [SyncVar] public bool lettucedolu = false;
-    [SyncVar] public bool lettuceSliceDolu = false;
-    [SyncVar] public bool cheddarCheeseDolu = false;
+
+    [SyncVar] public bool BoxKasaDolu = false;
+    [SyncVar] public bool BoxAnakartDolu = false;
+    [SyncVar] public bool BoxCpuDolu = false;
+    [SyncVar] public bool BoxEkranKartýDolu = false;
+    [SyncVar] public bool BoxRamDolu = false;
 
     public List<GameObject> childObject = new List<GameObject>();
+    public List<GameObject> BoxObject = new List<GameObject>();
 
-    [SyncVar] public int counterID = 0;
+    [SyncVar] public float counterID = 0;
 
     public bool notCombine;
 
@@ -44,17 +46,17 @@ public class counter : NetworkBehaviour
         }
     }
     [Command(requiresAuthority = false)]
-    public void CmdinteractID(int objectNumber)
+    public void CmdinteractID(float objectNumber)
     {
         interactID(objectNumber);
         RpcinteractID(objectNumber);
     }
     [ClientRpc]
-    public void RpcinteractID(int objectNumber)
+    public void RpcinteractID(float objectNumber)
     {
         interactID(objectNumber);
     }
-    public void interactID(int objectNumber)
+    public void interactID(float objectNumber)
     {
         if (objectNumber == 0) // boþ
         {
@@ -63,17 +65,36 @@ public class counter : NetworkBehaviour
             {
                 childObject[i].SetActive(false);
             }
+            for (int i = 0; i < BoxObject.Count; i++)
+            {
+                BoxObject[i].SetActive(false);
+            }
+        }
+        if (objectNumber == 1.1f) // kasa kutu
+        {
+            BoxObject[1].SetActive(true);
+            counterID = 1.1f;
         }
         if (objectNumber == 1) // kasa
         {
             counterID = 1;
             childObject[1].SetActive(true);
         }
+        if (objectNumber == 2.2f) // anakar kutu
+        {
+            BoxObject[2].SetActive(true);
+            counterID = 2.2f;
+        }
         if (objectNumber == 2) // anakar
         {
             childObject[2].SetActive(true);
             counterID = 2;
             //  smoke.Play();
+        }
+        if (objectNumber == 3.3f) // CPU kutu
+        {
+            BoxObject[3].SetActive(true);
+            counterID = 3.3f;
         }
         if (objectNumber == 3) // CPU
         {
@@ -86,6 +107,17 @@ public class counter : NetworkBehaviour
             childObject[4].SetActive(true);
             counterID = 4;
             //  smoke.Play();
+        }
+        if (objectNumber == 4.4f) // ekran kartý
+        {
+            BoxObject[4].SetActive(true);
+            counterID = 4.4f;
+            //  smoke.Play();
+        }
+        if (objectNumber == 5.5f) // ram
+        {
+            BoxObject[5].SetActive(true);
+            counterID = 5.5f;
         }
         if (objectNumber == 5) // ram
         {
@@ -169,9 +201,8 @@ public class counter : NetworkBehaviour
     }
     public void ýdCheck()
     {
-        if (!kasaDolu && !anaKartDolu && !cpuDolu && !ekranKartýDolu && !ramDolu)
+        if (!kasaDolu && !anaKartDolu && !cpuDolu && !ekranKartýDolu && !ramDolu || !BoxKasaDolu || !BoxAnakartDolu || !BoxCpuDolu || !BoxEkranKartýDolu || !BoxRamDolu)
         {
-            //  RpcinteractID(0);
             if (isServer)
             {
                 RpcinteractID(0);
@@ -338,6 +369,64 @@ public class counter : NetworkBehaviour
                 counterID = 12345;
             }
         }
+        if(BoxKasaDolu || BoxAnakartDolu|| BoxCpuDolu || BoxEkranKartýDolu || BoxRamDolu)
+        {
+            if(BoxKasaDolu)
+            {
+                if (isServer)
+                {
+                    RpcinteractID(1.1f);
+                }
+                else
+                {
+                    CmdinteractID(1.1f);
+                }
+            }
+            if(BoxAnakartDolu)
+            {
+                if (isServer)
+                {
+                    RpcinteractID(2.2f);
+                }
+                else
+                {
+                    CmdinteractID(2.2f);
+                }
+            }
+            if(BoxCpuDolu)
+            {
+                if (isServer)
+                {
+                    RpcinteractID(3.3f);
+                }
+                else
+                {
+                    CmdinteractID(3.3f);
+                }
+            }
+            if(BoxEkranKartýDolu)
+            {
+                if (isServer)
+                {
+                    RpcinteractID(4.4f);
+                }
+                else
+                {
+                    CmdinteractID(4.4f);
+                }
+            }
+            if(BoxRamDolu)
+            {
+                if (isServer)
+                {
+                    RpcinteractID(5.5f);
+                }
+                else
+                {
+                    CmdinteractID(5.5f);
+                }
+            }
+        }
     }
     [Command(requiresAuthority = false)]
     public void CmdSetKasaDolu(bool newValue)
@@ -348,7 +437,7 @@ public class counter : NetworkBehaviour
     public void CmdSetAnakartDolu(bool newValue)
     {
         anaKartDolu = newValue;
-    }   
+    }
     [Command(requiresAuthority = false)]
     public void CmdSetCpuDolu(bool newValue)
     {
@@ -363,6 +452,31 @@ public class counter : NetworkBehaviour
     public void CmdSetRamDolu(bool newValue)
     {
         ramDolu = newValue;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdSetBoxKasaDolu(bool newValue)
+    {
+        BoxKasaDolu = newValue;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdSetBoxAnakartDolu(bool newValue)
+    {
+        BoxAnakartDolu = newValue;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdSetBoxCpuDolu(bool newValue)
+    {
+        BoxCpuDolu = newValue;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdSetBoxEkranKartýDolu(bool newValue)
+    {
+        BoxEkranKartýDolu = newValue;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdSetBoxRamDolu(bool newValue)
+    {
+        BoxRamDolu = newValue;
     }
 
 }
