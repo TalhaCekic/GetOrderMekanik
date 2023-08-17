@@ -32,7 +32,8 @@ public class counter : NetworkBehaviour
 
     public void Start()
     {
-        //smoke = GetComponent<ParticleSystem>();
+        CmdAffixEffectStop();
+        CmdSmokeEffectStop();
     }
     private void Update()
     {
@@ -369,9 +370,9 @@ public class counter : NetworkBehaviour
                 counterID = 12345;
             }
         }
-        if(BoxKasaDolu || BoxAnakartDolu|| BoxCpuDolu || BoxEkranKartýDolu || BoxRamDolu)
+        if (BoxKasaDolu || BoxAnakartDolu || BoxCpuDolu || BoxEkranKartýDolu || BoxRamDolu)
         {
-            if(BoxKasaDolu)
+            if (BoxKasaDolu)
             {
                 if (isServer)
                 {
@@ -382,7 +383,7 @@ public class counter : NetworkBehaviour
                     CmdinteractID(1.1f);
                 }
             }
-            if(BoxAnakartDolu)
+            if (BoxAnakartDolu)
             {
                 if (isServer)
                 {
@@ -393,7 +394,7 @@ public class counter : NetworkBehaviour
                     CmdinteractID(2.2f);
                 }
             }
-            if(BoxCpuDolu)
+            if (BoxCpuDolu)
             {
                 if (isServer)
                 {
@@ -404,7 +405,7 @@ public class counter : NetworkBehaviour
                     CmdinteractID(3.3f);
                 }
             }
-            if(BoxEkranKartýDolu)
+            if (BoxEkranKartýDolu)
             {
                 if (isServer)
                 {
@@ -415,7 +416,7 @@ public class counter : NetworkBehaviour
                     CmdinteractID(4.4f);
                 }
             }
-            if(BoxRamDolu)
+            if (BoxRamDolu)
             {
                 if (isServer)
                 {
@@ -428,6 +429,55 @@ public class counter : NetworkBehaviour
             }
         }
     }
+
+
+    // effecetler parýltý
+    [Command(requiresAuthority = false)] //play
+    public void CmdAffixEffectPLAY()
+    {
+        RpcAffixEffectPlay();
+    }
+    [ClientRpc]
+    public void RpcAffixEffectPlay()
+    {
+        affix.Play();
+    }   
+    [Command(requiresAuthority = false)] //stop
+    public void CmdAffixEffectStop()
+    {
+        RpcAffixEffectStop();
+    }
+    [ClientRpc]
+    public void RpcAffixEffectStop()
+    {
+        affix.Stop();
+    } 
+
+    // effecetler smoke
+    [Command(requiresAuthority = false)] //play
+    public void CmdSmokeEffectPLAY()
+    {
+        RpcSmokeEffectPlay();
+    }
+    [ClientRpc]
+    public void RpcSmokeEffectPlay()
+    {
+        smoke.Play();
+    }   
+    [Command(requiresAuthority = false)] //stop
+    public void CmdSmokeEffectStop()
+    {
+        RpcSmokeEffectStop();
+    }
+    [ClientRpc]
+    public void RpcSmokeEffectStop()
+    {
+        smoke.Stop();
+    }
+
+
+
+    // bool deðiþkenlerin sunucuya gönderilmesi
     [Command(requiresAuthority = false)]
     public void CmdSetKasaDolu(bool newValue)
     {

@@ -125,35 +125,35 @@ public class pickUp : NetworkBehaviour
                     counter.CmdSetBoxKasaDolu(false);
                     counter.CmdSetKasaDolu(true);
                     isWork = true;
-                    counter.smoke.Play();
+                    counter.CmdSmokeEffectPLAY();
                 }
                 if (counter.counterID == 2.2f)
                 {
                     counter.CmdSetBoxAnakartDolu(false);
                     counter.CmdSetAnakartDolu(true);
                     isWork = true;
-                    counter.smoke.Play();
+                    counter.CmdSmokeEffectPLAY();
                 }
                 if (counter.counterID == 3.3f)
                 {
                     counter.CmdSetBoxCpuDolu(false);
                     counter.CmdSetCpuDolu(true);
                     isWork = true;
-                    counter.smoke.Play();
+                    counter.CmdSmokeEffectPLAY();
                 }
                 if (counter.counterID == 4.4f)
                 {
                     counter.CmdSetBoxEkranKartýDolu(false);
                     counter.CmdSetEkranKartýDolu(true);
                     isWork = true;
-                    counter.smoke.Play();
+                    counter.CmdSmokeEffectPLAY();
                 }
                 if (counter.counterID == 5.5f)
                 {
                     counter.CmdSetBoxRamDolu(false);
                     counter.CmdSetRamDolu(true);
                     isWork = true;
-                    counter.smoke.Play();
+                    counter.CmdSmokeEffectPLAY();
                 }
             }
         }
@@ -177,7 +177,7 @@ public class pickUp : NetworkBehaviour
                             counter.CmdSetKasaDolu(true);
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         else if (counter.counterID == 0)
                         {
@@ -185,7 +185,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetKasaDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 2)
@@ -197,7 +197,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         else if (counter.counterID == 0)
                         {
@@ -205,7 +205,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetAnakartDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 3)
@@ -217,7 +217,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         if (counter.counterID == 0)
                         {
@@ -225,7 +225,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetCpuDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 4)
@@ -237,7 +237,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         if (counter.counterID == 0)
                         {
@@ -245,7 +245,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetEkranKartýDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 5)
@@ -257,7 +257,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         if (counter.counterID == 0)
                         {
@@ -265,7 +265,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetRamDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 1.1f)
@@ -276,7 +276,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetBoxKasaDolu(true);
                             CmdinteractID(0);
-                            counter.smoke.Stop();
+                            counter.CmdSmokeEffectStop();
                         }
                     }
                     if (ID == 2.2f)
@@ -287,7 +287,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetBoxAnakartDolu(true);
                             CmdinteractID(0);
-                            counter.smoke.Stop();
+                            counter.CmdSmokeEffectStop();
                         }
                     }
                     if (ID == 3.3f)
@@ -298,7 +298,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetBoxCpuDolu(true);
                             CmdinteractID(0);
-                            counter.smoke.Stop();
+                            counter.CmdSmokeEffectStop();
                         }
                     }
                     if (ID == 4.4f)
@@ -309,6 +309,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetBoxEkranKartýDolu(true);
                             CmdinteractID(0);
+                            counter.CmdSmokeEffectStop();
                         }
                     }
                     if (ID == 5.5f)
@@ -319,6 +320,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetBoxRamDolu(true);
                             CmdinteractID(0);
+                            counter.CmdSmokeEffectStop();
                         }
                     }
                     if (ID == 12)
@@ -331,7 +333,7 @@ public class pickUp : NetworkBehaviour
                             counter.CmdSetAnakartDolu(true);
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         else if (counter.counterID == 0)
                         {
@@ -340,7 +342,7 @@ public class pickUp : NetworkBehaviour
                             counter.CmdSetKasaDolu(true);
                             counter.CmdSetAnakartDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 123)
@@ -354,7 +356,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         else if (counter.counterID == 0)
                         {
@@ -365,7 +367,7 @@ public class pickUp : NetworkBehaviour
                             counter.CmdSetCpuDolu(true);
                             CmdinteractID(0);
                             isWork = false;
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 124)
@@ -379,7 +381,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         if (counter.counterID == 0)
                         {
@@ -389,7 +391,7 @@ public class pickUp : NetworkBehaviour
                             counter.CmdSetAnakartDolu(true);
                             counter.CmdSetEkranKartýDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 125)
@@ -403,7 +405,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         if (counter.counterID == 0)
                         {
@@ -413,7 +415,7 @@ public class pickUp : NetworkBehaviour
                             counter.CmdSetAnakartDolu(true);
                             counter.CmdSetRamDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 1234)
@@ -428,7 +430,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         if (counter.counterID == 0)
                         {
@@ -439,7 +441,7 @@ public class pickUp : NetworkBehaviour
                             counter.CmdSetCpuDolu(true);
                             counter.CmdSetEkranKartýDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 1235)
@@ -454,7 +456,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         if (counter.counterID == 0)
                         {
@@ -465,7 +467,7 @@ public class pickUp : NetworkBehaviour
                             counter.CmdSetCpuDolu(true);
                             counter.CmdSetRamDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 1245)
@@ -480,7 +482,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            counter.affix.Play();
+                            counter.CmdAffixEffectPLAY();
                         }
                         if (counter.counterID == 0)
                         {
@@ -490,7 +492,7 @@ public class pickUp : NetworkBehaviour
                             counter.CmdSetAnakartDolu(true);
                             counter.CmdSetRamDolu(true);
                             CmdinteractID(0);
-                            counter.affix.Stop();
+                            counter.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 12345)
@@ -505,6 +507,7 @@ public class pickUp : NetworkBehaviour
                             counter.CmdSetEkranKartýDolu(true);
                             counter.CmdSetRamDolu(true);
                             CmdinteractID(0);
+                            counter.CmdAffixEffectStop();
                         }
                     }
                 }
