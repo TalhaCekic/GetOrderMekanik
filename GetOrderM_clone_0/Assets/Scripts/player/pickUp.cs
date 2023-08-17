@@ -69,7 +69,6 @@ public class pickUp : NetworkBehaviour
     void Update()
     {
         if (!isLocalPlayer) return;
-        print(isWork);
         anim.SetBool("isWork", isWork);
 
         if (handFull)  // elde tutma ve tekrar almayý kontrol eder
