@@ -489,6 +489,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             counter.CmdSetKasaDolu(true);
                             counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetEkranKartýDolu(true);
                             counter.CmdSetRamDolu(true);
                             CmdinteractID(0);
                             counter.CmdAffixEffectStop();
