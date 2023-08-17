@@ -35,7 +35,7 @@ public class pickUp : NetworkBehaviour
     Animator anim;
 
     [SyncVar] public float retakeDelay = 0.5f;
-    [SyncVar] public float workDelay = 1f;
+    [SyncVar] public float workDelay = 1.1f;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -53,6 +53,7 @@ public class pickUp : NetworkBehaviour
             BoxObject[i].SetActive(false);
         }
 
+        workDelay = 1.1f;
         //tuþ etkileþimi
         if (!isLocalPlayer) return;
         playerInput = new controller();
@@ -68,13 +69,14 @@ public class pickUp : NetworkBehaviour
     void Update()
     {
         if (!isLocalPlayer) return;
+        print(isWork);
         anim.SetBool("isWork", isWork);
-        if (handFull)
+
+        if (handFull)  // elde tutma ve tekrar almayý kontrol eder
         {
             anim.SetBool("hand", true);
 
             retakeDelay = 0.5f;
-            workDelay = 1f;
         }
         else
         {
@@ -87,6 +89,11 @@ public class pickUp : NetworkBehaviour
             {
                 retakeDelay = 0;
             }
+        }
+
+        if (isWork) //el tamir animasyonunu kontrol eder
+        {
+            handFull = false;
             if (workDelay > 0)
             {
                 workDelay -= Time.deltaTime;
@@ -97,6 +104,14 @@ public class pickUp : NetworkBehaviour
                 isWork = false;
             }
         }
+        else if (!isWork)
+        {
+            if (workDelay <= 0)
+            {
+                workDelay = 1.1f;
+            }
+        }
+
     }
     public void secondsInteract()
     {
@@ -115,7 +130,7 @@ public class pickUp : NetworkBehaviour
                 if (counter.counterID == 2.2f)
                 {
                     counter.CmdSetBoxAnakartDolu(false);
-                    counter.CmdSetAnakartDolu(true) ;
+                    counter.CmdSetAnakartDolu(true);
                     isWork = true;
                     counter.smoke.Play();
                 }
@@ -123,8 +138,8 @@ public class pickUp : NetworkBehaviour
                 {
                     counter.CmdSetBoxCpuDolu(false);
                     counter.CmdSetCpuDolu(true);
-                    counter.smoke.Play();
                     isWork = true;
+                    counter.smoke.Play();
                 }
                 if (counter.counterID == 4.4f)
                 {
@@ -145,517 +160,510 @@ public class pickUp : NetworkBehaviour
     }
     public void Interact()
     {
-        //  counter;
-        if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
+        if (workDelay == 1.1f)
         {
-            if (hit.collider.gameObject.TryGetComponent<counter>(out var counter) && handFull == true)
+            //  counter;
+            if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask2))
             {
-                float value = counter.counterID;
-                if (ID == 1)
+                if (hit.collider.gameObject.TryGetComponent<counter>(out var counter) && handFull == true)
                 {
-                    if ( counter.counterID == 2 || counter.counterID == 23 || counter.counterID == 24 || counter.counterID == 234 || counter.counterID == 2345 || counter.counterID != 12345) //masa boþsa
+                    float value = counter.counterID;
+                    if (ID == 1)
                     {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
+                        if (counter.counterID == 2 || counter.counterID == 23 || counter.counterID == 24 || counter.counterID == 234 || counter.counterID == 2345) //masa boþsa
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        else if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
                     }
-                    else if (counter.counterID == 0 )
+                    if (ID == 2)
                     {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
+                        if (counter.counterID == 1 || counter.counterID == 3 || counter.counterID == 4 || counter.counterID == 5)
+                        {
+                            ID = 0;
+                            counter.CmdSetAnakartDolu(true);
+                            handFull = false;
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        else if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetAnakartDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 3)
+                    {
+                        if (counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 124 || counter.counterID == 125 || counter.counterID == 1245 || counter.counterID != 12345)
+                        {
+                            ID = 0;
+                            counter.CmdSetCpuDolu(true);
+                            handFull = false;
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetCpuDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 4)
+                    {
+                        if (counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 125 || counter.counterID == 1235)
+                        {
+                            ID = 0;
+                            counter.CmdSetEkranKartýDolu(true);
+                            handFull = false;
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetEkranKartýDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 5)
+                    {
+                        if (counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 124 || counter.counterID == 1234)
+                        {
+                            ID = 0;
+                            counter.CmdSetRamDolu(true);
+                            handFull = false;
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetRamDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 1.1f)
+                    {
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetBoxKasaDolu(true);
+                            CmdinteractID(0);
+                            counter.smoke.Stop();
+                        }
+                    }
+                    if (ID == 2.2f)
+                    {
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetBoxAnakartDolu(true);
+                            CmdinteractID(0);
+                            counter.smoke.Stop();
+                        }
+                    }
+                    if (ID == 3.3f)
+                    {
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetBoxCpuDolu(true);
+                            CmdinteractID(0);
+                            counter.smoke.Stop();
+                        }
+                    }
+                    if (ID == 4.4f)
+                    {
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetBoxEkranKartýDolu(true);
+                            CmdinteractID(0);
+                        }
+                    }
+                    if (ID == 5.5f)
+                    {
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetBoxRamDolu(true);
+                            CmdinteractID(0);
+                        }
+                    }
+                    if (ID == 12)
+                    {
+                        if (counter.counterID == 3 || counter.counterID == 4 || counter.counterID == 34 || counter.counterID == 345) //masa boþsa
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        else if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 123)
+                    {
+                        if (counter.counterID == 4 || counter.counterID == 5)
+                        {
+                            ID = 0;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetCpuDolu(true);
+                            handFull = false;
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        else if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetCpuDolu(true);
+                            CmdinteractID(0);
+                            isWork = false;
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 124)
+                    {
+                        if (counter.counterID == 5)
+                        {
+                            ID = 0;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetEkranKartýDolu(true);
+                            handFull = false;
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetEkranKartýDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 125)
+                    {
+                        if (counter.counterID == 3 || counter.counterID == 4)
+                        {
+                            ID = 0;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetRamDolu(true);
+                            handFull = false;
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetRamDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 1234)
+                    {
+                        if (counter.counterID == 5)
+                        {
+                            ID = 0;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetCpuDolu(true);
+                            counter.CmdSetEkranKartýDolu(true);
+                            handFull = false;
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetCpuDolu(true);
+                            counter.CmdSetEkranKartýDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 1235)
+                    {
+                        if (counter.counterID == 4)
+                        {
+                            ID = 0;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetCpuDolu(true);
+                            counter.CmdSetRamDolu(true);
+                            handFull = false;
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetCpuDolu(true);
+                            counter.CmdSetRamDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 1245)
+                    {
+                        if (counter.counterID == 3)
+                        {
+                            ID = 0;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetEkranKartýDolu(true);
+                            counter.CmdSetRamDolu(true);
+                            handFull = false;
+                            CmdinteractID(0);
+                            isWork = true;
+                            counter.affix.Play();
+                        }
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetRamDolu(true);
+                            CmdinteractID(0);
+                            counter.affix.Stop();
+                        }
+                    }
+                    if (ID == 12345)
+                    {
+                        if (counter.counterID == 0)
+                        {
+                            ID = 0;
+                            handFull = false;
+                            counter.CmdSetKasaDolu(true);
+                            counter.CmdSetAnakartDolu(true);
+                            counter.CmdSetCpuDolu(true);
+                            counter.CmdSetEkranKartýDolu(true);
+                            counter.CmdSetRamDolu(true);
+                            CmdinteractID(0);
+                        }
                     }
                 }
-                if (ID == 2)
+                //tekrardan alma iþlemi
+                if (hit.collider.gameObject.TryGetComponent<counter>(out var counter2) && handFull == false && retakeDelay <= 0)
                 {
-                    if (counter.counterID == 1 || counter.counterID == 3 || counter.counterID == 4 || counter.counterID == 5)
+                    float value = counter.counterID;
+                    if (ID == 0)
                     {
-                        ID = 0;
-                        counter.CmdSetAnakartDolu(true);
-                        handFull = false;
-                        CmdinteractID(0);
-                        counter.affix.Play();
-                        isWork = true;
-                    }
-                    else if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetAnakartDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 3)
-                {
-                    if (counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 124 || counter.counterID == 125 || counter.counterID == 1245 || counter.counterID != 12345)
-                    {
-                        ID = 0;
-                        counter.CmdSetCpuDolu(true);
-                        handFull = false;
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
-                    }
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetCpuDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 4)
-                {
-                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 125 || counter.counterID == 1235 || counter.counterID != 12345)
-                    {
-                        ID = 0;
-                        counter.CmdSetEkranKartýDolu(true);
-                        handFull = false;
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
-                    }
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetEkranKartýDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 5)
-                {
-                    if (counter.counterID == 0 || counter.counterID == 2 || counter.counterID == 12 || counter.counterID == 123 || counter.counterID == 124 || counter.counterID == 1234 || counter.counterID != 12345)
-                    {
-                        ID = 0;
-                        counter.CmdSetRamDolu(true);
-                        handFull = false;
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
-                    }
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetRamDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 1.1f)
-                {
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetBoxKasaDolu(true);
-                        CmdinteractID(0);
-                        counter.smoke.Stop();
-                    }
-                }
-                if (ID == 2.2f)
-                {
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetBoxAnakartDolu(true);
-                        CmdinteractID(0);
-                        counter.smoke.Stop();
-                    }
-                }
-                if (ID == 3.3f)
-                {
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetBoxCpuDolu(true);
-                        CmdinteractID(0);
-                        counter.smoke.Stop();
-                    }
-                }
-                if (ID == 4.4f)
-                {
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetBoxEkranKartýDolu(true);
-                        CmdinteractID(0);
-                    }
-                }
-                if (ID == 5.5f)
-                {
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetBoxRamDolu(true);
-                        CmdinteractID(0);
-                    }
-                }
-                if (ID == 12)
-                {
-                    if (counter.counterID == 3 || counter.counterID == 4 || counter.counterID == 34 || counter.counterID == 345) //masa boþsa
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
-                    }
-                    else if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        CmdinteractID(0);
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 123)
-                {
-                    if (counter.counterID == 4 || counter.counterID == 5)
-                    {
-                        ID = 0;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetCpuDolu(true);
-                        handFull = false;
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
-                    }
-                    else if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetCpuDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 124)
-                {
-                    if (counter.counterID == 5)
-                    {
-                        ID = 0;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetEkranKartýDolu(true);
-                        handFull = false;
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
-                    }
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetEkranKartýDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 125)
-                {
-                    if (counter.counterID == 3 || counter.counterID == 4)
-                    {
-                        ID = 0;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetRamDolu(true);
-                        handFull = false;
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
-                    }
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetRamDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 1234)
-                {
-                    if (counter.counterID == 5)
-                    {
-                        ID = 0;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetCpuDolu(true);
-                        counter.CmdSetEkranKartýDolu(true);
-                        handFull = false;
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
-                    }
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetCpuDolu(true);
-                        counter.CmdSetEkranKartýDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 1235)
-                {
-                    if (counter.counterID == 4)
-                    {
-                        ID = 0;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetCpuDolu(true);
-                        counter.CmdSetRamDolu(true);
-                        handFull = false;
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
-                    }
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetCpuDolu(true);
-                        counter.CmdSetRamDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 1245)
-                {
-                    if (counter.counterID == 3)
-                    {
-                        ID = 0;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetEkranKartýDolu(true);
-                        counter.CmdSetRamDolu(true);
-                        handFull = false;
-                        CmdinteractID(0);
-                        isWork = true;
-                        counter.affix.Play();
-                    }
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetRamDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
-                        counter.affix.Stop();
-                    }
-                }
-                if (ID == 12345)
-                {
-                    if (counter.counterID == 0)
-                    {
-                        ID = 0;
-                        handFull = false;
-                        counter.CmdSetKasaDolu(true);
-                        counter.CmdSetAnakartDolu(true);
-                        counter.CmdSetCpuDolu(true);
-                        counter.CmdSetEkranKartýDolu(true);
-                        counter.CmdSetRamDolu(true);
-                        CmdinteractID(0);
-                        isWork = false;
+                        if (counter.counterID == 1)
+                        {
+                            counter.CmdSetKasaDolu(false);
+                            ID = 1;
+                            handFull = true;
+                            CmdinteractID(1);
+                        }
+                        if (counter.counterID == 1.1f)
+                        {
+                            counter.CmdSetBoxKasaDolu(false);
+                            ID = 1.1f;
+                            handFull = true;
+                            CmdinteractID(1.1f);
+                        }
+                        if (counter.counterID == 2)
+                        {
+                            counter.CmdSetAnakartDolu(false);
+                            ID = 2;
+                            handFull = true;
+                            CmdinteractID(2);
+                        }
+                        if (counter.counterID == 2.2f)
+                        {
+                            counter.CmdSetBoxAnakartDolu(false);
+                            ID = 2.2f;
+                            handFull = true;
+                            CmdinteractID(2.2f);
+                        }
+                        if (counter.counterID == 3)
+                        {
+                            counter.CmdSetCpuDolu(false);
+                            ID = 3;
+                            handFull = true;
+                            CmdinteractID(3);
+                        }
+                        if (counter.counterID == 3.3f)
+                        {
+                            counter.CmdSetBoxCpuDolu(false);
+                            ID = 3.3f;
+                            handFull = true;
+                            CmdinteractID(3.3f);
+                        }
+                        if (counter.counterID == 4)
+                        {
+                            counter.CmdSetEkranKartýDolu(false);
+                            ID = 4;
+                            handFull = true;
+                            CmdinteractID(4);
+                        }
+                        if (counter.counterID == 4.4f)
+                        {
+                            counter.CmdSetBoxEkranKartýDolu(false);
+                            ID = 4.4f;
+                            handFull = true;
+                            CmdinteractID(4.4f);
+                        }
+                        if (counter.counterID == 5)
+                        {
+                            counter.CmdSetRamDolu(false);
+                            ID = 5;
+                            handFull = true;
+                            CmdinteractID(5);
+                        }
+                        if (counter.counterID == 5.5f)
+                        {
+                            counter.CmdSetBoxRamDolu(false);
+                            ID = 5.5f;
+                            handFull = true;
+                            CmdinteractID(5.5f);
+                        }
+                        if (counter.counterID == 12)
+                        {
+                            counter.CmdSetKasaDolu(false);
+                            counter.CmdSetAnakartDolu(false);
+                            ID = 12;
+                            handFull = true;
+                            CmdinteractID(12);
+                        }
+                        if (counter.counterID == 123)
+                        {
+                            counter.CmdSetKasaDolu(false);
+                            counter.CmdSetAnakartDolu(false);
+                            counter.CmdSetCpuDolu(false);
+                            ID = 123;
+                            handFull = true;
+                            CmdinteractID(123);
+                        }
+                        if (counter.counterID == 124)
+                        {
+                            counter.CmdSetKasaDolu(false);
+                            counter.CmdSetAnakartDolu(false);
+                            counter.CmdSetEkranKartýDolu(false);
+                            ID = 124;
+                            handFull = true;
+                            CmdinteractID(124);
+                        }
+                        if (counter.counterID == 125)
+                        {
+                            counter.CmdSetKasaDolu(false);
+                            counter.CmdSetAnakartDolu(false);
+                            counter.CmdSetRamDolu(false);
+                            ID = 125;
+                            handFull = true;
+                            CmdinteractID(125);
+                        }
+                        if (counter.counterID == 1234)
+                        {
+                            counter.CmdSetKasaDolu(false);
+                            counter.CmdSetAnakartDolu(false);
+                            counter.CmdSetCpuDolu(false);
+                            counter.CmdSetEkranKartýDolu(false);
+                            ID = 1234;
+                            handFull = true;
+                            CmdinteractID(1234);
+                        }
+                        if (counter.counterID == 1245)
+                        {
+                            counter.CmdSetKasaDolu(false);
+                            counter.CmdSetAnakartDolu(false);
+                            counter.CmdSetEkranKartýDolu(false);
+                            counter.CmdSetRamDolu(false);
+                            ID = 1245;
+                            handFull = true;
+                            CmdinteractID(1245);
+                        }
+                        if (counter.counterID == 1235)
+                        {
+                            counter.CmdSetKasaDolu(false);
+                            counter.CmdSetAnakartDolu(false);
+                            counter.CmdSetCpuDolu(false);
+                            counter.CmdSetRamDolu(false);
+                            ID = 1235;
+                            handFull = true;
+                            CmdinteractID(1235);
+                        }
+                        if (counter.counterID == 12345)
+                        {
+                            counter.CmdSetKasaDolu(false);
+                            counter.CmdSetAnakartDolu(false);
+                            counter.CmdSetCpuDolu(false);
+                            counter.CmdSetEkranKartýDolu(false);
+                            counter.CmdSetRamDolu(false);
+                            ID = 12345;
+                            handFull = true;
+                            CmdinteractID(12345);
+                        }
                     }
                 }
             }
-            //tekrardan alma iþlemi
-            if (hit.collider.gameObject.TryGetComponent<counter>(out var counter2) && handFull == false && retakeDelay <= 0)
-            {
-                float value = counter.counterID;
-                if (ID == 0)
-                {
-                    if (counter.counterID == 1)
-                    {
-                        counter.CmdSetKasaDolu(false);
-                        ID = 1;
-                        handFull = true;
-                        CmdinteractID(1);
-                    }
-                    if (counter.counterID == 1.1f)
-                    {
-                        counter.CmdSetBoxKasaDolu(false);
-                        ID = 1.1f;
-                        handFull = true;
-                        CmdinteractID(1.1f);
-                    }
-                    if (counter.counterID == 2)
-                    {
-                        counter.CmdSetAnakartDolu(false);
-                        ID = 2;
-                        handFull = true;
-                        CmdinteractID(2);
-                    }
-                    if (counter.counterID == 2.2f)
-                    {
-                        counter.CmdSetBoxAnakartDolu(false);
-                        ID = 2.2f;
-                        handFull = true;
-                        CmdinteractID(2.2f);
-                    }
-                    if (counter.counterID == 3)
-                    {
-                        counter.CmdSetCpuDolu(false);
-                        ID = 3;
-                        handFull = true;
-                        CmdinteractID(3);
-                    }
-                    if (counter.counterID == 3.3f)
-                    {
-                        counter.CmdSetBoxCpuDolu(false);
-                        ID = 3.3f;
-                        handFull = true;
-                        CmdinteractID(3.3f);
-                    }
-                    if (counter.counterID == 4)
-                    {
-                        counter.CmdSetEkranKartýDolu(false);
-                        ID = 4;
-                        handFull = true;
-                        CmdinteractID(4);
-                    }
-                    if (counter.counterID == 4.4f)
-                    {
-                        counter.CmdSetBoxEkranKartýDolu(false);
-                        ID = 4.4f;
-                        handFull = true;
-                        CmdinteractID(4.4f);
-                    }
-                    if (counter.counterID == 5)
-                    {
-                        counter.CmdSetRamDolu(false);
-                        ID = 5;
-                        handFull = true;
-                        CmdinteractID(5);
-                    }
-                    if (counter.counterID == 5.5f)
-                    {
-                        counter.CmdSetBoxRamDolu(false);
-                        ID = 5.5f;
-                        handFull = true;
-                        CmdinteractID(5.5f);
-                    }
-                    if (counter.counterID == 12)
-                    {
-                        counter.CmdSetKasaDolu(false);
-                        counter.CmdSetAnakartDolu(false);
-                        ID = 12;
-                        handFull = true;
-                        CmdinteractID(12);
-                    }
-                    if (counter.counterID == 123)
-                    {
-                        counter.CmdSetKasaDolu(false);
-                        counter.CmdSetAnakartDolu(false);
-                        counter.CmdSetCpuDolu(false);
-                        ID = 123;
-                        handFull = true;
-                        CmdinteractID(123);
-                    }
-                    if (counter.counterID == 124)
-                    {
-                        counter.CmdSetKasaDolu(false);
-                        counter.CmdSetAnakartDolu(false);
-                        counter.CmdSetEkranKartýDolu(false);
-                        ID = 124;
-                        handFull = true;
-                        CmdinteractID(124);
-                    }
-                    if (counter.counterID == 125)
-                    {
-                        counter.CmdSetKasaDolu(false);
-                        counter.CmdSetAnakartDolu(false);
-                        counter.CmdSetRamDolu(false);
-                        ID = 125;
-                        handFull = true;
-                        CmdinteractID(125);
-                    }
-                    if (counter.counterID == 1234)
-                    {
-                        counter.CmdSetKasaDolu(false);
-                        counter.CmdSetAnakartDolu(false);
-                        counter.CmdSetCpuDolu(false);
-                        counter.CmdSetEkranKartýDolu(false);
-                        ID = 1234;
-                        handFull = true;
-                        CmdinteractID(1234);
-                    }
-                    if (counter.counterID == 1245)
-                    {
-                        counter.CmdSetKasaDolu(false);
-                        counter.CmdSetAnakartDolu(false);
-                        counter.CmdSetEkranKartýDolu(false);
-                        counter.CmdSetRamDolu(false);
-                        ID = 1245;
-                        handFull = true;
-                        CmdinteractID(1245);
-                    }
-                    if (counter.counterID == 1235)
-                    {
-                        counter.CmdSetKasaDolu(false);
-                        counter.CmdSetAnakartDolu(false);
-                        counter.CmdSetCpuDolu(false);
-                        counter.CmdSetRamDolu(false);
-                        ID = 1235;
-                        handFull = true;
-                        CmdinteractID(1235);
-                    }
-                    if (counter.counterID == 12345)
-                    {
-                        counter.CmdSetKasaDolu(false);
-                        counter.CmdSetAnakartDolu(false);
-                        counter.CmdSetCpuDolu(false);
-                        counter.CmdSetEkranKartýDolu(false);
-                        counter.CmdSetRamDolu(false);
-                        ID = 12345;
-                        handFull = true;
-                        CmdinteractID(12345);
-                    }
-                }
-            }
+
         }
         //ele obje alýmý;
         if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask))
