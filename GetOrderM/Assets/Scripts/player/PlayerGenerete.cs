@@ -7,24 +7,42 @@ using UnityEngine.UI;
 
 public class PlayerGenerete : NetworkBehaviour
 {
-    [SyncVar(hook = nameof(HandleColorChanged))]
+    [SyncVar]
     private Color playerColor = Color.white;
 
-    [SerializeField] private Image  hud;
+    [SerializeField] private Image hud;
 
-   
+
 
     private void Start()
     {
-        hud.gameObject.SetActive(false);
         if (!isLocalPlayer) return;
-        playerColor = new Color(Random.value, Random.value, Random.value);
-        HandleColorChanged(playerColor, playerColor);
-        hud.gameObject.SetActive(true);
+        CmdHudGenerete();
+        
+
     }
 
-    private void HandleColorChanged(Color oldColor, Color newColor)
+    private void HudGenerete()
     {
-        hud.color = newColor;
+        if(!isLocalPlayer) return;
+        playerColor = new Color(Random.value, Random.value, Random.value);
+        hud.color = playerColor;
+        hud.gameObject.SetActive(true);
+
     }
+
+    [Command]
+    public void CmdHudGenerete()
+    {
+        HudGenerete();
+        RpcHudGenerete();
+    }
+
+
+    [ClientRpc]
+    public void RpcHudGenerete()
+    {
+        HudGenerete(); 
+    }
+
 }
