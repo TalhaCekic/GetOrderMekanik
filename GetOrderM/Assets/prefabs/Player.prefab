@@ -1763,6 +1763,7 @@ GameObject:
   - component: {fileID: -3808899675996856690}
   - component: {fileID: -3915093592733402381}
   - component: {fileID: -8239872475536721994}
+  - component: {fileID: -9156293788582579264}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1914,7 +1915,6 @@ MonoBehaviour:
   deceleration: 10
   maxSpeed: 5
   LoadScene: 0
-  hud: {fileID: 6666224493045225533}
   PickUp: {fileID: 0}
 --- !u!114 &3316455827567841758
 MonoBehaviour:
@@ -2035,6 +2035,22 @@ MonoBehaviour:
   syncInterval: 0
   clientAuthority: 1
   animator: {fileID: 2486350481125998878}
+--- !u!114 &-9156293788582579264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630970780562484877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745c64bd79c2b9e4eb974d0476e9ac35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  hud: {fileID: 4189222960449678952}
 --- !u!1 &1842747578549811304
 GameObject:
   m_ObjectHideFlags: 0

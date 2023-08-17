@@ -37,7 +37,7 @@ public class PlayerControler : NetworkBehaviour
 
     public bool LoadScene = false;
 
-    public GameObject hud;
+   // public GameObject hud;
 
     public pickUp PickUp;
 
@@ -66,7 +66,7 @@ public class PlayerControler : NetworkBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        hud.SetActive(false);
+        //hud.SetActive(false);
         if (!isLocalPlayer) return;
         movement = transform.position;
 
@@ -74,7 +74,7 @@ public class PlayerControler : NetworkBehaviour
         InputAction.performed += ctx => sprint();
         InputAction.canceled += ctx => StopSprint();
         InputAction.Enable();
-        hud.SetActive(true);
+        //hud.SetActive(true);
 
     }
 
