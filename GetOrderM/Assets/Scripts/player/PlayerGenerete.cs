@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerGenerete : NetworkBehaviour
 {
     [SyncVar(hook = nameof(OnPlayerColorChanged))]
-    private Color playerColor = Color.white;
+    public Color playerColor = Color.white;
 
     [SerializeField] private Image hud;
     private void Start()
@@ -17,6 +17,7 @@ public class PlayerGenerete : NetworkBehaviour
         {
             CmdSetPlayerColor(Random.ColorHSV());
         }
+
     }
 
     [Command]
