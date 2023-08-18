@@ -4,46 +4,39 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 
-
 public class PlayerGenerete : NetworkBehaviour
 {
-    [SyncVar]
+    [SyncVar(hook = nameof(OnPlayerColorChanged))]
     private Color playerColor = Color.white;
 
     [SerializeField] private Image hud;
-
-
-
     private void Start()
     {
-        if (isServer)
+        hud.gameObject.SetActive(true);
+        if (isLocalPlayer)
         {
-            RpcHudGenerete();
-            hud.gameObject.SetActive(true);
+            CmdSetPlayerColor(Random.ColorHSV());
         }
-        else
-        {
-            CmdHudGenerete();
-            hud.gameObject.SetActive(true);
-
-        }
-
     }
 
-    [Command(requiresAuthority = false)]
-    public void CmdHudGenerete()
+    [Command]
+    private void CmdSetPlayerColor(Color color)
     {
-        RpcHudGenerete();
+        playerColor = color;
+        RpcSetPlayerColor(color);
     }
-
 
     [ClientRpc]
-    public void RpcHudGenerete()
+    private void RpcSetPlayerColor(Color color)
     {
-        if (!isLocalPlayer) return;
-        playerColor = new Color(Random.value, Random.value, Random.value);
-        hud.color = playerColor;
-       
+        playerColor = color;
     }
+
+    private void OnPlayerColorChanged(Color oldColor, Color newColor)
+    {
+        // Renk deðiþtiðinde yapýlacak iþlemler
+        hud.color = newColor;
+    }
+
 
 }
