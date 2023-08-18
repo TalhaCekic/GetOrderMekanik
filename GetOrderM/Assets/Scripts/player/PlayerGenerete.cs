@@ -16,18 +16,23 @@ public class PlayerGenerete : NetworkBehaviour
 
     private void Start()
     {
-        if (!isLocalPlayer) return;
-        CmdHudGenerete();
-        
+        if (isServer)
+        {
+            RpcHudGenerete();
+            hud.gameObject.SetActive(true);
+        }
+        else
+        {
+            CmdHudGenerete();
+            hud.gameObject.SetActive(true);
+
+        }
 
     }
 
-
-
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdHudGenerete()
     {
-       
         RpcHudGenerete();
     }
 
@@ -38,7 +43,7 @@ public class PlayerGenerete : NetworkBehaviour
         if (!isLocalPlayer) return;
         playerColor = new Color(Random.value, Random.value, Random.value);
         hud.color = playerColor;
-        hud.gameObject.SetActive(true);
+       
     }
 
 }
