@@ -22,19 +22,12 @@ public class PlayerGenerete : NetworkBehaviour
 
     }
 
-    private void HudGenerete()
-    {
-        if(!isLocalPlayer) return;
-        playerColor = new Color(Random.value, Random.value, Random.value);
-        hud.color = playerColor;
-        hud.gameObject.SetActive(true);
 
-    }
 
     [Command]
     public void CmdHudGenerete()
     {
-        HudGenerete();
+       
         RpcHudGenerete();
     }
 
@@ -42,7 +35,10 @@ public class PlayerGenerete : NetworkBehaviour
     [ClientRpc]
     public void RpcHudGenerete()
     {
-        HudGenerete(); 
+        if (!isLocalPlayer) return;
+        playerColor = new Color(Random.value, Random.value, Random.value);
+        hud.color = playerColor;
+        hud.gameObject.SetActive(true);
     }
 
 }
