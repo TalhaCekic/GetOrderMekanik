@@ -1,5 +1,3 @@
-
-
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,26 +6,17 @@ using UnityEngine;
 
 public class OrderUI : NetworkBehaviour
 {
-    //[SyncVar] public bool kasaOrder = false;
-    //[SyncVar] public bool anaKartOrder = false;
-    //[SyncVar] public bool cpuOrder = false;
-    //[SyncVar] public bool ekranKartýOrder = false;
-    //[SyncVar] public bool ramOrder = false;
-    [SerializeField] private RandomOrderGenerator _randomOrderGenerator;
-
     public List<GameObject> OrderObject = new List<GameObject>();
+
+    [SerializeField] private OrderManager orderManager;
 
     [SyncVar] public int orderID = 0;
     void Start()
     {
-        //   _randomOrderGenerator = GetComponent<RandomOrderGenerator>();
+        orderManager = FindAnyObjectByType<OrderManager>();
     }
     void Update()
     {
-
-       // orderID = _randomOrderGenerator.GetComponent<RandomOrderGenerator>().GetRandomOrder();
-
-
         if (isServer)
         {
             RpcýdCheck();
@@ -130,17 +119,6 @@ public class OrderUI : NetworkBehaviour
     }
     public void ýdCheck()
     {
-        //if (orderID == 0)
-        //{
-        //    if (isServer)
-        //    {
-        //        RpcinteractID(0);
-        //    }
-        //    else
-        //    {
-        //        CmdinteractID(0);
-        //    }
-        //}
         if (orderID == 12)
         {
             if (isServer)
