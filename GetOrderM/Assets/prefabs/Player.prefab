@@ -2050,6 +2050,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  playerColor: {r: 1, g: 1, b: 1, a: 1}
   hud: {fileID: 4189222960449678952}
 --- !u!1 &1842747578549811304
 GameObject:

@@ -31,7 +31,6 @@ public class RandomOrderGenerator : NetworkBehaviour
         }
         print(randomOrder);
     }
-
     private void CalculateNextOrderTime()
     {
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
@@ -40,14 +39,18 @@ public class RandomOrderGenerator : NetworkBehaviour
     private void GenerateRandomOrder()
     {
         int randomIndex = Random.Range(0, possibleOrders.Count);
-         randomOrder = possibleOrders[randomIndex];
-        
-    }
+        randomOrder = possibleOrders[randomIndex];
 
+    }
     [ClientRpc]
     private void RpcSetPossibleOrders(List<int> orders)
     {
         possibleOrders = orders;
-        
+
     }
+    public int GetRandomOrder()
+    {
+        return randomOrder;
+    }
+
 }

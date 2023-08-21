@@ -85,22 +85,4 @@ public class SceneManager1 : NetworkBehaviour
 
         }
     }
-
-
-    //IEnumerator TimeCounter()
-    //{
-    //    yield return new WaitForSeconds(0.5f); 
-    //    timeCounter -= Time.deltaTime;
-    //    if (LobbyCount == playerListManager.playerCount)
-    //    {
-
-    //        if (timeCounter < 0)
-    //        {
-    //            SceneManager.LoadScene(2);
-    //            NetworkManager.singleton.ServerChangeScene("PcScene");
-    //        }
-
-    //        //SceneManager.MoveGameObjectToScene(playerClone[LobbyCount], scene);
-    //    }
-    //}
 }

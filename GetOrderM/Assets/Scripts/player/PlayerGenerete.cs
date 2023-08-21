@@ -6,10 +6,13 @@ using UnityEngine.UI;
 
 public class PlayerGenerete : NetworkBehaviour
 {
+    // BÝRÝNCÝ YÖNTEM
     [SyncVar(hook = nameof(OnPlayerColorChanged))]
     public Color playerColor = Color.white;
 
     [SerializeField] private Image hud;
+
+
     private void Start()
     {
         hud.gameObject.SetActive(true);
