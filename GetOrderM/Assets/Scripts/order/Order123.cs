@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Order12 : NetworkBehaviour
+public class Order123 : NetworkBehaviour
 {
     public List<GameObject> OrderObject = new List<GameObject>();
 
@@ -18,8 +18,7 @@ public class Order12 : NetworkBehaviour
     void Start()
     {
         orderManager = FindAnyObjectByType<OrderManager>();
-        CmdinteractID(0);
-        orderID = 12;
+        CmdinteractID(12);
     }
     void Update()
     {
