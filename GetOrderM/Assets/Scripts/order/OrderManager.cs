@@ -14,6 +14,18 @@ public class OrderManager : NetworkBehaviour
     private float maxInterval = 20f;
     private float nextOrderTime = 0f;
 
+    public int firstOrder;
+    public int secondOrder;
+
+    public GameObject order12;
+    public GameObject order123;
+    public GameObject order124;
+    public GameObject order125;
+    public GameObject order1234;
+    public GameObject order1245;
+    public GameObject order1235;
+    public GameObject order12345;
+
     private void Start()
     {
         if (isServer)
@@ -28,6 +40,7 @@ public class OrderManager : NetworkBehaviour
         {
             GenerateRandomOrder();
             CalculateNextOrderTime();
+            RemoveOrderFromHistory();
         }
         print(Order);
     }
@@ -42,13 +55,15 @@ public class OrderManager : NetworkBehaviour
         orderHistory.Add(Order); // Yeni sipariþi orderHistory listesine ekle
 
     }
-    //public void RemoveOrderFromHistory()
-    //{
-    //    if (orderHistory.Count > 0)
-    //    {
-    //        orderHistory.RemoveAt(0);
-    //    }
-    //}
+    public void RemoveOrderFromHistory()
+    {
+        if (orderHistory.Count > 0)
+        {
+            //orderHistory.RemoveAt(0);
+             firstOrder = orderHistory[0];
+            secondOrder = orderHistory[1];
+        }
+    }
 
     [ClientRpc]
     private void RpcSetPossibleOrders(List<int> orders)
