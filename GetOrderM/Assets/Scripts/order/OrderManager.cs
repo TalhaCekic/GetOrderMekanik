@@ -8,6 +8,7 @@ public class OrderManager : NetworkBehaviour
     [SyncVar]
     public List<int> possibleOrders = new List<int> { 12, 123, 124, 125, 1234, 1245, 1235, 12345 };
     [SyncVar] public List<int> orderHistory = new List<int>(); // Saklanan sipariþler
+    public Transform parentObject; // Üst obje
     [SyncVar] public int Order;
 
     private float minInterval = 10f;
@@ -19,12 +20,12 @@ public class OrderManager : NetworkBehaviour
 
     public GameObject order12;
     public GameObject order123;
-    public GameObject order124;
-    public GameObject order125;
-    public GameObject order1234;
-    public GameObject order1245;
-    public GameObject order1235;
-    public GameObject order12345;
+    //public GameObject order124;
+    //public GameObject order125;
+    //public GameObject order1234;
+    //public GameObject order1245;
+    //public GameObject order1235;
+    //public GameObject order12345;
 
     private void Start()
     {
@@ -36,11 +37,14 @@ public class OrderManager : NetworkBehaviour
     }
     private void Update()
     {
+        
         if (isServer && Time.time >= nextOrderTime)
         {
+            SpawnOrder(parentObject.position);
             GenerateRandomOrder();
             CalculateNextOrderTime();
             RemoveOrderFromHistory();
+            
         }
         print(Order);
     }
@@ -54,6 +58,27 @@ public class OrderManager : NetworkBehaviour
         Order = possibleOrders[randomIndex];
         orderHistory.Add(Order); // Yeni sipariþi orderHistory listesine ekle
 
+    }
+    //[Command(requiresAuthority = false)] public void CmdSpawnOrder()
+    //{
+    //    SpawnOrder();
+    //}
+    [Command(requiresAuthority = false)]
+    public void SpawnOrder(Vector3 position)
+    {
+        print("  spawnlarmýsýn  ");
+        if(Order == 12)
+        {
+           // GameObject spawnedPrefab = Instantiate(order12, parentObject.position, Quaternion.identity);
+            Instantiate(order12, parentObject);
+            NetworkServer.Spawn(order12);
+        }
+        if(Order == 123)
+        {
+            //GameObject spawnedPrefab = Instantiate(order123, parentObject.position, Quaternion.identity);
+            Instantiate(order123, parentObject);
+            NetworkServer.Spawn(order123);
+        }
     }
     public void RemoveOrderFromHistory()
     {

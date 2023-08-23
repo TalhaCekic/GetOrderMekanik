@@ -2,7 +2,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Order123 : NetworkBehaviour
 {
@@ -13,15 +13,18 @@ public class Order123 : NetworkBehaviour
     [SyncVar] public int orderID = 0;
     [SyncVar] public float couldown = 35;
 
-    [SerializeField] public Slider sliderCouldown;
+    [SerializeField] private Slider sliderCouldown;
 
     void Start()
     {
         orderManager = FindAnyObjectByType<OrderManager>();
-        CmdinteractID(12);
+        CmdinteractID(0);
+        orderID = 123;
     }
     void Update()
     {
+        CmdinteractID(123);
+        orderID = 123;
         if (isServer)
         {
             RpcýdCheck();
@@ -51,10 +54,12 @@ public class Order123 : NetworkBehaviour
                 OrderObject[i].SetActive(false);
             }
         }
-        if (objectNumber == 12)
+        if (objectNumber == 123)
         {
+            print(" ÇALIÞTIRSANA  ");
             OrderObject[1].SetActive(true);
             OrderObject[2].SetActive(true);
+            OrderObject[3].SetActive(true);
             couldown -= Time.deltaTime;
             sliderCouldown.value = couldown;
             if (couldown < 0)
@@ -63,9 +68,10 @@ public class Order123 : NetworkBehaviour
             }
         }
     }
+    [Command(requiresAuthority = false)]
     void cmdýdCheck()
     {
-        ýdCheck();
+        RpcýdCheck();
     }
     [ClientRpc]
     void RpcýdCheck()
@@ -85,15 +91,15 @@ public class Order123 : NetworkBehaviour
                 CmdinteractID(0);
             }
         }
-        if (orderID == 12)
+        if (orderID == 123)
         {
             if (isServer)
             {
-                RpcinteractID(12);
+                RpcinteractID(123);
             }
             else
             {
-                CmdinteractID(12);
+                CmdinteractID(123);
             }
         }
     }

@@ -129,7 +129,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 3202162382468109598}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516636114}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f677613d3f67a04ea9762ea03a5b144, type: 3}
@@ -1011,41 +1011,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485806377}
   m_CullTransparentMesh: 1
---- !u!1 &1516636114 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7175201784645212267, guid: 1cf7370712af274409498e89ee4cd86c,
-    type: 3}
-  m_PrefabInstance: {fileID: 3202162382468109598}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1516636118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516636114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: 7777
-  DualMode: 1
-  NoDelay: 1
-  Interval: 10
-  Timeout: 10000
-  RecvBufferSize: 7361536
-  SendBufferSize: 7361536
-  FastResend: 2
-  ReceiveWindowSize: 4096
-  SendWindowSize: 4096
-  MaxRetransmit: 40
-  MaximizeSocketBuffers: 1
-  ReliableMaxMessageSize: 297433
-  UnreliableMaxMessageSize: 1195
-  debugLog: 0
-  statisticsGUI: 0
-  statisticsLog: 0
 --- !u!1 &1586005943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,34 +1454,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7594774850287987748, guid: 1cf7370712af274409498e89ee4cd86c,
-        type: 3}
-      propertyPath: transport
-      value: 
-      objectReference: {fileID: 1516636118}
-    - target: {fileID: 7594774850287987748, guid: 1cf7370712af274409498e89ee4cd86c,
-        type: 3}
-      propertyPath: onlineScene
-      value: Assets/scenes/pcScenes/PcLobby.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 7594774850287987748, guid: 1cf7370712af274409498e89ee4cd86c,
-        type: 3}
-      propertyPath: offlineScene
-      value: Assets/scenes/pcScenes/PcMenu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 7594774850287987748, guid: 1cf7370712af274409498e89ee4cd86c,
-        type: 3}
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 1630970780562484877, guid: 1174782a646c36846af58eb383fe4ae9,
-        type: 3}
-    m_RemovedComponents:
-    - {fileID: 5254621089458676678, guid: 1cf7370712af274409498e89ee4cd86c, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7175201784645212267, guid: 1cf7370712af274409498e89ee4cd86c,
-        type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 1516636118}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cf7370712af274409498e89ee4cd86c, type: 3}

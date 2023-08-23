@@ -2,7 +2,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Order12 : NetworkBehaviour
 {
@@ -13,24 +13,35 @@ public class Order12 : NetworkBehaviour
     [SyncVar] public int orderID = 0;
     [SyncVar] public float couldown = 35;
 
-    [SerializeField] public Slider sliderCouldown;
+    [SerializeField] private Slider sliderCouldown;
 
     void Start()
     {
         orderManager = FindAnyObjectByType<OrderManager>();
-        CmdinteractID(0);
-        orderID = 12;
+        //CmdinteractID(0);
+        //orderID = 12;
     }
     void Update()
     {
+        CmdinteractID(12);
+        orderID = 12;
         if (isServer)
         {
-            RpcýdCheck();
+            RpcinteractID(12);
+
         }
         else
         {
-            cmdýdCheck();
+             CmdinteractID(12);
         }
+        //if (isServer)
+        //{
+        //    RpcýdCheck();
+        //}
+        //else
+        //{
+        //    cmdýdCheck();
+        //}
     }
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
@@ -54,8 +65,12 @@ public class Order12 : NetworkBehaviour
         }
         if (objectNumber == 12)
         {
+            print(" ÇALIÞTIRSANA  ");
             OrderObject[1].SetActive(true);
             OrderObject[2].SetActive(true);
+            OrderObject[3].SetActive(false);
+            OrderObject[4].SetActive(false);
+            OrderObject[5].SetActive(false);
             couldown -= Time.deltaTime;
             sliderCouldown.value = couldown;
             if (couldown < 0)
@@ -64,9 +79,10 @@ public class Order12 : NetworkBehaviour
             }
         }
     }
+    [Command(requiresAuthority = false)]
     void cmdýdCheck()
     {
-        ýdCheck();
+        RpcýdCheck();
     }
     [ClientRpc]
     void RpcýdCheck()
@@ -75,17 +91,17 @@ public class Order12 : NetworkBehaviour
     }
     public void ýdCheck()
     {
-        if(orderID == 0)
-        {
-            if (isServer)
-            {
-                RpcinteractID(0);
-            }
-            else
-            {
-                CmdinteractID(0);
-            }
-        }
+        //if(orderID == 0)
+        //{
+        //    if (isServer)
+        //    {
+        //        RpcinteractID(0);
+        //    }
+        //    else
+        //    {
+        //        CmdinteractID(0);
+        //    }
+        //}
         if (orderID == 12)
         {
             if (isServer)
