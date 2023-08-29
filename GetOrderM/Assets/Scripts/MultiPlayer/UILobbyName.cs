@@ -12,10 +12,10 @@ public class UILobbyName : NetworkBehaviour
     //public readonly SyncList<PlayerGenerete> playerGenerete = new SyncList<PlayerGenerete>();
 
     [SerializeField] private RawImage[] rawImage;
-    
+
 
     [SerializeField] private Color[] color;
-  
+
 
     [SyncVar]
     private int playerCount;
@@ -27,45 +27,64 @@ public class UILobbyName : NetworkBehaviour
         {
             rawImage[i].gameObject.SetActive(false);
         }
-        
+
     }
     private void Update()
     {
         playerCount = NetworkManager.singleton.numPlayers;
-       // CmdUILobbyNames(rawImage,playerGenerete,color);
-        //if (isServer)
+        //if (isLocalPlayer)
         //{
-        //    RpcUILobbyNames();
+        //    CmdUILobbyNames(color);
         //}
-        //else
+        //if (!isLocalPlayer)
         //{
-        //    CmdUILobbyNames();
+        //    RpcUILobbyNames(color);
         //}
+
+        if (isServer)
+        {
+            RpcUILobbyNames(color);
+        }
+        else
+        {
+            CmdUILobbyNames(color);
+        }
 
     }
-    //[Command(requiresAuthority = false)]
-    //public void CmdUILobbyNames(RawImage[] raw, PlayerGenerete[] player, Color[] color1)
-    //{
-    //    RpcUILobbyNames(raw,player,color1);
-    //}
+    [Command(requiresAuthority = false)]
+    public void CmdUILobbyNames(Color[] color1)
+    {
+        RpcUILobbyNames(color1);
 
-    //[ClientRpc]
-    //public void RpcUILobbyNames(RawImage[] raw, PlayerGenerete[] player, Color[] color1)
-    //{
-    //    print("test");
-    //    for (int i = 0; i < playerCount; i++)
-    //    {
-    //        player[i] = FindObjectOfType<PlayerGenerete>();
-    //        color1[i] = player[i].playerColor;
-    //        raw[i].color = color1[i];
-    //        raw[i].gameObject.SetActive(true);
-    //    }
-    //}
+        //for (int i = 0; i < playerCount; i++)
+        //{
+        //    playerGenerete[i] = FindObjectOfType<PlayerGenerete>();
+        //    color1[i] = playerGenerete[i].playerColor;
+        //    rawImage[i].color = color1[i];
+        //    rawImage[i].gameObject.SetActive(true);
+        //}
+
+
+    }
+
+    [ClientRpc]
+    public void RpcUILobbyNames(Color[] color1)
+    {
+        //CmdUILobbyNames(color1);
+        //print("test");
+        for (int i = 0; i < playerCount; i++)
+        {
+            playerGenerete[i] = FindObjectOfType<PlayerGenerete>();
+         //   color1[i] = playerGenerete[i].playerColor;
+            rawImage[i].color = color1[i];
+            rawImage[i].gameObject.SetActive(true);
+        }
+    }
     //public void OnTriggerStay(Collider other)
     //{
     //    if (other.gameObject.CompareTag("Player"))
     //    {
-           
+
     //        for (int i = 0; i < playerCount; i++)
     //        {
     //            playerGenerete[i] = FindObjectOfType<PlayerGenerete>();

@@ -3,37 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
+using UnityEngine.InputSystem.HID;
 
 public class PlayerGenerete : NetworkBehaviour
 {
-    // BÝRÝNCÝ YÖNTEM
+    [SerializeField] private Image hud;
+
     [SyncVar(hook = nameof(OnPlayerColorChanged))]
     public Color playerColor = Color.white;
 
-    [SerializeField] private Image hud;
-
+    private DataManager dataManager;
 
     private void Start()
     {
+        dataManager = FindObjectOfType<DataManager>();
         hud.gameObject.SetActive(true);
         if (isLocalPlayer)
         {
-            CmdSetPlayerColor(Random.ColorHSV());
-        }
+            Color randomColor = Random.ColorHSV();
+            CmdChangeColor(randomColor);
 
+            if (dataManager != null)
+            {
+                dataManager.AddPlayerColor(randomColor);
+                dataManager.InitializePlayerColors(connectionToServer);
+            }
+        }
+    }
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        if (dataManager != null)
+        {
+            dataManager.InitializePlayerColors(connectionToServer);
+        }
     }
 
     [Command]
-    private void CmdSetPlayerColor(Color color)
+    private void CmdChangeColor(Color newColor)
     {
-        playerColor = color;
-        RpcSetPlayerColor(color);
-    }
-
-    [ClientRpc]
-    private void RpcSetPlayerColor(Color color)
-    {
-        playerColor = color;
+        playerColor = newColor;
     }
 
     private void OnPlayerColorChanged(Color oldColor, Color newColor)
@@ -41,6 +51,4 @@ public class PlayerGenerete : NetworkBehaviour
         // Renk deðiþtiðinde yapýlacak iþlemler
         hud.color = newColor;
     }
-
-
 }

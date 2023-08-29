@@ -989,6 +989,7 @@ GameObject:
   - component: {fileID: 271231405}
   - component: {fileID: 271231404}
   - component: {fileID: 271231406}
+  - component: {fileID: 271231407}
   m_Layer: 5
   m_Name: UICanvas
   m_TagString: Untagged
@@ -1107,7 +1108,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271231398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92868e3b04d81504cb201f0845b803ce, type: 3}
   m_Name: 
@@ -1147,6 +1148,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2000, y: 2000, z: 2000}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &271231407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271231398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a62b90a222108e74292e6623ad6a09d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1001 &323399541
 PrefabInstance:
   m_ObjectHideFlags: 0
