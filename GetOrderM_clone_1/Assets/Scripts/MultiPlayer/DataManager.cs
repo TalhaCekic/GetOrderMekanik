@@ -25,6 +25,7 @@ public class DataManager : NetworkBehaviour
     }
     public void AddPlayerColor(Color color)
     {
+        if (isLocalPlayer) return;
         playerColors.Add(color);
     }
     public void InitializePlayerColors(NetworkConnection conn)
