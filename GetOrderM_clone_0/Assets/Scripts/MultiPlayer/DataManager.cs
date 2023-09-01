@@ -13,11 +13,7 @@ public class DataManager : NetworkBehaviour
     }
     public override void OnStartServer()
     {
-        if (isLocalPlayer)
-        {
-            playerColors.Callback += OnPlayerColorsUpdated;
-        }
-
+        playerColors.Callback += OnPlayerColorsUpdated;
     }
     private void OnPlayerColorsUpdated(SyncList<Color>.Operation op, int itemIndex, Color oldColor, Color newColor)
     {
