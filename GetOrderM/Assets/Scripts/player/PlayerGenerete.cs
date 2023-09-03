@@ -16,11 +16,9 @@ public class PlayerGenerete : NetworkBehaviour
         dataManager = FindObjectOfType<DataManager>();
         hud.gameObject.SetActive(true);
 
-
         Color randomColor = Random.ColorHSV();
 
         CmdChangeColor(randomColor);
-
         if (dataManager != null)
         {
             dataManager.AddPlayerColor(randomColor);
@@ -30,13 +28,12 @@ public class PlayerGenerete : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-
         if (dataManager != null)
         {
             dataManager.InitializePlayerColors(connectionToServer);
         }
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     private void CmdChangeColor(Color newColor)
     {
         playerColor = newColor;

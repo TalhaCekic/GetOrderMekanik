@@ -9,13 +9,10 @@ public class UILobbyName : NetworkBehaviour
 {
     // BÝRÝNCÝ YÖNTEM
     [SerializeField] private PlayerGenerete[] playerGenerete;
-    //public readonly SyncList<PlayerGenerete> playerGenerete = new SyncList<PlayerGenerete>();
 
     [SerializeField] private RawImage[] rawImage;
 
-
     [SerializeField] private Color[] color;
-
 
     [SyncVar]
     private int playerCount;

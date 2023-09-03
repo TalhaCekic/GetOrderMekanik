@@ -1163,6 +1163,11 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  colorImages:
+  - {fileID: 1782312361}
+  - {fileID: 798557805}
+  - {fileID: 849225630}
+  - {fileID: 2144189768}
 --- !u!1001 &323399541
 PrefabInstance:
   m_ObjectHideFlags: 0

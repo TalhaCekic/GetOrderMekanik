@@ -1,11 +1,14 @@
 using Mirror;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DataManager : NetworkBehaviour
 {
     public readonly SyncList<Color> playerColors = new SyncList<Color>();
+
+    // UI'da göstermek için kullanýlacak Image bileþenleri
+    public RawImage[] colorImages;
 
     private void Start()
     {
@@ -14,6 +17,7 @@ public class DataManager : NetworkBehaviour
     public override void OnStartServer()
     {
         playerColors.Callback += OnPlayerColorsUpdated;
+        cmdShowFirstThreeColors();
     }
     private void OnPlayerColorsUpdated(SyncList<Color>.Operation op, int itemIndex, Color oldColor, Color newColor)
     {
@@ -25,7 +29,6 @@ public class DataManager : NetworkBehaviour
     }
     public void AddPlayerColor(Color color)
     {
-        if (isLocalPlayer) return;
         playerColors.Add(color);
     }
     public void InitializePlayerColors(NetworkConnection conn)
@@ -40,10 +43,25 @@ public class DataManager : NetworkBehaviour
     {
         // Renk güncelleme iþlemleri
     }
-    [Command]
-    public void CmdChangeColor(Color newColor)
+    [Command(requiresAuthority = false)] public void cmdShowFirstThreeColors()
     {
-        playerColors[connectionToClient.connectionId] = newColor;
+        ShowFirstThreeColors();
+    }
+    // UI'da ilk 3 rengi göstermek için kullanýlacak fonksiyon
+    [ClientRpc]
+    public void ShowFirstThreeColors()
+    {
+        for (int i = 0; i < Mathf.Min(colorImages.Length, 3); i++)
+        {
+            if (i < playerColors.Count)
+            {
+                colorImages[i].color = playerColors[i];
+                colorImages[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                //colorImages[i].gameObject.SetActive(false);
+            }
+        }
     }
 }
-
