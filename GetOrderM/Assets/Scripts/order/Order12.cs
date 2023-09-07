@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,63 +10,70 @@ public class Order12 : NetworkBehaviour
     public List<GameObject> OrderObject = new List<GameObject>();
 
     [SerializeField] private OrderManager orderManager;
+    [SerializeField] private GameObject canvas;
 
     [SyncVar] public int orderID = 0;
-    [SyncVar] public float couldown = 35;
+    public float couldown = 35;
 
     [SerializeField] private Slider sliderCouldown;
 
     void Start()
     {
+        DontDestroyOnLoad(this);
+        //transform.parent = canvas.transform;
         orderManager = FindAnyObjectByType<OrderManager>();
-        //CmdinteractID(0);
-        //orderID = 12;
     }
     void Update()
     {
-        CmdinteractID(12);
-        orderID = 12;
-        if (isServer)
-        {
-            RpcinteractID(12);
+        // CmdinteractID(12);
 
-        }
-        else
-        {
-             CmdinteractID(12);
-        }
+        // RpcinteractID(12);
+
+        UpdateGameStatus(12);
         //if (isServer)
         //{
-        //    RpcýdCheck();
+        //    RpcinteractID(12);
         //}
         //else
         //{
-        //    cmdýdCheck();
+        //    CmdinteractID(12);
         //}
     }
-    [Command(requiresAuthority = false)]
-    public void CmdinteractID(float objectNumber)
+    //[Command(requiresAuthority = false)]
+    //public void CmdinteractID(float objectNumber)
+    //{
+    //    //RpcinteractID(objectNumber);
+    //    if (objectNumber == 12)
+    //    {
+    //        orderID = 12;
+    //        print(" ÇALIÞTIRSANA  ");
+    //        OrderObject[1].SetActive(true);
+    //        OrderObject[2].SetActive(true);
+    //        OrderObject[3].SetActive(false);
+    //        OrderObject[4].SetActive(false);
+    //        OrderObject[5].SetActive(false);
+    //        couldown -= Time.deltaTime;
+    //        sliderCouldown.value = couldown;
+    //        if (couldown < 0)
+    //        {
+    //            Destroy(this.gameObject);
+    //        }
+    //    }
+    //}
+    [Server]
+    void UpdateGameStatus(float objectNumber)
     {
-        interactID(objectNumber);
+
+        // Tüm istemcilere güncel durumu gönder
         RpcinteractID(objectNumber);
     }
     [ClientRpc]
     public void RpcinteractID(float objectNumber)
     {
-        interactID(objectNumber);
-    }
-    public void interactID(float objectNumber)
-    {
-        if (orderID == 0)
-        {
-            for (int i = 0; i < OrderObject.Count; i++)
-            {
-                OrderObject[i].SetActive(false);
-            }
-        }
+        //CmdinteractID(objectNumber);
         if (objectNumber == 12)
         {
-            print(" ÇALIÞTIRSANA  ");
+            orderID = 12;
             OrderObject[1].SetActive(true);
             OrderObject[2].SetActive(true);
             OrderObject[3].SetActive(false);
@@ -79,38 +87,22 @@ public class Order12 : NetworkBehaviour
             }
         }
     }
-    [Command(requiresAuthority = false)]
-    void cmdýdCheck()
+    public void interactID(float objectNumber)
     {
-        RpcýdCheck();
-    }
-    [ClientRpc]
-    void RpcýdCheck()
-    {
-        ýdCheck();
-    }
-    public void ýdCheck()
-    {
-        //if(orderID == 0)
-        //{
-        //    if (isServer)
-        //    {
-        //        RpcinteractID(0);
-        //    }
-        //    else
-        //    {
-        //        CmdinteractID(0);
-        //    }
-        //}
-        if (orderID == 12)
+        if (objectNumber == 12)
         {
-            if (isServer)
+            orderID = 12;
+            print(" ÇALIÞTIRSANA  ");
+            OrderObject[1].SetActive(true);
+            OrderObject[2].SetActive(true);
+            OrderObject[3].SetActive(false);
+            OrderObject[4].SetActive(false);
+            OrderObject[5].SetActive(false);
+            couldown -= Time.deltaTime;
+            sliderCouldown.value = couldown;
+            if (couldown < 0)
             {
-                RpcinteractID(12);
-            }
-            else
-            {
-                CmdinteractID(12);
+                Destroy(this.gameObject);
             }
         }
     }

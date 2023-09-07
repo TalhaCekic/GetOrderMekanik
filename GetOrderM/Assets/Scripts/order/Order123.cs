@@ -9,98 +9,106 @@ public class Order123 : NetworkBehaviour
     public List<GameObject> OrderObject = new List<GameObject>();
 
     [SerializeField] private OrderManager orderManager;
+    [SerializeField] private GameObject canvas;
 
     [SyncVar] public int orderID = 0;
-    [SyncVar] public float couldown = 35;
+    public float couldown = 35;
 
     [SerializeField] private Slider sliderCouldown;
 
     void Start()
     {
+        DontDestroyOnLoad(this);
+        // transform.parent = canvas.transform;
         orderManager = FindAnyObjectByType<OrderManager>();
-        CmdinteractID(0);
+        //CmdinteractID(0);
         orderID = 123;
     }
     void Update()
     {
-        CmdinteractID(123);
-        orderID = 123;
-        if (isServer)
-        {
-            RpcýdCheck();
-        }
-        else
-        {
-            cmdýdCheck();
-        }
+        //CmdinteractID(123);
+
+        RpcinteractID(123);
+
+
+        //if (isServer)
+        //{
+        //    RpcinteractID(123);
+        //}
+        //else
+        //{
+        //    CmdinteractID(123);
+        //}
     }
-    [Command(requiresAuthority = false)]
-    public void CmdinteractID(float objectNumber)
+    //[Command(requiresAuthority = false)]
+    //public void CmdinteractID(float objectNumber)
+    //{
+    //    //RpcinteractID(objectNumber);
+    //    if (objectNumber == 123)
+    //    {
+    //        orderID = 123;
+    //        print(" ÇALIÞTIRSANA  ");
+    //        OrderObject[1].SetActive(true);
+    //        OrderObject[2].SetActive(true);
+    //        OrderObject[3].SetActive(true);
+    //        OrderObject[4].SetActive(false);
+    //        OrderObject[5].SetActive(false);
+    //        couldown -= Time.deltaTime;
+    //        sliderCouldown.value = couldown;
+    //        if (couldown < 0)
+    //        {
+    //            NetworkServer.Destroy(this.gameObject);
+    //        }
+    //    }
+    //}
+    [Server]
+    void UpdateGameStatus(float objectNumber)
     {
-        interactID(objectNumber);
+
+        // Tüm istemcilere güncel durumu gönder
         RpcinteractID(objectNumber);
     }
     [ClientRpc]
     public void RpcinteractID(float objectNumber)
     {
-        interactID(objectNumber);
-    }
-    public void interactID(float objectNumber)
-    {
-        if (orderID == 0)
-        {
-            for (int i = 0; i < OrderObject.Count; i++)
-            {
-                OrderObject[i].SetActive(false);
-            }
-        }
+        //CmdinteractID(objectNumber);
         if (objectNumber == 123)
         {
-            print(" ÇALIÞTIRSANA  ");
+            orderID = 123;
             OrderObject[1].SetActive(true);
             OrderObject[2].SetActive(true);
             OrderObject[3].SetActive(true);
+            OrderObject[4].SetActive(false);
+            OrderObject[5].SetActive(false);
             couldown -= Time.deltaTime;
             sliderCouldown.value = couldown;
             if (couldown < 0)
             {
-                Destroy(this.gameObject);
+                NetworkServer.Destroy(this.gameObject);
             }
         }
     }
-    [Command(requiresAuthority = false)]
-    void cmdýdCheck()
+    public void interactID(float objectNumber)
     {
-        RpcýdCheck();
-    }
-    [ClientRpc]
-    void RpcýdCheck()
-    {
-        ýdCheck();
-    }
-    public void ýdCheck()
-    {
-        if(orderID == 0)
+
+        if (objectNumber == 123)
         {
-            if (isServer)
+            orderID = 123;
+            print(" ÇALIÞTIRSANA  ");
+            OrderObject[1].SetActive(true);
+            OrderObject[2].SetActive(true);
+            OrderObject[3].SetActive(true);
+            OrderObject[4].SetActive(false);
+            OrderObject[5].SetActive(false);
+            couldown -= Time.deltaTime;
+            sliderCouldown.value = couldown;
+            if (couldown < 0)
             {
-                RpcinteractID(0);
-            }
-            else
-            {
-                CmdinteractID(0);
-            }
-        }
-        if (orderID == 123)
-        {
-            if (isServer)
-            {
-                RpcinteractID(123);
-            }
-            else
-            {
-                CmdinteractID(123);
+                NetworkServer.Destroy(this.gameObject);
             }
         }
+
+
+
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.Profiling;
 public class OrderManager : NetworkBehaviour
 {
     [SyncVar]
-    public List<int> possibleOrders = new List<int> { 12, 123, 124, 125, 1234, 1245, 1235, 12345 };
+    public List<int> possibleOrders = new List<int> { 12, 123, 124, 125, 1234, 1245, 1235, 12345 }; // olasý sipariþler
     [SyncVar] public List<int> orderHistory = new List<int>(); // Saklanan sipariþler
     public Transform parentObject; // Üst obje
     [SyncVar] public int Order;
@@ -29,6 +29,7 @@ public class OrderManager : NetworkBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(this);
         if (isServer)
         {
             RpcSetPossibleOrders(possibleOrders);
@@ -37,14 +38,11 @@ public class OrderManager : NetworkBehaviour
     }
     private void Update()
     {
-        
         if (isServer && Time.time >= nextOrderTime)
         {
-            SpawnOrder(parentObject.position);
+            CmdSpawnOrder(parentObject.position,Order);
             GenerateRandomOrder();
             CalculateNextOrderTime();
-            RemoveOrderFromHistory();
-            
         }
         print(Order);
     }
@@ -59,37 +57,49 @@ public class OrderManager : NetworkBehaviour
         orderHistory.Add(Order); // Yeni sipariþi orderHistory listesine ekle
 
     }
-    //[Command(requiresAuthority = false)] public void CmdSpawnOrder()
-    //{
-    //    SpawnOrder();
-    //}
     [Command(requiresAuthority = false)]
-    public void SpawnOrder(Vector3 position)
+    public void CmdSpawnOrder(Vector3 position, int order)
     {
-        print("  spawnlarmýsýn  ");
-        if(Order == 12)
-        {
-           // GameObject spawnedPrefab = Instantiate(order12, parentObject.position, Quaternion.identity);
-            Instantiate(order12, parentObject);
-            NetworkServer.Spawn(order12);
-        }
-        if(Order == 123)
-        {
-            //GameObject spawnedPrefab = Instantiate(order123, parentObject.position, Quaternion.identity);
-            Instantiate(order123, parentObject);
-            NetworkServer.Spawn(order123);
-        }
-    }
-    public void RemoveOrderFromHistory()
-    {
-        if (orderHistory.Count > 0)
-        {
-            //orderHistory.RemoveAt(0);
-             firstOrder = orderHistory[0];
-            secondOrder = orderHistory[1];
-        }
-    }
+        //SpawnOrder(parentObject.position, order);
+        GameObject orderPrefab = null;
 
+        if (order == 12)
+        {
+            orderPrefab = order12;
+        }
+        else if (order == 123)
+        {
+            orderPrefab = order123;
+        }
+        // Diðer sipariþ türleri için de kontrolleri ekleyin
+
+        if (orderPrefab != null)
+        {
+            GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
+            NetworkServer.Spawn(spawnedPrefab);
+        }
+    }
+    //[ClientRpc]
+    //public void SpawnOrder(Vector3 position, int order)
+    //{
+    //    GameObject orderPrefab = null;
+
+    //    if (order == 12)
+    //    {
+    //        orderPrefab = order12;
+    //    }
+    //    else if (order == 123)
+    //    {
+    //        orderPrefab = order123;
+    //    }
+    //    // Diðer sipariþ türleri için de kontrolleri ekleyin
+
+    //    if (orderPrefab != null)
+    //    {
+    //        GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity , parentObject);
+    //        NetworkServer.Spawn(spawnedPrefab);
+    //    }
+    //}
     [ClientRpc]
     private void RpcSetPossibleOrders(List<int> orders)
     {
