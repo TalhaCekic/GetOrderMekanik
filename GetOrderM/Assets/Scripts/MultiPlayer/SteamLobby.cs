@@ -27,7 +27,6 @@ public class SteamLobby : NetworkBehaviour
     public GameObject HostButton;
     // public TMP_Text LobbyNameText;
 
-
     private void Start()
     {
         Instance = this;
