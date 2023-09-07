@@ -2050,8 +2050,10 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  playerColor: {r: 1, g: 1, b: 1, a: 1}
   hud: {fileID: 4189222960449678952}
+  playerColor: {r: 1, g: 1, b: 1, a: 1}
+  uILobbyName: {fileID: 4653401608735615739, guid: c36fb27e8c1d32e46a03ae171c8fa217,
+    type: 3}
 --- !u!1 &1842747578549811304
 GameObject:
   m_ObjectHideFlags: 0
