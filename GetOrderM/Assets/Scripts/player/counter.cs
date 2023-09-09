@@ -19,7 +19,7 @@ public class counter : NetworkBehaviour
     public List<GameObject> childObject = new List<GameObject>();
     public List<GameObject> BoxObject = new List<GameObject>();
 
-    [SyncVar] public float counterID = 0;
+    [SyncVar] public float submidID = 0;
 
     public bool notCombine;
 
@@ -57,7 +57,7 @@ public class counter : NetworkBehaviour
     {
         if (objectNumber == 0) // boþ
         {
-            counterID = 0;
+            submidID = 0;
             for (int i = 0; i < childObject.Count; i++)
             {
                 childObject[i].SetActive(false);
@@ -70,63 +70,63 @@ public class counter : NetworkBehaviour
         if (objectNumber == 1.1f) // kasa kutu
         {
             BoxObject[1].SetActive(true);
-            counterID = 1.1f;
+            submidID = 1.1f;
         }
         if (objectNumber == 1) // kasa
         {
-            counterID = 1;
+            submidID = 1;
             childObject[1].SetActive(true);
         }
         if (objectNumber == 2.2f) // anakar kutu
         {
             BoxObject[2].SetActive(true);
-            counterID = 2.2f;
+            submidID = 2.2f;
         }
         if (objectNumber == 2) // anakar
         {
             childObject[2].SetActive(true);
-            counterID = 2;
+            submidID = 2;
             //  smoke.Play();
         }
         if (objectNumber == 3.3f) // CPU kutu
         {
             BoxObject[3].SetActive(true);
-            counterID = 3.3f;
+            submidID = 3.3f;
         }
         if (objectNumber == 3) // CPU
         {
             childObject[3].SetActive(true);
-            counterID = 3;
+            submidID = 3;
             //  smoke.Play();
         }
         if (objectNumber == 4) // ekran kartý
         {
             childObject[4].SetActive(true);
-            counterID = 4;
+            submidID = 4;
             //  smoke.Play();
         }
         if (objectNumber == 4.4f) // ekran kartý
         {
             BoxObject[4].SetActive(true);
-            counterID = 4.4f;
+            submidID = 4.4f;
             //  smoke.Play();
         }
         if (objectNumber == 5.5f) // ram
         {
             BoxObject[5].SetActive(true);
-            counterID = 5.5f;
+            submidID = 5.5f;
         }
         if (objectNumber == 5) // ram
         {
             childObject[5].SetActive(true);
-            counterID = 5;
+            submidID = 5;
             //  smoke.Play();
         }
         if (objectNumber == 12)
         {
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
-            counterID = 12;
+            submidID = 12;
             //  smoke.Play();
         }
         if (objectNumber == 123)
@@ -134,7 +134,7 @@ public class counter : NetworkBehaviour
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
-            counterID = 123;
+            submidID = 123;
             // smoke.Play();
         }
         if (objectNumber == 124)
@@ -142,14 +142,14 @@ public class counter : NetworkBehaviour
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[4].SetActive(true);
-            counterID = 124;
+            submidID = 124;
         }
         if (objectNumber == 125)
         {
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[5].SetActive(true);
-            counterID = 125;
+            submidID = 125;
         }
         if (objectNumber == 1234)
         {
@@ -157,7 +157,7 @@ public class counter : NetworkBehaviour
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
             childObject[4].SetActive(true);
-            counterID = 1234;
+            submidID = 1234;
         }
         if (objectNumber == 1235)
         {
@@ -165,7 +165,7 @@ public class counter : NetworkBehaviour
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
             childObject[5].SetActive(true);
-            counterID = 1235;
+            submidID = 1235;
         }
         if (objectNumber == 1245)
         {
@@ -173,7 +173,7 @@ public class counter : NetworkBehaviour
             childObject[2].SetActive(true);
             childObject[4].SetActive(true);
             childObject[5].SetActive(true);
-            counterID = 1245;
+            submidID = 1245;
         }
         if (objectNumber == 12345)
         {
@@ -182,7 +182,7 @@ public class counter : NetworkBehaviour
             childObject[3].SetActive(true);
             childObject[4].SetActive(true);
             childObject[5].SetActive(true);
-            counterID = 12345;
+            submidID = 12345;
         }
     }
     [Command(requiresAuthority = false)]
@@ -243,7 +243,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(3);
                 }
-                counterID = 3;
+                submidID = 3;
             }
             if (ekranKartýDolu)
             {
@@ -255,7 +255,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(4);
                 }
-                counterID = 4;
+                submidID = 4;
             }
             if (ramDolu)
             {
@@ -267,7 +267,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(5);
                 }
-                counterID = 5;
+                submidID = 5;
             }
             if (kasaDolu && anaKartDolu)
             {
@@ -279,7 +279,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(12);
                 }
-                counterID = 12;
+                submidID = 12;
             }
             if (kasaDolu && anaKartDolu && cpuDolu)
             {
@@ -291,7 +291,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(123);
                 }
-                counterID = 123;
+                submidID = 123;
             }
             if (kasaDolu && anaKartDolu && ekranKartýDolu)
             {
@@ -303,7 +303,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(124);
                 }
-                counterID = 124;
+                submidID = 124;
             }
             if (kasaDolu && anaKartDolu && ramDolu)
             {
@@ -315,7 +315,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(125);
                 }
-                counterID = 125;
+                submidID = 125;
             }
             if (kasaDolu && anaKartDolu && ekranKartýDolu && ramDolu)
             {
@@ -327,7 +327,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(1245);
                 }
-                counterID = 1245;
+                submidID = 1245;
             }
             if (kasaDolu && anaKartDolu && cpuDolu && ekranKartýDolu)
             {
@@ -339,7 +339,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(1234);
                 }
-                counterID = 1234;
+                submidID = 1234;
             }
             if (kasaDolu && anaKartDolu && cpuDolu && ramDolu)
             {
@@ -351,7 +351,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(1235);
                 }
-                counterID = 1235;
+                submidID = 1235;
             }
             if (kasaDolu && anaKartDolu && cpuDolu && ekranKartýDolu && ramDolu)
             {
@@ -363,7 +363,7 @@ public class counter : NetworkBehaviour
                 {
                     CmdinteractID(12345);
                 }
-                counterID = 12345;
+                submidID = 12345;
             }
         }
         if (BoxKasaDolu || BoxAnakartDolu || BoxCpuDolu || BoxEkranKartýDolu || BoxRamDolu)
@@ -470,8 +470,6 @@ public class counter : NetworkBehaviour
     {
         smoke.Stop();
     }
-
-
 
     // bool deðiþkenlerin sunucuya gönderilmesi
     [Command(requiresAuthority = false)]
