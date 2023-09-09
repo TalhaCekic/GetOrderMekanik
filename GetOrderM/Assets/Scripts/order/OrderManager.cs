@@ -39,14 +39,13 @@ public class OrderManager : NetworkBehaviour
     {
         if (isServer && Time.time >= nextOrderTime)
         {
-            SpawnOrder(parentObject.position, Order);
-            //CmdSpawnOrder(parentObject.position,Order);
+            CmdSpawnOrder(parentObject.position, Order);
             GenerateRandomOrder();
             CalculateNextOrderTime();
         }
         else
         {
-            CmdSpawnOrder(parentObject.position, Order);
+            SpawnOrder(parentObject.position, Order);
         }
         print(Order);
     }

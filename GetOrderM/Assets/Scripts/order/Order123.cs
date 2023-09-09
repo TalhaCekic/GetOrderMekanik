@@ -28,7 +28,7 @@ public class Order123 : NetworkBehaviour
     {
         //CmdinteractID(123);
 
-        RpcinteractID(123);
+        UpdateGameStatus(123);
 
 
         //if (isServer)
