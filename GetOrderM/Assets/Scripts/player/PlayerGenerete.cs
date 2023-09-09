@@ -19,8 +19,8 @@ public class PlayerGenerete : NetworkBehaviour
 
     private void Start()
     {
-      
-        
+
+        steamName = SteamFriends.GetPersonaName();
         dataManager = FindObjectOfType<DataManager>();
         hud.gameObject.SetActive(true);
         Color randomColor = Random.ColorHSV();
@@ -30,7 +30,7 @@ public class PlayerGenerete : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        steamName = SteamFriends.GetPersonaName();
+       
 
     }
     private void Update()
