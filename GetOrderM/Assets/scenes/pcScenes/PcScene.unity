@@ -29874,6 +29874,41 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1791632290562419854, guid: 15461d59b82862344828400d85109b13,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2068783223}
+    - target: {fileID: 1791632290562419854, guid: 15461d59b82862344828400d85109b13,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791632290562419854, guid: 15461d59b82862344828400d85109b13,
+        type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791632290562419854, guid: 15461d59b82862344828400d85109b13,
+        type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361426914500739642, guid: 15461d59b82862344828400d85109b13,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361426914500739642, guid: 15461d59b82862344828400d85109b13,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361426914500739642, guid: 15461d59b82862344828400d85109b13,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 4726205008333821360, guid: 15461d59b82862344828400d85109b13,
         type: 3}
       propertyPath: sceneId

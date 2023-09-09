@@ -43,7 +43,6 @@ public class OrderManager : NetworkBehaviour
             GenerateRandomOrder();
             CalculateNextOrderTime();
         }
-        print(Order);
     }
     private void CalculateNextOrderTime() // tekrardan sipariþin gelme sýklýðý
     {

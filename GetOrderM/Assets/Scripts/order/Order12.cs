@@ -28,27 +28,6 @@ public class Order12 : NetworkBehaviour
     {
         UpdateGameStatus(12);
     }
-    //[Command(requiresAuthority = false)]
-    //public void CmdinteractID(float objectNumber)
-    //{
-    //    //RpcinteractID(objectNumber);
-    //    if (objectNumber == 12)
-    //    {
-    //        orderID = 12;
-    //        print(" ÇALIÞTIRSANA  ");
-    //        OrderObject[1].SetActive(true);
-    //        OrderObject[2].SetActive(true);
-    //        OrderObject[3].SetActive(false);
-    //        OrderObject[4].SetActive(false);
-    //        OrderObject[5].SetActive(false);
-    //        couldown -= Time.deltaTime;
-    //        sliderCouldown.value = couldown;
-    //        if (couldown < 0)
-    //        {
-    //            Destroy(this.gameObject);
-    //        }
-    //    }
-    //}
     [Server]
     void UpdateGameStatus(float objectNumber)
     {
@@ -58,9 +37,9 @@ public class Order12 : NetworkBehaviour
     [ClientRpc]
     public void RpcinteractID(float objectNumber)
     {
-        //CmdinteractID(objectNumber);
         if (objectNumber == 12)
         {
+            this.transform.position = new Vector3(150, 522, 0);
             orderID = 12;
             OrderObject[1].SetActive(true);
             OrderObject[2].SetActive(true);
@@ -75,24 +54,4 @@ public class Order12 : NetworkBehaviour
             }
         }
     }
-    public void interactID(float objectNumber)
-    {
-        if (objectNumber == 12)
-        {
-            orderID = 12;
-            print(" ÇALIÞTIRSANA  ");
-            OrderObject[1].SetActive(true);
-            OrderObject[2].SetActive(true);
-            OrderObject[3].SetActive(false);
-            OrderObject[4].SetActive(false);
-            OrderObject[5].SetActive(false);
-            couldown -= Time.deltaTime;
-            sliderCouldown.value = couldown;
-            if (couldown < 0)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-    }
-    
 }
