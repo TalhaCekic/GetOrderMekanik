@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 using UnityEngine.InputSystem.HID;
+using Steamworks;
 
 public class PlayerGenerete : NetworkBehaviour
 {
@@ -13,47 +14,33 @@ public class PlayerGenerete : NetworkBehaviour
     [SerializeField]private DataManager dataManager;
     [SerializeField] private UILobbyName uILobbyName;
     [SyncVar] public int playerCount;
+   [SyncVar] public string steamName;
 
-  
+
     private void Start()
     {
-      // uILobbyName = FindObjectOfType<UILobbyName>();
+      
+        
         dataManager = FindObjectOfType<DataManager>();
         hud.gameObject.SetActive(true);
-
         Color randomColor = Random.ColorHSV();
-
         CmdChangeColor(randomColor);
-        //if (dataManager != null)
-        //{
-        //    dataManager.AddPlayerColor(randomColor);
-        //    dataManager.InitializePlayerColors(connectionToServer);
-        //}
+
     }
     public override void OnStartClient()
     {
         base.OnStartClient();
-        
-        //if (dataManager != null)
-        //{
-        //    dataManager.InitializePlayerColors(connectionToServer);
-        //}
+        steamName = SteamFriends.GetPersonaName();
+
     }
     private void Update()
-    {
-        
+    { 
         playerCount = NetworkManager.singleton.numPlayers;
-        Debug.Log(playerCount);
-        
-            //CmdUIColor(playerCount);
-        
-      
     }
     [Command(requiresAuthority = false)]
     private void CmdChangeColor(Color newColor)
     {
         playerColor = newColor;
-        
 
     }
     private void OnPlayerColorChanged(Color oldColor, Color newColor)

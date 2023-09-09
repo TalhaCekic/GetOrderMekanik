@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
+using TMPro;
 
 public class UILobbyName : NetworkBehaviour
 {
@@ -12,17 +13,20 @@ public class UILobbyName : NetworkBehaviour
 
     [SerializeField] private DataManager dataManager;
 
+    [SerializeField] public TextMeshProUGUI[] textMeshPros;
+
     [SyncVar]
     public int playerCount;
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
         rawImage = GetComponentsInChildren<RawImage>();
-        dataManager= GetComponent<DataManager>();
-        //for (int i = 0; i < rawImage.Length; i++)
-        //{
-        //    rawImage[i].gameObject.SetActive(false);
-        //}
+        textMeshPros = GetComponentsInChildren<TextMeshProUGUI>();
+        dataManager = GetComponent<DataManager>();
+        for (int i = 0; i < rawImage.Length; i++)
+        {
+            rawImage[i].gameObject.SetActive(false);
+        }
 
     }
     private void Update()
