@@ -26,19 +26,8 @@ public class Order123 : NetworkBehaviour
     }
     void Update()
     {
-        //CmdinteractID(123);
-
         UpdateGameStatus(123);
 
-
-        //if (isServer)
-        //{
-        //    RpcinteractID(123);
-        //}
-        //else
-        //{
-        //    CmdinteractID(123);
-        //}
     }
     //[Command(requiresAuthority = false)]
     //public void CmdinteractID(float objectNumber)

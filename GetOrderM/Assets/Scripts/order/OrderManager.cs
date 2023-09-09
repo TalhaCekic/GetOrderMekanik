@@ -78,28 +78,6 @@ public class OrderManager : NetworkBehaviour
             NetworkServer.Spawn(spawnedPrefab);
         }
     }
-    //[ClientRpc]
-    //public void SpawnOrder(Vector3 position, int order)
-    //{
-    //    CmdSpawnOrder(parentObject.position, Order);
-    //    //GameObject orderPrefab = null;
-
-    //    //if (order == 12)
-    //    //{
-    //    //    orderPrefab = order12;
-    //    //}
-    //    //else if (order == 123)
-    //    //{
-    //    //    orderPrefab = order123;
-    //    //}
-    //    //// Diðer sipariþ türleri için de kontrolleri ekleyin
-
-    //    //if (orderPrefab != null)
-    //    //{
-    //    //    GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
-    //    //    NetworkServer.Spawn(spawnedPrefab);
-    //    //}
-    //}
     [ClientRpc]
     private void RpcSetPossibleOrders(List<int> orders)
     {

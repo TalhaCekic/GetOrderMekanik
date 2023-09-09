@@ -26,19 +26,7 @@ public class Order12 : NetworkBehaviour
     }
     void Update()
     {
-        // CmdinteractID(12);
-
-        // RpcinteractID(12);
-
         UpdateGameStatus(12);
-        //if (isServer)
-        //{
-        //    RpcinteractID(12);
-        //}
-        //else
-        //{
-        //    CmdinteractID(12);
-        //}
     }
     //[Command(requiresAuthority = false)]
     //public void CmdinteractID(float objectNumber)
@@ -64,7 +52,6 @@ public class Order12 : NetworkBehaviour
     [Server]
     void UpdateGameStatus(float objectNumber)
     {
-
         // Tüm istemcilere güncel durumu gönder
         RpcinteractID(objectNumber);
     }
