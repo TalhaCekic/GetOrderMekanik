@@ -19,7 +19,7 @@ public class Order123 : NetworkBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        // transform.parent = canvas.transform;
+        transform.parent = canvas.transform;
         orderManager = FindAnyObjectByType<OrderManager>();
         //CmdinteractID(0);
         orderID = 123;

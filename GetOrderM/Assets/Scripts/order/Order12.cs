@@ -20,7 +20,8 @@ public class Order12 : NetworkBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        //transform.parent = canvas.transform;
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
+        transform.parent = canvas.transform;
         orderManager = FindAnyObjectByType<OrderManager>();
     }
     void Update()
@@ -106,4 +107,5 @@ public class Order12 : NetworkBehaviour
             }
         }
     }
+    
 }

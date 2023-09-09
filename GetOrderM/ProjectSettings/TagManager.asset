@@ -7,6 +7,7 @@ TagManager:
   - Pickup
   - counter
   - submid
+  - Canvas
   layers:
   - Default
   - TransparentFX
