@@ -633,7 +633,7 @@ MonoBehaviour:
   orderManager: {fileID: 0}
   canvas: {fileID: 0}
   orderID: 0
-  couldown: 35
+  order: {fileID: 11400000, guid: 29654cf13a3c7b74abafed8ef5ff784d, type: 2}
   sliderCouldown: {fileID: 209559708856442593}
 --- !u!114 &872301024271269861
 MonoBehaviour:

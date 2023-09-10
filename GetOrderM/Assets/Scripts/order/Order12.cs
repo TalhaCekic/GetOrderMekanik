@@ -9,21 +9,11 @@ public class Order12 : NetworkBehaviour
 {
     public List<GameObject> OrderObject = new List<GameObject>();
 
-    [SerializeField] private OrderManager orderManager;
-    [SerializeField] private GameObject canvas;
 
-    [SyncVar] public int orderID = 0;
-    public float couldown = 60;
-
+    [SerializeField] private ScriptableOrder order;
     [SerializeField] private Slider sliderCouldown;
 
-    void Start()
-    {
-        DontDestroyOnLoad(this);
-        canvas = GameObject.FindGameObjectWithTag("Canvas");
-        transform.parent = canvas.transform;
-        orderManager = FindAnyObjectByType<OrderManager>();
-    }
+
     void Update()
     {
         UpdateGameStatus(12);
@@ -40,15 +30,15 @@ public class Order12 : NetworkBehaviour
         if (objectNumber == 12)
         {
             
-            orderID = 12;
+            order.orderID = 12;
             OrderObject[1].SetActive(true);
             OrderObject[2].SetActive(true);
             OrderObject[3].SetActive(false);
             OrderObject[4].SetActive(false);
             OrderObject[5].SetActive(false);
-            couldown -= Time.deltaTime;
-            sliderCouldown.value = couldown;
-            if (couldown < 0)
+            order.couldown -= Time.deltaTime;
+            sliderCouldown.value = order.couldown;
+            if (order.couldown < 0)
             {
                 Destroy(this.gameObject);
             }
