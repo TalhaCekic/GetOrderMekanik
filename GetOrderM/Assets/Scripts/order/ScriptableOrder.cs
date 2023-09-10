@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ScriptableOrder : MonoBehaviour
+[CreateAssetMenu(fileName = "New Order",menuName ="Order")]
+public class ScriptableOrder : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string orderName;
+    public int orderID;
+    public float couldown;
+    public GameObject orderPrefab;
+    
 }

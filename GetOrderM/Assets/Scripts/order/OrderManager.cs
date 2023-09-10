@@ -59,6 +59,7 @@ public class OrderManager : NetworkBehaviour
         if (firstOrder == 0)
         {
             firstOrder = Order;
+            
         }
         else if (secondOrder == 0)
         {

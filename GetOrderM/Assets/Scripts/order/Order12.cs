@@ -39,7 +39,7 @@ public class Order12 : NetworkBehaviour
     {
         if (objectNumber == 12)
         {
-            this.transform.position = new Vector3(150, 522, 0);
+            
             orderID = 12;
             OrderObject[1].SetActive(true);
             OrderObject[2].SetActive(true);
