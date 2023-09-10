@@ -6,13 +6,13 @@ using TMPro;
 
 public class DataManager : NetworkBehaviour
 {
- //   public  SyncList<Color> playerColors = new SyncList<Color>();
+    //   public  SyncList<Color> playerColors = new SyncList<Color>();
 
     // UI'da göstermek için kullanýlacak Image bileþenleri
     public RawImage[] colorImages;
     [SyncVar] public int playerCount;
 
-    
+
     [SerializeField] private UILobbyName uILobbyName;
 
     //   public Color[] colorArray;
@@ -22,8 +22,8 @@ public class DataManager : NetworkBehaviour
     private void Start()
     {
         uILobbyName = GetComponent<UILobbyName>();
-       
-        
+
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -33,15 +33,22 @@ public class DataManager : NetworkBehaviour
         playerCount = NetworkManager.singleton.numPlayers;
         // colorArray = new Color[playerColors.Count];
 
-        for (int i = 0; i < playerCount+1; i++)
+        for (int i = 0; i < playerCount + 1; i++)
         {
             // colorArray[i] = playerColors[i];
             players = GameObject.FindGameObjectsWithTag("Player");
-          
+
 
         }
+        if (isServer)
+        {
+            RpcUIColor(playerCount);
+        }
+        else
+        {
+            CmdUIColor(playerCount);
+        }
 
-        CmdUIColor(playerCount);
 
     }
 
@@ -61,8 +68,7 @@ public class DataManager : NetworkBehaviour
     [ClientRpc]
     public void RpcUIColor(int count)
     {
-
-        if (count == 1 && players[0] !=null)
+        if (count == 1 && players[0] != null)
         {
             Debug.Log("girdi");
             uILobbyName.rawImage[0].gameObject.SetActive(true);
@@ -70,7 +76,7 @@ public class DataManager : NetworkBehaviour
             uILobbyName.textMeshPros[0].text = players[0].GetComponent<PlayerGenerete>().steamName.ToString();
 
         }
-        if (count == 2 && players[1] != null && players[0] !=null )
+        if (count == 2 && players[1] != null && players[0] != null)
         {
             uILobbyName.rawImage[0].gameObject.SetActive(true);
             uILobbyName.rawImage[0].color = players[0].GetComponent<PlayerGenerete>().hud.color;
@@ -79,7 +85,7 @@ public class DataManager : NetworkBehaviour
             uILobbyName.rawImage[1].color = players[1].GetComponent<PlayerGenerete>().hud.color;
             uILobbyName.textMeshPros[1].text = players[1].GetComponent<PlayerGenerete>().steamName.ToString();
         }
-        if (count == 3 && players.Length == 3  && players[0] != null && players[1] != null && players[2] != null)
+        if (count == 3 && players.Length == 3 && players[0] != null && players[1] != null && players[2] != null)
         {
             uILobbyName.rawImage[0].gameObject.SetActive(true);
             uILobbyName.rawImage[0].color = players[0].GetComponent<PlayerGenerete>().hud.color;
@@ -91,7 +97,7 @@ public class DataManager : NetworkBehaviour
             uILobbyName.rawImage[2].color = players[2].GetComponent<PlayerGenerete>().hud.color;
             uILobbyName.textMeshPros[2].text = players[2].GetComponent<PlayerGenerete>().steamName.ToString();
         }
-        if (count == 4 && players.Length ==4  && players[0] != null && players[1] != null && players[2] != null && players[3] !=null)
+        if (count == 4 && players.Length == 4 && players[0] != null && players[1] != null && players[2] != null && players[3] != null)
         {
             uILobbyName.rawImage[0].gameObject.SetActive(true);
             uILobbyName.rawImage[0].color = players[0].GetComponent<PlayerGenerete>().hud.color;
