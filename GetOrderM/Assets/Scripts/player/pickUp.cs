@@ -66,7 +66,7 @@ public class pickUp : NetworkBehaviour
         pickupLayerMask = LayerMask.GetMask("Pickup");
         pickupLayerMask2 = LayerMask.GetMask("counter");
         pickupLayerMask3 = LayerMask.GetMask("trash");
-        pickupLayerMask4 = LayerMask.GetMask("trash");
+        pickupLayerMask4 = LayerMask.GetMask("submid");
     }
     void Update()
     {
@@ -671,7 +671,7 @@ public class pickUp : NetworkBehaviour
             // submid;
             if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, hitRange, pickupLayerMask4))
             {
-                if (hit.collider.gameObject.TryGetComponent<counter>(out var DeliveryOrder) && handFull == true)
+                if (hit.collider.gameObject.TryGetComponent<DeliveryOrder>(out var DeliveryOrder) && handFull == true)
                 {
                     float value = DeliveryOrder.submidID;
                     if (ID == 12)
@@ -684,7 +684,7 @@ public class pickUp : NetworkBehaviour
                             DeliveryOrder.CmdSetAnakartDolu(true);
                             CmdinteractID(0);
                             isWork = true;
-                            DeliveryOrder.CmdAffixEffectPLAY();
+                           // DeliveryOrder.CmdAffixEffectPLAY();
                         }
                         else if (DeliveryOrder.submidID == 0)
                         {
@@ -693,7 +693,7 @@ public class pickUp : NetworkBehaviour
                             DeliveryOrder.CmdSetKasaDolu(true);
                             DeliveryOrder.CmdSetAnakartDolu(true);
                             CmdinteractID(0);
-                            DeliveryOrder.CmdAffixEffectStop();
+                          //  DeliveryOrder.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 123)
@@ -707,7 +707,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            DeliveryOrder.CmdAffixEffectPLAY();
+                           // DeliveryOrder.CmdAffixEffectPLAY();
                         }
                         else if (DeliveryOrder.submidID == 0)
                         {
@@ -718,7 +718,7 @@ public class pickUp : NetworkBehaviour
                             DeliveryOrder.CmdSetCpuDolu(true);
                             CmdinteractID(0);
                             isWork = false;
-                            DeliveryOrder.CmdAffixEffectStop();
+                           // DeliveryOrder.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 124)
@@ -732,7 +732,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            DeliveryOrder.CmdAffixEffectPLAY();
+                           // DeliveryOrder.CmdAffixEffectPLAY();
                         }
                         if (DeliveryOrder.submidID == 0)
                         {
@@ -742,7 +742,7 @@ public class pickUp : NetworkBehaviour
                             DeliveryOrder.CmdSetAnakartDolu(true);
                             DeliveryOrder.CmdSetEkranKartýDolu(true);
                             CmdinteractID(0);
-                            DeliveryOrder.CmdAffixEffectStop();
+                           // DeliveryOrder.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 125)
@@ -756,7 +756,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            DeliveryOrder.CmdAffixEffectPLAY();
+                         //   DeliveryOrder.CmdAffixEffectPLAY();
                         }
                         if (DeliveryOrder.submidID == 0)
                         {
@@ -766,7 +766,7 @@ public class pickUp : NetworkBehaviour
                             DeliveryOrder.CmdSetAnakartDolu(true);
                             DeliveryOrder.CmdSetRamDolu(true);
                             CmdinteractID(0);
-                            DeliveryOrder.CmdAffixEffectStop();
+                         //   DeliveryOrder.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 1234)
@@ -781,7 +781,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            DeliveryOrder.CmdAffixEffectPLAY();
+                          //  DeliveryOrder.CmdAffixEffectPLAY();
                         }
                         if (DeliveryOrder.submidID == 0)
                         {
@@ -792,7 +792,7 @@ public class pickUp : NetworkBehaviour
                             DeliveryOrder.CmdSetCpuDolu(true);
                             DeliveryOrder.CmdSetEkranKartýDolu(true);
                             CmdinteractID(0);
-                            DeliveryOrder.CmdAffixEffectStop();
+                          //  DeliveryOrder.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 1235)
@@ -807,7 +807,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            DeliveryOrder.CmdAffixEffectPLAY();
+                          //  DeliveryOrder.CmdAffixEffectPLAY();
                         }
                         if (DeliveryOrder.submidID == 0)
                         {
@@ -818,7 +818,7 @@ public class pickUp : NetworkBehaviour
                             DeliveryOrder.CmdSetCpuDolu(true);
                             DeliveryOrder.CmdSetRamDolu(true);
                             CmdinteractID(0);
-                            DeliveryOrder.CmdAffixEffectStop();
+                         //   DeliveryOrder.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 1245)
@@ -833,7 +833,7 @@ public class pickUp : NetworkBehaviour
                             handFull = false;
                             CmdinteractID(0);
                             isWork = true;
-                            DeliveryOrder.CmdAffixEffectPLAY();
+                         //   DeliveryOrder.CmdAffixEffectPLAY();
                         }
                         if (DeliveryOrder.submidID == 0)
                         {
@@ -844,7 +844,7 @@ public class pickUp : NetworkBehaviour
                             DeliveryOrder.CmdSetEkranKartýDolu(true);
                             DeliveryOrder.CmdSetRamDolu(true);
                             CmdinteractID(0);
-                            DeliveryOrder.CmdAffixEffectStop();
+                           // DeliveryOrder.CmdAffixEffectStop();
                         }
                     }
                     if (ID == 12345)
@@ -859,161 +859,7 @@ public class pickUp : NetworkBehaviour
                             DeliveryOrder.CmdSetEkranKartýDolu(true);
                             DeliveryOrder.CmdSetRamDolu(true);
                             CmdinteractID(0);
-                            DeliveryOrder.CmdAffixEffectStop();
-                        }
-                    }
-                }
-                //tekrardan alma iþlemi
-                if (hit.collider.gameObject.TryGetComponent<counter>(out var counter2) && handFull == false && retakeDelay <= 0)
-                {
-                    float value = DeliveryOrder.submidID;
-                    if (ID == 0)
-                    {
-                        if (DeliveryOrder.submidID == 1)
-                        {
-                            DeliveryOrder.CmdSetKasaDolu(false);
-                            ID = 1;
-                            handFull = true;
-                            CmdinteractID(1);
-                        }
-                        if (DeliveryOrder.submidID == 1.1f)
-                        {
-                            DeliveryOrder.CmdSetBoxKasaDolu(false);
-                            ID = 1.1f;
-                            handFull = true;
-                            CmdinteractID(1.1f);
-                        }
-                        if (DeliveryOrder.submidID == 2)
-                        {
-                            DeliveryOrder.CmdSetAnakartDolu(false);
-                            ID = 2;
-                            handFull = true;
-                            CmdinteractID(2);
-                        }
-                        if (DeliveryOrder.submidID == 2.2f)
-                        {
-                            DeliveryOrder.CmdSetBoxAnakartDolu(false);
-                            ID = 2.2f;
-                            handFull = true;
-                            CmdinteractID(2.2f);
-                        }
-                        if (DeliveryOrder.submidID == 3)
-                        {
-                            DeliveryOrder.CmdSetCpuDolu(false);
-                            ID = 3;
-                            handFull = true;
-                            CmdinteractID(3);
-                        }
-                        if (DeliveryOrder.submidID == 3.3f)
-                        {
-                            DeliveryOrder.CmdSetBoxCpuDolu(false);
-                            ID = 3.3f;
-                            handFull = true;
-                            CmdinteractID(3.3f);
-                        }
-                        if (DeliveryOrder.submidID == 4)
-                        {
-                            DeliveryOrder.CmdSetEkranKartýDolu(false);
-                            ID = 4;
-                            handFull = true;
-                            CmdinteractID(4);
-                        }
-                        if (DeliveryOrder.submidID == 4.4f)
-                        {
-                            DeliveryOrder.CmdSetBoxEkranKartýDolu(false);
-                            ID = 4.4f;
-                            handFull = true;
-                            CmdinteractID(4.4f);
-                        }
-                        if (DeliveryOrder.submidID == 5)
-                        {
-                            DeliveryOrder.CmdSetRamDolu(false);
-                            ID = 5;
-                            handFull = true;
-                            CmdinteractID(5);
-                        }
-                        if (DeliveryOrder.submidID == 5.5f)
-                        {
-                            DeliveryOrder.CmdSetBoxRamDolu(false);
-                            ID = 5.5f;
-                            handFull = true;
-                            CmdinteractID(5.5f);
-                        }
-                        if (DeliveryOrder.submidID == 12)
-                        {
-                            DeliveryOrder.CmdSetKasaDolu(false);
-                            DeliveryOrder.CmdSetAnakartDolu(false);
-                            ID = 12;
-                            handFull = true;
-                            CmdinteractID(12);
-                        }
-                        if (DeliveryOrder.submidID == 123)
-                        {
-                            DeliveryOrder.CmdSetKasaDolu(false);
-                            DeliveryOrder.CmdSetAnakartDolu(false);
-                            DeliveryOrder.CmdSetCpuDolu(false);
-                            ID = 123;
-                            handFull = true;
-                            CmdinteractID(123);
-                        }
-                        if (DeliveryOrder.submidID == 124)
-                        {
-                            DeliveryOrder.CmdSetKasaDolu(false);
-                            DeliveryOrder.CmdSetAnakartDolu(false);
-                            DeliveryOrder.CmdSetEkranKartýDolu(false);
-                            ID = 124;
-                            handFull = true;
-                            CmdinteractID(124);
-                        }
-                        if (DeliveryOrder.submidID == 125)
-                        {
-                            DeliveryOrder.CmdSetKasaDolu(false);
-                            DeliveryOrder.CmdSetAnakartDolu(false);
-                            DeliveryOrder.CmdSetRamDolu(false);
-                            ID = 125;
-                            handFull = true;
-                            CmdinteractID(125);
-                        }
-                        if (DeliveryOrder.submidID == 1234)
-                        {
-                            DeliveryOrder.CmdSetKasaDolu(false);
-                            DeliveryOrder.CmdSetAnakartDolu(false);
-                            DeliveryOrder.CmdSetCpuDolu(false);
-                            DeliveryOrder.CmdSetEkranKartýDolu(false);
-                            ID = 1234;
-                            handFull = true;
-                            CmdinteractID(1234);
-                        }
-                        if (DeliveryOrder.submidID == 1245)
-                        {
-                            DeliveryOrder.CmdSetKasaDolu(false);
-                            DeliveryOrder.CmdSetAnakartDolu(false);
-                            DeliveryOrder.CmdSetEkranKartýDolu(false);
-                            DeliveryOrder.CmdSetRamDolu(false);
-                            ID = 1245;
-                            handFull = true;
-                            CmdinteractID(1245);
-                        }
-                        if (DeliveryOrder.submidID == 1235)
-                        {
-                            DeliveryOrder.CmdSetKasaDolu(false);
-                            DeliveryOrder.CmdSetAnakartDolu(false);
-                            DeliveryOrder.CmdSetCpuDolu(false);
-                            DeliveryOrder.CmdSetRamDolu(false);
-                            ID = 1235;
-                            handFull = true;
-                            CmdinteractID(1235);
-                        }
-                        if (DeliveryOrder.submidID == 12345)
-                        {
-                            DeliveryOrder.CmdSetKasaDolu(false);
-                            DeliveryOrder.CmdSetAnakartDolu(false);
-                            DeliveryOrder.CmdSetCpuDolu(false);
-                            DeliveryOrder.CmdSetEkranKartýDolu(false);
-                            DeliveryOrder.CmdSetRamDolu(false);
-                            ID = 12345;
-                            handFull = true;
-                            CmdinteractID(12345);
+                          //  DeliveryOrder.CmdAffixEffectStop();
                         }
                     }
                 }
