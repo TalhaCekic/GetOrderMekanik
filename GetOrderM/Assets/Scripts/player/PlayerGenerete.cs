@@ -11,21 +11,17 @@ public class PlayerGenerete : NetworkBehaviour
     [SerializeField] public Image hud;
     [SyncVar(hook = nameof(OnPlayerColorChanged))]
     public Color playerColor = Color.white;
-    [SerializeField]private DataManager dataManager;
+    [SerializeField] private DataManager dataManager;
     [SerializeField] private UILobbyName uILobbyName;
     [SyncVar] public int playerCount;
-   [SyncVar] public string steamName;
-
+    [SyncVar] public string steamName;
 
     private void Start()
     {
-
-        
         dataManager = FindObjectOfType<DataManager>();
         hud.gameObject.SetActive(true);
         Color randomColor = Random.ColorHSV();
         CmdChangeColor(randomColor);
-
     }
     public override void OnStartLocalPlayer()
     {
@@ -35,14 +31,13 @@ public class PlayerGenerete : NetworkBehaviour
             CmdSetPlayerName(steamName);
         }
     }
-
     [Command]
     private void CmdSetPlayerName(string name)
     {
         steamName = name;
     }
     private void Update()
-    { 
+    {
         playerCount = NetworkManager.singleton.numPlayers;
     }
     [Command(requiresAuthority = false)]
@@ -55,7 +50,7 @@ public class PlayerGenerete : NetworkBehaviour
     {
         // Renk deðiþtiðinde yapýlacak iþlemler
         hud.color = newColor;
-       
+
     }
 
 

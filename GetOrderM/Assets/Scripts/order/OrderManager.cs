@@ -53,14 +53,11 @@ public class OrderManager : NetworkBehaviour
         int randomIndex = Random.Range(0, possibleOrders.Count);
         Order = possibleOrders[randomIndex];
         orderHistory.Add(Order); // Yeni sipariþi orderHistory listesine ekle
-
     }
     [Command(requiresAuthority = false)]
     public void CmdSpawnOrder(Vector3 position, int order)
     {
-        //SpawnOrder(parentObject.position, order);
         GameObject orderPrefab = null;
-
         if (order == 12)
         {
             orderPrefab = order12;
@@ -70,7 +67,6 @@ public class OrderManager : NetworkBehaviour
             orderPrefab = order123;
         }
         // Diðer sipariþ türleri için de kontrolleri ekleyin
-
         if (orderPrefab != null)
         {
             GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);

@@ -6,17 +6,11 @@ using TMPro;
 
 public class DataManager : NetworkBehaviour
 {
-    //   public  SyncList<Color> playerColors = new SyncList<Color>();
-
     // UI'da göstermek için kullanýlacak Image bileþenleri
     public RawImage[] colorImages;
     [SyncVar] public int playerCount;
 
-
     [SerializeField] private UILobbyName uILobbyName;
-
-    //   public Color[] colorArray;
-
 
     public GameObject[] players;
     private void Start()
@@ -26,8 +20,6 @@ public class DataManager : NetworkBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
-
-
     private void Update()
     {
         playerCount = NetworkManager.singleton.numPlayers;
@@ -37,33 +29,19 @@ public class DataManager : NetworkBehaviour
         {
             // colorArray[i] = playerColors[i];
             players = GameObject.FindGameObjectsWithTag("Player");
-
-
         }
-
         CmdUIColor(playerCount);
-
     }
-
-    //[ClientRpc]
-    //private void RpcUpdatePlayerColor( Color color)
-    //{
-    //    // Renk güncelleme iþlemleri
-
-    //}
-
     [Command(requiresAuthority = false)]
     public void CmdUIColor(int count)
     {
         RpcUIColor(count);
     }
-
     [ClientRpc]
     public void RpcUIColor(int count)
     {
         if (count == 1 && players[0] != null)
         {
-            Debug.Log("girdi");
             uILobbyName.rawImage[0].gameObject.SetActive(true);
             uILobbyName.rawImage[0].color = players[0].GetComponent<PlayerGenerete>().hud.color;
             uILobbyName.textMeshPros[0].text = players[0].GetComponent<PlayerGenerete>().steamName.ToString();
