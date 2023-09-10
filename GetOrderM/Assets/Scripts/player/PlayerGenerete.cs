@@ -27,11 +27,19 @@ public class PlayerGenerete : NetworkBehaviour
         CmdChangeColor(randomColor);
 
     }
-    public override void OnStartClient()
+    public override void OnStartLocalPlayer()
     {
-        base.OnStartClient();
-        steamName = SteamFriends.GetPersonaName();
+        if (SteamManager.Initialized)
+        {
+            steamName = SteamFriends.GetPersonaName();
+            CmdSetPlayerName(steamName);
+        }
+    }
 
+    [Command]
+    private void CmdSetPlayerName(string name)
+    {
+        steamName = name;
     }
     private void Update()
     { 
