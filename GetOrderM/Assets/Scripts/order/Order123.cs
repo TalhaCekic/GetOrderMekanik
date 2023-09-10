@@ -12,7 +12,7 @@ public class Order123 : NetworkBehaviour
     [SerializeField] private GameObject canvas;
 
     [SyncVar] public int orderID = 0;
-    public float couldown = 35;
+    public float couldown = 60;
 
     [SerializeField] private Slider sliderCouldown;
 
