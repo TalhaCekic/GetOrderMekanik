@@ -40,15 +40,8 @@ public class DataManager : NetworkBehaviour
 
 
         }
-        if (isServer)
-        {
-            RpcUIColor(playerCount);
-        }
-        else
-        {
-            CmdUIColor(playerCount);
-        }
 
+        CmdUIColor(playerCount);
 
     }
 
