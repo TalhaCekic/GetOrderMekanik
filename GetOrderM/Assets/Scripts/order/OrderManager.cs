@@ -16,6 +16,9 @@ public class OrderManager : NetworkBehaviour
 
     public int firstOrder;
     public int secondOrder;
+    public int thirdOrder;
+    public int fourthOrder;
+    public int fifthOrder;
 
     public GameObject order12;
     public GameObject order123;
@@ -39,7 +42,6 @@ public class OrderManager : NetworkBehaviour
     {
         if (isServer && Time.time >= nextOrderTime)
         {
-            CmdSpawnOrder(parentObject.position, Order);
             GenerateRandomOrder();
             CalculateNextOrderTime();
         }
@@ -53,10 +55,33 @@ public class OrderManager : NetworkBehaviour
         int randomIndex = Random.Range(0, possibleOrders.Count);
         Order = possibleOrders[randomIndex];
         orderHistory.Add(Order); // Yeni sipariþi orderHistory listesine ekle
+
+        if (firstOrder == 0)
+        {
+            firstOrder = Order;
+        }
+        else if (secondOrder == 0)
+        {
+            secondOrder = Order;
+        }
+        else if (thirdOrder == 0)
+        {
+            firstOrder = Order;
+        }
+        else if (fourthOrder == 0)
+        {
+            secondOrder = Order;
+        }
+        else if (fifthOrder == 0)
+        {
+            secondOrder = Order;
+        }
+        CmdSpawnOrder(parentObject.position, Order);
     }
     [Command(requiresAuthority = false)]
     public void CmdSpawnOrder(Vector3 position, int order)
     {
+        print("yazdýrsanaa");
         GameObject orderPrefab = null;
         if (order == 12)
         {
@@ -67,6 +92,7 @@ public class OrderManager : NetworkBehaviour
             orderPrefab = order123;
         }
         // Diðer sipariþ türleri için de kontrolleri ekleyin
+
         if (orderPrefab != null)
         {
             GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
