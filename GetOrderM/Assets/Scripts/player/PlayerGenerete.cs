@@ -14,7 +14,7 @@ public class PlayerGenerete : NetworkBehaviour
     [SerializeField]private DataManager dataManager;
     [SerializeField] private UILobbyName uILobbyName;
     [SyncVar] public int playerCount;
-    public string steamName;
+   [SyncVar] public string steamName;
 
 
     private void Start()
