@@ -13530,6 +13530,7 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 2837706176393604302, guid: 0af11717d5550b94b9f7a3eabd79e433, type: 3}
   - {fileID: 4553984425931220806, guid: a3e30d9775dc1084ca7ceca901a210b8, type: 3}
+  - {fileID: 7013261208607875783, guid: f9cde4a888137bc4789c93bab787e772, type: 3}
   snapshotSettings:
     bufferTimeMultiplier: 2
     catchupNegativeThreshold: -1
@@ -30612,7 +30613,7 @@ MonoBehaviour:
   - {fileID: 558442004}
   - {fileID: 1550199908}
   - {fileID: 1396123455}
-  orderManager: {fileID: 0}
+  managerOrder: {fileID: 0}
   submidID: 0
 --- !u!65 &919132149517832492
 BoxCollider:

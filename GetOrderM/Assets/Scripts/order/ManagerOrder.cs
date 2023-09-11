@@ -19,7 +19,6 @@ public class ManagerOrder : NetworkBehaviour
 
     [SyncVar] public int Order;
 
-
     public int[] orderArray = new int[5];
     //public int firstOrder;
     //public int secondOrder;
@@ -32,15 +31,10 @@ public class ManagerOrder : NetworkBehaviour
     //private bool third;
     //private bool fourth;
     //private bool fifth;
-
- 
- 
     private void Start()
     {
         DontDestroyOnLoad(this);
         CalculateNextOrderTime();
-       
-
     }
     private void Update()
     {
@@ -48,9 +42,7 @@ public class ManagerOrder : NetworkBehaviour
         {
             GenerateRandomOrder();
             CalculateNextOrderTime();
-
         }
-
     }
     private void CalculateNextOrderTime() // tekrardan sipariþin gelme sýklýðý
     {

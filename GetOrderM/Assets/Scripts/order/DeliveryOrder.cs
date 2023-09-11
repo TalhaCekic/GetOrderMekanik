@@ -1,4 +1,5 @@
 using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -14,12 +15,12 @@ public class DeliveryOrder : NetworkBehaviour
 
     public List<GameObject> childObject = new List<GameObject>();
 
-    [SerializeField] private OrderManager orderManager;
+    [SerializeField] private ManagerOrder managerOrder;
     [SyncVar] public int submidID;
     // Start is called before the first frame update
     void Start()
     {
-        orderManager = FindAnyObjectByType<OrderManager>();
+        managerOrder = FindAnyObjectByType<ManagerOrder>();
     }
 
     // Update is called once per frame
@@ -33,7 +34,15 @@ public class DeliveryOrder : NetworkBehaviour
         {
             cmdýdCheck();
         }
-        orderManager.orderHistory.Remove(submidID);
+        // orderManager.orderHistory.Remove(submidID);
+        //for (int i = 0; i < managerOrder.orderArray.Length; i++)
+        //{
+        //    print("aaaaaa");
+        //    if (managerOrder.orderArray[i]== 0)
+        //    {
+        //        Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, 12);
+        //    }
+        //}
     }
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
