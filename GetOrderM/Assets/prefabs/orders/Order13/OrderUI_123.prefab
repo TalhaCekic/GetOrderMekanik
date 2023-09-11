@@ -630,9 +630,6 @@ MonoBehaviour:
   - {fileID: 2582074661138927891}
   - {fileID: 2990665031859693842}
   - {fileID: 6452086213804471664}
-  orderManager: {fileID: 0}
-  canvas: {fileID: 0}
-  orderID: 0
   order: {fileID: 11400000, guid: 29654cf13a3c7b74abafed8ef5ff784d, type: 2}
   sliderCouldown: {fileID: 209559708856442593}
 --- !u!114 &872301024271269861

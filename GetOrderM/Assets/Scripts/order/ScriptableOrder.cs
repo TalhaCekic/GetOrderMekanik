@@ -12,5 +12,9 @@ public class ScriptableOrder : ScriptableObject
     public GameObject orderPrefab;
     public Slider sliderCouldown;
 
-    
+    public void Destory()
+    {
+        Destroy(orderPrefab);
+    }
+
 }

@@ -17,6 +17,7 @@ public class Order123 : NetworkBehaviour
 
     private void Start()
     {
+       
         currentCouldown = order.couldown; 
     }
 
@@ -34,6 +35,8 @@ public class Order123 : NetworkBehaviour
     [ClientRpc]
     public void RpcinteractID(float objectNumber)
     {
+    
+
         if (objectNumber == 123)
         {
             //this.transform.position = new Vector3(150, 522, 0);

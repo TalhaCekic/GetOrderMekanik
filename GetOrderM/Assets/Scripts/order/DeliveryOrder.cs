@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class DeliveryOrder : NetworkBehaviour
 {
@@ -20,29 +22,43 @@ public class DeliveryOrder : NetworkBehaviour
 
     public int currentSubmidID;
 
-    bool hasReset=false;
-    // Start is called before the first frame update
+    float resetDelay = 0.5f;
+    float lastResetTime = -1f;
+
+    int currentobjectnumber;
+
+    [SerializeField] private Transform target, target2;
+
+    [SerializeField] private GameObject[] orderUI;
+
     void Start()
     {
         managerOrder = FindAnyObjectByType<ManagerOrder>();
-       
+
     }
+
+   
 
     // Update is called once per frame
     void Update()
     {
-        if (isServer)
-        {
-            RpcýdCheck();
-        }
-        else
-        {
-            cmdýdCheck();
-        }
+        
+            if (isServer)
+            {
+                RpcýdCheck();
+            }
+            else
+            {
+                cmdýdCheck();
+            }
+        
 
-        // orderManager.orderHistory.Remove(submidID);
+
+       
 
     }
+
+
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
     {
@@ -56,6 +72,8 @@ public class DeliveryOrder : NetworkBehaviour
     }
     public void interactID(float objectNumber)
     {
+      
+        //objectNumber = currentobjectnumber;
         if (objectNumber == 0) // boþ
         {
             submidID = 0;
@@ -66,9 +84,20 @@ public class DeliveryOrder : NetworkBehaviour
         }
         if (objectNumber == 12)
         {
+           
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
-            submidID = 12;
+            childObject[1].gameObject.transform.DOMove(target.position, 2);
+            childObject[2].gameObject.transform.DOMove(target.position, 2).OnComplete(() =>
+            {
+                kasaDolu = false;
+                anaKartDolu = false;
+                childObject[1].transform.DOMove(target2.position, 1);
+                childObject[2].transform.DOMove(target2.position, 1);
+
+            });
+           
+            // submidID = 12;
         }
         if (objectNumber == 123)
         {
@@ -125,6 +154,9 @@ public class DeliveryOrder : NetworkBehaviour
             submidID = 12345;
         }
     }
+
+  
+
     [Command(requiresAuthority = false)]
     void cmdýdCheck()
     {
@@ -138,52 +170,74 @@ public class DeliveryOrder : NetworkBehaviour
     }
     public void ýdCheck()
     {
-  
-        currentSubmidID = submidID;
-
-        if (managerOrder != null)
+       // orderUI = GameObject.FindGameObjectsWithTag("orderUI");
+        if (Time.time - lastResetTime > resetDelay)
         {
             for (int i = 0; i < managerOrder.orderArray.Length; i++)
             {
-                if (managerOrder.orderArray[i] == currentSubmidID)
+                
+                if (managerOrder.orderArray[i] == submidID)
                 {
-                    Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID));
-                    managerOrder.orderArray[i] = 0;
-                    
+                    managerOrder.orderArray[i] = 1;
+                    currentobjectnumber = 0;                 
+                    lastResetTime = Time.time;
                     break;
                 }
-              
-                //if (managerOrder.orderArray[1] == currentSubmidID)
-                //{
-                //    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
-                //}
-                //if (managerOrder.orderArray[2] == currentSubmidID)
-                //{
-                //    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
-                //}
-                //if (managerOrder.orderArray[3] == currentSubmidID)
-                //{
-                //    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
-                //}
-                //if (managerOrder.orderArray[4] == currentSubmidID)
-                //{
-                //    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
-                //}
             }
-
         }
 
 
-        if (!kasaDolu && !anaKartDolu && !cpuDolu && !ekranKartýDolu && !ramDolu)
+        // if (submidID == managerOrder.orderArray[0])
+        // {
+        //     // Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", currentSubmidID));
+
+        //     managerOrder.orderArray[0] = 0;
+
+        // }
+
+        // else if (managerOrder.orderArray[1] == submidID)
+        // {
+        //     // Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", currentSubmidID));
+        //     managerOrder.orderArray[1] = 0;
+
+        // }
+        // else if (managerOrder.orderArray[2] == submidID)
+        // {
+        //     //Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", currentSubmidID));
+        //     managerOrder.orderArray[2] = 0;
+
+        // }
+        // else if (managerOrder.orderArray[3] == submidID)
+        // {
+        //     // Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", currentSubmidID));
+        //     managerOrder.orderArray[3] = 0;
+
+        // }
+        // else if (managerOrder.orderArray[4] == submidID)
+        // {
+        //     // Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", currentSubmidID));
+        //     managerOrder.orderArray[4] = 0;
+
+        //}
+
+
+
+
+
+
+
+        if (currentobjectnumber==0)
         {
             if (isServer)
             {
+               
                 RpcinteractID(0);
             }
             else if (isClient)
             {
                 CmdinteractID(0);
             }
+            submidID = 0;
         }
         if (kasaDolu || anaKartDolu || cpuDolu || ekranKartýDolu || ramDolu)
         {

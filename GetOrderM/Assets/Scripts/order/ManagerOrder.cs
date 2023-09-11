@@ -58,7 +58,7 @@ public class ManagerOrder : NetworkBehaviour
       
         for (int i = 0; i < orderArray.Length; i++)
         {
-            if (orderArray[i] == 0)
+            if (orderArray[i] == 1)
             {
                 orderArray[i] = Order;
                 orderAssigned = true;
@@ -101,11 +101,11 @@ public class ManagerOrder : NetworkBehaviour
             GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
             NetworkServer.Spawn(spawnedPrefab);
 
-            if (orderArray[0] != 0) spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
-            if (orderArray[1] != 0) spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
-            if (orderArray[2] != 0) spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
-            if (orderArray[3] != 0) spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
-            if (orderArray[4] != 0) spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
+            if (orderArray[0] != 1) spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
+            if (orderArray[1] != 1) spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
+            if (orderArray[2] != 1) spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
+            if (orderArray[3] != 1) spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
+            if (orderArray[4] != 1) spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
         }
 
 
