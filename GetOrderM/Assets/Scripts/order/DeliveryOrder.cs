@@ -19,10 +19,13 @@ public class DeliveryOrder : NetworkBehaviour
     [SyncVar] public int submidID;
 
     public int currentSubmidID;
+
+    bool hasReset=false;
     // Start is called before the first frame update
     void Start()
     {
         managerOrder = FindAnyObjectByType<ManagerOrder>();
+       
     }
 
     // Update is called once per frame
@@ -135,36 +138,42 @@ public class DeliveryOrder : NetworkBehaviour
     }
     public void ýdCheck()
     {
+  
         currentSubmidID = submidID;
-        for (int i = 0; i < managerOrder.orderArray.Length; i++)
+
+        if (managerOrder != null)
         {
-           // managerOrder.orderArray[0] = currentSubmidID;
-            print("aaaaaa");
-            if (managerOrder != null)
+            for (int i = 0; i < managerOrder.orderArray.Length; i++)
             {
-                if ( managerOrder.orderArray[0]== currentSubmidID)
+                if (managerOrder.orderArray[i] == currentSubmidID)
                 {
-                    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
+                    Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID));
+                    managerOrder.orderArray[i] = 0;
+                    
+                    break;
                 }
-                if (managerOrder.orderArray[1] == currentSubmidID)
-                {
-                    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
-                }
-                if (managerOrder.orderArray[2] == currentSubmidID)
-                {
-                    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
-                }
-                if (managerOrder.orderArray[3] == currentSubmidID)
-                {
-                    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
-                }
-                if (managerOrder.orderArray[4] == currentSubmidID)
-                {
-                    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
-                }
+              
+                //if (managerOrder.orderArray[1] == currentSubmidID)
+                //{
+                //    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
+                //}
+                //if (managerOrder.orderArray[2] == currentSubmidID)
+                //{
+                //    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
+                //}
+                //if (managerOrder.orderArray[3] == currentSubmidID)
+                //{
+                //    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
+                //}
+                //if (managerOrder.orderArray[4] == currentSubmidID)
+                //{
+                //    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
+                //}
             }
 
         }
+
+
         if (!kasaDolu && !anaKartDolu && !cpuDolu && !ekranKartýDolu && !ramDolu)
         {
             if (isServer)

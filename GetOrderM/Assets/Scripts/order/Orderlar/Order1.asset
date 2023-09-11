@@ -17,3 +17,5 @@ MonoBehaviour:
   couldown: 60
   orderPrefab: {fileID: 2837706176393604302, guid: 0af11717d5550b94b9f7a3eabd79e433,
     type: 3}
+  sliderCouldown: {fileID: 9031479670931424876, guid: 3b47af4ae16239949a62015a6081e57a,
+    type: 3}
