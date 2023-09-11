@@ -6,7 +6,8 @@ using System.Collections;
 
 public class ManagerOrder : NetworkBehaviour
 {
-   
+    public List<GameObject> OrderObject = new List<GameObject>();
+
     public ScriptableOrder[] orders;
 
     public Transform parentObject;
@@ -48,7 +49,7 @@ public class ManagerOrder : NetworkBehaviour
     {
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
     }
-    public void GenerateRandomOrder() // sayýlarýn random atmasý ardýndan geçmiþe ekler.
+    public void GenerateRandomOrder() 
     {
         bool orderAssigned = false;
         int randomIndex = Random.Range(0, orders.Length);
@@ -83,7 +84,7 @@ public class ManagerOrder : NetworkBehaviour
         if (order == 12)
         {
             orderPrefab = orders[0].orderPrefab;
-           
+
         }
         else if (order == 123)
         {
@@ -102,6 +103,7 @@ public class ManagerOrder : NetworkBehaviour
         {
             GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
             NetworkServer.Spawn(spawnedPrefab);
+
             if (orderArray[0] != 0) spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
             if (orderArray[1] != 0) spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
             if (orderArray[2] != 0) spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
@@ -115,7 +117,9 @@ public class ManagerOrder : NetworkBehaviour
 
     }
 
-    
 
 }
+    
+
+
 
