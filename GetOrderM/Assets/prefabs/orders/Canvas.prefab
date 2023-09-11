@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7217268431372777550
 RectTransform:
   m_ObjectHideFlags: 0
@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 1791632290562419854}
   - component: {fileID: 3361426914500739642}
   - component: {fileID: 6951209452345957111}
-  - component: {fileID: 8303481650330834649}
   - component: {fileID: 4726205008333821360}
   - component: {fileID: 6600060584159797309}
   m_Layer: 5
@@ -186,33 +185,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8303481650330834649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696840034079936670}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483a9d768e29ab243984edfd296b815d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  possibleOrders: 0c0000007b000000
-  orderHistory: 
-  parentObject: {fileID: 466619756699573790}
-  Order: 0
-  firstOrder: 0
-  secondOrder: 0
-  thirdOrder: 0
-  fourthOrder: 0
-  fifthOrder: 0
-  order12: {fileID: 2837706176393604302, guid: 0af11717d5550b94b9f7a3eabd79e433, type: 3}
-  order123: {fileID: 4553984425931220806, guid: a3e30d9775dc1084ca7ceca901a210b8,
-    type: 3}
 --- !u!114 &4726205008333821360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,18 +217,21 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  OrderObject: []
   orders:
   - {fileID: 11400000, guid: 9bb8fbb3b2b533a4bbb0407d6a6d5021, type: 2}
   - {fileID: 11400000, guid: 29654cf13a3c7b74abafed8ef5ff784d, type: 2}
   - {fileID: 11400000, guid: d4dfdfc8929aa7f4e93aa19696f97403, type: 2}
   - {fileID: 11400000, guid: 175330aaa3148334dbabf992128f04e6, type: 2}
   parentObject: {fileID: 466619756699573790}
+  parentTransform:
+  - {fileID: 4445992872223699210}
+  - {fileID: 7774397866558122519}
+  - {fileID: 4735516318029975237}
+  - {fileID: 1349077991336452974}
+  - {fileID: 7217268431372777550}
   Order: 0
-  firstOrder: 0
-  secondOrder: 0
-  thirdOrder: 0
-  fourthOrder: 0
-  fifthOrder: 0
+  orderArray: 0000000000000000000000000000000000000000
 --- !u!1 &885499165210842665
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7774397866558122519
 RectTransform:
   m_ObjectHideFlags: 0
@@ -350,7 +325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4735516318029975237
 RectTransform:
   m_ObjectHideFlags: 0
@@ -426,7 +401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4445992872223699210
 RectTransform:
   m_ObjectHideFlags: 0
@@ -502,7 +477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1349077991336452974
 RectTransform:
   m_ObjectHideFlags: 0

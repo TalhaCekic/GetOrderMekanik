@@ -17,6 +17,8 @@ public class DeliveryOrder : NetworkBehaviour
 
     [SerializeField] private ManagerOrder managerOrder;
     [SyncVar] public int submidID;
+
+    public int currentSubmidID;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,15 +36,9 @@ public class DeliveryOrder : NetworkBehaviour
         {
             cmdýdCheck();
         }
+
         // orderManager.orderHistory.Remove(submidID);
-        //for (int i = 0; i < managerOrder.orderArray.Length; i++)
-        //{
-        //    print("aaaaaa");
-        //    if (managerOrder.orderArray[i]== 0)
-        //    {
-        //        Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, 12);
-        //    }
-        //}
+
     }
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
@@ -139,6 +135,36 @@ public class DeliveryOrder : NetworkBehaviour
     }
     public void ýdCheck()
     {
+        currentSubmidID = submidID;
+        for (int i = 0; i < managerOrder.orderArray.Length; i++)
+        {
+           // managerOrder.orderArray[0] = currentSubmidID;
+            print("aaaaaa");
+            if (managerOrder != null)
+            {
+                if ( managerOrder.orderArray[0]== currentSubmidID)
+                {
+                    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
+                }
+                if (managerOrder.orderArray[1] == currentSubmidID)
+                {
+                    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
+                }
+                if (managerOrder.orderArray[2] == currentSubmidID)
+                {
+                    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
+                }
+                if (managerOrder.orderArray[3] == currentSubmidID)
+                {
+                    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
+                }
+                if (managerOrder.orderArray[4] == currentSubmidID)
+                {
+                    Console.WriteLine("Dizin {0} deðeri {1}'e eþittir.", i, currentSubmidID);
+                }
+            }
+
+        }
         if (!kasaDolu && !anaKartDolu && !cpuDolu && !ekranKartýDolu && !ramDolu)
         {
             if (isServer)

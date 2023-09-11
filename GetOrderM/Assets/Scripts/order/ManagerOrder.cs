@@ -20,6 +20,7 @@ public class ManagerOrder : NetworkBehaviour
 
     [SyncVar] public int Order;
 
+   
     public int[] orderArray = new int[5];
     //public int firstOrder;
     //public int secondOrder;
@@ -69,11 +70,7 @@ public class ManagerOrder : NetworkBehaviour
             orderArray[0] = Order;
             
         }
-
-
         CmdSpawnOrder(parentObject.position, Order);
-       
-
     }
 
     [Command(requiresAuthority = false)]
