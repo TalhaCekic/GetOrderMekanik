@@ -305,6 +305,16 @@ public class DeliveryOrder : NetworkBehaviour
     void cmdýdCheck(ManagerOrder managerOrder)
     {
         ýdCheck(managerOrder);
+        // RpcýdCheck();
+    }
+    [ClientRpc]
+    void RpcýdCheck(ManagerOrder managerOrder)
+    {
+        ýdCheck(managerOrder);
+    }
+    public void ýdCheck(ManagerOrder managerOrder)
+    {
+        
         if (Time.time - lastResetTime > resetDelay)
         {
             for (int i = 0; i < managerOrder.orderArray.Count; i++)
@@ -313,7 +323,7 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     managerOrder.orderArray[i] = 1;
                     currentobjectnumber = 0;
-                    // orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+                   // orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
                     lastResetTime = Time.time;
                     orderCorrect = true;
                     break;
@@ -324,16 +334,6 @@ public class DeliveryOrder : NetworkBehaviour
                 }
             }
         }
-        // RpcýdCheck();
-    }
-    [ClientRpc]
-    void RpcýdCheck(ManagerOrder managerOrder)
-    {
-        ýdCheck(managerOrder);
-    }
-    public void ýdCheck(ManagerOrder managerOrder)
-    {
-
         if (currentobjectnumber == 0)
         {
             if (isServer)
