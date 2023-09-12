@@ -20,19 +20,8 @@ public class ManagerOrder : NetworkBehaviour
 
     [SyncVar] public int Order;
 
-   
     public int[] orderArray = new int[5];
-    //public int firstOrder;
-    //public int secondOrder;
-    //public int thirdOrder;
-    //public int fourthOrder;
-    //public int fifthOrder;
-
-    //private bool first;
-    //private bool second;
-    //private bool third;
-    //private bool fourth;
-    //private bool fifth;
+    public List<GameObject> spawnOrderListesi = new List<GameObject>(); //spawntlanan objelerin listesini tutmak için
     private void Start()
     {
         DontDestroyOnLoad(this);
@@ -68,8 +57,10 @@ public class ManagerOrder : NetworkBehaviour
         if (!orderAssigned)
         {
             orderArray[0] = Order;
-            
         }
+
+
+
         CmdSpawnOrder(parentObject.position, Order);
     }
 

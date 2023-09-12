@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4487d0e6e82643d499f3ff54f870d424, type: 3}
-  m_Name: Order4
+  m_Name: Order8
   m_EditorClassIdentifier: 
-  orderName: Order4
-  orderID: 125
+  orderName: Order8
+  orderID: 12345
   couldown: 60
-  orderPrefab: {fileID: 4553984425931220806, guid: a3e30d9775dc1084ca7ceca901a210b8,
+  orderPrefab: {fileID: 7013261208607875783, guid: f9cde4a888137bc4789c93bab787e772,
     type: 3}
   sliderCouldown: {fileID: 0}

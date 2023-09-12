@@ -22,6 +22,8 @@ public class DeliveryOrder : NetworkBehaviour
 
     public int currentSubmidID;
 
+    [SyncVar] public bool orderCorrect;
+
     float resetDelay = 0.5f;
     float lastResetTime = -1f;
 
@@ -36,29 +38,18 @@ public class DeliveryOrder : NetworkBehaviour
         managerOrder = FindAnyObjectByType<ManagerOrder>();
 
     }
-
-   
-
     // Update is called once per frame
     void Update()
     {
-        
-            if (isServer)
-            {
-                RpcýdCheck();
-            }
-            else
-            {
-                cmdýdCheck();
-            }
-        
-
-
-       
-
+        if (isServer)
+        {
+            RpcýdCheck();
+        }
+        else
+        {
+            cmdýdCheck();
+        }
     }
-
-
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
     {
@@ -72,7 +63,6 @@ public class DeliveryOrder : NetworkBehaviour
     }
     public void interactID(float objectNumber)
     {
-      
         //objectNumber = currentobjectnumber;
         if (objectNumber == 0) // boþ
         {
@@ -82,43 +72,111 @@ public class DeliveryOrder : NetworkBehaviour
                 childObject[i].SetActive(false);
             }
         }
+        if (objectNumber == 1) // kasa
+        {
+            submidID = 1;
+            childObject[1].SetActive(true);
+        }
+        if (objectNumber == 2) // anakar
+        {
+            childObject[2].SetActive(true);
+            submidID = 2;
+        }
+        if (objectNumber == 3) // CPU
+        {
+            childObject[3].SetActive(true);
+            submidID = 3;
+        }
+        if (objectNumber == 4) // ekran kartý
+        {
+            childObject[4].SetActive(true);
+            submidID = 4;
+        }
+        if (objectNumber == 5) // ram
+        {
+            childObject[5].SetActive(true);
+            submidID = 5;
+        }
         if (objectNumber == 12)
         {
-           
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
-            childObject[1].gameObject.transform.DOMove(target.position, 2);
-            childObject[2].gameObject.transform.DOMove(target.position, 2).OnComplete(() =>
+            if (orderCorrect)
             {
-                kasaDolu = false;
-                anaKartDolu = false;
-                childObject[1].transform.DOMove(target2.position, 1);
-                childObject[2].transform.DOMove(target2.position, 1);
+                childObject[1].gameObject.transform.DOMove(target.position, 2);
+                childObject[2].gameObject.transform.DOMove(target.position, 2).OnComplete(() =>
+                {
+                    kasaDolu = false;
+                    anaKartDolu = false;
+                    childObject[1].transform.DOMove(target2.position, 1);
+                    childObject[2].transform.DOMove(target2.position, 1);
+                    submidID = 0;
 
-            });
-           
-            // submidID = 12;
+                });
+            }
         }
         if (objectNumber == 123)
         {
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
-            submidID = 123;
+            if (orderCorrect)
+            {
+                childObject[1].gameObject.transform.DOMove(target.position, 2);
+                childObject[2].gameObject.transform.DOMove(target.position, 2);
+                childObject[3].gameObject.transform.DOMove(target.position, 2).OnComplete(() =>
+                {
+                    kasaDolu = false;
+                    anaKartDolu = false;
+                    cpuDolu = false;
+                    childObject[1].transform.DOMove(target2.position, 1);
+                    childObject[2].transform.DOMove(target2.position, 1);
+                    childObject[3].transform.DOMove(target2.position, 1);
+                    submidID = 0;
+                });
+            }
         }
         if (objectNumber == 124)
         {
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[4].SetActive(true);
-            submidID = 124;
+            if (orderCorrect)
+            {
+                childObject[1].gameObject.transform.DOMove(target.position, 2);
+                childObject[2].gameObject.transform.DOMove(target.position, 2);
+                childObject[4].gameObject.transform.DOMove(target.position, 2).OnComplete(() =>
+                {
+                    kasaDolu = false;
+                    anaKartDolu = false;
+                    ekranKartýDolu = false;
+                    childObject[1].transform.DOMove(target2.position, 1);
+                    childObject[2].transform.DOMove(target2.position, 1);
+                    childObject[4].transform.DOMove(target2.position, 1);
+                    submidID = 0;
+                });
+            }
         }
         if (objectNumber == 125)
         {
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[5].SetActive(true);
-            submidID = 125;
+            if (orderCorrect)
+            {
+                childObject[1].gameObject.transform.DOMove(target.position, 2);
+                childObject[2].gameObject.transform.DOMove(target.position, 2);
+                childObject[5].gameObject.transform.DOMove(target.position, 2).OnComplete(() =>
+                {
+                    kasaDolu = false;
+                    anaKartDolu = false;
+                    ramDolu = false;
+                    childObject[1].transform.DOMove(target2.position, 1);
+                    childObject[2].transform.DOMove(target2.position, 1);
+                    childObject[5].transform.DOMove(target2.position, 1);
+                    submidID = 0;
+                });
+            }
         }
         if (objectNumber == 1234)
         {
@@ -126,7 +184,24 @@ public class DeliveryOrder : NetworkBehaviour
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
             childObject[4].SetActive(true);
-            submidID = 1234;
+            if (orderCorrect)
+            {
+                childObject[1].gameObject.transform.DOMove(target.position, 2);
+                childObject[2].gameObject.transform.DOMove(target.position, 2);
+                childObject[3].gameObject.transform.DOMove(target.position, 2);
+                childObject[4].gameObject.transform.DOMove(target.position, 2).OnComplete(() =>
+                {
+                    kasaDolu = false;
+                    anaKartDolu = false;
+                    cpuDolu = false;
+                    ekranKartýDolu = false;
+                    childObject[1].transform.DOMove(target2.position, 1);
+                    childObject[2].transform.DOMove(target2.position, 1);
+                    childObject[3].transform.DOMove(target2.position, 1);
+                    childObject[4].transform.DOMove(target2.position, 1);
+                    submidID = 0;
+                });
+            }
         }
         if (objectNumber == 1235)
         {
@@ -134,7 +209,24 @@ public class DeliveryOrder : NetworkBehaviour
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
             childObject[5].SetActive(true);
-            submidID = 1235;
+            if (orderCorrect)
+            {
+                childObject[1].gameObject.transform.DOMove(target.position, 2);
+                childObject[2].gameObject.transform.DOMove(target.position, 2);
+                childObject[3].gameObject.transform.DOMove(target.position, 2);
+                childObject[5].gameObject.transform.DOMove(target.position, 2).OnComplete(() =>
+                {
+                    kasaDolu = false;
+                    anaKartDolu = false;
+                    cpuDolu = false;
+                    ramDolu = false;
+                    childObject[1].transform.DOMove(target2.position, 1);
+                    childObject[2].transform.DOMove(target2.position, 1);
+                    childObject[3].transform.DOMove(target2.position, 1);
+                    childObject[5].transform.DOMove(target2.position, 1);
+                    submidID = 0;
+                });
+            }
         }
         if (objectNumber == 1245)
         {
@@ -142,7 +234,24 @@ public class DeliveryOrder : NetworkBehaviour
             childObject[2].SetActive(true);
             childObject[4].SetActive(true);
             childObject[5].SetActive(true);
-            submidID = 1245;
+            if (orderCorrect)
+            {
+                childObject[1].gameObject.transform.DOMove(target.position, 2);
+                childObject[2].gameObject.transform.DOMove(target.position, 2);
+                childObject[4].gameObject.transform.DOMove(target.position, 2);
+                childObject[5].gameObject.transform.DOMove(target.position, 2).OnComplete(() =>
+                {
+                    kasaDolu = false;
+                    anaKartDolu = false;
+                    ekranKartýDolu = false;
+                    ramDolu = false;
+                    childObject[1].transform.DOMove(target2.position, 1);
+                    childObject[2].transform.DOMove(target2.position, 1);
+                    childObject[4].transform.DOMove(target2.position, 1);
+                    childObject[5].transform.DOMove(target2.position, 1);
+                    submidID = 0;
+                });
+            }
         }
         if (objectNumber == 12345)
         {
@@ -151,12 +260,29 @@ public class DeliveryOrder : NetworkBehaviour
             childObject[3].SetActive(true);
             childObject[4].SetActive(true);
             childObject[5].SetActive(true);
-            submidID = 12345;
+            if (orderCorrect)
+            {
+                childObject[1].gameObject.transform.DOMove(target.position, 2);
+                childObject[2].gameObject.transform.DOMove(target.position, 2);
+                childObject[3].gameObject.transform.DOMove(target.position, 2);
+                childObject[4].gameObject.transform.DOMove(target.position, 2);
+                childObject[5].gameObject.transform.DOMove(target.position, 2).OnComplete(() =>
+                {
+                    kasaDolu = false;
+                    anaKartDolu = false;
+                    cpuDolu = false;
+                    ekranKartýDolu = false;
+                    ramDolu = false;
+                    childObject[1].transform.DOMove(target2.position, 1);
+                    childObject[2].transform.DOMove(target2.position, 1);
+                    childObject[3].transform.DOMove(target2.position, 1);
+                    childObject[4].transform.DOMove(target2.position, 1);
+                    childObject[5].transform.DOMove(target2.position, 1);
+                    submidID = 0;
+                });
+            }
         }
     }
-
-  
-
     [Command(requiresAuthority = false)]
     void cmdýdCheck()
     {
@@ -170,67 +296,29 @@ public class DeliveryOrder : NetworkBehaviour
     }
     public void ýdCheck()
     {
-       // orderUI = GameObject.FindGameObjectsWithTag("orderUI");
+        // orderUI = GameObject.FindGameObjectsWithTag("orderUI");
         if (Time.time - lastResetTime > resetDelay)
         {
             for (int i = 0; i < managerOrder.orderArray.Length; i++)
             {
-                
                 if (managerOrder.orderArray[i] == submidID)
                 {
                     managerOrder.orderArray[i] = 1;
-                    currentobjectnumber = 0;                 
+                    currentobjectnumber = 0;
                     lastResetTime = Time.time;
+                    orderCorrect = true;
                     break;
+                }
+                else
+                {
+                    orderCorrect = false;
                 }
             }
         }
-
-
-        // if (submidID == managerOrder.orderArray[0])
-        // {
-        //     // Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", currentSubmidID));
-
-        //     managerOrder.orderArray[0] = 0;
-
-        // }
-
-        // else if (managerOrder.orderArray[1] == submidID)
-        // {
-        //     // Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", currentSubmidID));
-        //     managerOrder.orderArray[1] = 0;
-
-        // }
-        // else if (managerOrder.orderArray[2] == submidID)
-        // {
-        //     //Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", currentSubmidID));
-        //     managerOrder.orderArray[2] = 0;
-
-        // }
-        // else if (managerOrder.orderArray[3] == submidID)
-        // {
-        //     // Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", currentSubmidID));
-        //     managerOrder.orderArray[3] = 0;
-
-        // }
-        // else if (managerOrder.orderArray[4] == submidID)
-        // {
-        //     // Debug.Log(string.Format("Dizin {0} deðeri {1}'e eþittir.", currentSubmidID));
-        //     managerOrder.orderArray[4] = 0;
-
-        //}
-
-
-
-
-
-
-
-        if (currentobjectnumber==0)
+        if (currentobjectnumber == 0)
         {
             if (isServer)
             {
-               
                 RpcinteractID(0);
             }
             else if (isClient)
@@ -241,6 +329,64 @@ public class DeliveryOrder : NetworkBehaviour
         }
         if (kasaDolu || anaKartDolu || cpuDolu || ekranKartýDolu || ramDolu)
         {
+            if (kasaDolu)
+            {
+                if (isServer)
+                {
+                    RpcinteractID(1);
+                }
+                else
+                {
+                    CmdinteractID(1);
+                }
+            }
+            if (anaKartDolu)
+            {
+                if (isServer)
+                {
+                    RpcinteractID(2);
+                }
+                else
+                {
+                    CmdinteractID(2);
+                }
+            }
+            if (cpuDolu)
+            {
+                if (isServer)
+                {
+                    RpcinteractID(3);
+                }
+                else
+                {
+                    CmdinteractID(3);
+                }
+                submidID = 3;
+            }
+            if (ekranKartýDolu)
+            {
+                if (isServer)
+                {
+                    RpcinteractID(4);
+                }
+                else
+                {
+                    CmdinteractID(4);
+                }
+                submidID = 4;
+            }
+            if (ramDolu)
+            {
+                if (isServer)
+                {
+                    RpcinteractID(5);
+                }
+                else
+                {
+                    CmdinteractID(5);
+                }
+                submidID = 5;
+            }
             if (kasaDolu && anaKartDolu)
             {
                 if (isServer)
