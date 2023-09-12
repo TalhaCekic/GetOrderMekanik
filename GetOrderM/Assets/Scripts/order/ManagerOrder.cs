@@ -32,7 +32,7 @@ public class ManagerOrder : NetworkBehaviour
     {
         if (isServer && Time.time >= nextOrderTime)
         {
-            GenerateRandomOrder();
+            GenerateRandomOrder(Order);
             CalculateNextOrderTime();
         }
     }
@@ -41,7 +41,7 @@ public class ManagerOrder : NetworkBehaviour
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
     }
     [Command(requiresAuthority = false)]
-    public void GenerateRandomOrder() 
+    public void GenerateRandomOrder(int Order) 
     {
        
         bool orderAssigned = false;
