@@ -296,13 +296,13 @@ public class DeliveryOrder : NetworkBehaviour
     void cmdýdCheck(ManagerOrder managerOrder)
     {
         ýdCheck(managerOrder);
-        // RpcýdCheck();
+        RpcýdCheck(managerOrder);
     }
-    //[ClientRpc]
-    //void RpcýdCheck(ManagerOrder managerOrder)
-    //{
-    //    ýdCheck(managerOrder);
-    //}
+    [ClientRpc]
+    void RpcýdCheck(ManagerOrder managerOrder)
+    {
+        ýdCheck(managerOrder);
+    }
     public void ýdCheck(ManagerOrder managerOrder)
     {
         if (Time.time - lastResetTime > resetDelay)
