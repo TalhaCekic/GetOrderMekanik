@@ -19,8 +19,8 @@ public class ManagerOrder : NetworkBehaviour
     private float nextOrderTime = 0f;
 
     [SyncVar] public int Order;
-
-    public int[] orderArray = new int[5];
+    public SyncList<int> orderArray = new SyncList<int>();
+    //public int[] orderArray = new int[5];
     public List<GameObject> spawnOrderListesi = new List<GameObject>(); //spawntlanan objelerin listesini tutmak için
     
     private void Start()
@@ -50,7 +50,7 @@ public class ManagerOrder : NetworkBehaviour
         int randomIndex = Random.Range(0, orders.Length);
         Order = orders[randomIndex].orderID;
       
-        for (int i = 0; i < orderArray.Length; i++)
+        for (int i = 0; i < orderArray.Count; i++)
         {
             if (orderArray[i] == 1)
             {

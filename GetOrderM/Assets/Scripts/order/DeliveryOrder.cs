@@ -300,7 +300,7 @@ public class DeliveryOrder : NetworkBehaviour
         
         if (Time.time - lastResetTime > resetDelay)
         {
-            for (int i = 0; i < managerOrder.orderArray.Length; i++)
+            for (int i = 0; i < managerOrder.orderArray.Count; i++)
             {
                 if (managerOrder.orderArray[i] == submidID)
                 {
