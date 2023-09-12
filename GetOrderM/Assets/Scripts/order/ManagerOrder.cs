@@ -29,9 +29,12 @@ public class ManagerOrder : NetworkBehaviour
     {
         //DontDestroyOnLoad(this);
         CalculateNextOrderTime();
-        for (int i = 0; i < 5; i++)
+        if (isServer)
         {
-            orderArray.Add(1);
+            for (int i = 0; i < 5; i++)
+            {
+                orderArray.Add(1);
+            }
         }
     }
     private void Update()
