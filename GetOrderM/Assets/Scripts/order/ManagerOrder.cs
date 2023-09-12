@@ -21,12 +21,16 @@ public class ManagerOrder : NetworkBehaviour
     [SyncVar] public int Order;
     public SyncList<int> orderArray = new SyncList<int>();
     //public int[] orderArray = new int[5];
-    public List<GameObject> spawnOrderListesi = new List<GameObject>(); //spawntlanan objelerin listesini tutmak için
+  //  public List<GameObject> spawnOrderListesi = new List<GameObject>(); //spawntlanan objelerin listesini tutmak için
     
     private void Start()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         CalculateNextOrderTime();
+        for (int i = 0; i < 5; i++)
+        {
+            orderArray.Add(1);
+        }
     }
     private void Update()
     {

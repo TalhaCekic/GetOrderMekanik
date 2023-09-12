@@ -31,7 +31,7 @@ public class DeliveryOrder : NetworkBehaviour
 
     [SerializeField] private Transform target, target2;
 
-    [SerializeField] private GameObject[] orderUI;
+    [SerializeField] private GameObject[] orderUI = new GameObject[5];
 
     void Start()
     {
@@ -49,7 +49,9 @@ public class DeliveryOrder : NetworkBehaviour
         {
             cmdýdCheck(managerOrder);
         }
-        orderUI = GameObject.FindGameObjectsWithTag("orderUI");
+        orderUI= GameObject.FindGameObjectsWithTag("orderUI");
+
+  
     }
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
