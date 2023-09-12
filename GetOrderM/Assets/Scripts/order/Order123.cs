@@ -41,7 +41,7 @@ public class Order123 : NetworkBehaviour
     public void RpcinteractID(float objectNumber)
     {
     
-       // transform.parent = canvas.transform;
+        transform.parent = canvas.transform;
         if (objectNumber == 123)
         {
             //this.transform.position = new Vector3(150, 522, 0);
