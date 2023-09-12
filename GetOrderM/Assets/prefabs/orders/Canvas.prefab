@@ -221,6 +221,10 @@ MonoBehaviour:
   orders:
   - {fileID: 11400000, guid: 9bb8fbb3b2b533a4bbb0407d6a6d5021, type: 2}
   - {fileID: 11400000, guid: 29654cf13a3c7b74abafed8ef5ff784d, type: 2}
+  - {fileID: 11400000, guid: 83bd232f8e1e056468ab5ceb75fe2fb7, type: 2}
+  - {fileID: 11400000, guid: c09c57d2923f13b4fb58fdecda88dc9d, type: 2}
+  - {fileID: 11400000, guid: 7349e7d275df6694bbe08cc6818d282f, type: 2}
+  - {fileID: 11400000, guid: 6e26db0f397bfb8438c9d6e8492c013a, type: 2}
   - {fileID: 11400000, guid: d4dfdfc8929aa7f4e93aa19696f97403, type: 2}
   - {fileID: 11400000, guid: 175330aaa3148334dbabf992128f04e6, type: 2}
   parentObject: {fileID: 466619756699573790}
@@ -231,7 +235,8 @@ MonoBehaviour:
   - {fileID: 1349077991336452974}
   - {fileID: 7217268431372777550}
   Order: 0
-  orderArray: 0000000000000000000000000000000000000000
+  orderArray: 0100000001000000010000000100000001000000
+  spawnOrderListesi: []
 --- !u!1 &885499165210842665
 GameObject:
   m_ObjectHideFlags: 0

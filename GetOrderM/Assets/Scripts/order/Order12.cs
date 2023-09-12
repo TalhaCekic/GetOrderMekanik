@@ -10,15 +10,16 @@ public class Order12 : NetworkBehaviour
 {
     public List<GameObject> OrderObject = new List<GameObject>();
 
-
+   
     [SerializeField] private ScriptableOrder order;
     [SerializeField] private Slider sliderCouldown;
 
-    private float currentCouldown;
-
+    // private float currentCouldown;
+    private OrderTimes orderTimes;
     private void Start()
     {
-        currentCouldown = order.couldown;
+        orderTimes = GetComponent<OrderTimes>();
+        orderTimes.currentCouldown = order.couldown;
     }
     void Update()
     {
@@ -42,9 +43,9 @@ public class Order12 : NetworkBehaviour
             OrderObject[3].SetActive(false);
             OrderObject[4].SetActive(false);
             OrderObject[5].SetActive(false);
-            currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
-            sliderCouldown.value = currentCouldown;
-            if (currentCouldown < 0)
+            orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
+            sliderCouldown.value = orderTimes.currentCouldown;
+            if (orderTimes.currentCouldown < 0)
             {
                 Destroy(this.gameObject);
             }

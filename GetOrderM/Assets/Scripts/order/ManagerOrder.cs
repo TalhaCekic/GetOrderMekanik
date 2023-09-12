@@ -22,9 +22,10 @@ public class ManagerOrder : NetworkBehaviour
 
     public int[] orderArray = new int[5];
     public List<GameObject> spawnOrderListesi = new List<GameObject>(); //spawntlanan objelerin listesini tutmak için
+    
     private void Start()
     {
-        DontDestroyOnLoad(this);
+       // DontDestroyOnLoad(this);
         CalculateNextOrderTime();
     }
     private void Update()
@@ -41,6 +42,7 @@ public class ManagerOrder : NetworkBehaviour
     }
     public void GenerateRandomOrder() 
     {
+       
         bool orderAssigned = false;
         int randomIndex = Random.Range(0, orders.Length);
         Order = orders[randomIndex].orderID;
@@ -50,6 +52,7 @@ public class ManagerOrder : NetworkBehaviour
             if (orderArray[i] == 1)
             {
                 orderArray[i] = Order;
+                
                 orderAssigned = true;
                 break;
             }

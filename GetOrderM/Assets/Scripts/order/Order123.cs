@@ -12,13 +12,14 @@ public class Order123 : NetworkBehaviour
 
     [SerializeField] private Slider sliderCouldown;
 
+    private OrderTimes orderTimes;
 
-    private float currentCouldown;
+    //private float currentCouldown;
 
     private void Start()
     {
-       
-        currentCouldown = order.couldown; 
+       orderTimes = GetComponent<OrderTimes>();
+        orderTimes.currentCouldown = order.couldown; 
     }
 
     void Update()
@@ -46,9 +47,9 @@ public class Order123 : NetworkBehaviour
             OrderObject[3].SetActive(true);
             OrderObject[4].SetActive(false);
             OrderObject[5].SetActive(false);
-            currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
-            sliderCouldown.value = currentCouldown;
-            if (currentCouldown < 0)
+            orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
+            sliderCouldown.value = orderTimes.currentCouldown;
+            if (orderTimes.currentCouldown < 0)
             {
                 NetworkServer.Destroy(this.gameObject);
                 

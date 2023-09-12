@@ -49,6 +49,7 @@ public class DeliveryOrder : NetworkBehaviour
         {
             cmdýdCheck();
         }
+        orderUI = GameObject.FindGameObjectsWithTag("orderUI");
     }
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
@@ -296,7 +297,7 @@ public class DeliveryOrder : NetworkBehaviour
     }
     public void ýdCheck()
     {
-        // orderUI = GameObject.FindGameObjectsWithTag("orderUI");
+        
         if (Time.time - lastResetTime > resetDelay)
         {
             for (int i = 0; i < managerOrder.orderArray.Length; i++)
@@ -305,6 +306,7 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     managerOrder.orderArray[i] = 1;
                     currentobjectnumber = 0;
+                    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
                     lastResetTime = Time.time;
                     orderCorrect = true;
                     break;

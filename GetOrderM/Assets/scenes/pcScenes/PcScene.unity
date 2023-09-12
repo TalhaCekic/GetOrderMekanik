@@ -30478,8 +30478,10 @@ MonoBehaviour:
   managerOrder: {fileID: 0}
   submidID: 0
   currentSubmidID: 0
+  orderCorrect: 0
   target: {fileID: 1376835532}
   target2: {fileID: 1039278904}
+  orderUI: []
 --- !u!65 &919132149517832492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30704,31 +30706,6 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneId
       value: 3756116597
-      objectReference: {fileID: 0}
-    - target: {fileID: 6600060584159797309, guid: 15461d59b82862344828400d85109b13,
-        type: 3}
-      propertyPath: orderArray.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6600060584159797309, guid: 15461d59b82862344828400d85109b13,
-        type: 3}
-      propertyPath: orderArray.Array.data[1]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6600060584159797309, guid: 15461d59b82862344828400d85109b13,
-        type: 3}
-      propertyPath: orderArray.Array.data[2]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6600060584159797309, guid: 15461d59b82862344828400d85109b13,
-        type: 3}
-      propertyPath: orderArray.Array.data[3]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6600060584159797309, guid: 15461d59b82862344828400d85109b13,
-        type: 3}
-      propertyPath: orderArray.Array.data[4]
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
