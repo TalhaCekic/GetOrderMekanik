@@ -22,7 +22,7 @@ public class Order12 : NetworkBehaviour
         orderTimes = GetComponent<OrderTimes>();
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
-        CMDinteract();
+      //  CMDinteract();
     }
     void Update()
     {
@@ -39,7 +39,7 @@ public class Order12 : NetworkBehaviour
     {
         if (objectNumber == 12)
         {
-
+            transform.parent = canvas.transform;
             order.orderID = 12;
             OrderObject[1].SetActive(true);
             OrderObject[2].SetActive(true);

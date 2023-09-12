@@ -23,7 +23,7 @@ public class Order123 : NetworkBehaviour
        orderTimes = GetComponent<OrderTimes>();
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
-        CMDinteract();
+       // CMDinteract();
     }
 
     void Update()
@@ -41,7 +41,7 @@ public class Order123 : NetworkBehaviour
     public void RpcinteractID(float objectNumber)
     {
     
-
+        transform.parent = canvas.transform;
         if (objectNumber == 123)
         {
             //this.transform.position = new Vector3(150, 522, 0);
@@ -64,6 +64,6 @@ public class Order123 : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CMDinteract()
     {
-        transform.parent = canvas.transform;
+
     }
 }
