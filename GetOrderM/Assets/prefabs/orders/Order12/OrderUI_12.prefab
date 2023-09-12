@@ -548,7 +548,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2837706176393604302}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adde1941d271f8c4ebecb4dca7c2761c, type: 3}
   m_Name: 
@@ -563,6 +563,7 @@ MonoBehaviour:
   - {fileID: 4262642853135368538}
   - {fileID: 5549148067561892579}
   - {fileID: 5175652880463148687}
+  canvas: {fileID: 0}
   order: {fileID: 11400000, guid: 9bb8fbb3b2b533a4bbb0407d6a6d5021, type: 2}
   sliderCouldown: {fileID: 2329250018369600966}
 --- !u!114 &1657467732434786130
@@ -594,6 +595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd81b3d316ef7646acc3e6f2194eddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   currentCouldown: 0
 --- !u!1 &3828075120323440335
 GameObject:
