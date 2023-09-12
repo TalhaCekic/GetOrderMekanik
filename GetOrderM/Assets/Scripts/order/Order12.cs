@@ -10,6 +10,7 @@ public class Order12 : NetworkBehaviour
 {
     public List<GameObject> OrderObject = new List<GameObject>();
 
+    public GameObject canvas;
    
     [SerializeField] private ScriptableOrder order;
     [SerializeField] private Slider sliderCouldown;
@@ -20,6 +21,8 @@ public class Order12 : NetworkBehaviour
     {
         orderTimes = GetComponent<OrderTimes>();
         orderTimes.currentCouldown = order.couldown;
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
+        transform.parent = canvas.transform;
     }
     void Update()
     {
