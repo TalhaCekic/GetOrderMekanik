@@ -9,6 +9,8 @@ using DG.Tweening;
 
 public class DeliveryOrder : NetworkBehaviour
 {
+    public static DeliveryOrder instance;
+
     [SyncVar] public bool kasaDolu = false;
     [SyncVar] public bool anaKartDolu = false;
     [SyncVar] public bool cpuDolu = false;
@@ -31,13 +33,16 @@ public class DeliveryOrder : NetworkBehaviour
 
     [SerializeField] private Transform target, target2;
 
-    [SerializeField] private SyncList<GameObject> orderUI = new SyncList<GameObject> ();
+    [SerializeField] public SyncList<GameObject> orderUI = new SyncList<GameObject>();
 
     void Start()
     {
+        instance = this;
         managerOrder = FindAnyObjectByType<ManagerOrder>();
-       
+
     }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -49,14 +54,20 @@ public class DeliveryOrder : NetworkBehaviour
         {
             cmdýdCheck(managerOrder);
         }
-        GameObject[] foundObjects = GameObject.FindGameObjectsWithTag("orderUI");
 
-        
-        foreach (GameObject obj in foundObjects)
+    }
+
+
+    public void AddObjectToList(GameObject obj)
+    {
+        if (!orderUI.Contains(obj))
         {
             orderUI.Add(obj);
         }
     }
+
+
+
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
     {
