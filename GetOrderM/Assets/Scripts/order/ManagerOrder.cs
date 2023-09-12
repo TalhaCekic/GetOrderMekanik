@@ -25,7 +25,7 @@ public class ManagerOrder : NetworkBehaviour
     
     private void Start()
     {
-       // DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);
         CalculateNextOrderTime();
     }
     private void Update()
