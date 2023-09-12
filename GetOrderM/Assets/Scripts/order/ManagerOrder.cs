@@ -30,6 +30,7 @@ public class ManagerOrder : NetworkBehaviour
         //DontDestroyOnLoad(this);
         CalculateNextOrderTime();
         CALIS();
+        canvas = GetComponent<Canvas>();
     }
     private void Update()
     {
