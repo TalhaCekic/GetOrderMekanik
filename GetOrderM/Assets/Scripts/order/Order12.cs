@@ -41,11 +41,6 @@ public class Order12 : NetworkBehaviour
         {
             transform.parent = canvas.transform;
             order.orderID = 12;
-            OrderObject[1].SetActive(true);
-            OrderObject[2].SetActive(true);
-            OrderObject[3].SetActive(false);
-            OrderObject[4].SetActive(false);
-            OrderObject[5].SetActive(false);
             orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
             sliderCouldown.value = orderTimes.currentCouldown;
             if (orderTimes.currentCouldown < 0)
