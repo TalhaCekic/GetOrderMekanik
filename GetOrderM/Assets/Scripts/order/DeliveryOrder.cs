@@ -291,10 +291,10 @@ public class DeliveryOrder : NetworkBehaviour
             }
         }
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     void cmdýdCheck(ManagerOrder managerOrder)
     {
-        ýdCheck(managerOrder);
+        //ýdCheck(managerOrder);
         RpcýdCheck(managerOrder);
     }
     [ClientRpc]
