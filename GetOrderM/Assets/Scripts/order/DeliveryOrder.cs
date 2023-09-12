@@ -43,11 +43,11 @@ public class DeliveryOrder : NetworkBehaviour
     {
         if (isServer)
         {
-            RpcýdCheck();
+            RpcýdCheck(managerOrder);
         }
         else
         {
-            cmdýdCheck();
+            cmdýdCheck(managerOrder);
         }
         orderUI = GameObject.FindGameObjectsWithTag("orderUI");
     }
@@ -285,17 +285,17 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
     [Command(requiresAuthority = false)]
-    void cmdýdCheck()
+    void cmdýdCheck(ManagerOrder managerOrder)
     {
-        ýdCheck();
+        ýdCheck(managerOrder);
         // RpcýdCheck();
     }
     [ClientRpc]
-    void RpcýdCheck()
+    void RpcýdCheck(ManagerOrder managerOrder)
     {
-        ýdCheck();
+        ýdCheck(managerOrder);
     }
-    public void ýdCheck()
+    public void ýdCheck(ManagerOrder managerOrder)
     {
         
         if (Time.time - lastResetTime > resetDelay)
