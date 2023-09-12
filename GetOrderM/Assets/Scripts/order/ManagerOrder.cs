@@ -107,32 +107,32 @@ public class ManagerOrder : NetworkBehaviour
             if (orderArray[0] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
-                spawnedPrefab.transform.parent = this.transform.parent;
+               // spawnedPrefab.transform.parent = this.transform.parent;
                 DeliveryOrder.instance.AddObjectToList(spawnedPrefab);
             }
 
             if (orderArray[1] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
-                spawnedPrefab.transform.parent = this.transform.parent;
+               // spawnedPrefab.transform.parent = this.transform.parent;
                 DeliveryOrder.instance.AddObjectToList(spawnedPrefab);
             }
             if (orderArray[2] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
-                spawnedPrefab.transform.parent = this.transform.parent;
+               // spawnedPrefab.transform.parent = this.transform.parent;
                 DeliveryOrder.instance.AddObjectToList(spawnedPrefab);
             }
             if (orderArray[3] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
-                spawnedPrefab.transform.parent = this.transform.parent;
+               // spawnedPrefab.transform.parent = this.transform.parent;
                 DeliveryOrder.instance.AddObjectToList(spawnedPrefab);
             }
             if (orderArray[4] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
-                spawnedPrefab.transform.parent = this.transform.parent;
+              //  spawnedPrefab.transform.parent = this.transform.parent;
                 DeliveryOrder.instance.AddObjectToList(spawnedPrefab);
             }
 

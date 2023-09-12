@@ -5,5 +5,5 @@ using Mirror;
 
 public class OrderTimes : NetworkBehaviour
 {
-     public  float currentCouldown;
+    [SyncVar] public  float currentCouldown;
 }
