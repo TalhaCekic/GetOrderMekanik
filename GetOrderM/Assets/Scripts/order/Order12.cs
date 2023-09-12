@@ -22,7 +22,7 @@ public class Order12 : NetworkBehaviour
         orderTimes = GetComponent<OrderTimes>();
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
-      //  CMDinteract();
+      
     }
     void Update()
     {
@@ -53,12 +53,6 @@ public class Order12 : NetworkBehaviour
                 Destroy(this.gameObject);
             }
         }
-    }
-
-    [Command(requiresAuthority = false)]
-    public void CMDinteract()
-    {
-        transform.parent = canvas.transform;
     }
 
 

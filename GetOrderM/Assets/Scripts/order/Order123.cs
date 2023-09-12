@@ -23,7 +23,7 @@ public class Order123 : NetworkBehaviour
        orderTimes = GetComponent<OrderTimes>();
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
-       // CMDinteract();
+      
     }
 
     void Update()
@@ -61,9 +61,4 @@ public class Order123 : NetworkBehaviour
         }
     }
 
-    [Command(requiresAuthority = false)]
-    public void CMDinteract()
-    {
-
-    }
 }
