@@ -45,11 +45,7 @@ public class DeliveryOrder : NetworkBehaviour
     void Update()
     {
         
-            if (isServer)
-            {
-                RpcýdCheck(managerOrder);
-            }
-            else if (NetworkClient.ready)
+             if (NetworkClient.ready)
             {
                 cmdýdCheck(managerOrder);
             }
@@ -302,11 +298,11 @@ public class DeliveryOrder : NetworkBehaviour
         ýdCheck(managerOrder);
         // RpcýdCheck();
     }
-    [ClientRpc]
-    void RpcýdCheck(ManagerOrder managerOrder)
-    {
-        ýdCheck(managerOrder);
-    }
+    //[ClientRpc]
+    //void RpcýdCheck(ManagerOrder managerOrder)
+    //{
+    //    ýdCheck(managerOrder);
+    //}
     public void ýdCheck(ManagerOrder managerOrder)
     {
         if (Time.time - lastResetTime > resetDelay)
