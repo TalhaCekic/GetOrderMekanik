@@ -51,8 +51,8 @@ public class Order123 : NetworkBehaviour
             OrderObject[3].SetActive(true);
             OrderObject[4].SetActive(false);
             OrderObject[5].SetActive(false);
-            //orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
-            //sliderCouldown.value = orderTimes.currentCouldown;
+            orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
+            sliderCouldown.value = orderTimes.currentCouldown;
             if (orderTimes.currentCouldown < 0)
             {
                 NetworkServer.Destroy(this.gameObject);
