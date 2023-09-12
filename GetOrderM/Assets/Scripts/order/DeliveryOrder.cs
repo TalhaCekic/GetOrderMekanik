@@ -41,8 +41,6 @@ public class DeliveryOrder : NetworkBehaviour
         managerOrder = FindAnyObjectByType<ManagerOrder>();
 
     }
-
-
     // Update is called once per frame
     void Update()
     {
@@ -54,10 +52,7 @@ public class DeliveryOrder : NetworkBehaviour
         {
             cmdýdCheck(managerOrder);
         }
-
-      
     }
-
     [Command(requiresAuthority = false)]
     public void AddObjectToList(GameObject obj)
     {
@@ -66,9 +61,6 @@ public class DeliveryOrder : NetworkBehaviour
             orderUI.Add(obj);
         }
     }
-
-
-
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
     {
@@ -323,7 +315,7 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     managerOrder.orderArray[i] = 1;
                     currentobjectnumber = 0;
-                    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+                 //   orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
                     lastResetTime = Time.time;
                     orderCorrect = true;
                     break;
