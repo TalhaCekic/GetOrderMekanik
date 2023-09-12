@@ -44,17 +44,16 @@ public class DeliveryOrder : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (NetworkClient.ready)
-        {
+        
             if (isServer)
             {
                 RpcýdCheck(managerOrder);
             }
-            else
+            else if (NetworkClient.ready)
             {
                 cmdýdCheck(managerOrder);
             }
-        }
+        
     }
     [Command(requiresAuthority = false)]
     public void AddObjectToList(GameObject obj)
