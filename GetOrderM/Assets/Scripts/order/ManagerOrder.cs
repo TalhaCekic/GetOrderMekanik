@@ -34,8 +34,15 @@ public class ManagerOrder : NetworkBehaviour
     {
         //DontDestroyOnLoad(this);
         CalculateNextOrderTime();
-        CALIS();
-        
+        if (isServer)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                orderArray.Add(1);
+            }
+        }
+
+
     }
     private void Update()
     {
@@ -46,17 +53,9 @@ public class ManagerOrder : NetworkBehaviour
         }
     }
 
-    [Command]
-    public void CALIS()
-    {
-        if (isServer)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                orderArray.Add(1);
-            }
-        }
-    }
+    
+       
+    
    
     private void CalculateNextOrderTime() // tekrardan sipariþin gelme sýklýðý
     {

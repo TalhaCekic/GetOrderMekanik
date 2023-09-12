@@ -58,7 +58,7 @@ public class DeliveryOrder : NetworkBehaviour
       
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void AddObjectToList(GameObject obj)
     {
         if (!orderUI.Contains(obj))
