@@ -294,7 +294,7 @@ public class DeliveryOrder : NetworkBehaviour
             }
         }
     }
-    [Command(requiresAuthority = false)]
+    [Command]
     void cmdýdCheck(ManagerOrder managerOrder)
     {
         ýdCheck(managerOrder);
