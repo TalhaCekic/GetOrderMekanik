@@ -26,19 +26,19 @@ public class ManagerOrder : NetworkBehaviour
     private void Start()
     {
         DontDestroyOnLoad(this);
-        CalculateNextOrderTime(nextOrderTime);
+        CalculateNextOrderTime();
     }
     private void Update()
     {
         if (isServer && Time.time >= nextOrderTime)
         {
             GenerateRandomOrder(Order);
-            CalculateNextOrderTime(nextOrderTime);
+            CalculateNextOrderTime();
         }
     }
 
-    [Command(requiresAuthority = false)]
-    public void CalculateNextOrderTime(float nextOrderTime) // tekrardan sipariþin gelme sýklýðý
+   
+    private void CalculateNextOrderTime() // tekrardan sipariþin gelme sýklýðý
     {
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
     }
