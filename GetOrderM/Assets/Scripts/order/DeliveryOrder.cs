@@ -31,12 +31,12 @@ public class DeliveryOrder : NetworkBehaviour
 
     [SerializeField] private Transform target, target2;
 
-    [SerializeField] private GameObject[] orderUI = new GameObject[5];
+    [SerializeField] private SyncList<GameObject> orderUI = new SyncList<GameObject> ();
 
     void Start()
     {
         managerOrder = FindAnyObjectByType<ManagerOrder>();
-
+       
     }
     // Update is called once per frame
     void Update()
@@ -49,9 +49,13 @@ public class DeliveryOrder : NetworkBehaviour
         {
             cmdýdCheck(managerOrder);
         }
-        orderUI= GameObject.FindGameObjectsWithTag("orderUI");
+        GameObject[] foundObjects = GameObject.FindGameObjectsWithTag("orderUI");
 
-  
+        
+        foreach (GameObject obj in foundObjects)
+        {
+            orderUI.Add(obj);
+        }
     }
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
