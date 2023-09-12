@@ -30475,13 +30475,12 @@ MonoBehaviour:
   - {fileID: 558442004}
   - {fileID: 1550199908}
   - {fileID: 1396123455}
-  managerOrder: {fileID: 0}
+  managerOrder: {fileID: 2788185383785996586}
   submidID: 0
   currentSubmidID: 0
   orderCorrect: 0
   target: {fileID: 1376835532}
   target2: {fileID: 1039278904}
-  orderUI: []
 --- !u!65 &919132149517832492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30712,6 +30711,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15461d59b82862344828400d85109b13, type: 3}
+--- !u!114 &2788185383785996586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6600060584159797309, guid: 15461d59b82862344828400d85109b13,
+    type: 3}
+  m_PrefabInstance: {fileID: 2788185383785996585}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15651ffe16f491e40b64e3f30f4fc1a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &3260616448679499768
 MeshFilter:
   m_ObjectHideFlags: 0

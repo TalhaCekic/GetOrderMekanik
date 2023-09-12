@@ -38,7 +38,7 @@ public class DeliveryOrder : NetworkBehaviour
     void Start()
     {
         instance = this;
-        managerOrder = FindAnyObjectByType<ManagerOrder>();
+       // managerOrder = FindAnyObjectByType<ManagerOrder>();
 
     }
     // Update is called once per frame
