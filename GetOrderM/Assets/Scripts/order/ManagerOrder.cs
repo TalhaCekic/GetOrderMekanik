@@ -40,6 +40,7 @@ public class ManagerOrder : NetworkBehaviour
     {
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
     }
+    [Command(requiresAuthority = false)]
     public void GenerateRandomOrder() 
     {
        
