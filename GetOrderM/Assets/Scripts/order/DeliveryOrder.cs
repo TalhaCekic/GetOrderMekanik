@@ -486,7 +486,7 @@ public class DeliveryOrder : NetworkBehaviour
     [Command]
     public void cmd(int currentobjectnumber)
     {
-        rpc(currentobjectnumber)
+        rpc(currentobjectnumber);
     }
     [ClientRpc]
     public void rpc(int currentobjectnumber)
