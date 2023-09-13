@@ -47,7 +47,7 @@ public class DeliveryOrder : NetworkBehaviour
         if (isServer)
         {
             cmdýdCheck(currentobjectnumber);
-            cmd(currentobjectnumber);
+            cmd();
         }
            
 
@@ -479,7 +479,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
     [Command]
-    public void cmd(int currentobjectnumber)
+    public void cmd()
     {
         if (Time.time - lastResetTime > resetDelay)
         {
