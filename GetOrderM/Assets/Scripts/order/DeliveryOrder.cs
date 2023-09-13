@@ -45,8 +45,11 @@ public class DeliveryOrder : NetworkBehaviour
     void Update()
     {
         if (isServer)
+        {
             cmdýdCheck(currentobjectnumber);
-        cmd(currentobjectnumber);
+            cmd(currentobjectnumber);
+        }
+           
 
     }
     [Command(requiresAuthority = false)]
