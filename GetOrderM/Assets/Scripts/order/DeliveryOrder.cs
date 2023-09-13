@@ -46,10 +46,14 @@ public class DeliveryOrder : NetworkBehaviour
     {
         if (isServer)
         {
+            RpcýdCheck(currentobjectnumber);
+        }
+        else
+        {
             cmdýdCheck(currentobjectnumber);
             cmd();
         }
-           
+
 
     }
     [Command(requiresAuthority = false)]
@@ -298,7 +302,7 @@ public class DeliveryOrder : NetworkBehaviour
     {
         //ýdCheck(managerOrder);
         RpcýdCheck(currentobjectnumber);
-    
+
     }
     [ClientRpc]
     void RpcýdCheck(int currentobjectnumberr)
@@ -479,7 +483,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
     [Command]
-    public void cmd()
+    public void cmd(int currentobjectnumber)
     {
         if (Time.time - lastResetTime > resetDelay)
         {
