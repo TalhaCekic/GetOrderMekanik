@@ -51,7 +51,7 @@ public class DeliveryOrder : NetworkBehaviour
         else
         {
             cmdýdCheck(currentobjectnumber);
-            cmd();
+            cmd(currentobjectnumber);
         }
 
 
