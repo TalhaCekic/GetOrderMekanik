@@ -47,12 +47,12 @@ public class DeliveryOrder : NetworkBehaviour
         if (isServer)
         {
             RpcýdCheck(currentobjectnumber);
-            cmd(currentobjectnumber);
+            rpc(currentobjectnumber);
         }
         else
         {
             cmdýdCheck(currentobjectnumber);
-            
+            cmd(currentobjectnumber);
         }
 
 
@@ -483,8 +483,13 @@ public class DeliveryOrder : NetworkBehaviour
             }
         }
     }
-    [ClientRpc]
+    [Command]
     public void cmd(int currentobjectnumber)
+    {
+        rpc(currentobjectnumber)
+    }
+    [ClientRpc]
+    public void rpc(int currentobjectnumber)
     {
         if (Time.time - lastResetTime > resetDelay)
         {
