@@ -471,7 +471,7 @@ public class DeliveryOrder : NetworkBehaviour
             }
         }
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void test(int currentobjectnumber)
     {
         if (Time.time - lastResetTime > resetDelay)
