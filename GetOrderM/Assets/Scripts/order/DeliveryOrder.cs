@@ -14,7 +14,7 @@ public class DeliveryOrder : NetworkBehaviour
     [SyncVar] public bool kasaDolu = false;
     [SyncVar] public bool anaKartDolu = false;
     [SyncVar] public bool cpuDolu = false;
-    [SyncVar] public bool ekranKartýDolu = false;
+    [SyncVar] public bool ekranKartï¿½Dolu = false;
     [SyncVar] public bool ramDolu = false;
 
     public List<GameObject> childObject = new List<GameObject>();
@@ -46,13 +46,13 @@ public class DeliveryOrder : NetworkBehaviour
     {
         if (isServer)
         {
-            RpcýdCheck(currentobjectnumber);
-            rpc(currentobjectnumber);
+            Rpcï¿½dCheck(currentobjectnumber);
+           // rpc(currentobjectnumber);
         }
         else
         {
-            cmdýdCheck(currentobjectnumber);
-            cmd(currentobjectnumber);
+            cmdï¿½dCheck(currentobjectnumber);
+           // cmd(currentobjectnumber);
         }
 
 
@@ -79,7 +79,7 @@ public class DeliveryOrder : NetworkBehaviour
     public void interactID(float objectNumber)
     {
         //objectNumber = currentobjectnumber;
-        if (objectNumber == 0) // boþ
+        if (objectNumber == 0) // boï¿½
         {
             submidID = 0;
             for (int i = 0; i < childObject.Count; i++)
@@ -102,7 +102,7 @@ public class DeliveryOrder : NetworkBehaviour
             childObject[3].SetActive(true);
             submidID = 3;
         }
-        if (objectNumber == 4) // ekran kartý
+        if (objectNumber == 4) // ekran kartï¿½
         {
             childObject[4].SetActive(true);
             submidID = 4;
@@ -164,7 +164,7 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     kasaDolu = false;
                     anaKartDolu = false;
-                    ekranKartýDolu = false;
+                    ekranKartï¿½Dolu = false;
                     childObject[1].transform.DOMove(target2.position, 1);
                     childObject[2].transform.DOMove(target2.position, 1);
                     childObject[4].transform.DOMove(target2.position, 1);
@@ -209,7 +209,7 @@ public class DeliveryOrder : NetworkBehaviour
                     kasaDolu = false;
                     anaKartDolu = false;
                     cpuDolu = false;
-                    ekranKartýDolu = false;
+                    ekranKartï¿½Dolu = false;
                     childObject[1].transform.DOMove(target2.position, 1);
                     childObject[2].transform.DOMove(target2.position, 1);
                     childObject[3].transform.DOMove(target2.position, 1);
@@ -258,7 +258,7 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     kasaDolu = false;
                     anaKartDolu = false;
-                    ekranKartýDolu = false;
+                    ekranKartï¿½Dolu = false;
                     ramDolu = false;
                     childObject[1].transform.DOMove(target2.position, 1);
                     childObject[2].transform.DOMove(target2.position, 1);
@@ -286,7 +286,7 @@ public class DeliveryOrder : NetworkBehaviour
                     kasaDolu = false;
                     anaKartDolu = false;
                     cpuDolu = false;
-                    ekranKartýDolu = false;
+                    ekranKartï¿½Dolu = false;
                     ramDolu = false;
                     childObject[1].transform.DOMove(target2.position, 1);
                     childObject[2].transform.DOMove(target2.position, 1);
@@ -299,18 +299,36 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
     [Command(requiresAuthority = false)]
-    void cmdýdCheck(int currentobjectnumber)
+    void cmdï¿½dCheck(int currentobjectnumber)
     {
-        //ýdCheck(managerOrder);
-        RpcýdCheck(currentobjectnumber);
-
+        //ï¿½dCheck(managerOrder);
+        Rpcï¿½dCheck(currentobjectnumber);
+ if (Time.time - lastResetTime > resetDelay)
+        {
+            for (int i = 0; i < managerOrder.orderArray.Count; i++)
+            {
+                if (managerOrder.orderArray[i] == submidID)
+                {
+                    managerOrder.orderArray[i] = 1;
+                    currentobjectnumber = 0;
+                    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+                    lastResetTime = Time.time;
+                    orderCorrect = true;
+                    break;
+                }
+                else
+                {
+                    orderCorrect = false;
+                }
+            }
+        }
     }
     [ClientRpc]
-    void RpcýdCheck(int currentobjectnumberr)
+    void Rpcï¿½dCheck(int currentobjectnumberr)
     {
-        ýdCheck(currentobjectnumber);
+        ï¿½dCheck(currentobjectnumber);
     }
-    public void ýdCheck(int currentobjectnumber)
+    public void ï¿½dCheck(int currentobjectnumber)
     {
 
         if (currentobjectnumber == 0)
@@ -325,7 +343,7 @@ public class DeliveryOrder : NetworkBehaviour
             }
             submidID = 0;
         }
-        if (kasaDolu || anaKartDolu || cpuDolu || ekranKartýDolu || ramDolu)
+        if (kasaDolu || anaKartDolu || cpuDolu || ekranKartï¿½Dolu || ramDolu)
         {
             if (kasaDolu)
             {
@@ -361,7 +379,7 @@ public class DeliveryOrder : NetworkBehaviour
                 }
                 submidID = 3;
             }
-            if (ekranKartýDolu)
+            if (ekranKartï¿½Dolu)
             {
                 if (isServer)
                 {
@@ -409,7 +427,7 @@ public class DeliveryOrder : NetworkBehaviour
                 }
                 submidID = 123;
             }
-            if (kasaDolu && anaKartDolu && ekranKartýDolu)
+            if (kasaDolu && anaKartDolu && ekranKartï¿½Dolu)
             {
                 if (isServer)
                 {
@@ -433,7 +451,7 @@ public class DeliveryOrder : NetworkBehaviour
                 }
                 submidID = 125;
             }
-            if (kasaDolu && anaKartDolu && ekranKartýDolu && ramDolu)
+            if (kasaDolu && anaKartDolu && ekranKartï¿½Dolu && ramDolu)
             {
                 if (isServer)
                 {
@@ -445,7 +463,7 @@ public class DeliveryOrder : NetworkBehaviour
                 }
                 submidID = 1245;
             }
-            if (kasaDolu && anaKartDolu && cpuDolu && ekranKartýDolu)
+            if (kasaDolu && anaKartDolu && cpuDolu && ekranKartï¿½Dolu)
             {
                 if (isServer)
                 {
@@ -469,7 +487,7 @@ public class DeliveryOrder : NetworkBehaviour
                 }
                 submidID = 1235;
             }
-            if (kasaDolu && anaKartDolu && cpuDolu && ekranKartýDolu && ramDolu)
+            if (kasaDolu && anaKartDolu && cpuDolu && ekranKartï¿½Dolu && ramDolu)
             {
                 if (isServer)
                 {
@@ -491,28 +509,10 @@ public class DeliveryOrder : NetworkBehaviour
     [ClientRpc]
     public void rpc(int currentobjectnumber)
     {
-        if (Time.time - lastResetTime > resetDelay)
-        {
-            for (int i = 0; i < managerOrder.orderArray.Count; i++)
-            {
-                if (managerOrder.orderArray[i] == submidID)
-                {
-                    managerOrder.orderArray[i] = 1;
-                    currentobjectnumber = 0;
-                    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
-                    lastResetTime = Time.time;
-                    orderCorrect = true;
-                    break;
-                }
-                else
-                {
-                    orderCorrect = false;
-                }
-            }
-        }
+       
     }
 
-    // bool deðiþkenlerin sunucuya gönderilmesi
+    // bool deï¿½iï¿½kenlerin sunucuya gï¿½nderilmesi
     [Command(requiresAuthority = false)]
     public void CmdSetKasaDolu(bool newValue)
     {
@@ -529,9 +529,9 @@ public class DeliveryOrder : NetworkBehaviour
         cpuDolu = newValue;
     }
     [Command(requiresAuthority = false)]
-    public void CmdSetEkranKartýDolu(bool newValue)
+    public void CmdSetEkranKartï¿½Dolu(bool newValue)
     {
-        ekranKartýDolu = newValue;
+        ekranKartï¿½Dolu = newValue;
     }
     [Command(requiresAuthority = false)]
     public void CmdSetRamDolu(bool newValue)
