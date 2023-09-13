@@ -52,11 +52,6 @@ public class ManagerOrder : NetworkBehaviour
             CalculateNextOrderTime();
         }
     }
-
-    
-       
-    
-   
     private void CalculateNextOrderTime() // tekrardan sipariþin gelme sýklýðý
     {
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
@@ -82,9 +77,6 @@ public class ManagerOrder : NetworkBehaviour
         {
             orderArray[0] = Order;
         }
-
-
-
         CmdSpawnOrder(parentObject.position, Order);
     }
 
