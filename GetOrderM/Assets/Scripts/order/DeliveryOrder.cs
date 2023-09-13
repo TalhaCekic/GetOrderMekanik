@@ -56,7 +56,7 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     managerOrder.orderArray[i] = 1;
                     currentobjectnumber = 0;
-                    //   orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+                    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
                     lastResetTime = Time.time;
                     orderCorrect = true;
                     break;
