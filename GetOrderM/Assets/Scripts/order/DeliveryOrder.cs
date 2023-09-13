@@ -45,7 +45,7 @@ public class DeliveryOrder : NetworkBehaviour
     void Update()
     {
         if(isServer)
-        cmdýdCheck(currentobjectnumber);
+        cmdýdCheck();
       
     }
     [Command(requiresAuthority = false)]
@@ -290,10 +290,10 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
     [Command(requiresAuthority = false)]
-    void cmdýdCheck(int currentobjectnumber)
+    void cmdýdCheck( )
     {
         //ýdCheck(managerOrder);
-        RpcýdCheck(currentobjectnumber);
+        RpcýdCheck();
         if (Time.time - lastResetTime > resetDelay)
         {
             for (int i = 0; i < managerOrder.orderArray.Count; i++)
@@ -315,11 +315,11 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
     [ClientRpc]
-    void RpcýdCheck(int currentobjectnumberr)
+    void RpcýdCheck( )
     {
-        ýdCheck(currentobjectnumber);
+        ýdCheck();
     }
-    public void ýdCheck(int currentobjectnumber)
+    public void ýdCheck( )
     {
       
         if (currentobjectnumber == 0)
