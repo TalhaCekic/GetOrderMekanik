@@ -294,14 +294,6 @@ public class DeliveryOrder : NetworkBehaviour
     {
         //ýdCheck(managerOrder);
         RpcýdCheck(currentobjectnumber);
-    }
-    [ClientRpc]
-    void RpcýdCheck(int currentobjectnumberr)
-    {
-        ýdCheck(currentobjectnumber);
-    }
-    public void ýdCheck(int currentobjectnumber)
-    {
         if (Time.time - lastResetTime > resetDelay)
         {
             for (int i = 0; i < managerOrder.orderArray.Count; i++)
@@ -321,6 +313,15 @@ public class DeliveryOrder : NetworkBehaviour
                 }
             }
         }
+    }
+    [ClientRpc]
+    void RpcýdCheck(int currentobjectnumberr)
+    {
+        ýdCheck(currentobjectnumber);
+    }
+    public void ýdCheck(int currentobjectnumber)
+    {
+      
         if (currentobjectnumber == 0)
         {
             if (isServer)
