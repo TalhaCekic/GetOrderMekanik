@@ -500,6 +500,7 @@ public class DeliveryOrder : NetworkBehaviour
                 submidID = 12345;
             }
         }
+<<<<<<< HEAD
     }
     [Command]
     public void cmd(int currentobjectnumber)
@@ -513,6 +514,39 @@ public class DeliveryOrder : NetworkBehaviour
     }
 
     // bool deï¿½iï¿½kenlerin sunucuya gï¿½nderilmesi
+=======
+    }
+    [Command]
+    public void cmd(int currentobjectnumber)
+    {
+        rpc(currentobjectnumber)
+    }
+    [ClientRpc]
+    public void rpc(int currentobjectnumber)
+    {
+        if (Time.time - lastResetTime > resetDelay)
+        {
+            for (int i = 0; i < managerOrder.orderArray.Count; i++)
+            {
+                if (managerOrder.orderArray[i] == submidID)
+                {
+                    managerOrder.orderArray[i] = 1;
+                    currentobjectnumber = 0;
+                    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+                    lastResetTime = Time.time;
+                    orderCorrect = true;
+                    break;
+                }
+                else
+                {
+                    orderCorrect = false;
+                }
+            }
+        }
+    }
+
+    // bool deðiþkenlerin sunucuya gönderilmesi
+>>>>>>> parent of b73ab261 (Update DeliveryOrder.cs)
     [Command(requiresAuthority = false)]
     public void CmdSetKasaDolu(bool newValue)
     {
