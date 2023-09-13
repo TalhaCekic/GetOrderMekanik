@@ -44,7 +44,7 @@ public class DeliveryOrder : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        cmdýdCheck(managerOrder);
+        cmdýdCheck(currentobjectnumber);
         test(currentobjectnumber);
     }
     [Command(requiresAuthority = false)]
@@ -289,17 +289,17 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
     [Command(requiresAuthority = false)]
-    void cmdýdCheck(ManagerOrder managerOrder)
+    void cmdýdCheck(int currentobjectnumber)
     {
         //ýdCheck(managerOrder);
-        RpcýdCheck(managerOrder);
+        RpcýdCheck(currentobjectnumber);
     }
     [ClientRpc]
-    void RpcýdCheck(ManagerOrder managerOrder)
+    void RpcýdCheck(int currentobjectnumberr)
     {
-        ýdCheck(managerOrder);
+        ýdCheck(currentobjectnumber);
     }
-    public void ýdCheck(ManagerOrder managerOrder)
+    public void ýdCheck(int currentobjectnumber)
     {
         if (currentobjectnumber == 0)
         {
