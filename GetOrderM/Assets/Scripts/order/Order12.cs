@@ -39,7 +39,7 @@ public class Order12 : NetworkBehaviour
     {
         if (objectNumber == 12)
         {
-            transform.parent = canvas.transform;
+          //  transform.parent = canvas.transform;
             order.orderID = 12;
             orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
             sliderCouldown.value = orderTimes.currentCouldown;
