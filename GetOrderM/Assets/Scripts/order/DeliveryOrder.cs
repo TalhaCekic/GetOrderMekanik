@@ -45,7 +45,7 @@ public class DeliveryOrder : NetworkBehaviour
     void Update()
     {
         cmdýdCheck(managerOrder);
-        test(managerOrder);
+        test(currentobjectnumber);
     }
     [Command(requiresAuthority = false)]
     public void AddObjectToList(GameObject obj)
@@ -472,7 +472,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
     [Command]
-    public void test(ManagerOrder managerOrder)
+    public void test(int currentobjectnumber)
     {
         if (Time.time - lastResetTime > resetDelay)
         {
