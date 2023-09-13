@@ -20,10 +20,10 @@ public class Order123 : NetworkBehaviour
 
     private void Start()
     {
-       orderTimes = GetComponent<OrderTimes>();
+        orderTimes = GetComponent<OrderTimes>();
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
-      
+
     }
 
     void Update()
@@ -40,10 +40,9 @@ public class Order123 : NetworkBehaviour
     [ClientRpc]
     public void RpcinteractID(float objectNumber)
     {
-    
-        
         if (objectNumber == 123)
-        {transform.parent = canvas.transform;
+        {
+            transform.parent = canvas.transform;
             //this.transform.position = new Vector3(150, 522, 0);
             order.orderID = 123;
             orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
@@ -51,7 +50,7 @@ public class Order123 : NetworkBehaviour
             if (orderTimes.currentCouldown < 0)
             {
                 NetworkServer.Destroy(this.gameObject);
-                
+
             }
         }
     }

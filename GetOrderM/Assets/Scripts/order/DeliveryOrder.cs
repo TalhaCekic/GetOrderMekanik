@@ -44,29 +44,8 @@ public class DeliveryOrder : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         cmdýdCheck(managerOrder);
 
-        if (Time.time - lastResetTime > resetDelay)
-        {
-            for (int i = 0; i < managerOrder.orderArray.Count; i++)
-            {
-                if (managerOrder.orderArray[i] == submidID)
-                {
-                    managerOrder.orderArray[i] = 1;
-                    currentobjectnumber = 0;
-                    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
-                    lastResetTime = Time.time;
-                    orderCorrect = true;
-                    break;
-                }
-                else
-                {
-                    orderCorrect = false;
-                }
-            }
-        }
     }
     [Command(requiresAuthority = false)]
     public void AddObjectToList(GameObject obj)
@@ -314,6 +293,25 @@ public class DeliveryOrder : NetworkBehaviour
     {
         //ýdCheck(managerOrder);
         RpcýdCheck(managerOrder);
+        if (Time.time - lastResetTime > resetDelay)
+        {
+            for (int i = 0; i < managerOrder.orderArray.Count; i++)
+            {
+                if (managerOrder.orderArray[i] == submidID)
+                {
+                    managerOrder.orderArray[i] = 1;
+                    currentobjectnumber = 0;
+                    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+                    lastResetTime = Time.time;
+                    orderCorrect = true;
+                    break;
+                }
+                else
+                {
+                    orderCorrect = false;
+                }
+            }
+        }
     }
     [ClientRpc]
     void RpcýdCheck(ManagerOrder managerOrder)
