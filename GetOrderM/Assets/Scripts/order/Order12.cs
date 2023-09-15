@@ -45,7 +45,7 @@ public class Order12 : NetworkBehaviour
             sliderCouldown.value = orderTimes.currentCouldown;
             if (orderTimes.currentCouldown < 0)
             {
-                Destroy(this.gameObject);
+                NetworkServer.Destroy(this.gameObject); ;
             }
         }
     }

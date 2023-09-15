@@ -30466,7 +30466,7 @@ MonoBehaviour:
   kasaDolu: 0
   anaKartDolu: 0
   cpuDolu: 0
-  "ekranKart\u0131Dolu": 0
+  "ekrankart\u0131Dolu": 0
   ramDolu: 0
   childObject:
   - {fileID: 1183339328}
@@ -30705,6 +30705,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneId
       value: 3756116597
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600060584159797309, guid: 15461d59b82862344828400d85109b13,
+        type: 3}
+      propertyPath: orders.Array.size
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
