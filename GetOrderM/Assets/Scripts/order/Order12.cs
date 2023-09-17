@@ -26,16 +26,15 @@ public class Order12 : NetworkBehaviour
     }
     void Update()
     {
-        UpdateGameStatus(12);
+        UpdateGameStatus();
     }
     [Server]
-    void UpdateGameStatus(float objectNumber)
+    void UpdateGameStatus()
     {
         // Tüm istemcilere güncel durumu gönder
         // RpcinteractID(objectNumber);
 
-        if (objectNumber == 12)
-        {
+       
             //  transform.parent = canvas.transform;
             order.orderID = 12;
             orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
@@ -44,7 +43,7 @@ public class Order12 : NetworkBehaviour
             {
                 NetworkServer.Destroy(this.gameObject); ;
             }
-        }
+        
     }
     [ClientRpc]
     public void RpcinteractID(float objectNumber)
