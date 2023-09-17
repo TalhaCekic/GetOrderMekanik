@@ -299,11 +299,7 @@ public class DeliveryOrder : NetworkBehaviour
         //RpcIdCheck(currentobjectnumber);
         
     }
-    //[ClientRpc]
-    //void RpcIdCheck(int currentobjectnumberr)
-    //{
-    //    IdCheck(currentobjectnumber);
-    //}
+ 
     public void IdCheck(int currentobjectnumber)
     {
         if (Time.time - lastResetTime > resetDelay)
@@ -317,7 +313,7 @@ public class DeliveryOrder : NetworkBehaviour
                 //    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
                     lastResetTime = Time.time;
                     orderCorrect = true;
-                   // orderUI.Remove(orderUI[i]);
+                   
                     break;
                 }
                 else
