@@ -508,9 +508,6 @@ public class DeliveryOrder : NetworkBehaviour
 
     //}
 
-
-
-
     [ClientRpc]
     public void rpc(int currentobjectnumber)
     {
