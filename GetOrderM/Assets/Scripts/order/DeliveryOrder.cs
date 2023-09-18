@@ -2,11 +2,8 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using UnityEngine;
 using DG.Tweening;
-using Telepathy;
-
 
 public class DeliveryOrder : NetworkBehaviour
 {
@@ -40,16 +37,16 @@ public class DeliveryOrder : NetworkBehaviour
     {
         instance = this;
         // managerOrder = FindAnyObjectByType<ManagerOrder>();
-
     }
     // Update is called once per frame
     void Update()
     {
-
-        cmdIdCheck(currentobjectnumber);
+        //cmdIdCheck(currentobjectnumber);
         //cmd(currentobjectnumber);
+        
         if (isServer)
         {
+            IdCheck();
             server(currentobjectnumber);
        
         }
@@ -66,7 +63,7 @@ public class DeliveryOrder : NetworkBehaviour
     public void CmdinteractID(float objectNumber)
     {
         interactID(objectNumber);
-        RpcinteractID(objectNumber);
+        //RpcinteractID(objectNumber);
     }
     [ClientRpc]
     public void RpcinteractID(float objectNumber)
@@ -78,6 +75,7 @@ public class DeliveryOrder : NetworkBehaviour
         //objectNumber = currentobjectnumber;
         if (objectNumber == 0) // boþ
         {
+            print("sýfýrlamaaa");
             submidID = 0;
             for (int i = 0; i < childObject.Count; i++)
             {
@@ -111,6 +109,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
         if (objectNumber == 12)
         {
+            submidID = 12;
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             if (orderCorrect)
@@ -129,6 +128,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
         if (objectNumber == 123)
         {
+            submidID = 123;
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
@@ -150,6 +150,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
         if (objectNumber == 124)
         {
+            submidID = 124;
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[4].SetActive(true);
@@ -171,6 +172,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
         if (objectNumber == 125)
         {
+            submidID = 125;
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[5].SetActive(true);
@@ -192,6 +194,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
         if (objectNumber == 1234)
         {
+            submidID = 1234;
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
@@ -217,6 +220,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
         if (objectNumber == 1235)
         {
+            submidID = 1235;
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
@@ -242,6 +246,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
         if (objectNumber == 1245)
         {
+            submidID = 1245;
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[4].SetActive(true);
@@ -267,6 +272,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
         if (objectNumber == 12345)
         {
+            submidID = 12345;
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
@@ -296,14 +302,13 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
     [Command(requiresAuthority = false)]
-    void cmdIdCheck(int currentobjectnumber)
+    void cmdIdCheck()
     {
-        IdCheck(currentobjectnumber);
+        IdCheck();
         //RpcIdCheck(currentobjectnumber);
-
     }
-
-    public void IdCheck(int currentobjectnumber)
+    [Server]
+    public void IdCheck()
     {
         //if (Time.time - lastResetTime > resetDelay)
         //{
@@ -326,17 +331,16 @@ public class DeliveryOrder : NetworkBehaviour
         //    }
         //}
 
-        if (currentobjectnumber == 0)
+        if (!kasaDolu && !anaKartDolu && !cpuDolu && !ekrankartýDolu && !ramDolu)
         {
             if (isServer)
             {
                 RpcinteractID(0);
             }
-            else if (isClient)
+            else
             {
                 CmdinteractID(0);
             }
-            submidID = 0;
         }
         if (kasaDolu || anaKartDolu || cpuDolu || ekrankartýDolu || ramDolu)
         {
@@ -372,7 +376,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(3);
                 }
-                submidID = 3;
             }
             if (ekrankartýDolu)
             {
@@ -384,7 +387,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(4);
                 }
-                submidID = 4;
             }
             if (ramDolu)
             {
@@ -396,7 +398,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(5);
                 }
-                submidID = 5;
             }
             if (kasaDolu && anaKartDolu)
             {
@@ -408,7 +409,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(12);
                 }
-                submidID = 12;
             }
             if (kasaDolu && anaKartDolu && cpuDolu)
             {
@@ -420,7 +420,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(123);
                 }
-                submidID = 123;
             }
             if (kasaDolu && anaKartDolu && ekrankartýDolu)
             {
@@ -432,7 +431,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(124);
                 }
-                submidID = 124;
             }
             if (kasaDolu && anaKartDolu && ramDolu)
             {
@@ -444,7 +442,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(125);
                 }
-                submidID = 125;
             }
             if (kasaDolu && anaKartDolu && ekrankartýDolu && ramDolu)
             {
@@ -456,7 +453,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(1245);
                 }
-                submidID = 1245;
             }
             if (kasaDolu && anaKartDolu && cpuDolu && ekrankartýDolu)
             {
@@ -468,7 +464,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(1234);
                 }
-                submidID = 1234;
             }
             if (kasaDolu && anaKartDolu && cpuDolu && ramDolu)
             {
@@ -480,7 +475,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(1235);
                 }
-                submidID = 1235;
             }
             if (kasaDolu && anaKartDolu && cpuDolu && ekrankartýDolu && ramDolu)
             {
@@ -492,7 +486,6 @@ public class DeliveryOrder : NetworkBehaviour
                 {
                     CmdinteractID(12345);
                 }
-                submidID = 12345;
             }
         }
     }
@@ -515,6 +508,7 @@ public class DeliveryOrder : NetworkBehaviour
                     managerOrder.orderArray[i] = 1;
                     currentobjectnumber = 0;
                     orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+                    orderUI.Remove(orderUI[i]);
                     lastResetTime = Time.time;
                     orderCorrect = true;
                     break;
