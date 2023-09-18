@@ -502,12 +502,12 @@ public class DeliveryOrder : NetworkBehaviour
     //{
     //    rpc(currentobjectnumber);
     //}
-    [Server] 
+     [Command(requiresAuthority = false)]
     public void server(int currentobjectnumber) 
     {
         rpc(currentobjectnumber);
     }
-    [Command(requiresAuthority = false)]
+    [Server]
     public void rpc(int currentobjectnumber)
     {
         if (Time.time - lastResetTime > resetDelay)
@@ -530,7 +530,6 @@ public class DeliveryOrder : NetworkBehaviour
             }
         }
     }
-
 
     // bool deðiþkenlerin sunucuya gönderilmesi
     [Command(requiresAuthority = false)]
