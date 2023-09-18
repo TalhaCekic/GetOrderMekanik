@@ -79,9 +79,13 @@ public class ManagerOrder : NetworkBehaviour
         }
         CmdSpawnOrder(parentObject.position, Order);
     }
-
-    [Server]
+    [Command(requiresAuthority = false)]
     public void CmdSpawnOrder(Vector3 position, int order)
+    {
+        ServerSpawnOrder(position, order);
+    }
+    [Server]
+    public void ServerSpawnOrder(Vector3 position, int order)
     {
         GameObject orderPrefab = null;
 
