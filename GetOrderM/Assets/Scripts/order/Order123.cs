@@ -28,25 +28,28 @@ public class Order123 : NetworkBehaviour
 
     void Update()
     {
-        UpdateGameStatus();
+        if (isServer)
+        {
+            UpdateGameStatus();
+        }
 
     }
     [Server]
     void UpdateGameStatus()
     {
         // Tüm istemcilere güncel durumu gönder
-        // RpcinteractID(objectNumber);
+        RpcinteractID(123);
 
         //  transform.parent = canvas.transform;
         //this.transform.position = new Vector3(150, 522, 0);
-        order.orderID = 123;
-        orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
-        sliderCouldown.value = orderTimes.currentCouldown;
-        if (orderTimes.currentCouldown < 0)
-        {
-            NetworkServer.Destroy(this.gameObject);
+        //order.orderID = 123;
+        //orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
+        //sliderCouldown.value = orderTimes.currentCouldown;
+        //if (orderTimes.currentCouldown < 0)
+        //{
+        //    NetworkServer.Destroy(this.gameObject);
 
-        }
+        //}
 
     }
     [ClientRpc]
