@@ -51,10 +51,6 @@ public class DeliveryOrder : NetworkBehaviour
         {
             rpc(currentobjectnumber);
         }
-
-
-
-
     }
     [Command(requiresAuthority = false)]
     public void AddObjectToList(GameObject obj)
