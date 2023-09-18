@@ -46,7 +46,8 @@ public class DeliveryOrder : NetworkBehaviour
     {
        
             cmdIdCheck(currentobjectnumber);
-            cmd(currentobjectnumber);
+        //cmd(currentobjectnumber);
+        rpc(currentobjectnumber);
         
 
 
