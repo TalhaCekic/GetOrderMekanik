@@ -302,26 +302,26 @@ public class DeliveryOrder : NetworkBehaviour
  
     public void IdCheck(int currentobjectnumber)
     {
-        if (Time.time - lastResetTime > resetDelay)
-        {
-            for (int i = 0; i < managerOrder.orderArray.Count; i++)
-            {
-                if (managerOrder.orderArray[i] == submidID)
-                {
-                    managerOrder.orderArray[i] = 1;
-                    currentobjectnumber = 0;
-                //    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
-                    lastResetTime = Time.time;
-                    orderCorrect = true;
+        //if (Time.time - lastResetTime > resetDelay)
+        //{
+        //    for (int i = 0; i < managerOrder.orderArray.Count; i++)
+        //    {
+        //        if (managerOrder.orderArray[i] == submidID)
+        //        {
+        //            managerOrder.orderArray[i] = 1;
+        //            currentobjectnumber = 0;
+        //        //    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+        //            lastResetTime = Time.time;
+        //            orderCorrect = true;
                    
-                    break;
-                }
-                else
-                {
-                    orderCorrect = false;
-                }
-            }
-        }
+        //            break;
+        //        }
+        //        else
+        //        {
+        //            orderCorrect = false;
+        //        }
+        //    }
+        //}
 
         if (currentobjectnumber == 0)
         {
