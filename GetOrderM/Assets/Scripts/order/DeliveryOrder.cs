@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 using DG.Tweening;
+using Telepathy;
 
 
 public class DeliveryOrder : NetworkBehaviour
@@ -49,7 +50,8 @@ public class DeliveryOrder : NetworkBehaviour
         //cmd(currentobjectnumber);
         if (isServer)
         {
-            rpc(currentobjectnumber);
+            server(currentobjectnumber);
+       
         }
     }
     [Command(requiresAuthority = false)]
@@ -495,12 +497,17 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
 
-    [Command]
-    public void cmd(int currentobjectnumber)
+    //[Command]
+    //public void cmd(int currentobjectnumber)
+    //{
+    //    rpc(currentobjectnumber);
+    //}
+    [Server] 
+    public void server(int currentobjectnumber) 
     {
         rpc(currentobjectnumber);
     }
-    [Server]
+    [ClientRpc]
     public void rpc(int currentobjectnumber)
     {
         if (Time.time - lastResetTime > resetDelay)
@@ -523,6 +530,7 @@ public class DeliveryOrder : NetworkBehaviour
             }
         }
     }
+
 
     // bool deðiþkenlerin sunucuya gönderilmesi
     [Command(requiresAuthority = false)]
