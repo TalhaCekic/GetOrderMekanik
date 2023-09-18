@@ -24,8 +24,8 @@ public class DeliveryOrder : NetworkBehaviour
 
     [SyncVar] public bool orderCorrect;
 
-    float resetDelay = 0.5f;
-    float lastResetTime = -1f;
+    [SyncVar] float resetDelay = 0.5f;
+    [SyncVar] float lastResetTime = -1f;
 
     int currentobjectnumber;
 
