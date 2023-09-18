@@ -47,8 +47,15 @@ public class DeliveryOrder : NetworkBehaviour
         if (isServer)
         {
             IdCheck();
+           // server(currentobjectnumber);
+
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (isServer)
+        {
             server(currentobjectnumber);
-       
         }
     }
     [Command(requiresAuthority = false)]
