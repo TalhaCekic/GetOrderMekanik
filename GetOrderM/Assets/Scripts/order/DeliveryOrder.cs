@@ -507,7 +507,7 @@ public class DeliveryOrder : NetworkBehaviour
     {
         rpc(currentobjectnumber);
     }
-    [ClientRpc]
+    [Command]
     public void rpc(int currentobjectnumber)
     {
         if (Time.time - lastResetTime > resetDelay)
