@@ -46,7 +46,7 @@ public class DeliveryOrder : NetworkBehaviour
     {
        
             cmdIdCheck(currentobjectnumber);
-            // cmd(currentobjectnumber);
+            cmd(currentobjectnumber);
         
 
 
@@ -493,16 +493,11 @@ public class DeliveryOrder : NetworkBehaviour
             }
         }
     }
-    //[Command]
-    //public void cmd(int currentobjectnumber)
-    //{
-    //    rpc(currentobjectnumber);
-    //}
-    //[ClientRpc]
-    //public void rpc(int currentobjectnumber)
-    //{
-
-    //}
+    [Command]
+    public void cmd(int currentobjectnumber)
+    {
+        rpc(currentobjectnumber);
+    }
 
     [ClientRpc]
     public void rpc(int currentobjectnumber)
