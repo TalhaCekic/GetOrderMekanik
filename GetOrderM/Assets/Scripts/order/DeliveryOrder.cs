@@ -51,13 +51,14 @@ public class DeliveryOrder : NetworkBehaviour
 
         }
     }
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (isServer)
         {
             server(currentobjectnumber);
         }
     }
+    
     [Command(requiresAuthority = false)]
     public void AddObjectToList(GameObject obj)
     {
