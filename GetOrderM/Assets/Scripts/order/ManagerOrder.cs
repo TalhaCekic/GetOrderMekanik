@@ -80,7 +80,7 @@ public class ManagerOrder : NetworkBehaviour
         CmdSpawnOrder(parentObject.position, Order);
     }
 
-    [Command(requiresAuthority = false)]
+    [Server]
     public void CmdSpawnOrder(Vector3 position, int order)
     {
         GameObject orderPrefab = null;

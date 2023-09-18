@@ -502,14 +502,10 @@ public class DeliveryOrder : NetworkBehaviour
     //{
     //    rpc(currentobjectnumber);
     //}
-     [Command(requiresAuthority = false)]
+    [Server] 
     public void server(int currentobjectnumber) 
     {
-        rpc(currentobjectnumber);
-    }
-    [Server]
-    public void rpc(int currentobjectnumber)
-    {
+        // rpc(currentobjectnumber);
         if (Time.time - lastResetTime > resetDelay)
         {
             for (int i = 0; i < managerOrder.orderArray.Count; i++)
@@ -530,6 +526,30 @@ public class DeliveryOrder : NetworkBehaviour
             }
         }
     }
+    [ClientRpc]
+    public void rpc(int currentobjectnumber)
+    {
+        //if (Time.time - lastResetTime > resetDelay)
+        //{
+        //    for (int i = 0; i < managerOrder.orderArray.Count; i++)
+        //    {
+        //        if (managerOrder.orderArray[i] == submidID)
+        //        {
+        //            managerOrder.orderArray[i] = 1;
+        //            currentobjectnumber = 0;
+        //            orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+        //            lastResetTime = Time.time;
+        //            orderCorrect = true;
+        //            break;
+        //        }
+        //        else
+        //        {
+        //            orderCorrect = false;
+        //        }
+        //    }
+        //}
+    }
+
 
     // bool deðiþkenlerin sunucuya gönderilmesi
     [Command(requiresAuthority = false)]
