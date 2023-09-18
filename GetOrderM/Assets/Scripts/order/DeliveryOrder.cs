@@ -44,11 +44,15 @@ public class DeliveryOrder : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-            cmdIdCheck(currentobjectnumber);
+
+        cmdIdCheck(currentobjectnumber);
         //cmd(currentobjectnumber);
-        rpc(currentobjectnumber);
-        
+        if (isServer)
+        {
+            rpc(currentobjectnumber);
+        }
+
+
 
 
     }
@@ -298,9 +302,9 @@ public class DeliveryOrder : NetworkBehaviour
     {
         IdCheck(currentobjectnumber);
         //RpcIdCheck(currentobjectnumber);
-        
+
     }
- 
+
     public void IdCheck(int currentobjectnumber)
     {
         //if (Time.time - lastResetTime > resetDelay)
@@ -314,7 +318,7 @@ public class DeliveryOrder : NetworkBehaviour
         //        //    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
         //            lastResetTime = Time.time;
         //            orderCorrect = true;
-                   
+
         //            break;
         //        }
         //        else
