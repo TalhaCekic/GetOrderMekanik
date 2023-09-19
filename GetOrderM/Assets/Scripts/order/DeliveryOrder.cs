@@ -61,7 +61,7 @@ public class DeliveryOrder : NetworkBehaviour
     //    }
     //}
     
-    [Command(requiresAuthority = false)]
+    [Server]
     public void AddObjectToList(GameObject obj)
     {
         if (!orderUI.Contains(obj))
