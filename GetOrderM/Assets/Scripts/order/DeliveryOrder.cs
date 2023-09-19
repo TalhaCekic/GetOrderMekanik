@@ -34,7 +34,7 @@ public class DeliveryOrder : NetworkBehaviour
     [SerializeField] public SyncList<GameObject> orderUI = new SyncList<GameObject>();
 
 
-   [SyncVar] private int currentID;
+    [SyncVar] private int currentID;
     void Start()
     {
         instance = this;
@@ -45,7 +45,7 @@ public class DeliveryOrder : NetworkBehaviour
     {
         //cmdIdCheck(currentobjectnumber);
         //cmd(currentobjectnumber);
-        
+
         if (isServer)
         {
             IdCheck();
@@ -59,7 +59,7 @@ public class DeliveryOrder : NetworkBehaviour
     //        server(currentobjectnumber);
     //    }
     //}
-    
+
     [Server]
     public void AddObjectToList(GameObject obj)
     {
@@ -504,36 +504,35 @@ public class DeliveryOrder : NetworkBehaviour
     {
         server(currentobjectnumber);
     }
-    [Server] 
-    public void server(int currentobjectnumber) 
+    [Server]
+    public void server(int currentobjectnumber)
     {
-        
-        // rpc(currentobjectnumber);
-        if (Time.time - lastResetTime > resetDelay)
-        {
-            
-            for (int i = 0; i < managerOrder.orderArray.Count; i++)
-            {
-                if (managerOrder.orderArray[i] == submidID)
-                {
-                   
-                    currentobjectnumber = 0;
-                    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
-                    orderUI.Remove(orderUI[i]);
-                    lastResetTime = Time.time;
-                    orderCorrect = true;
-                    managerOrder.orderArray[i] = currentID;
-                    break;
-                }
-                else
-                {
-                    orderCorrect = false;
-                }
 
-            }   
-                currentID = 1;
-            
+        // rpc(currentobjectnumber);
+
+
+        for (int i = 0; i < managerOrder.orderArray.Count; i++)
+        {
+            if (managerOrder.orderArray[i] == submidID)
+            {
+
+                currentobjectnumber = 0;
+                orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+                orderUI.Remove(orderUI[i]);
+                lastResetTime = Time.time;
+                orderCorrect = true;
+                managerOrder.orderArray[i] = currentID;
+                break;
+            }
+            else
+            {
+                orderCorrect = false;
+            }
+
         }
+        currentID = 1;
+
+
     }
     [ClientRpc]
     public void rpc(int currentobjectnumber)
