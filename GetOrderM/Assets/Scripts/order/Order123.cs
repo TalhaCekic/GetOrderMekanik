@@ -24,6 +24,7 @@ public class Order123 : NetworkBehaviour
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
 
+        orderTimes.orderID = 123;
     }
 
     void Update()

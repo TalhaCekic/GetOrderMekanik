@@ -20,6 +20,9 @@ public class ManagerOrder : NetworkBehaviour
     private float maxInterval = 20f;
     private float nextOrderTime = 0f;
 
+    [SyncVar] float resetDelay = 0.5f;
+    [SyncVar] public float lastResetTime = -1f;
+
     [SyncVar] public int Order;
     public SyncList<int> orderArray = new SyncList<int>();
 
@@ -36,13 +39,13 @@ public class ManagerOrder : NetworkBehaviour
     {
         //DontDestroyOnLoad(this);
         CalculateNextOrderTime();
-        if (isServer)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                orderArray.Add(1);
-            }
-        }
+        //if (isServer)
+        //{
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        orderArray.Add(1);
+        //    }
+        //}
     }
     private void Update()
     {
@@ -61,34 +64,23 @@ public class ManagerOrder : NetworkBehaviour
     private void CalculateNextOrderTime() // tekrardan sipariþin gelme sýklýðý
     {
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
+       
     }
     [Server]
     public void GenerateRandomOrder()
     {
-        bool orderAssigned = false;
+        // bool orderAssigned = false;
         int randomIndex = Random.Range(0, orders.Length);
         Order = orders[randomIndex].orderID;
-
-        for (int i = 0; i < orderArray.Count; i++)
-        {
-         
-           //order12Component = orderUI[i].GetComponent<Order12>();
-            if (order12Component != null)
-            {
-                orderArray[i] = order12Component.id;
-            }
-            else
-            {
-                
-                orderArray[i] = 0;
-            }
-            orderAssigned = true;
-
-        }
-        if (!orderAssigned)
-        {
-            orderArray[0] = Order;
-        }
+        //for (int i = 0; i < orderArray.Count; i++)
+        //{
+        //    if (orderArray[i] == 1)
+        //    {
+        //        orderArray[i] = orderUI[i].GetComponent<OrderTimes>().orderID;
+        //        break;
+        //    }
+        //}
+       
     }
     [Command(requiresAuthority = false)]
     public void CmdSpawnOrder(Vector3 position, int order)
@@ -99,14 +91,17 @@ public class ManagerOrder : NetworkBehaviour
     public void ServerSpawnOrder(Vector3 position, int order)
     {
         GameObject orderPrefab = null;
+        int orderID=0;
 
         if (order == 12)
         {
             orderPrefab = orders[0].orderPrefab;
+            orderID = orders[0].orderID;  
         }
         else if (order == 123)
         {
             orderPrefab = orders[1].orderPrefab;
+            orderID = orders[1].orderID;
         }
         else if (order == 1234)
         {
@@ -120,36 +115,38 @@ public class ManagerOrder : NetworkBehaviour
         {
             GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
             NetworkServer.Spawn(spawnedPrefab);
-            if (orderArray[0] != 1)
-            {
-                spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
-                //spawnedPrefab.transform.parent = canvas.transform.parent;
-                AddObjectToList(spawnedPrefab);
-            }
-            if (orderArray[1] != 1)
-            {
-                spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
-                // spawnedPrefab.transform.parent = canvas.transform.parent;
-                AddObjectToList(spawnedPrefab);
-            }
-            if (orderArray[2] != 1)
-            {
-                spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
-                // spawnedPrefab.transform.parent = canvas.transform.parent;
-                AddObjectToList(spawnedPrefab);
-            }
-            if (orderArray[3] != 1)
-            {
-                spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
-                // spawnedPrefab.transform.parent = canvas.transform.parent;
-                AddObjectToList(spawnedPrefab);
-            }
-            if (orderArray[4] != 1)
-            {
-                spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
-                //  spawnedPrefab.transform.parent = canvas.transform.parent;
-                AddObjectToList(spawnedPrefab);
-            }
+            AddObjectToList(spawnedPrefab,orderID);
+          
+            //if (orderArray[0] != 1)
+            //{
+            //    spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
+            //    //spawnedPrefab.transform.parent = canvas.transform.parent;
+
+            //}
+            //if (orderArray[1] != 1)
+            //{
+            //    spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
+            //    // spawnedPrefab.transform.parent = canvas.transform.parent;
+            //    AddObjectToList(spawnedPrefab);
+            //}
+            //if (orderArray[2] != 1)
+            //{
+            //    spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
+            //    // spawnedPrefab.transform.parent = canvas.transform.parent;
+            //    AddObjectToList(spawnedPrefab);
+            //}
+            //if (orderArray[3] != 1)
+            //{
+            //    spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
+            //    // spawnedPrefab.transform.parent = canvas.transform.parent;
+            //    AddObjectToList(spawnedPrefab);
+            //}
+            //if (orderArray[4] != 1)
+            //{
+            //    spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
+            //    //  spawnedPrefab.transform.parent = canvas.transform.parent;
+            //    AddObjectToList(spawnedPrefab);
+            //}
         }
         // Diðer sipariþ türleri için de kontrolleri ekleyin
     }
@@ -157,44 +154,50 @@ public class ManagerOrder : NetworkBehaviour
     [Server]
     public void server(int currentobjectnumber)
     {
-        for (int i = 0; i < orderArray.Count; i++)
+
+        if (Time.time - lastResetTime > resetDelay)
         {
-
-            //int intValue = orderUI[i].GetComponent<Order12>().id;
-            //Debug.Log(" Int Deðer: " + intValue);
-            //int intValue2 = orderUI[i].GetComponent<Order123>().id;
-
-            //Debug.Log(" Int Deðer: " + intValue2);
-            //if (orderArray[i] == 1)
-            //{
-            //    orderArray[i] = orderUI[i].GetComponent<Order12>().id;
-            //    break;
-            //}
-            if (orderArray[i] == deliveryOrder.submidID)
+            for (int i = 0; i < orderArray.Count; i++)
             {
-                //   Debug.Log("GameObject: " + uiObject.name + ", Int Deðer: " + intValue2);
-                //  currentobjectnumber = 0;
-                orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
-                orderUI.Remove(orderUI[i]);
-                deliveryOrder.lastResetTime = Time.time;
-                deliveryOrder.orderCorrect = true;
-                orderArray[i] = deliveryOrder.currentID;
-                break;
-            }
-            else
-            {
-                deliveryOrder.orderCorrect = false;
-            }
 
+                //int intValue = orderUI[i].GetComponent<Order12>().id;
+                //Debug.Log(" Int Deðer: " + intValue);
+                //int intValue2 = orderUI[i].GetComponent<Order123>().id;
+
+                //Debug.Log(" Int Deðer: " + intValue2);
+
+                if (deliveryOrder.submidID == orderArray[i])
+                {
+                    //   Debug.Log("GameObject: " + uiObject.name + ", Int Deðer: " + intValue2);
+                    //  currentobjectnumber = 0;
+                    orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+                    orderUI.Remove(orderUI[i]);
+                    deliveryOrder.lastResetTime = Time.time;
+                    deliveryOrder.orderCorrect = true;
+                    orderArray.Remove(orderArray[i]);
+                    break;
+                }
+                else
+                {
+                    deliveryOrder.orderCorrect = false;
+                }
+
+
+            }
         }
-        deliveryOrder.currentID = 1;
+
+       
+
+     //   deliveryOrder.currentID = 1;
     }
     [Server]
-    public void AddObjectToList(GameObject obj)
+    public void AddObjectToList(GameObject obj, int id)
     {
         if (!orderUI.Contains(obj))
         {
             orderUI.Add(obj);
+            
+            orderArray.Add(id);
         }
     }
 }

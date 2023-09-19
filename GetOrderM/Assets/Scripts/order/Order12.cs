@@ -12,17 +12,19 @@ public class Order12 : NetworkBehaviour
 
     public GameObject canvas;
 
-    [SerializeField] private ScriptableOrder order;
+    [SerializeField] public ScriptableOrder order;
     [SerializeField] private Slider sliderCouldown;
 
     // private float currentCouldown;
     private OrderTimes orderTimes;
-    public int id = 12;
+    //   public int id = 12;
     private void Start()
     {
         orderTimes = GetComponent<OrderTimes>();
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
+
+        orderTimes.orderID = 12;
 
     }
     void Update()
