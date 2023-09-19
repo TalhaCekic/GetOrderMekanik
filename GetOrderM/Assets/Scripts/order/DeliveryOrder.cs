@@ -49,17 +49,17 @@ public class DeliveryOrder : NetworkBehaviour
         if (isServer)
         {
             IdCheck();
-           // server(currentobjectnumber);
+            server(currentobjectnumber);
 
         }
     }
-    private void LateUpdate()
-    {
-        if (isServer)
-        {
-            server(currentobjectnumber);
-        }
-    }
+    //private void LateUpdate()
+    //{
+    //    if (isServer)
+    //    {
+    //        server(currentobjectnumber);
+    //    }
+    //}
     
     [Command(requiresAuthority = false)]
     public void AddObjectToList(GameObject obj)
