@@ -520,7 +520,7 @@ public class DeliveryOrder : NetworkBehaviour
                    
                     currentobjectnumber = 0;
                     orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
-                   // orderUI.Remove(orderUI[i]);
+                    orderUI.Remove(orderUI[i]);
                     lastResetTime = Time.time;
                     orderCorrect = true;
                     managerOrder.orderArray[i] = currentID;
