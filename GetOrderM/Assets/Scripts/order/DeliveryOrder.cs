@@ -45,11 +45,11 @@ public class DeliveryOrder : NetworkBehaviour
     {
         //cmdIdCheck(currentobjectnumber);
         //cmd(currentobjectnumber);
-        
+              IdCheck();
+            server(currentobjectnumber);
         if (isServer)
         {
-            IdCheck();
-            server(currentobjectnumber);
+      
 
         }
     }
