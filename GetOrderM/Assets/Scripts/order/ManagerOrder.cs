@@ -50,12 +50,14 @@ public class ManagerOrder : NetworkBehaviour
         {
             GenerateRandomOrder();
             CalculateNextOrderTime();
+            ServerSpawnOrder(parentObject.position, Order);
         }
     }
     private void CalculateNextOrderTime() // tekrardan sipariþin gelme sýklýðý
     {
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
     }
+    [Server]
     public void GenerateRandomOrder() 
     {
        
@@ -77,7 +79,7 @@ public class ManagerOrder : NetworkBehaviour
         {
             orderArray[0] = Order;
         }
-        ServerSpawnOrder(parentObject.position, Order);
+        
     }
     [Command(requiresAuthority = false)]
     public void CmdSpawnOrder(Vector3 position, int order)
