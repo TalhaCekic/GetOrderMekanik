@@ -490,7 +490,6 @@ public class DeliveryOrder : NetworkBehaviour
         {
             if (managerOrder.orderArray[i] == submidID)
             {
-
                 currentobjectnumber = 0;
                 orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
                 orderUI.Remove(orderUI[i]);
@@ -503,7 +502,6 @@ public class DeliveryOrder : NetworkBehaviour
             {
                 orderCorrect = false;
             }
-
         }
         currentID = 1;
     }

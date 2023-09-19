@@ -22,15 +22,16 @@ public class ManagerOrder : NetworkBehaviour
 
     [SyncVar] public int Order;
     public SyncList<int> orderArray = new SyncList<int>();
-  
+
     [SerializeField] public SyncList<GameObject> orderUI = new SyncList<GameObject>();
     [SerializeField] private DeliveryOrder deliveryOrder;
+    Order12 order12Component;
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
         deliveryOrder = FindAnyObjectByType<DeliveryOrder>();
+      
     }
-
     private void Start()
     {
         //DontDestroyOnLoad(this);
@@ -50,6 +51,9 @@ public class ManagerOrder : NetworkBehaviour
             GenerateRandomOrder();
             CalculateNextOrderTime();
             ServerSpawnOrder(parentObject.position, Order);
+        }
+        if (isServer)
+        {
             server(deliveryOrder.currentobjectnumber);
         }
     }
@@ -59,27 +63,32 @@ public class ManagerOrder : NetworkBehaviour
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
     }
     [Server]
-    public void GenerateRandomOrder() 
+    public void GenerateRandomOrder()
     {
         bool orderAssigned = false;
         int randomIndex = Random.Range(0, orders.Length);
         Order = orders[randomIndex].orderID;
-      
+
         for (int i = 0; i < orderArray.Count; i++)
         {
-            if (orderArray[i] == 1)
+         
+           //order12Component = orderUI[i].GetComponent<Order12>();
+            if (order12Component != null)
             {
-                orderArray[i] = Order;
-                
-                orderAssigned = true;
-                break;
+                orderArray[i] = order12Component.id;
             }
+            else
+            {
+                
+                orderArray[i] = 0;
+            }
+            orderAssigned = true;
+
         }
         if (!orderAssigned)
         {
             orderArray[0] = Order;
         }
-        
     }
     [Command(requiresAuthority = false)]
     public void CmdSpawnOrder(Vector3 position, int order)
@@ -97,7 +106,7 @@ public class ManagerOrder : NetworkBehaviour
         }
         else if (order == 123)
         {
-            orderPrefab = orders[1].orderPrefab; 
+            orderPrefab = orders[1].orderPrefab;
         }
         else if (order == 1234)
         {
@@ -120,25 +129,25 @@ public class ManagerOrder : NetworkBehaviour
             if (orderArray[1] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
-               // spawnedPrefab.transform.parent = canvas.transform.parent;
+                // spawnedPrefab.transform.parent = canvas.transform.parent;
                 AddObjectToList(spawnedPrefab);
             }
             if (orderArray[2] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
-              // spawnedPrefab.transform.parent = canvas.transform.parent;
+                // spawnedPrefab.transform.parent = canvas.transform.parent;
                 AddObjectToList(spawnedPrefab);
             }
             if (orderArray[3] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
-               // spawnedPrefab.transform.parent = canvas.transform.parent;
+                // spawnedPrefab.transform.parent = canvas.transform.parent;
                 AddObjectToList(spawnedPrefab);
             }
             if (orderArray[4] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
-            //  spawnedPrefab.transform.parent = canvas.transform.parent;
+                //  spawnedPrefab.transform.parent = canvas.transform.parent;
                 AddObjectToList(spawnedPrefab);
             }
         }
@@ -150,9 +159,21 @@ public class ManagerOrder : NetworkBehaviour
     {
         for (int i = 0; i < orderArray.Count; i++)
         {
+
+            //int intValue = orderUI[i].GetComponent<Order12>().id;
+            //Debug.Log(" Int Deðer: " + intValue);
+            //int intValue2 = orderUI[i].GetComponent<Order123>().id;
+
+            //Debug.Log(" Int Deðer: " + intValue2);
+            //if (orderArray[i] == 1)
+            //{
+            //    orderArray[i] = orderUI[i].GetComponent<Order12>().id;
+            //    break;
+            //}
             if (orderArray[i] == deliveryOrder.submidID)
             {
-              //  currentobjectnumber = 0;
+                //   Debug.Log("GameObject: " + uiObject.name + ", Int Deðer: " + intValue2);
+                //  currentobjectnumber = 0;
                 orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
                 orderUI.Remove(orderUI[i]);
                 deliveryOrder.lastResetTime = Time.time;
@@ -167,7 +188,7 @@ public class ManagerOrder : NetworkBehaviour
 
         }
         deliveryOrder.currentID = 1;
-    }  
+    }
     [Server]
     public void AddObjectToList(GameObject obj)
     {
@@ -177,7 +198,7 @@ public class ManagerOrder : NetworkBehaviour
         }
     }
 }
-    
+
 
 
 

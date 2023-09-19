@@ -17,7 +17,7 @@ public class Order123 : NetworkBehaviour
     private OrderTimes orderTimes;
 
     //private float currentCouldown;
-
+    public int id = 123;
     private void Start()
     {
         orderTimes = GetComponent<OrderTimes>();
@@ -69,5 +69,4 @@ public class Order123 : NetworkBehaviour
             }
         }
     }
-
 }
