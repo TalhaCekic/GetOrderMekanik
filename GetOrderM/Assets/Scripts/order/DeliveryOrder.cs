@@ -517,12 +517,13 @@ public class DeliveryOrder : NetworkBehaviour
             {
                 if (managerOrder.orderArray[i] == submidID)
                 {
-                    managerOrder.orderArray[i] = currentID;
+                   
                     currentobjectnumber = 0;
                     orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
                    // orderUI.Remove(orderUI[i]);
                     lastResetTime = Time.time;
                     orderCorrect = true;
+                    managerOrder.orderArray[i] = currentID;
                     break;
                 }
                 else
