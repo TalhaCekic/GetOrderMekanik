@@ -499,7 +499,7 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
 
-    [Command(requiresAuthority = false)]
+    [Command]
     public void cmd(int currentobjectnumber)
     {
         server(currentobjectnumber);
