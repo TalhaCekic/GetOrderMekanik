@@ -45,12 +45,11 @@ public class DeliveryOrder : NetworkBehaviour
     {
         //cmdIdCheck(currentobjectnumber);
         //cmd(currentobjectnumber);
-              IdCheck();
-            server(currentobjectnumber);
+        
         if (isServer)
         {
-      
-
+            IdCheck();
+            cmd(currentobjectnumber);
         }
     }
     //private void LateUpdate()
@@ -500,11 +499,11 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
 
-    //[Command]
-    //public void cmd(int currentobjectnumber)
-    //{
-    //    rpc(currentobjectnumber);
-    //}
+    [Command(requiresAuthority = false)]
+    public void cmd(int currentobjectnumber)
+    {
+        server(currentobjectnumber);
+    }
     [Server] 
     public void server(int currentobjectnumber) 
     {
