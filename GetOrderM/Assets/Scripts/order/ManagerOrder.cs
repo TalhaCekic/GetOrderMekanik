@@ -77,7 +77,7 @@ public class ManagerOrder : NetworkBehaviour
         {
             orderArray[0] = Order;
         }
-        CmdSpawnOrder(parentObject.position, Order);
+        ServerSpawnOrder(parentObject.position, Order);
     }
     [Command(requiresAuthority = false)]
     public void CmdSpawnOrder(Vector3 position, int order)
