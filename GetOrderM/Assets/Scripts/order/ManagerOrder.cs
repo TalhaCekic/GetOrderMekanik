@@ -22,12 +22,13 @@ public class ManagerOrder : NetworkBehaviour
 
     [SyncVar] public int Order;
     public SyncList<int> orderArray = new SyncList<int>();
-    //public int[] orderArray = new int[5];
-    //  public List<GameObject> spawnOrderListesi = new List<GameObject>(); //spawntlanan objelerin listesini tutmak için
-
+  
+    [SerializeField] public SyncList<GameObject> orderUI = new SyncList<GameObject>();
+    [SerializeField] private DeliveryOrder deliveryOrder;
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
+        deliveryOrder = FindAnyObjectByType<DeliveryOrder>();
     }
 
     private void Start()
@@ -41,8 +42,6 @@ public class ManagerOrder : NetworkBehaviour
                 orderArray.Add(1);
             }
         }
-
-
     }
     private void Update()
     {
@@ -51,8 +50,10 @@ public class ManagerOrder : NetworkBehaviour
             GenerateRandomOrder();
             CalculateNextOrderTime();
             ServerSpawnOrder(parentObject.position, Order);
+            server(deliveryOrder.currentobjectnumber);
         }
     }
+    [Server]
     private void CalculateNextOrderTime() // tekrardan sipariþin gelme sýklýðý
     {
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
@@ -60,7 +61,6 @@ public class ManagerOrder : NetworkBehaviour
     [Server]
     public void GenerateRandomOrder() 
     {
-       
         bool orderAssigned = false;
         int randomIndex = Random.Range(0, orders.Length);
         Order = orders[randomIndex].orderID;
@@ -94,12 +94,10 @@ public class ManagerOrder : NetworkBehaviour
         if (order == 12)
         {
             orderPrefab = orders[0].orderPrefab;
-
         }
         else if (order == 123)
         {
-            orderPrefab = orders[1].orderPrefab;
-           
+            orderPrefab = orders[1].orderPrefab; 
         }
         else if (order == 1234)
         {
@@ -113,48 +111,71 @@ public class ManagerOrder : NetworkBehaviour
         {
             GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
             NetworkServer.Spawn(spawnedPrefab);
-
             if (orderArray[0] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
                 //spawnedPrefab.transform.parent = canvas.transform.parent;
-                DeliveryOrder.instance.AddObjectToList(spawnedPrefab);
+                AddObjectToList(spawnedPrefab);
             }
-
             if (orderArray[1] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
                // spawnedPrefab.transform.parent = canvas.transform.parent;
-                DeliveryOrder.instance.AddObjectToList(spawnedPrefab);
+                AddObjectToList(spawnedPrefab);
             }
             if (orderArray[2] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
               // spawnedPrefab.transform.parent = canvas.transform.parent;
-                DeliveryOrder.instance.AddObjectToList(spawnedPrefab);
+                AddObjectToList(spawnedPrefab);
             }
             if (orderArray[3] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
                // spawnedPrefab.transform.parent = canvas.transform.parent;
-                DeliveryOrder.instance.AddObjectToList(spawnedPrefab);
+                AddObjectToList(spawnedPrefab);
             }
             if (orderArray[4] != 1)
             {
                 spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
             //  spawnedPrefab.transform.parent = canvas.transform.parent;
-                DeliveryOrder.instance.AddObjectToList(spawnedPrefab);
+                AddObjectToList(spawnedPrefab);
+            }
+        }
+        // Diðer sipariþ türleri için de kontrolleri ekleyin
+    }
+
+    [Server]
+    public void server(int currentobjectnumber)
+    {
+        for (int i = 0; i < orderArray.Count; i++)
+        {
+            if (orderArray[i] == deliveryOrder.submidID)
+            {
+              //  currentobjectnumber = 0;
+                orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+                orderUI.Remove(orderUI[i]);
+                deliveryOrder.lastResetTime = Time.time;
+                deliveryOrder.orderCorrect = true;
+                orderArray[i] = deliveryOrder.currentID;
+                break;
+            }
+            else
+            {
+                deliveryOrder.orderCorrect = false;
             }
 
         }
-
-
-
-        // Diðer sipariþ türleri için de kontrolleri ekleyin
-
+        deliveryOrder.currentID = 1;
+    }  
+    [Server]
+    public void AddObjectToList(GameObject obj)
+    {
+        if (!orderUI.Contains(obj))
+        {
+            orderUI.Add(obj);
+        }
     }
-
-
 }
     
 

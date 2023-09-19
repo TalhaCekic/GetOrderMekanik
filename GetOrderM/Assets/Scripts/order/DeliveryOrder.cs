@@ -25,51 +25,27 @@ public class DeliveryOrder : NetworkBehaviour
     [SyncVar] public bool orderCorrect;
 
     [SyncVar] float resetDelay = 0.5f;
-    [SyncVar] float lastResetTime = -1f;
+    [SyncVar] public float lastResetTime = -1f;
 
-    int currentobjectnumber;
+    [SyncVar] public int currentobjectnumber;
 
     [SerializeField] private Transform target, target2;
 
     [SerializeField] public SyncList<GameObject> orderUI = new SyncList<GameObject>();
 
 
-    [SyncVar] private int currentID;
+    [SyncVar] public int currentID;
     void Start()
     {
         instance = this;
-        // managerOrder = FindAnyObjectByType<ManagerOrder>();
     }
     // Update is called once per frame
     void Update()
     {
-        //cmdIdCheck(currentobjectnumber);
-        //cmd(currentobjectnumber);
-
-
         if (isServer)
         {
             IdCheck();
-            server(currentobjectnumber);
-        }
-
-
-
-    }
-    //private void LateUpdate()
-    //{
-    //    if (isServer)
-    //    {
-    //        server(currentobjectnumber);
-    //    }
-    //}
-
-    [Server]
-    public void AddObjectToList(GameObject obj)
-    {
-        if (!orderUI.Contains(obj))
-        {
-            orderUI.Add(obj);
+          //  server(currentobjectnumber);
         }
     }
     [Command(requiresAuthority = false)]
@@ -318,7 +294,6 @@ public class DeliveryOrder : NetworkBehaviour
     void cmdIdCheck()
     {
         IdCheck();
-        //RpcIdCheck(currentobjectnumber);
     }
     [Server]
     public void IdCheck()
@@ -511,10 +486,6 @@ public class DeliveryOrder : NetworkBehaviour
     [Server]
     public void server(int currentobjectnumber)
     {
-
-        // rpc(currentobjectnumber);
-
-
         for (int i = 0; i < managerOrder.orderArray.Count; i++)
         {
             if (managerOrder.orderArray[i] == submidID)
@@ -535,8 +506,6 @@ public class DeliveryOrder : NetworkBehaviour
 
         }
         currentID = 1;
-
-
     }
     [ClientRpc]
     public void rpc(int currentobjectnumber)
