@@ -47,9 +47,13 @@ public class DeliveryOrder : NetworkBehaviour
         //cmd(currentobjectnumber);
 
 
-        if(isServer) {    IdCheck(); }
-    
-        cmd(currentobjectnumber);
+        if (isServer)
+        {
+            IdCheck();
+            server(currentobjectnumber);
+        }
+
+
 
     }
     //private void LateUpdate()
@@ -499,11 +503,11 @@ public class DeliveryOrder : NetworkBehaviour
         }
     }
 
-    [Command(requiresAuthority = false)]
-    public void cmd(int currentobjectnumber)
-    {
-        server(currentobjectnumber);
-    }
+    //[Command(requiresAuthority = false)]
+    //public void cmd(int currentobjectnumber)
+    //{
+    //    server(currentobjectnumber);
+    //}
     [Server]
     public void server(int currentobjectnumber)
     {
