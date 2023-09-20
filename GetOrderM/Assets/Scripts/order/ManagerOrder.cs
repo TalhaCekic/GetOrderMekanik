@@ -171,10 +171,13 @@ public class ManagerOrder : NetworkBehaviour
                     //   Debug.Log("GameObject: " + uiObject.name + ", Int Deðer: " + intValue2);
                     //  currentobjectnumber = 0;
                     orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
+
+
+                    orderArray.Remove(orderArray[i]);
                     orderUI.Remove(orderUI[i]);
+                 
                     deliveryOrder.lastResetTime = Time.time;
                     deliveryOrder.orderCorrect = true;
-                    orderArray.Remove(orderArray[i]);
                     break;
                 }
                 else
@@ -182,13 +185,14 @@ public class ManagerOrder : NetworkBehaviour
                     deliveryOrder.orderCorrect = false;
                 }
 
-
+               // if(orderUI[i] == null) orderUI.Remove(orderUI[i]);
             }
+
         }
 
-       
 
-     //   deliveryOrder.currentID = 1;
+
+        //   deliveryOrder.currentID = 1;
     }
     [Server]
     public void AddObjectToList(GameObject obj, int id)
