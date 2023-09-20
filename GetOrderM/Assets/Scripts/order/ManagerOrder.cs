@@ -72,14 +72,6 @@ public class ManagerOrder : NetworkBehaviour
         // bool orderAssigned = false;
         int randomIndex = Random.Range(0, orders.Length);
         Order = orders[randomIndex].orderID;
-        //for (int i = 0; i < orderArray.Count; i++)
-        //{
-        //    if (orderArray[i] == 1)
-        //    {
-        //        orderArray[i] = orderUI[i].GetComponent<OrderTimes>().orderID;
-        //        break;
-        //    }
-        //}
        
     }
     [Command(requiresAuthority = false)]
@@ -148,30 +140,18 @@ public class ManagerOrder : NetworkBehaviour
             //    AddObjectToList(spawnedPrefab);
             //}
         }
-        // Diðer sipariþ türleri için de kontrolleri ekleyin
     }
 
     [Server]
     public void server(int currentobjectnumber)
     {
-
         if (Time.time - lastResetTime > resetDelay)
         {
             for (int i = 0; i < orderArray.Count; i++)
             {
-
-                //int intValue = orderUI[i].GetComponent<Order12>().id;
-                //Debug.Log(" Int Deðer: " + intValue);
-                //int intValue2 = orderUI[i].GetComponent<Order123>().id;
-
-                //Debug.Log(" Int Deðer: " + intValue2);
-
-                if (deliveryOrder.submidID == orderArray[i])
+                if (orderArray[i]== deliveryOrder.submidID )
                 {
-                    //   Debug.Log("GameObject: " + uiObject.name + ", Int Deðer: " + intValue2);
-                    //  currentobjectnumber = 0;
                     orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
-
 
                     orderArray.Remove(orderArray[i]);
                     orderUI.Remove(orderUI[i]);
@@ -180,19 +160,17 @@ public class ManagerOrder : NetworkBehaviour
                     deliveryOrder.orderCorrect = true;
                     break;
                 }
+                if (orderUI[i] == null)
+                {
+                    orderUI.Remove(orderUI[i]);
+                    orderArray.Remove(orderArray[i]);
+                }
                 else
                 {
                     deliveryOrder.orderCorrect = false;
                 }
-
-               // if(orderUI[i] == null) orderUI.Remove(orderUI[i]);
             }
-
         }
-
-
-
-        //   deliveryOrder.currentID = 1;
     }
     [Server]
     public void AddObjectToList(GameObject obj, int id)
