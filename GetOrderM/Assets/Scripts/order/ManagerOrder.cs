@@ -69,10 +69,27 @@ public class ManagerOrder : NetworkBehaviour
     [Server]
     public void GenerateRandomOrder()
     {
-        // bool orderAssigned = false;
-        int randomIndex = Random.Range(0, orders.Length);
+        int randomIndex;
+
+        do
+        {
+            randomIndex = Random.Range(0, orders.Length);
+        } while (IsOrderIDInArray(orders[randomIndex].orderID));
+
         Order = orders[randomIndex].orderID;
-       
+    }
+
+    private bool IsOrderIDInArray(int orderID)
+    {
+        foreach (int existingOrderID in orderArray)
+        {
+            if (existingOrderID == orderID)
+            {
+                return true; // Sipariþ ID zaten orderArray içinde bulunuyor.
+            }
+        }
+
+        return false; // Sipariþ ID orderArray içinde bulunmuyor.
     }
     [Command(requiresAuthority = false)]
     public void CmdSpawnOrder(Vector3 position, int order)
@@ -108,37 +125,37 @@ public class ManagerOrder : NetworkBehaviour
             GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
             NetworkServer.Spawn(spawnedPrefab);
             AddObjectToList(spawnedPrefab,orderID);
-          
-            //if (orderArray[0] != 1)
-            //{
-            //    spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
-            //    //spawnedPrefab.transform.parent = canvas.transform.parent;
 
-            //}
-            //if (orderArray[1] != 1)
-            //{
-            //    spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
-            //    // spawnedPrefab.transform.parent = canvas.transform.parent;
-            //    AddObjectToList(spawnedPrefab);
-            //}
-            //if (orderArray[2] != 1)
-            //{
-            //    spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
-            //    // spawnedPrefab.transform.parent = canvas.transform.parent;
-            //    AddObjectToList(spawnedPrefab);
-            //}
-            //if (orderArray[3] != 1)
-            //{
-            //    spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
-            //    // spawnedPrefab.transform.parent = canvas.transform.parent;
-            //    AddObjectToList(spawnedPrefab);
-            //}
-            //if (orderArray[4] != 1)
-            //{
-            //    spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
-            //    //  spawnedPrefab.transform.parent = canvas.transform.parent;
-            //    AddObjectToList(spawnedPrefab);
-            //}
+            if (orderArray[0] != 0)
+            {
+                spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
+                //spawnedPrefab.transform.parent = canvas.transform.parent;
+
+            }
+            if (orderArray[1] != 0)
+            {
+                spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
+                // spawnedPrefab.transform.parent = canvas.transform.parent;
+
+            }
+            if (orderArray[2] != 0)
+            {
+                spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
+                // spawnedPrefab.transform.parent = canvas.transform.parent;
+
+            }
+            if (orderArray[3] != 0)
+            {
+                spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
+                // spawnedPrefab.transform.parent = canvas.transform.parent;
+
+            }
+            if (orderArray[4] != 0)
+            {
+                spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
+                //  spawnedPrefab.transform.parent = canvas.transform.parent;
+
+            }
         }
     }
 
