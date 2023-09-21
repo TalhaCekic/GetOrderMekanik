@@ -11,7 +11,7 @@ public class ManagerOrder : NetworkBehaviour
 
     public ScriptableOrder[] orders;
 
-    public Transform parentObject;
+   [SyncVar] public Transform parentObject;
 
     public Transform[] parentTransform;
 
