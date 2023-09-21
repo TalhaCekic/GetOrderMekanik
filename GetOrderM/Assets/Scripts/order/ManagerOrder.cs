@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine.UI;
 using System.Collections;
-
+using System.Linq;
 public class ManagerOrder : NetworkBehaviour
 {
     public List<GameObject> OrderObject = new List<GameObject>();
@@ -29,6 +29,7 @@ public class ManagerOrder : NetworkBehaviour
     [SerializeField] public SyncList<GameObject> orderUI = new SyncList<GameObject>();
     [SerializeField] private DeliveryOrder deliveryOrder;
     Order12 order12Component;
+    private HashSet<int> orderHashSet = new HashSet<int>();
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
@@ -69,30 +70,44 @@ public class ManagerOrder : NetworkBehaviour
     [Server]
     public void GenerateRandomOrder()
     {
-        if (orderUI.Count < 4)
-        {
+        
             int randomIndex;
             randomIndex = Random.Range(0, orders.Length);
-            if (!orderArray.Contains(orders[randomIndex].orderID))
+            if (!orderArray.Contains(randomIndex))
             {
                 Order = orders[randomIndex].orderID;
-               
             }
- 
-        }
-    }
-    private bool IsOrderIDInArray(int orderID)
-    {
-        foreach (int existingOrderID in orderArray)
-        {
-            if (existingOrderID == orderID)
-            {
-                return true; // Sipariþ ID zaten orderArray içinde bulunuyor.
-            }
-        }
 
-        return false; // Sipariþ ID orderArray içinde bulunmuyor.
+        
     }
+    //private bool IsOrderIDInArray(int orderID)
+    //{
+    //    foreach (int existingOrderID in orderArray)
+    //    {
+    //        if (existingOrderID == orderID)
+    //        {
+    //            return true; // Sipariþ ID zaten orderArray içinde bulunuyor.
+    //        }
+    //    }
+
+    //    return false; // Sipariþ ID orderArray içinde bulunmuyor.
+    //}
+
+    // [Server]
+    //public void GenerateRandomOrder()
+    //{
+
+    //    int randomIndex = Random.Range(0, orders.Length);
+    //    Order = orders[randomIndex].orderID;
+
+
+
+    //       // Order = order;
+
+
+
+    //}
+
     [Command(requiresAuthority = false)]
     public void CmdSpawnOrder(Vector3 position, int order)
     {
@@ -102,8 +117,8 @@ public class ManagerOrder : NetworkBehaviour
     [Server]
     public void ServerSpawnOrder(Vector3 position, int order)
     {
-        if (orderUI.Count < 4)
-        {
+       
+      
             GameObject orderPrefab = null;
             int orderID = 0;
 
@@ -122,27 +137,27 @@ public class ManagerOrder : NetworkBehaviour
                 orderPrefab = orders[2].orderPrefab;
                 orderID = orders[2].orderID;
             }
-            else if (order == 125)
+            else if (order == 125 )
             {
                 orderPrefab = orders[3].orderPrefab;
                 orderID = orders[3].orderID;
             }
-            else if (order == 1234)
+            else if (order == 1234 )
             {
                 orderPrefab = orders[4].orderPrefab;
                 orderID = orders[4].orderID;
             }
-            else if (order == 1235)
+            else if (order == 1235 )
             {
                 orderPrefab = orders[5].orderPrefab;
                 orderID = orders[5].orderID;
             }
-            else if (order == 1245)
+            else if (order == 1245 )
             {
                 orderPrefab = orders[6].orderPrefab;
                 orderID = orders[6].orderID;
             }
-            else if (order == 12345)
+            else if (order == 12345 )
             {
                 orderPrefab = orders[7].orderPrefab;
                 orderID = orders[7].orderID;
@@ -153,7 +168,7 @@ public class ManagerOrder : NetworkBehaviour
                 NetworkServer.Spawn(spawnedPrefab);
                 AddObjectToList(spawnedPrefab, orderID);
             }
-        }
+        
 
             //if (orderArray[0] != 0)
             //{
@@ -222,10 +237,9 @@ public class ManagerOrder : NetworkBehaviour
     [Server]
     public void AddObjectToList(GameObject obj, int id)
     {
-        if (!orderUI.Contains(obj))
+        if (!orderUI.Contains(obj) && !orderArray.Contains(id))
         {
             orderUI.Add(obj);
-
             orderArray.Add(id);
         }
     }
