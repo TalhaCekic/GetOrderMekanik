@@ -33,7 +33,7 @@ public class ManagerOrder : NetworkBehaviour
     {
         canvas = GetComponent<Canvas>();
         deliveryOrder = FindAnyObjectByType<DeliveryOrder>();
-      
+
     }
     private void Start()
     {
@@ -64,21 +64,22 @@ public class ManagerOrder : NetworkBehaviour
     private void CalculateNextOrderTime() // tekrardan sipariþin gelme sýklýðý
     {
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
-       
+
     }
     [Server]
     public void GenerateRandomOrder()
     {
-        int randomIndex;
-
-        do
+        if (orderUI.Count < 6)
         {
-            randomIndex = Random.Range(0, orders.Length);
-        } while (IsOrderIDInArray(orders[randomIndex].orderID));
+            int randomIndex;
+            do
+            {
+                randomIndex = Random.Range(0, orders.Length);
+            } while (IsOrderIDInArray(orders[randomIndex].orderID));
 
-        Order = orders[randomIndex].orderID;
+            Order = orders[randomIndex].orderID;
+        }
     }
-
     private bool IsOrderIDInArray(int orderID)
     {
         foreach (int existingOrderID in orderArray)
@@ -100,12 +101,12 @@ public class ManagerOrder : NetworkBehaviour
     public void ServerSpawnOrder(Vector3 position, int order)
     {
         GameObject orderPrefab = null;
-        int orderID=0;
+        int orderID = 0;
 
         if (order == 12)
         {
             orderPrefab = orders[0].orderPrefab;
-            orderID = orders[0].orderID;  
+            orderID = orders[0].orderID;
         }
         else if (order == 123)
         {
@@ -124,7 +125,7 @@ public class ManagerOrder : NetworkBehaviour
         {
             GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
             NetworkServer.Spawn(spawnedPrefab);
-            AddObjectToList(spawnedPrefab,orderID);
+            AddObjectToList(spawnedPrefab, orderID);
 
             if (orderArray[0] != 0)
             {
@@ -166,13 +167,13 @@ public class ManagerOrder : NetworkBehaviour
         {
             for (int i = 0; i < orderArray.Count; i++)
             {
-                if (orderArray[i]== deliveryOrder.submidID )
+                if (orderArray[i] == deliveryOrder.submidID)
                 {
                     orderUI[i].GetComponent<OrderTimes>().currentCouldown = 0;
 
                     orderArray.Remove(orderArray[i]);
                     orderUI.Remove(orderUI[i]);
-                 
+
                     deliveryOrder.lastResetTime = Time.time;
                     deliveryOrder.orderCorrect = true;
                     break;
@@ -195,7 +196,7 @@ public class ManagerOrder : NetworkBehaviour
         if (!orderUI.Contains(obj))
         {
             orderUI.Add(obj);
-            
+
             orderArray.Add(id);
         }
     }
