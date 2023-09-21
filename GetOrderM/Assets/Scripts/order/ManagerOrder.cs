@@ -180,8 +180,9 @@ public class ManagerOrder : NetworkBehaviour
         if (orderPrefab != null)
         {
             GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, canvas.transform);
-            spawnedPrefab.transform.SetParent(canvas.transform, true);
+            
             NetworkServer.Spawn(spawnedPrefab);
+            
             AddObjectToList(spawnedPrefab, orderID);
 
            // if (orderUI[0] != null)
@@ -260,6 +261,7 @@ public class ManagerOrder : NetworkBehaviour
             orderUI.Add(obj);
             orderArray.Add(id);
             sayac++;
+            obj.transform.SetParent(canvas.transform, true);
         }
         for (int i = 0; i < orderUI.Count; i++)
         {
