@@ -662,7 +662,7 @@ MonoBehaviour:
   canvas: {fileID: 696840034079936670, guid: 15461d59b82862344828400d85109b13, type: 3}
   order: {fileID: 11400000, guid: 7349e7d275df6694bbe08cc6818d282f, type: 2}
   sliderCouldown: {fileID: 209559708856442593}
-  id: 123
+  id: 1234
 --- !u!1 &4926760301755306974
 GameObject:
   m_ObjectHideFlags: 0
