@@ -50,7 +50,7 @@ public class ManagerOrder : NetworkBehaviour
     }
     private void Update()
     {
-        if (isServer && Time.time >= nextOrderTime)
+        if (isServer && Time.time >= nextOrderTime )
         {
             GenerateRandomOrder();
             CalculateNextOrderTime();
@@ -73,10 +73,10 @@ public class ManagerOrder : NetworkBehaviour
         
             int randomIndex;
             randomIndex = Random.Range(0, orders.Length);
-            if (!orderArray.Contains(randomIndex))
-            {
+           
+           
                 Order = orders[randomIndex].orderID;
-            }
+            
 
         
     }
@@ -237,7 +237,7 @@ public class ManagerOrder : NetworkBehaviour
     [Server]
     public void AddObjectToList(GameObject obj, int id)
     {
-        if (!orderUI.Contains(obj) && !orderArray.Contains(id))
+        if (!orderUI.Contains(obj))
         {
             orderUI.Add(obj);
             orderArray.Add(id);
