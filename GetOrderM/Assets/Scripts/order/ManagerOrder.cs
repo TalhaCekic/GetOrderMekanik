@@ -180,7 +180,7 @@ public class ManagerOrder : NetworkBehaviour
         if (orderPrefab != null)
         {
             GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, canvas.transform);
-            spawnedPrefab.transform.SetParent(parentObject, true);
+            spawnedPrefab.transform.SetParent(canvas.transform, true);
             NetworkServer.Spawn(spawnedPrefab);
             AddObjectToList(spawnedPrefab, orderID);
 
