@@ -97,6 +97,7 @@ public class ManagerOrder : NetworkBehaviour
     public void CmdSpawnOrder(Vector3 position, int order)
     {
         ServerSpawnOrder(position, order);
+
     }
     [Server]
     public void ServerSpawnOrder(Vector3 position, int order)
