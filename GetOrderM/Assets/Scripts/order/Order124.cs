@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class Order124 : NetworkBehaviour
 {
-    public List<GameObject> OrderObject = new List<GameObject>();
-
     public GameObject canvas;
 
     [SerializeField] private ScriptableOrder order;
@@ -15,9 +13,6 @@ public class Order124 : NetworkBehaviour
     [SerializeField] private Slider sliderCouldown;
 
     private OrderTimes orderTimes;
-
-    //private float currentCouldown;
-    public int id = 124;
     private void Start()
     {
         orderTimes = GetComponent<OrderTimes>();
@@ -33,41 +28,16 @@ public class Order124 : NetworkBehaviour
         {
             UpdateGameStatus();
         }
-
     }
     [Server]
     void UpdateGameStatus()
     {
-        // Tüm istemcilere güncel durumu gönder
-        // RpcinteractID(123);
-
-        //  transform.parent = canvas.transform;
-        //this.transform.position = new Vector3(150, 522, 0);
-        order.orderID = 123;
+        order.orderID = 124;
         orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
         sliderCouldown.value = orderTimes.currentCouldown;
         if (orderTimes.currentCouldown < 0)
         {
             NetworkServer.Destroy(this.gameObject);
-
-        }
-
-    }
-    [ClientRpc]
-    public void RpcinteractID(float objectNumber)
-    {
-        if (objectNumber == 123)
-        {
-            //  transform.parent = canvas.transform;
-            //this.transform.position = new Vector3(150, 522, 0);
-            order.orderID = 123;
-            orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
-            sliderCouldown.value = orderTimes.currentCouldown;
-            if (orderTimes.currentCouldown < 0)
-            {
-                NetworkServer.Destroy(this.gameObject);
-                ManagerOrder.instance.sayac--;
-            }
         }
     }
 }
