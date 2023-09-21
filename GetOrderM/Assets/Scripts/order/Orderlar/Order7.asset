@@ -15,6 +15,6 @@ MonoBehaviour:
   orderName: Order7
   orderID: 1245
   couldown: 60
-  orderPrefab: {fileID: 7013261208607875783, guid: f9cde4a888137bc4789c93bab787e772,
+  orderPrefab: {fileID: 4553984425931220806, guid: a57c3d09900fbbc41a9f57db22b7138f,
     type: 3}
   sliderCouldown: {fileID: 0}
