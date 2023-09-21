@@ -33,6 +33,7 @@ public class ManagerOrder : NetworkBehaviour
     [SyncVar] public int sayac=0;
     private void Awake()
     {
+        parentObject = GetComponent<Transform>();
         canvas = GetComponent<Canvas>();
         deliveryOrder = FindAnyObjectByType<DeliveryOrder>();
 
