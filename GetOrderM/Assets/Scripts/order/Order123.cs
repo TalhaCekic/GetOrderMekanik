@@ -66,7 +66,7 @@ public class Order123 : NetworkBehaviour
             if (orderTimes.currentCouldown < 0)
             {
                 NetworkServer.Destroy(this.gameObject);
-
+                ManagerOrder.instance.sayac--;
             }
         }
     }

@@ -6,6 +6,7 @@ using System.Collections;
 using System.Linq;
 public class ManagerOrder : NetworkBehaviour
 {
+    public static ManagerOrder instance;
     public List<GameObject> OrderObject = new List<GameObject>();
 
     public ScriptableOrder[] orders;
@@ -28,8 +29,8 @@ public class ManagerOrder : NetworkBehaviour
 
     [SerializeField] public SyncList<GameObject> orderUI = new SyncList<GameObject>();
     [SerializeField] private DeliveryOrder deliveryOrder;
-    Order12 order12Component;
-    private HashSet<int> orderHashSet = new HashSet<int>();
+
+    [SyncVar] public int sayac=0;
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
@@ -38,6 +39,7 @@ public class ManagerOrder : NetworkBehaviour
     }
     private void Start()
     {
+        instance = this;
         //DontDestroyOnLoad(this);
         CalculateNextOrderTime();
         //if (isServer)
@@ -70,10 +72,26 @@ public class ManagerOrder : NetworkBehaviour
     [Server]
     public void GenerateRandomOrder()
     {
-        int randomIndex = Random.Range(0, orders.Length);
-        Order = orders[randomIndex].orderID;
-        
+        if (sayac < 3)
+        {
+            int randomIndex = Random.Range(0, orders.Length);
+            int newOrder = orders[randomIndex].orderID;
+
+
+           if (!orderArray.Contains(newOrder))
+            {
+                Order = newOrder;
+            }
+           
+        }
+        else
+        {
+            Order = 0;
+        }
+
     }
+ 
+
 
 
     //private bool IsOrderIDInArray(int orderID)
@@ -118,17 +136,17 @@ public class ManagerOrder : NetworkBehaviour
             GameObject orderPrefab = null;
             int orderID = 0;
 
-            if (order == 12)
+            if (order == 12 )
             {
                 orderPrefab = orders[0].orderPrefab;
                 orderID = orders[0].orderID;
             }
-            else if (order == 123)
+            else if (order == 123 )
             {
                 orderPrefab = orders[1].orderPrefab;
                 orderID = orders[1].orderID;
             }
-            else if (order == 124)
+            else if (order == 124 )
             {
                 orderPrefab = orders[2].orderPrefab;
                 orderID = orders[2].orderID;
@@ -157,46 +175,48 @@ public class ManagerOrder : NetworkBehaviour
             {
                 orderPrefab = orders[7].orderPrefab;
                 orderID = orders[7].orderID;
-            }
-            if (orderPrefab != null)
-            {
-                GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
-                NetworkServer.Spawn(spawnedPrefab);
-                AddObjectToList(spawnedPrefab, orderID);
-            }
-        
+        }
+        if (orderPrefab != null)
+        {
+            GameObject spawnedPrefab = Instantiate(orderPrefab, parentObject.position, Quaternion.identity, parentObject);
+            NetworkServer.Spawn(spawnedPrefab);
+            AddObjectToList(spawnedPrefab, orderID);
 
-            //if (orderArray[0] != 0)
-            //{
-            //    spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
-            //    //spawnedPrefab.transform.parent = canvas.transform.parent;
+           // if (orderUI[0] != null)
+           // {
+           //     spawnedPrefab.gameObject.transform.position = parentTransform[0].transform.position;
+           //     //spawnedPrefab.transform.parent = canvas.transform.parent;
 
-            //}
-            //if (orderArray[1] != 0)
-            //{
-            //    spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
-            //    // spawnedPrefab.transform.parent = canvas.transform.parent;
+           // }
+           // if (orderUI[1] != null)
+           // {
+           //     spawnedPrefab.gameObject.transform.position = parentTransform[1].transform.position;
+           //     // spawnedPrefab.transform.parent = canvas.transform.parent;
 
-            //}
-            //if (orderArray[2] != 0)
-            //{
-            //    spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
-            //    // spawnedPrefab.transform.parent = canvas.transform.parent;
+           // }
+           //  if (orderUI[2] != null)
+           // {
+           //     spawnedPrefab.gameObject.transform.position = parentTransform[2].transform.position;
+           //     // spawnedPrefab.transform.parent = canvas.transform.parent;
 
-            //}
-            //if (orderArray[3] != 0)
-            //{
-            //    spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
-            //    // spawnedPrefab.transform.parent = canvas.transform.parent;
+           // }
+           //  if (orderUI[3] != null)
+           // {
+           //     spawnedPrefab.gameObject.transform.position = parentTransform[3].transform.position;
+           //     // spawnedPrefab.transform.parent = canvas.transform.parent;
 
-            //}
-            //if (orderArray[4] != 0)
-            //{
-            //    spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
-            //    //  spawnedPrefab.transform.parent = canvas.transform.parent;
+           // }
+           //if (orderUI[4] != null)
+           // {
+           //     spawnedPrefab.gameObject.transform.position = parentTransform[4].transform.position;
+           //     //  spawnedPrefab.transform.parent = canvas.transform.parent;
 
-            //}
-        
+           // }
+        }
+
+
+
+
     }
 
     [Server]
@@ -213,7 +233,7 @@ public class ManagerOrder : NetworkBehaviour
 
                     orderArray.Remove(orderArray[i]);
                     orderUI.Remove(orderUI[i]);
-
+                    sayac--;
                     deliveryOrder.lastResetTime = Time.time;
 
                     break;
@@ -237,6 +257,11 @@ public class ManagerOrder : NetworkBehaviour
         {
             orderUI.Add(obj);
             orderArray.Add(id);
+            sayac++;
+        }
+        for (int i = 0; i < orderUI.Count; i++)
+        {
+            orderUI[i].gameObject.transform.position = parentTransform[i].transform.position;
         }
     }
 }

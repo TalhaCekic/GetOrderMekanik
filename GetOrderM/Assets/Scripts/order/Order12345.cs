@@ -24,7 +24,7 @@ public class Order12345 : NetworkBehaviour
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
 
-        orderTimes.orderID = 123;
+        orderTimes.orderID = 12345;
     }
 
     void Update()
@@ -67,6 +67,7 @@ public class Order12345 : NetworkBehaviour
             {
                 NetworkServer.Destroy(this.gameObject);
 
+                ManagerOrder.instance.sayac--;
             }
         }
     }

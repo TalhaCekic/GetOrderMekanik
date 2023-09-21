@@ -17,14 +17,14 @@ public class Order1245 : NetworkBehaviour
     private OrderTimes orderTimes;
 
     //private float currentCouldown;
-    public int id = 123;
+    public int id = 1245;
     private void Start()
     {
         orderTimes = GetComponent<OrderTimes>();
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
 
-        orderTimes.orderID = 123;
+        orderTimes.orderID = 1245;
     }
 
     void Update()
@@ -66,7 +66,7 @@ public class Order1245 : NetworkBehaviour
             if (orderTimes.currentCouldown < 0)
             {
                 NetworkServer.Destroy(this.gameObject);
-
+                ManagerOrder.instance.sayac--;
             }
         }
     }
