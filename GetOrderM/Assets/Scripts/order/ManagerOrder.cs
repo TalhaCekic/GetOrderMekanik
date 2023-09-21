@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine.UI;
@@ -62,7 +62,7 @@ public class ManagerOrder : NetworkBehaviour
         }
     }
     [Server]
-    private void CalculateNextOrderTime() // tekrardan sipariþin gelme sýklýðý
+    private void CalculateNextOrderTime() // tekrardan sipariÅŸin gelme sÄ±klÄ±ÄŸÄ±
     {
         nextOrderTime = Time.time + Random.Range(minInterval, maxInterval);
 
@@ -70,27 +70,23 @@ public class ManagerOrder : NetworkBehaviour
     [Server]
     public void GenerateRandomOrder()
     {
-        
-            int randomIndex;
-            randomIndex = Random.Range(0, orders.Length);
-           
-           
-                Order = orders[randomIndex].orderID;
-            
-
+        int randomIndex = Random.Range(0, orders.Length);
+        Order = orders[randomIndex].orderID;
         
     }
+
+
     //private bool IsOrderIDInArray(int orderID)
     //{
     //    foreach (int existingOrderID in orderArray)
     //    {
     //        if (existingOrderID == orderID)
     //        {
-    //            return true; // Sipariþ ID zaten orderArray içinde bulunuyor.
+    //            return true; // SipariÅŸ ID zaten orderArray iÃ§inde bulunuyor.
     //        }
     //    }
 
-    //    return false; // Sipariþ ID orderArray içinde bulunmuyor.
+    //    return false; // SipariÅŸ ID orderArray iÃ§inde bulunmuyor.
     //}
 
     // [Server]
