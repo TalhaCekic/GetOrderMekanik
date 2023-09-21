@@ -30709,31 +30709,6 @@ PrefabInstance:
       propertyPath: sceneId
       value: 3756116597
       objectReference: {fileID: 0}
-    - target: {fileID: 4999659202197073359, guid: 15461d59b82862344828400d85109b13,
-        type: 3}
-      propertyPath: sceneId
-      value: 4070919954
-      objectReference: {fileID: 0}
-    - target: {fileID: 5799651135332431926, guid: 15461d59b82862344828400d85109b13,
-        type: 3}
-      propertyPath: sceneId
-      value: 454023764
-      objectReference: {fileID: 0}
-    - target: {fileID: 6950491014195518234, guid: 15461d59b82862344828400d85109b13,
-        type: 3}
-      propertyPath: sceneId
-      value: 3618529736
-      objectReference: {fileID: 0}
-    - target: {fileID: 7398777915024677204, guid: 15461d59b82862344828400d85109b13,
-        type: 3}
-      propertyPath: sceneId
-      value: 1844542572
-      objectReference: {fileID: 0}
-    - target: {fileID: 9003589537376895314, guid: 15461d59b82862344828400d85109b13,
-        type: 3}
-      propertyPath: sceneId
-      value: 3182066025
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
