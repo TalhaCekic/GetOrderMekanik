@@ -391,6 +391,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8802376312313241462, guid: 1cf7370712af274409498e89ee4cd86c,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802376312313241462, guid: 1cf7370712af274409498e89ee4cd86c,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 4553984425931220806, guid: 0f77f43ad1fcfc5438fb93afe229fab5,
+        type: 3}
+    - target: {fileID: 8802376312313241462, guid: 1cf7370712af274409498e89ee4cd86c,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 4553984425931220806, guid: a3e5afb2cc786494398d69ca3fa23ede,
+        type: 3}
+    - target: {fileID: 8802376312313241462, guid: 1cf7370712af274409498e89ee4cd86c,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 4553984425931220806, guid: cfe99bfb7a167604dbb7494722f7b693,
+        type: 3}
+    - target: {fileID: 8802376312313241462, guid: 1cf7370712af274409498e89ee4cd86c,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 4553984425931220806, guid: 8b376e5f5b8551e43acc518211284d53,
+        type: 3}
+    - target: {fileID: 8802376312313241462, guid: 1cf7370712af274409498e89ee4cd86c,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 4553984425931220806, guid: a57c3d09900fbbc41a9f57db22b7138f,
+        type: 3}
+    - target: {fileID: 8802376312313241462, guid: 1cf7370712af274409498e89ee4cd86c,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 4553984425931220806, guid: 8871982ac6771dc42905e26d57c68410,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
