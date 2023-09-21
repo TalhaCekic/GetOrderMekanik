@@ -357,7 +357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4864823562185192290
 RectTransform:
   m_ObjectHideFlags: 0
@@ -658,11 +658,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  OrderObject: []
   canvas: {fileID: 696840034079936670, guid: 15461d59b82862344828400d85109b13, type: 3}
   order: {fileID: 11400000, guid: 175330aaa3148334dbabf992128f04e6, type: 2}
   sliderCouldown: {fileID: 209559708856442593}
-  id: 12345
 --- !u!1 &4926760301755306974
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3994743845795838036
 RectTransform:
   m_ObjectHideFlags: 0
