@@ -22,6 +22,7 @@ public class Order123 : NetworkBehaviour
         canvas = GameObject.FindGameObjectWithTag("Canvas");
 
         orderTimes.orderID = 123;
+        this.transform.parent = canvas.transform;
     }
 
     void Update()
@@ -34,7 +35,7 @@ public class Order123 : NetworkBehaviour
     [Server]
     void UpdateGameStatus()
     {
-        this.transform.SetParent(canvas.transform, true);
+        
         order.orderID = 123;
         orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
         sliderCouldown.value = orderTimes.currentCouldown;

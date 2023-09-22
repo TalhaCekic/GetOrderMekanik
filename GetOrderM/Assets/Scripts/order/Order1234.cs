@@ -19,6 +19,8 @@ public class Order1234 : NetworkBehaviour
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         orderTimes.orderID = 1234;
+
+        this.transform.parent = canvas.transform;
     }
 
     void Update()
@@ -31,7 +33,7 @@ public class Order1234 : NetworkBehaviour
     [Server]
     void UpdateGameStatus()
     {
-        this.transform.SetParent(canvas.transform, true);
+
         order.orderID = 1234;
         orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
         sliderCouldown.value = orderTimes.currentCouldown;
