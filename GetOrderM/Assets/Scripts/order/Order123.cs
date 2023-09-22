@@ -34,13 +34,14 @@ public class Order123 : NetworkBehaviour
     [Server]
     void UpdateGameStatus()
     {
+        this.transform.SetParent(canvas.transform, true);
         order.orderID = 123;
         orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
         sliderCouldown.value = orderTimes.currentCouldown;
         if (orderTimes.currentCouldown < 0)
         {
             NetworkServer.Destroy(this.gameObject);
-
+            ManagerOrder.instance.sayac--;
         }
     }
 }

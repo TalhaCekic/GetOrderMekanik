@@ -261,7 +261,7 @@ public class ManagerOrder : NetworkBehaviour
             orderUI.Add(obj);
             orderArray.Add(id);
             sayac++;
-            obj.transform.SetParent(canvas.transform, true);
+            
         }
         for (int i = 0; i < orderUI.Count; i++)
         {
