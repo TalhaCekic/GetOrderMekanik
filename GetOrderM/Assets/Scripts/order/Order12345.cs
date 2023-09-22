@@ -20,7 +20,7 @@ public class Order12345 : NetworkBehaviour
         orderTimes.currentCouldown = order.couldown;
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         orderTimes.orderID = 12345;
-        this.transform.parent = canvas.transform;
+    //    this.transform.parent = canvas.transform;
     }
 
     void Update()

@@ -21,7 +21,7 @@ public class Order124 : NetworkBehaviour
 
         orderTimes.orderID = 124;
 
-        this.transform.parent = canvas.transform;
+        //this.transform.parent = canvas.transform;
     }
 
     void Update()

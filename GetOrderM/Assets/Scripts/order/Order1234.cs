@@ -20,7 +20,7 @@ public class Order1234 : NetworkBehaviour
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         orderTimes.orderID = 1234;
 
-        this.transform.parent = canvas.transform;
+      //  this.transform.parent = canvas.transform;
     }
 
     void Update()
