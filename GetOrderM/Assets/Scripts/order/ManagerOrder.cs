@@ -265,8 +265,11 @@ public class ManagerOrder : NetworkBehaviour
         }
         for (int i = 0; i < orderUI.Count; i++)
         {
-            orderUI[i].gameObject.transform.position = parentTransform[i].transform.position;
-            
+            //orderUI[i].gameObject.transform.position = parentTransform[i].transform.position;
+            orderUI[i].GetComponent<Transform>().parent = canvas.transform;
+            orderUI[i].GetComponent<Transform>().position = parentTransform[i].transform.position;
+
+
         }
     }
 }
