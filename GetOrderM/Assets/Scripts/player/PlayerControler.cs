@@ -37,7 +37,7 @@ public class PlayerControler : NetworkBehaviour
 
     public bool LoadScene = false;
 
-   // public GameObject hud;
+    // public GameObject hud;
 
     public pickUp PickUp;
 
@@ -46,13 +46,17 @@ public class PlayerControler : NetworkBehaviour
     [SyncVar] private bool animationCompleted = false;
     [SyncVar] private float fallCheckInterval = 1.0f;  // Her 1 saniyede bir kontrol etmek için
     [SyncVar] private float nextFallCheckTime = 0.0f;
-   [SyncVar] private float totalAnimationTime = 4.8f; // 1.5 (düþme) + 6.0 (ayaða kalkma) = 7.5 saniye
+    [SyncVar] private float totalAnimationTime = 4.8f; // 1.5 (düþme) + 6.0 (ayaða kalkma) = 7.5 saniye
     [SyncVar] private float elapsedTime = 0f;
     [SyncVar] private bool animationsStarted = false;
     [SyncVar] private float randomValue;
 
     [SyncVar]
     private string currentAnimation = "";
+
+    public GameObject canvas;
+
+    bool isMenuOpen = false;
 
     private void Awake()
     {
@@ -69,7 +73,8 @@ public class PlayerControler : NetworkBehaviour
         //hud.SetActive(false);
         if (!isLocalPlayer) return;
         movement = transform.position;
-
+       //canvas = GameObject.FindGameObjectWithTag("custom");
+        //canvas.gameObject.SetActive(false);
         //   InputAction = new InputAction("Sprint", InputActionType.Button, null);
         InputAction.performed += ctx => sprint();
         InputAction.canceled += ctx => StopSprint();
@@ -90,7 +95,7 @@ public class PlayerControler : NetworkBehaviour
 
     private void Update()
     {
-     
+
         if (!isLocalPlayer) return;
         anim.SetFloat("Speed", 0); // animasyonu kontrol etsin
         if (!PickUp.isWork && isFall == false)
@@ -111,7 +116,7 @@ public class PlayerControler : NetworkBehaviour
             if (elapsedTime >= totalAnimationTime)
             {
                 isFall = false;
-                elapsedTime = 0;  
+                elapsedTime = 0;
                 animationsStarted = false;
             }
         }
@@ -131,7 +136,7 @@ public class PlayerControler : NetworkBehaviour
     [Command]
     private void CmdSetAnimation(string animationName)
     {
-        
+
         currentAnimation = animationName;
         OnAnimationChanged(currentAnimation);
     }
@@ -139,7 +144,7 @@ public class PlayerControler : NetworkBehaviour
     private void OnAnimationChanged(string newAnimation)
     {
         anim.SetTrigger(newAnimation);
-       
+
     }
     void InputRotation()
     {
@@ -184,7 +189,7 @@ public class PlayerControler : NetworkBehaviour
         // Hareket etme
         controller.Move(transform.forward * currentSpeed * Time.deltaTime);
         anim.SetFloat("Speed", currentSpeed / speedd);
-       // isWalking = true;
+        // isWalking = true;
         if (movement.magnitude <= 0f)
         {
             isWalking = false;
@@ -211,4 +216,29 @@ public class PlayerControler : NetworkBehaviour
         //Vector3 randomPlayerPosition = new Vector3(Random.Range(53, 63), 1, Random.Range(75, 78));
         transform.position = randomPlayerPosition;
     }
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "PC")
+        {
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                if (isMenuOpen)
+                {
+                    canvas.gameObject.SetActive(true);
+                }
+                else
+                {
+                    canvas.gameObject.SetActive(false);
+                }
+
+                // Menü durumunu güncelle
+                isMenuOpen = !isMenuOpen;
+
+            }
+        }
+    }
+
 }

@@ -9,6 +9,9 @@ TagManager:
   - submid
   - Canvas
   - orderUI
+  - PC
+  - body
+  - custom
   layers:
   - Default
   - TransparentFX
