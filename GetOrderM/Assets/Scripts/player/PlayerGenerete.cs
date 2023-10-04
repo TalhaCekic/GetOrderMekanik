@@ -11,11 +11,12 @@ public class PlayerGenerete : NetworkBehaviour
     [SerializeField] public Image hud;
     [SyncVar(hook = nameof(OnPlayerColorChanged))]
     public Color playerColor = Color.white;
+
     [SerializeField] private DataManager dataManager;
     [SerializeField] private UILobbyName uILobbyName;
     [SyncVar] public int playerCount;
     [SyncVar] public string steamName;
-
+    public Customerize custom;
     private void Start()
     {
         dataManager = FindObjectOfType<DataManager>();
@@ -52,6 +53,8 @@ public class PlayerGenerete : NetworkBehaviour
         hud.color = newColor;
 
     }
+
+ 
 
 
 }
