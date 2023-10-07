@@ -11,7 +11,10 @@ public class Customerize : NetworkBehaviour
 
     public void ChangeTshirtColor(int index)
     {
-        //  if(isLocalPlayer)
-        tshitirMaterial.color = colors[index];
+        if (isLocalPlayer)
+        {
+            tshitirMaterial.color = colors[index];
+        }
+
     }
 }
