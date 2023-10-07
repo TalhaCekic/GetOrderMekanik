@@ -8,6 +8,10 @@ public class Customerize : NetworkBehaviour
     public Color[] colors;
     public Material tshitirMaterial;
 
+    private void Start()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     public void ChangeTshirtColor(int index)
     {
