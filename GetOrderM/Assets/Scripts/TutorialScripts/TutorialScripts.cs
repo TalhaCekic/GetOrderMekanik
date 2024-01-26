@@ -21,7 +21,7 @@ public class TutorialScripts : NetworkBehaviour
 
     private string[] requiredInputs = { "e", "e", "q", "e", "e", "q", "e", "e", "e", "e","e" };
     private bool[] stepCompleted;
-    public TextMeshProUGUI text;
+    public TMP_Text text;
     public RawImage[] tutorialImages;
     public bool useE = false;
 
@@ -69,7 +69,7 @@ public class TutorialScripts : NetworkBehaviour
     {
         if (Input.GetKeyDown(requiredInputs[currentStep]))
         {
-            Debug.Log("Tebrikler! Adým " + (currentStep + 1) + " tamamlandý.");
+            //Debug.Log("Tebrikler! Adým " + (currentStep + 1) + " tamamlandý.");
             SetInactiveTutorialImage(currentStep);
             currentStep++;
             if (currentStep < tutorialStepsEng.Length)
