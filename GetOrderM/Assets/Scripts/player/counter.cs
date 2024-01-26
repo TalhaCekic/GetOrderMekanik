@@ -7,17 +7,18 @@ public class counter : NetworkBehaviour
     [SyncVar] public bool kasaDolu = false;
     [SyncVar] public bool anaKartDolu = false;
     [SyncVar] public bool cpuDolu = false;
-    [SyncVar] public bool ekranKartýDolu = false;
+    [SyncVar] public bool ekranKartiDolu = false;
     [SyncVar] public bool ramDolu = false;
 
     [SyncVar] public bool BoxKasaDolu = false;
     [SyncVar] public bool BoxAnakartDolu = false;
     [SyncVar] public bool BoxCpuDolu = false;
-    [SyncVar] public bool BoxEkranKartýDolu = false;
+    [SyncVar] public bool BoxEkranKartiDolu = false;
     [SyncVar] public bool BoxRamDolu = false;
 
     public List<GameObject> childObject = new List<GameObject>();
     public List<GameObject> BoxObject = new List<GameObject>();
+    public List<GameObject> idleObject = new List<GameObject>();
 
     [SyncVar] public float submidID = 0;
 
@@ -25,6 +26,8 @@ public class counter : NetworkBehaviour
 
     public ParticleSystem smoke;
     public ParticleSystem affix;
+
+    [SyncVar] public bool isControlledCounter = false;
 
     public void Start()
     {
@@ -35,18 +38,14 @@ public class counter : NetworkBehaviour
     {
         if (isServer)
         {
-            RpcýdCheck();
+            cmdidCheck();
         }
-        else
-        {
-            cmdýdCheck();
-        }
+
     }
     [Command(requiresAuthority = false)]
     public void CmdinteractID(float objectNumber)
     {
         interactID(objectNumber);
-        RpcinteractID(objectNumber);
     }
     [ClientRpc]
     public void RpcinteractID(float objectNumber)
@@ -55,8 +54,9 @@ public class counter : NetworkBehaviour
     }
     public void interactID(float objectNumber)
     {
-        if (objectNumber == 0) // boþ
+        if (objectNumber == 0) // boÅŸ
         {
+
             submidID = 0;
             for (int i = 0; i < childObject.Count; i++)
             {
@@ -65,6 +65,18 @@ public class counter : NetworkBehaviour
             for (int i = 0; i < BoxObject.Count; i++)
             {
                 BoxObject[i].SetActive(false);
+            }
+            for (int i = 0; i < BoxObject.Count; i++)
+            {
+                idleObject[i].SetActive(false);
+            }
+            //  isControlledCounter = false;
+        }
+        if (submidID >= 12)
+        {
+            for (int i = 0; i < BoxObject.Count; i++)
+            {
+                idleObject[i].SetActive(false);
             }
         }
         if (objectNumber == 1.1f) // kasa kutu
@@ -75,59 +87,58 @@ public class counter : NetworkBehaviour
         if (objectNumber == 1) // kasa
         {
             submidID = 1;
-            childObject[1].SetActive(true);
+            idleObject[1].SetActive(true);
+            childObject[1].SetActive(false);
         }
-        if (objectNumber == 2.2f) // anakar kutu
+        if (objectNumber == 2.1f) // anakar kutu
         {
             BoxObject[2].SetActive(true);
-            submidID = 2.2f;
+            submidID = 2.1f;
         }
         if (objectNumber == 2) // anakar
         {
-            childObject[2].SetActive(true);
+            idleObject[2].SetActive(true);
+            childObject[2].SetActive(false);
             submidID = 2;
-            //  smoke.Play();
         }
-        if (objectNumber == 3.3f) // CPU kutu
+        if (objectNumber == 3.1f) // CPU kutu
         {
             BoxObject[3].SetActive(true);
-            submidID = 3.3f;
+            submidID = 3.1f;
         }
         if (objectNumber == 3) // CPU
         {
-            childObject[3].SetActive(true);
+            idleObject[3].SetActive(true);
+            childObject[3].SetActive(false);
             submidID = 3;
-            //  smoke.Play();
         }
-        if (objectNumber == 4) // ekran kartý
+        if (objectNumber == 4) // ekran kartÄ±
         {
-            childObject[4].SetActive(true);
+            idleObject[4].SetActive(true);
+            childObject[4].SetActive(false);
             submidID = 4;
-            //  smoke.Play();
         }
-        if (objectNumber == 4.4f) // ekran kartý
+        if (objectNumber == 4.1f) // ekran kartÄ±
         {
             BoxObject[4].SetActive(true);
-            submidID = 4.4f;
-            //  smoke.Play();
+            submidID = 4.1f;
         }
-        if (objectNumber == 5.5f) // ram
+        if (objectNumber == 5.1f) // ram
         {
             BoxObject[5].SetActive(true);
-            submidID = 5.5f;
+            submidID = 5.1f;
         }
         if (objectNumber == 5) // ram
         {
-            childObject[5].SetActive(true);
+            idleObject[5].SetActive(true);
+            childObject[5].SetActive(false);
             submidID = 5;
-            //  smoke.Play();
         }
         if (objectNumber == 12)
         {
             childObject[1].SetActive(true);
             childObject[2].SetActive(true);
             submidID = 12;
-            //  smoke.Play();
         }
         if (objectNumber == 123)
         {
@@ -135,7 +146,6 @@ public class counter : NetworkBehaviour
             childObject[2].SetActive(true);
             childObject[3].SetActive(true);
             submidID = 123;
-            // smoke.Play();
         }
         if (objectNumber == 124)
         {
@@ -184,21 +194,153 @@ public class counter : NetworkBehaviour
             childObject[5].SetActive(true);
             submidID = 12345;
         }
+
+        // kontrol sonrasÄ± ID
+        if (objectNumber == 1.2f) // kasa
+        {
+            submidID = 1.2f;
+            idleObject[1].SetActive(true);
+            childObject[1].SetActive(false);
+        }
+        if (objectNumber == 2.2f) // anakar
+        {
+            idleObject[2].SetActive(true);
+            childObject[2].SetActive(false);
+            submidID = 2.2f;
+        }
+        if (objectNumber == 3.2f) // CPU
+        {
+            idleObject[3].SetActive(true);
+            childObject[3].SetActive(false);
+            submidID = 3.2f;
+        }
+        if (objectNumber == 4.2f) // ekran kartÄ±
+        {
+            idleObject[4].SetActive(true);
+            childObject[4].SetActive(false);
+            submidID = 4.2f;
+        }
+        if (objectNumber == 5.2f) // ram
+        {
+            idleObject[5].SetActive(true);
+            childObject[5].SetActive(false);
+            submidID = 5.2f;
+        }
+        if (objectNumber == 12.2f)
+        {
+            childObject[1].SetActive(true);
+            childObject[2].SetActive(true);
+            submidID = 12.2f;
+        }
+        if (objectNumber == 123.2f)
+        {
+            childObject[1].SetActive(true);
+            childObject[2].SetActive(true);
+            childObject[3].SetActive(true);
+            submidID = 123.2f;
+        }
+        if (objectNumber == 124.2f)
+        {
+            childObject[1].SetActive(true);
+            childObject[2].SetActive(true);
+            childObject[4].SetActive(true);
+            submidID = 124.2f;
+        }
+        if (objectNumber == 125.2f)
+        {
+            childObject[1].SetActive(true);
+            childObject[2].SetActive(true);
+            childObject[5].SetActive(true);
+            submidID = 125.2f;
+        }
+        if (objectNumber == 1234.2f)
+        {
+            childObject[1].SetActive(true);
+            childObject[2].SetActive(true);
+            childObject[3].SetActive(true);
+            childObject[4].SetActive(true);
+            submidID = 1234.2f;
+        }
+        if (objectNumber == 1235.2f)
+        {
+            childObject[1].SetActive(true);
+            childObject[2].SetActive(true);
+            childObject[3].SetActive(true);
+            childObject[5].SetActive(true);
+            submidID = 1235.2f;
+        }
+        if (objectNumber == 1245.2f)
+        {
+            childObject[1].SetActive(true);
+            childObject[2].SetActive(true);
+            childObject[4].SetActive(true);
+            childObject[5].SetActive(true);
+            submidID = 1245.2f;
+        }
+        if (objectNumber == 12345.2f)
+        {
+            childObject[1].SetActive(true);
+            childObject[2].SetActive(true);
+            childObject[3].SetActive(true);
+            childObject[4].SetActive(true);
+            childObject[5].SetActive(true);
+            submidID = 12345.2f;
+        }
+        if (objectNumber == 23)
+        {
+            childObject[2].SetActive(true);
+            childObject[3].SetActive(true);
+            submidID = 23;
+        }
+        if (objectNumber == 24)
+        {
+            childObject[2].SetActive(true);
+            childObject[4].SetActive(true);
+            submidID = 24;
+        }
+        if (objectNumber == 25)
+        {
+            childObject[2].SetActive(true);
+            childObject[5].SetActive(true);
+            submidID = 25;
+        }
+        if (objectNumber == 234)
+        {
+            childObject[2].SetActive(true);
+            childObject[3].SetActive(true);
+            childObject[4].SetActive(true);
+            submidID = 234;
+        }
+        if (objectNumber == 235)
+        {
+            childObject[2].SetActive(true);
+            childObject[3].SetActive(true);
+            childObject[5].SetActive(true);
+            submidID = 235;
+        }
+        if (objectNumber == 245)
+        {
+            childObject[2].SetActive(true);
+            childObject[4].SetActive(true);
+            childObject[5].SetActive(true);
+            submidID = 245;
+        }
+        if (objectNumber == 2345)
+        {
+            childObject[2].SetActive(true);
+            childObject[4].SetActive(true);
+            childObject[5].SetActive(true);
+            submidID = 2345;
+        }
     }
     [Command(requiresAuthority = false)]
-    void cmdýdCheck()
+    void cmdidCheck()
     {
-        ýdCheck();
-        // RpcýdCheck();
+        idCheck();
     }
-    [ClientRpc]
-    void RpcýdCheck()
+    public void idCheck()
     {
-        ýdCheck();
-    }
-    public void ýdCheck()
-    {
-        if (!kasaDolu && !anaKartDolu && !cpuDolu && !ekranKartýDolu && !ramDolu || !BoxKasaDolu || !BoxAnakartDolu || !BoxCpuDolu || !BoxEkranKartýDolu || !BoxRamDolu)
+        if (!kasaDolu && !anaKartDolu && !cpuDolu && !ekranKartiDolu && !ramDolu || !BoxKasaDolu || !BoxAnakartDolu || !BoxCpuDolu || !BoxEkranKartiDolu || !BoxRamDolu)
         {
             if (isServer)
             {
@@ -209,164 +351,401 @@ public class counter : NetworkBehaviour
                 CmdinteractID(0);
             }
         }
-        if (kasaDolu || anaKartDolu || cpuDolu || ekranKartýDolu || ramDolu)
+        if (!isControlledCounter)
         {
-            if (kasaDolu)
+            if (kasaDolu || anaKartDolu || cpuDolu || ekranKartiDolu || ramDolu)
             {
-                if (isServer)
+                if (kasaDolu)
                 {
-                    RpcinteractID(1);
+                    if (isServer)
+                    {
+                        RpcinteractID(1);
+                    }
+                    else
+                    {
+                        CmdinteractID(1);
+                    }
                 }
-                else
+                if (anaKartDolu)
                 {
-                    CmdinteractID(1);
+                    if (isServer)
+                    {
+                        RpcinteractID(2);
+                    }
+                    else
+                    {
+                        CmdinteractID(2);
+                    }
                 }
-            }
-            if (anaKartDolu)
-            {
-                if (isServer)
+                if (cpuDolu)
                 {
-                    RpcinteractID(2);
+                    if (isServer)
+                    {
+                        RpcinteractID(3);
+                    }
+                    else
+                    {
+                        CmdinteractID(3);
+                    }
+                    submidID = 3;
                 }
-                else
+                if (ekranKartiDolu)
                 {
-                    CmdinteractID(2);
+                    if (isServer)
+                    {
+                        RpcinteractID(4);
+                    }
+                    else
+                    {
+                        CmdinteractID(4);
+                    }
+                    submidID = 4;
                 }
-            }
-            if (cpuDolu)
-            {
-                if (isServer)
+                if (ramDolu)
                 {
-                    RpcinteractID(3);
+                    if (isServer)
+                    {
+                        RpcinteractID(5);
+                    }
+                    else
+                    {
+                        CmdinteractID(5);
+                    }
+                    submidID = 5;
                 }
-                else
+                if (kasaDolu && anaKartDolu)
                 {
-                    CmdinteractID(3);
+                    if (isServer)
+                    {
+                        RpcinteractID(12);
+                    }
+                    else
+                    {
+                        CmdinteractID(12);
+                    }
+                    submidID = 12;
                 }
-                submidID = 3;
-            }
-            if (ekranKartýDolu)
-            {
-                if (isServer)
+                if (kasaDolu && anaKartDolu && cpuDolu)
                 {
-                    RpcinteractID(4);
+                    if (isServer)
+                    {
+                        RpcinteractID(123);
+                    }
+                    else
+                    {
+                        CmdinteractID(123);
+                    }
+                    submidID = 123;
                 }
-                else
+                if (kasaDolu && anaKartDolu && ekranKartiDolu)
                 {
-                    CmdinteractID(4);
+                    if (isServer)
+                    {
+                        RpcinteractID(124);
+                    }
+                    else
+                    {
+                        CmdinteractID(124);
+                    }
+                    submidID = 124;
                 }
-                submidID = 4;
-            }
-            if (ramDolu)
-            {
-                if (isServer)
+                if (kasaDolu && anaKartDolu && ramDolu)
                 {
-                    RpcinteractID(5);
+                    if (isServer)
+                    {
+                        RpcinteractID(125);
+                    }
+                    else
+                    {
+                        CmdinteractID(125);
+                    }
+                    submidID = 125;
                 }
-                else
+                if (kasaDolu && anaKartDolu && ekranKartiDolu && ramDolu)
                 {
-                    CmdinteractID(5);
+                    if (isServer)
+                    {
+                        RpcinteractID(1245);
+                    }
+                    else
+                    {
+                        CmdinteractID(1245);
+                    }
+                    submidID = 1245;
                 }
-                submidID = 5;
-            }
-            if (kasaDolu && anaKartDolu)
-            {
-                if (isServer)
+                if (kasaDolu && anaKartDolu && cpuDolu && ekranKartiDolu)
                 {
-                    RpcinteractID(12);
+                    if (isServer)
+                    {
+                        RpcinteractID(1234);
+                    }
+                    else
+                    {
+                        CmdinteractID(1234);
+                    }
+                    submidID = 1234;
                 }
-                else
+                if (kasaDolu && anaKartDolu && cpuDolu && ramDolu)
                 {
-                    CmdinteractID(12);
+                    if (isServer)
+                    {
+                        RpcinteractID(1235);
+                    }
+                    else
+                    {
+                        CmdinteractID(1235);
+                    }
+                    submidID = 1235;
                 }
-                submidID = 12;
-            }
-            if (kasaDolu && anaKartDolu && cpuDolu)
-            {
-                if (isServer)
+                if (kasaDolu && anaKartDolu && cpuDolu && ekranKartiDolu && ramDolu)
                 {
-                    RpcinteractID(123);
+                    if (isServer)
+                    {
+                        RpcinteractID(12345);
+                    }
+                    else
+                    {
+                        CmdinteractID(12345);
+                    }
+                    submidID = 12345;
                 }
-                else
-                {
-                    CmdinteractID(123);
-                }
-                submidID = 123;
-            }
-            if (kasaDolu && anaKartDolu && ekranKartýDolu)
-            {
-                if (isServer)
-                {
-                    RpcinteractID(124);
-                }
-                else
-                {
-                    CmdinteractID(124);
-                }
-                submidID = 124;
-            }
-            if (kasaDolu && anaKartDolu && ramDolu)
-            {
-                if (isServer)
-                {
-                    RpcinteractID(125);
-                }
-                else
-                {
-                    CmdinteractID(125);
-                }
-                submidID = 125;
-            }
-            if (kasaDolu && anaKartDolu && ekranKartýDolu && ramDolu)
-            {
-                if (isServer)
-                {
-                    RpcinteractID(1245);
-                }
-                else
-                {
-                    CmdinteractID(1245);
-                }
-                submidID = 1245;
-            }
-            if (kasaDolu && anaKartDolu && cpuDolu && ekranKartýDolu)
-            {
-                if (isServer)
-                {
-                    RpcinteractID(1234);
-                }
-                else
-                {
-                    CmdinteractID(1234);
-                }
-                submidID = 1234;
-            }
-            if (kasaDolu && anaKartDolu && cpuDolu && ramDolu)
-            {
-                if (isServer)
-                {
-                    RpcinteractID(1235);
-                }
-                else
-                {
-                    CmdinteractID(1235);
-                }
-                submidID = 1235;
-            }
-            if (kasaDolu && anaKartDolu && cpuDolu && ekranKartýDolu && ramDolu)
-            {
-                if (isServer)
-                {
-                    RpcinteractID(12345);
-                }
-                else
-                {
-                    CmdinteractID(12345);
-                }
-                submidID = 12345;
             }
         }
-        if (BoxKasaDolu || BoxAnakartDolu || BoxCpuDolu || BoxEkranKartýDolu || BoxRamDolu)
+        if (isControlledCounter)
+        {
+            if (kasaDolu || anaKartDolu || cpuDolu || ekranKartiDolu || ramDolu)
+            {
+                if (kasaDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(1.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(1.2f);
+                    }
+                }
+                if (anaKartDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(2.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(2.2f);
+                    }
+                }
+                if (cpuDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(3.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(3.2f);
+                    }
+                }
+                if (ekranKartiDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(4.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(4.2f);
+                    }
+                }
+                if (ramDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(5.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(5.2f);
+                    }
+                }
+                if (kasaDolu && anaKartDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(12.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(12.2f);
+                    }
+                }
+                if (kasaDolu && anaKartDolu && cpuDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(123.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(123.2f);
+                    }
+                }
+                if (kasaDolu && anaKartDolu && ekranKartiDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(124.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(124.2f);
+                    }
+                }
+                if (kasaDolu && anaKartDolu && ramDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(125.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(125.2f);
+                    }
+                }
+                if (kasaDolu && anaKartDolu && ekranKartiDolu && ramDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(1245.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(1245.2f);
+                    }
+                }
+                if (kasaDolu && anaKartDolu && cpuDolu && ekranKartiDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(1234.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(1234.2f);
+                    }
+                }
+                if (kasaDolu && anaKartDolu && cpuDolu && ramDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(1235.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(1235.2f);
+                    }
+                }
+                if (kasaDolu && anaKartDolu && cpuDolu && ekranKartiDolu && ramDolu)
+                {
+                    if (isServer)
+                    {
+                        RpcinteractID(12345.2f);
+                    }
+                    else
+                    {
+                        CmdinteractID(12345.2f);
+                    }
+                }
+            }
+        }
+        //kasasÄ±z kombinasyonlar
+        if (anaKartDolu && cpuDolu && !kasaDolu)
+        {
+            if (isServer)
+            {
+                RpcinteractID(23);
+            }
+            else
+            {
+                CmdinteractID(23);
+            }
+            submidID = 23;
+        }
+        if (anaKartDolu && ekranKartiDolu && !kasaDolu)
+        {
+            if (isServer)
+            {
+                RpcinteractID(24);
+            }
+            else
+            {
+                CmdinteractID(24);
+            }
+            submidID = 24;
+        }
+        if (anaKartDolu && ramDolu && !kasaDolu)
+        {
+            if (isServer)
+            {
+                RpcinteractID(25);
+            }
+            else
+            {
+                CmdinteractID(25);
+            }
+            submidID = 25;
+        }
+        if (anaKartDolu && cpuDolu && ekranKartiDolu && !kasaDolu)
+        {
+            if (isServer)
+            {
+                RpcinteractID(234);
+            }
+            else
+            {
+                CmdinteractID(234);
+            }
+            submidID = 234;
+        }
+        if (anaKartDolu && cpuDolu && ramDolu && !kasaDolu)
+        {
+            if (isServer)
+            {
+                RpcinteractID(235);
+            }
+            else
+            {
+                CmdinteractID(235);
+            }
+            submidID = 235;
+        }
+        if (anaKartDolu && ekranKartiDolu && ramDolu && !kasaDolu)
+        {
+            if (isServer)
+            {
+                RpcinteractID(245);
+            }
+            else
+            {
+                CmdinteractID(245);
+            }
+            submidID = 245;
+        }
+        if (anaKartDolu && cpuDolu && ekranKartiDolu && ramDolu && !kasaDolu)
+        {
+            if (isServer)
+            {
+                RpcinteractID(2345);
+            }
+            else
+            {
+                CmdinteractID(2345);
+            }
+            submidID = 2345;
+        }
+        if (BoxKasaDolu || BoxAnakartDolu || BoxCpuDolu || BoxEkranKartiDolu || BoxRamDolu)
         {
             if (BoxKasaDolu)
             {
@@ -383,29 +762,29 @@ public class counter : NetworkBehaviour
             {
                 if (isServer)
                 {
-                    RpcinteractID(2.2f);
+                    RpcinteractID(2.1f);
                 }
                 else
                 {
-                    CmdinteractID(2.2f);
+                    CmdinteractID(2.1f);
                 }
             }
             if (BoxCpuDolu)
             {
                 if (isServer)
                 {
-                    RpcinteractID(3.3f);
+                    RpcinteractID(3.1f);
                 }
                 else
                 {
-                    CmdinteractID(3.3f);
+                    CmdinteractID(3.1f);
                 }
             }
-            if (BoxEkranKartýDolu)
+            if (BoxEkranKartiDolu)
             {
                 if (isServer)
                 {
-                    RpcinteractID(4.4f);
+                    RpcinteractID(4.1f);
                 }
                 else
                 {
@@ -416,18 +795,18 @@ public class counter : NetworkBehaviour
             {
                 if (isServer)
                 {
-                    RpcinteractID(5.5f);
+                    RpcinteractID(5.1f);
                 }
                 else
                 {
-                    CmdinteractID(5.5f);
+                    CmdinteractID(5.1f);
                 }
             }
         }
     }
 
 
-    // effecetler parýltý
+    // effecetler parÄ±ltÄ±
     [Command(requiresAuthority = false)] //play
     public void CmdAffixEffectPLAY()
     {
@@ -437,7 +816,7 @@ public class counter : NetworkBehaviour
     public void RpcAffixEffectPlay()
     {
         affix.Play();
-    }   
+    }
     [Command(requiresAuthority = false)] //stop
     public void CmdAffixEffectStop()
     {
@@ -447,7 +826,7 @@ public class counter : NetworkBehaviour
     public void RpcAffixEffectStop()
     {
         affix.Stop();
-    } 
+    }
 
     // effecetler smoke
     [Command(requiresAuthority = false)] //play
@@ -459,7 +838,7 @@ public class counter : NetworkBehaviour
     public void RpcSmokeEffectPlay()
     {
         smoke.Play();
-    }   
+    }
     [Command(requiresAuthority = false)] //stop
     public void CmdSmokeEffectStop()
     {
@@ -471,7 +850,7 @@ public class counter : NetworkBehaviour
         smoke.Stop();
     }
 
-    // bool deðiþkenlerin sunucuya gönderilmesi
+    // bool deÄŸiÅŸkenlerin sunucuya gÃ¶nderilmesi
     [Command(requiresAuthority = false)]
     public void CmdSetKasaDolu(bool newValue)
     {
@@ -488,9 +867,9 @@ public class counter : NetworkBehaviour
         cpuDolu = newValue;
     }
     [Command(requiresAuthority = false)]
-    public void CmdSetEkranKartýDolu(bool newValue)
+    public void CmdSetEkranKartiDolu(bool newValue)
     {
-        ekranKartýDolu = newValue;
+        ekranKartiDolu = newValue;
     }
     [Command(requiresAuthority = false)]
     public void CmdSetRamDolu(bool newValue)
@@ -513,14 +892,24 @@ public class counter : NetworkBehaviour
         BoxCpuDolu = newValue;
     }
     [Command(requiresAuthority = false)]
-    public void CmdSetBoxEkranKartýDolu(bool newValue)
+    public void CmdSetBoxEkranKartiDolu(bool newValue)
     {
-        BoxEkranKartýDolu = newValue;
+        BoxEkranKartiDolu = newValue;
     }
     [Command(requiresAuthority = false)]
     public void CmdSetBoxRamDolu(bool newValue)
     {
         BoxRamDolu = newValue;
     }
-
+    [Command(requiresAuthority = false)]
+    public void CmdSetisControlled(bool newValue)
+    {
+        isControlledCounter = newValue;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdSetSubmidID(float newValue)
+    {
+        submidID = newValue;
+    }
+    
 }

@@ -6,11 +6,12 @@
 // Changes to this file will be reverted when you update Steamworks.NET
 
 #if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
-	#define DISABLESTEAMWORKS
+#define DISABLESTEAMWORKS
 #endif
 
 #if !DISABLESTEAMWORKS
 
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using IntPtr = System.IntPtr;
 
@@ -28,14 +29,19 @@ namespace Steamworks {
 			return InteropHelp.PtrToStringUTF8(NativeMethods.ISteamFriends_GetPersonaName(CSteamAPIContext.GetSteamFriends()));
 		}
 
-		/// <summary>
-		/// <para> Sets the player name, stores it on the server and publishes the changes to all friends who are online.</para>
-		/// <para> Changes take place locally immediately, and a PersonaStateChange_t is posted, presuming success.</para>
-		/// <para> The final results are available through the return value SteamAPICall_t, using SetPersonaNameResponse_t.</para>
-		/// <para> If the name change fails to happen on the server, then an additional global PersonaStateChange_t will be posted</para>
-		/// <para> to change the name back, in addition to the SetPersonaNameResponse_t callback.</para>
-		/// </summary>
-		public static SteamAPICall_t SetPersonaName(string pchPersonaName) {
+        public static void InviteUserToGame(List<CSteamID> friends, string v)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// <para> Sets the player name, stores it on the server and publishes the changes to all friends who are online.</para>
+        /// <para> Changes take place locally immediately, and a PersonaStateChange_t is posted, presuming success.</para>
+        /// <para> The final results are available through the return value SteamAPICall_t, using SetPersonaNameResponse_t.</para>
+        /// <para> If the name change fails to happen on the server, then an additional global PersonaStateChange_t will be posted</para>
+        /// <para> to change the name back, in addition to the SetPersonaNameResponse_t callback.</para>
+        /// </summary>
+        public static SteamAPICall_t SetPersonaName(string pchPersonaName) {
 			InteropHelp.TestIfAvailableClient();
 			using (var pchPersonaName2 = new InteropHelp.UTF8StringHandle(pchPersonaName)) {
 				return (SteamAPICall_t)NativeMethods.ISteamFriends_SetPersonaName(CSteamAPIContext.GetSteamFriends(), pchPersonaName2);

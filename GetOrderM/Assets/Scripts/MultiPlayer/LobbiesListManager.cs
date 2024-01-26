@@ -28,7 +28,7 @@ public class LobbiesListManager : MonoBehaviour
 
         lobbiesMenu.SetActive(true);
 
-        SteamLobby.Instance.GetLobbiesList();
+      //  SteamLobby.Instance.GetLobbiesList();
     }
 
     public void DisaplayLobbies(List<CSteamID> lobbyIDs, LobbyDataUpdate_t result)

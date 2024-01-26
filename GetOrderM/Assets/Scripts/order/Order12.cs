@@ -1,10 +1,7 @@
 using Mirror;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Order12 : NetworkBehaviour
 {
@@ -15,6 +12,11 @@ public class Order12 : NetworkBehaviour
 
     private OrderTimes orderTimes;
 
+    public Color startColor = Color.white;
+    public Color endColor = Color.red;
+
+    private bool time = false;
+
     private void Start()
     {
         orderTimes = GetComponent<OrderTimes>();
@@ -22,27 +24,94 @@ public class Order12 : NetworkBehaviour
         canvas = GameObject.FindGameObjectWithTag("Canvas");
 
         orderTimes.orderID = 12;
-       // this.transform.parent = canvas.transform;
     }
+
     void Update()
     {
         if (isServer)
         {
             UpdateGameStatus();
         }
+        else
+        {
+            cmdTime();
+            cmdTransform();
+        }
     }
-    [Server]
-    void UpdateGameStatus()
+
+    [Command(requiresAuthority = false)]
+    public void cmdTime()
     {
-        
-        order.orderID = 12;
-        orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
+        rpcTime();
+    }
+
+    [ClientRpc]
+    public void rpcTime()
+    {
+        Times();
+    }
+
+    public void Times()
+    {
+        // orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
         sliderCouldown.value = orderTimes.currentCouldown;
+        OnSliderValueChanged(orderTimes.currentCouldown, sliderCouldown.value);
+
+        order.orderID = 12;
+
+        if (!time && orderTimes.currentCouldown <= 25)
+        {
+            sliderCouldown.fillRect.GetComponent<Image>().color = Color.red;
+            this.transform.DOShakePosition(4, 2, 30, 90);
+            time = true;
+        }
+
         if (orderTimes.currentCouldown < 0)
         {
             NetworkServer.Destroy(this.gameObject);
             ManagerOrder.instance.sayac--;
         }
+    }
 
+    [Server]
+    void UpdateGameStatus()
+    {
+        orderTimes.currentCouldown -= Time.deltaTime; // Bu özgün deðeri azalt
+        sliderCouldown.value = orderTimes.currentCouldown;
+        OnSliderValueChanged(orderTimes.currentCouldown, sliderCouldown.value);
+
+        order.orderID = 12;
+
+        if (!time && orderTimes.currentCouldown <= 25)
+        {
+            sliderCouldown.fillRect.GetComponent<Image>().color = Color.red;
+            this.transform.DOShakePosition(4, 2, 30, 90);
+            time = true;
+        }
+
+        if (orderTimes.currentCouldown < 0)
+        {
+            NetworkServer.Destroy(this.gameObject);
+            ManagerOrder.instance.sayac--;
+        }
+    }
+
+    //transform ayarý
+    [Command(requiresAuthority = false)]
+    public void cmdTransform()
+    {
+        rpcTransform();
+    }
+
+    [ClientRpc]
+    public void rpcTransform()
+    {
+        this.transform.SetParent(canvas.transform);
+    }
+
+    // slider deðeri
+    private void OnSliderValueChanged(float oldValue, float newValue)
+    {
+        sliderCouldown.value = newValue;
     }
 }

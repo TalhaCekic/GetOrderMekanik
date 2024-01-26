@@ -15,7 +15,7 @@ MonoBehaviour:
   active: 0
   lift:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 1, y: 0.935, z: 0.9, w: 0}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: -0.16}
@@ -34,7 +34,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0775cbb206825d541bf6c0297ee524ca, type: 3}
   m_Name: SplitToning
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   shadows:
     m_OverrideState: 0
     m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -202,7 +202,7 @@ MonoBehaviour:
     m_Value: 0.521
   scatter:
     m_OverrideState: 0
-    m_Value: 0.7
+    m_Value: 0.844
   tint:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -739,12 +739,12 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.15
   contrast:
     m_OverrideState: 1
-    m_Value: 27.900002
+    m_Value: 30
   colorFilter:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     m_OverrideState: 0
@@ -776,10 +776,10 @@ MonoBehaviour:
     m_Value: 0
   toeLength:
     m_OverrideState: 1
-    m_Value: 0.674
+    m_Value: 0.77
   shoulderStrength:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   shoulderLength:
     m_OverrideState: 1
     m_Value: 6.1
@@ -794,7 +794,7 @@ MonoBehaviour:
     m_Value: {fileID: 0}
   lutContribution:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 0
   neutralHDRRangeReductionMode:
     m_OverrideState: 0
     m_Value: 2
@@ -1050,13 +1050,13 @@ MonoBehaviour:
     m_Value: 4
   cascadeShadowSplit0:
     m_OverrideState: 1
-    m_Value: 0.01
+    m_Value: 0.032494895
   cascadeShadowSplit1:
     m_OverrideState: 1
-    m_Value: 0.044
+    m_Value: 0.123754606
   cascadeShadowSplit2:
     m_OverrideState: 1
-    m_Value: 0.154
+    m_Value: 0.23784442
   cascadeShadowBorder0:
     m_OverrideState: 0
     m_Value: 0
@@ -1222,7 +1222,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   cloudType:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   skyAmbientMode:
     m_OverrideState: 1
@@ -1628,9 +1628,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51a78e223a2e504bb88a059b55229ea, type: 3}
   m_Name: WhiteBalance
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   temperature:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   tint:
     m_OverrideState: 0

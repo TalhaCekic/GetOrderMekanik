@@ -6,116 +6,94 @@ using Steamworks;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Mirror.FizzySteam;
+using Unity.VisualScripting;
 
 public class SteamLobby : NetworkBehaviour
 {
-    public static SteamLobby Instance;
+    public static SteamLobby instance;
 
     protected Callback<LobbyCreated_t> LobbyCreated;
     protected Callback<GameLobbyJoinRequested_t> JoinRequest;
     protected Callback<LobbyEnter_t> LobbyEntered;
 
-    protected Callback<LobbyMatchList_t> LobbyList;
-    protected Callback<LobbyDataUpdate_t> LobbyDataUpdate;
+    
 
-    public List<CSteamID> LobbyIDs = new List<CSteamID>();
-
-    public ulong CurrentLobbyID;
-    private const string HostAddressKey = "HostAddress";
+    public ulong currentLobbyID;
+    private const string HostAdressKey = "HostAddress";
     private CustomNetworkManager manager;
 
     public GameObject HostButton;
-    // public TMP_Text LobbyNameText;
+    //public Text LobbyNameText;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
     private void Start()
     {
-        Instance = this;
+       
+        CheckSteamConnection();
         if (!SteamManager.Initialized) { return; }
         manager = GetComponent<CustomNetworkManager>();
+        instance = this;
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
-        JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
+        JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(onJoinRequest);
         LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
+    }
+    private void CheckSteamConnection()
+    {
+        if (!SteamManager.Initialized)
+        {
+            // Check if the SteamManager component is already attached to the game object
+            SteamManager steamManager = gameObject.GetComponent<SteamManager>();
+            steamManager.enabled = true;
+          
+       
 
-        LobbyList = Callback<LobbyMatchList_t>.Create(OnGetLobbyList);
-        //LobbyDataUpdate = Callback<LobbyDataUpdate_t>.Create(OnGetLobbyData);
+           // FizzySteamworks.active.ClientConnected();  
+            print(" yazdýr çalýþtýr ");
+        }
 
     }
-
-    public void HostLobby()
+    public void Host()
     {
+
         SceneManager.LoadScene(1);
         NetworkManager.singleton.ServerChangeScene("PcLobby");
-        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePublic, manager.maxConnections);
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, manager.maxConnections);
+       
 
 
     }
+    public void Tutorial()
+    {
+        SceneManager.LoadScene(2);
+        NetworkManager.singleton.ServerChangeScene("PcTutorial");
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePrivate, 1);
+       
 
+    }
     private void OnLobbyCreated(LobbyCreated_t callback)
     {
         if (callback.m_eResult != EResult.k_EResultOK) { return; }
-
-        Debug.Log("Lobby created Succesfully");
-
         manager.StartHost();
-
-        SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey, SteamUser.GetSteamID().ToString());
-        SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "name", SteamFriends.GetPersonaName().ToString() + " 'S LOBBY");
-
+        SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAdressKey, SteamUser.GetSteamID().ToString());
+        SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "name", SteamFriends.GetPersonaName().ToString());
     }
-
-    private void OnJoinRequest(GameLobbyJoinRequested_t callback)
+    private void onJoinRequest(GameLobbyJoinRequested_t callback)
     {
-        Debug.Log("Request To Joing Lobby");
         SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
     }
-
     private void OnLobbyEntered(LobbyEnter_t callback)
     {
-        // HostButton.SetActive(false);
-        CurrentLobbyID = callback.m_ulSteamIDLobby;
-        // LobbyNameText.gameObject.SetActive(true);
-        // LobbyNameText.text = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "name");
+        //everyone
+        currentLobbyID = callback.m_ulSteamIDLobby;
 
+        //clients
         if (NetworkServer.active) { return; }
-
-        manager.networkAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
-
+        manager.networkAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAdressKey);
         manager.StartClient();
-
     }
 
-    public void JoinLobby(CSteamID lobbyID)
-    {
-        SteamMatchmaking.JoinLobby(lobbyID);
-    }
-
-    public void GetLobbiesList()
-    {
-        if (LobbyIDs.Count > 0) { LobbyIDs.Clear(); }
-
-        SteamMatchmaking.AddRequestLobbyListResultCountFilter(60);
-        SteamMatchmaking.RequestLobbyList();
-    }
-
-    void OnGetLobbyList(LobbyMatchList_t result)
-    {
-        if (LobbiesListManager.instance.listOfLobbies.Count > 0) { LobbiesListManager.instance.DestroyLobbies(); }
-
-        for (int i = 0; i < result.m_nLobbiesMatching; i++)
-        {
-            CSteamID lobbyID = SteamMatchmaking.GetLobbyByIndex(i);
-            LobbyIDs.Add(lobbyID);
-            SteamMatchmaking.RequestLobbyData(lobbyID);
-
-        }
-
-
-    }
-
-    //void OnGetLobbyData(LobbyDataUpdate_t result)
-    //{
-    //    LobbiesListManager.instance.DisaplayLobbies(LobbyIDs,result);
-    //}
-
-   
 }

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4498bf6271d08184f8658a323091078d, type: 3}
+  m_Name: order Raiting
+  m_EditorClassIdentifier: 
+  CustomerName:
+  - "Talo\u015F"
+  - Bongo
+  - offi
+  - Camber
+  - "Canc\u0131k"
+  - Fado
+  - Ece
+  - "G\xF6zde"
+  - Egecik
+  - Ufucuk
+  CustomerCommentGood:
+  - iyisin iyiii
+  - "buradan hep al\u0131\u015Fveri\u015F yap\u0131cam"
+  - "sipari\u015F tam istedi\u011Fim gibi"
+  - "\xE7ok iyi haz\u0131rlanm\u0131\u015F"
+  - "t\xFCm par\xE7alar sorunsuz \xE7al\u0131\u015F\u0131yor"
+  CustomerCommentBad:
+  - "\xE7ok k\xF6t\xFC haz\u0131rlanm\u0131\u015F b\xF6yle i\u015F mi olur"
+  - "ar\u0131zal\u0131 par\xE7a var bune ya"
+  - "sipari\u015F istedi\u011Fim gibi gelmedi"
+  - "burdan bir daha asla al\u0131\u015Fveri\u015F yapmayaca\u011F\u0131m"
+  - "bozuk par\xE7a yollamak ne kadarda enteresan"
+  CustomerCommentJustGood:
+  - "harika bir sipari\u015F"
+  - "inan\u0131lmaz memnuniyet"
+  - "s\u0131f\u0131r s\u0131k\u0131nt\u0131 i\u015Fte bu!"
+  - "i\u015Finizi bu kadar iyi yapman bir yer bulmak ger\xE7ekten zor"
+  isGood: 0
+  raitingPrefab: {fileID: 9005843207260287629, guid: f74b5f5480e8737488434f7097ef59db,
+    type: 3}

@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Mirror;
+
+
+public class SwipeController : NetworkBehaviour
+{
+    [SerializeField] int maxPage;
+    int currentPage;
+    Vector3 targetPos;
+    [SerializeField] Vector3 pageStep;
+    [SerializeField] RectTransform levelPagesRect;
+    [SerializeField] LeanTweenType tweenType;
+
+    [SerializeField] float tweenTime;
+
+    private void Awake()
+    {
+        currentPage = 1;
+        targetPos = levelPagesRect.localPosition;
+    }
+
+
+    public void Next()
+    {
+        if (currentPage < maxPage)
+        {
+            currentPage++;
+            targetPos += pageStep;
+            MovePage();
+        }
+    }
+
+    public void Previous()
+    {
+        if (currentPage > 1)
+        {
+            currentPage--;
+            targetPos -= pageStep;
+            MovePage();
+        }
+    }
+
+    void MovePage()
+    {
+        levelPagesRect.LeanMoveLocal(targetPos, tweenTime).setEase(tweenType);
+    }
+
+}

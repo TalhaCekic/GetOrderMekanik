@@ -4,14 +4,21 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - orderUI
+  - NetworkManager
   - Pickup
   - counter
   - submid
   - Canvas
-  - orderUI
   - PC
-  - body
-  - custom
+  - TablePosition
+  - GetApp
+  - portableobject
+  - Controllertable
+  - walls
+  - Trash
+  - Cleaner
+  - Content
   layers:
   - Default
   - TransparentFX
@@ -22,13 +29,13 @@ TagManager:
   - counter
   - trash
   - submid
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - pcInteract
+  - pcControllerTable
+  - Player1
+  - Player2
+  - Player3
+  - Player4
+  - Cleaner
   - 
   - 
   - 

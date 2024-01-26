@@ -15,8 +15,7 @@ public class PlayerListManager : NetworkBehaviour
 
     protected Callback<PersonaStateChange_t> m_PersonaStateChange;
 
-    [SyncVar]
-    public int playerCount;
+    [SyncVar]  public int playerCount;
 
     public Transform playerNamePrefabsTransform;
 
@@ -48,7 +47,6 @@ public class PlayerListManager : NetworkBehaviour
 
         for (int i = 0; i < playerCount; i++)
         {
-           
             playerNamePrefabs = Instantiate(playerNamePrefabs, playerNamePrefabsTransform);
             NetworkServer.Spawn(playerNamePrefabs);
             Debug.Log(playerName);
@@ -86,6 +84,11 @@ public class PlayerListManager : NetworkBehaviour
         NetworkServer.OnDisconnectedEvent -= OnPlayerDisconnected;
     }
 
+    [Command(requiresAuthority = false)]
+    public void CmdPlayerCount(int newValue)
+    {
+        playerCount = newValue;
+    }
     //public void LobbyEnter()
     //{
     //    RpcLobbyEnter = Callback<LobbyEnter_t>;

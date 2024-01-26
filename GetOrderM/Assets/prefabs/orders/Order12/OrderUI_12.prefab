@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: -8319693878771874162}
   - component: {fileID: 1657467732434786130}
   - component: {fileID: -7449803009957053224}
+  - component: {fileID: 839131299686494640}
   m_Layer: 5
   m_Name: OrderUI_12
   m_TagString: orderUI
@@ -556,16 +557,11 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  OrderObject:
-  - {fileID: 2712949786456974929}
-  - {fileID: 2645304332049694507}
-  - {fileID: 315296641503071826}
-  - {fileID: 4262642853135368538}
-  - {fileID: 5549148067561892579}
-  - {fileID: 5175652880463148687}
   canvas: {fileID: 696840034079936670, guid: 15461d59b82862344828400d85109b13, type: 3}
   order: {fileID: 11400000, guid: 9bb8fbb3b2b533a4bbb0407d6a6d5021, type: 2}
   sliderCouldown: {fileID: 2329250018369600966}
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1657467732434786130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,6 +596,41 @@ MonoBehaviour:
   syncInterval: 0
   currentCouldown: 0
   orderID: 5
+--- !u!114 &839131299686494640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837706176393604302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 2593583782013756115}
+  clientAuthority: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  compressRotation: 0
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &3828075120323440335
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,16 +1176,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1792148935609216413}
     m_Modifications:
-    - target: {fileID: 3737709058017868554, guid: 3b47af4ae16239949a62015a6081e57a,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3737709058017868554, guid: 3b47af4ae16239949a62015a6081e57a,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4540086285394275643, guid: 3b47af4ae16239949a62015a6081e57a,
         type: 3}
       propertyPath: m_Pivot.x

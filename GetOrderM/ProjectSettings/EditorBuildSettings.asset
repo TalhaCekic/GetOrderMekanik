@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/scenes/pcScenes/PcLobby.unity
     guid: 22e167ff34f424542a7c225270eac527
   - enabled: 1
+    path: Assets/scenes/pcScenes/PcTutorial.unity
+    guid: 1c73ff30e9cda5c42b7ea8c3e41fe0f8
+  - enabled: 1
     path: Assets/scenes/pcScenes/PcScene.unity
     guid: 5a3880ebd6f469d40b003f6eb04b1ba5
   m_configObjects: {}

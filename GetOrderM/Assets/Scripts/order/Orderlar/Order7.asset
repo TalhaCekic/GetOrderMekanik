@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orderName: Order7
   orderID: 1245
-  couldown: 60
+  couldown: 120
   orderPrefab: {fileID: 4553984425931220806, guid: a57c3d09900fbbc41a9f57db22b7138f,
     type: 3}
-  sliderCouldown: {fileID: 0}
+  sliderCouldown: {fileID: 114224154009291576, guid: ad53546b73311cf498c3a6562a6d158b,
+    type: 3}
+  pay: 64000000

@@ -42,7 +42,6 @@ public class dinnerTable : MonoBehaviour
     //gelen sipariþ.
     public GameObject burgerOrder;
     public float eatDelay = 4;
-    private float orderDelay = 2;
 
     void Start()
     {
