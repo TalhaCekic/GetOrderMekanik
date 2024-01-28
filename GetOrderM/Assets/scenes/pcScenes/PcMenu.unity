@@ -505,18 +505,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3831451212658962274}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1697534011 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1004627495297874152, guid: abb783213b74408468c8342633b983a1,
-    type: 3}
-  m_PrefabInstance: {fileID: 3831451212658962274}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697534009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2064854664
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,26 +602,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 918361790542608772, guid: abb783213b74408468c8342633b983a1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1004627495297874152, guid: abb783213b74408468c8342633b983a1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 803830348}
-    - target: {fileID: 1004627495297874152, guid: abb783213b74408468c8342633b983a1,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Host
-      objectReference: {fileID: 0}
-    - target: {fileID: 1488713377289655406, guid: abb783213b74408468c8342633b983a1,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2276066314546975220, guid: abb783213b74408468c8342633b983a1,
         type: 3}
       propertyPath: m_Pivot.x
@@ -744,64 +717,115 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 803830348}
-    - target: {fileID: 2480236571774830326, guid: abb783213b74408468c8342633b983a1,
+    - target: {fileID: 5670518470700817334, guid: abb783213b74408468c8342633b983a1,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Tutorial
+      propertyPath: m_Name
+      value: DiscordButton
       objectReference: {fileID: 0}
-    - target: {fileID: 3210722627846156636, guid: abb783213b74408468c8342633b983a1,
+    - target: {fileID: 6123029631217860779, guid: abb783213b74408468c8342633b983a1,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3270832435715122773, guid: abb783213b74408468c8342633b983a1,
-        type: 3}
-      propertyPath: m_VertexColorAlwaysGammaSpace
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5307216960236237547, guid: abb783213b74408468c8342633b983a1,
-        type: 3}
-      propertyPath: sceneId
-      value: 3130030116
-      objectReference: {fileID: 0}
-    - target: {fileID: 5307216960236237547, guid: abb783213b74408468c8342633b983a1,
-        type: 3}
-      propertyPath: serverOnly
-      value: 0
+      propertyPath: m_Name
+      value: SocialLividyButton
       objectReference: {fileID: 0}
     - target: {fileID: 6457315617163516260, guid: abb783213b74408468c8342633b983a1,
         type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8231861113659547633, guid: abb783213b74408468c8342633b983a1,
-        type: 3}
-      propertyPath: button
-      value: 
-      objectReference: {fileID: 1697534011}
-    - target: {fileID: 8231861113659547633, guid: abb783213b74408468c8342633b983a1,
-        type: 3}
-      propertyPath: manager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8497919494668545148, guid: abb783213b74408468c8342633b983a1,
-        type: 3}
-      propertyPath: m_IgnoreReversedGraphics
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9151094579045689091, guid: abb783213b74408468c8342633b983a1,
+    - target: {fileID: 7342523613937414565, guid: abb783213b74408468c8342633b983a1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9151094579045689091, guid: abb783213b74408468c8342633b983a1,
+    - target: {fileID: 7342523613937414565, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7342523613937414565, guid: abb783213b74408468c8342633b983a1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 3831451212658962275}
+    - target: {fileID: 7342523613937414565, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5307216960236237547, guid: abb783213b74408468c8342633b983a1, type: 3}
+    - target: {fileID: 7342523613937414565, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadDiscordUrl
+      objectReference: {fileID: 0}
+    - target: {fileID: 7342523613937414565, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Menu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7342523613937414565, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231861113659547633, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: DiscordUrl
+      value: https://lividy.games/discord
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231861113659547633, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: SocialyLividyUrl
+      value: https://social.lividy.games/
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159361981032116828, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159361981032116828, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159361981032116828, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3831451212658962275}
+    - target: {fileID: 9159361981032116828, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159361981032116828, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSocialUrl
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159361981032116828, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Menu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159361981032116828, guid: abb783213b74408468c8342633b983a1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abb783213b74408468c8342633b983a1, type: 3}
+--- !u!114 &3831451212658962275 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8231861113659547633, guid: abb783213b74408468c8342633b983a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 3831451212658962274}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3795b76712ecf4a85d41de0005516b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

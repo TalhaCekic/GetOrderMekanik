@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using Mirror;
 
 
-public class Menü : NetworkBehaviour
+public class Menu : NetworkBehaviour
 {
     public TextMeshProUGUI friendListText; // UI'de listeyi gösterecek Text elementi
     public ScrollRect scrollRect;
@@ -24,12 +24,12 @@ public class Menü : NetworkBehaviour
     public GameObject manager;
     public List<CSteamID> friends;
 
+    
+    public string DiscordUrl = "";
+    public string SocialyLividyUrl = "";
  
     private void Start()
     {
-
-        
-
         if (SteamManager.Initialized)
         {
             PopulateFriendListUI();
@@ -88,10 +88,6 @@ public class Menü : NetworkBehaviour
 
                     //   manager.networkAddress = SteamMatchmaking.GetLobbyData(friendSteamID,);
                     //manager.StartClient();
-
-
-
-
                 }
                 else
                 {
@@ -105,8 +101,6 @@ public class Menü : NetworkBehaviour
         }
     }
 
-
-
     public void Quit()
     {
         Application.Quit();
@@ -117,6 +111,15 @@ public class Menü : NetworkBehaviour
         SceneManager.LoadScene(2);
         NetworkManager.singleton.ServerChangeScene("PcTutorial");
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePrivate, 1);
+    }
+
+    public void LoadDiscordUrl()
+    {
+        Application.OpenURL(DiscordUrl);
+    }
+    public void LoadSocialUrl()
+    {
+        Application.OpenURL(SocialyLividyUrl);
     }
 
     private void ButtonAtama()
