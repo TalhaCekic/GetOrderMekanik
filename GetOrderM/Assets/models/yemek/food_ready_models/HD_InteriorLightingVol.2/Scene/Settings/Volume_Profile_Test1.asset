@@ -488,6 +488,53 @@ MonoBehaviour:
   highlightsEnd:
     m_OverrideState: 0
     m_Value: 1
+--- !u!114 &-4403314462375287115
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: 
+  active: 1
+  skipIterations:
+    m_OverrideState: 1
+    m_Value: 1
+  threshold:
+    m_OverrideState: 1
+    m_Value: 11.55
+  intensity:
+    m_OverrideState: 1
+    m_Value: 13.21
+  scatter:
+    m_OverrideState: 1
+    m_Value: 0.7
+  clamp:
+    m_OverrideState: 1
+    m_Value: 65472
+  tint:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  highQualityFiltering:
+    m_OverrideState: 1
+    m_Value: 0
+  downscale:
+    m_OverrideState: 0
+    m_Value: 0
+  maxIterations:
+    m_OverrideState: 0
+    m_Value: 6
+  dirtTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 1
+  dirtIntensity:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &-3641831962564500049
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -860,34 +907,7 @@ MonoBehaviour:
   m_Name: Volume_Profile_Test1
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 114802833055301404}
-  - {fileID: 114335918854256512}
-  - {fileID: 114077561181598186}
-  - {fileID: 114578614314647112}
-  - {fileID: 114608558728584664}
-  - {fileID: 114207701794753300}
-  - {fileID: 114677974921956076}
-  - {fileID: 114427453683049180}
-  - {fileID: 114323740744986488}
-  - {fileID: 114569245441608536}
-  - {fileID: -6930581739894394631}
-  - {fileID: -128064981548870926}
-  - {fileID: -3298586814176658515}
-  - {fileID: 6696125441761091147}
-  - {fileID: -6509622844977492145}
-  - {fileID: -3256524671209941223}
-  - {fileID: -8215819866311370190}
-  - {fileID: -7438431378957827555}
-  - {fileID: 3717085281812008251}
-  - {fileID: -2453684836783242375}
-  - {fileID: -4420289481347921055}
-  - {fileID: -3641831962564500049}
-  - {fileID: -6372550884473789683}
-  - {fileID: 9041377013171202885}
-  - {fileID: -6279260410301856337}
-  - {fileID: 7977844157617272611}
-  - {fileID: -6978391044807956906}
-  - {fileID: 1060290729664695353}
+  - {fileID: -4403314462375287115}
 --- !u!114 &114077561181598186
 MonoBehaviour:
   m_ObjectHideFlags: 3
