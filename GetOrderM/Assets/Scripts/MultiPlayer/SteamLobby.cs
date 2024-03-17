@@ -52,7 +52,7 @@ public class SteamLobby : NetworkBehaviour
        
 
            // FizzySteamworks.active.ClientConnected();  
-            print(" yazdýr çalýþtýr ");
+            print(" yazdÃ½r Ã§alÃ½Ã¾tÃ½r ");
         }
 
     }

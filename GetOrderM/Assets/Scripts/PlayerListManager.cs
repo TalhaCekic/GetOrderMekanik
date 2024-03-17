@@ -38,7 +38,7 @@ public class PlayerListManager : NetworkBehaviour
     {
 
         CSteamID steamId = SteamUser.GetSteamID();
-        // Oyuncunun adýný çek
+        // Oyuncunun adÃ½nÃ½ Ã§ek
         playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
         //  Debug.Log(playerName);
         //playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)pCallback.m_ulSteamIDLobby);
@@ -60,7 +60,7 @@ public class PlayerListManager : NetworkBehaviour
         Debug.Log("Player left. Current players in lobby: " + playerCount);
     }
 
-    // Oyuncu sunucuya baðlandýðýnda çalýþacak metod
+    // Oyuncu sunucuya baÃ°landÃ½Ã°Ã½nda Ã§alÃ½Ã¾acak metod
     void OnPlayerConnected(NetworkConnection conn)
     {
         playerCount++;
@@ -68,7 +68,7 @@ public class PlayerListManager : NetworkBehaviour
         Instantiate(playerNamePrefabs);
     }
 
-    // Oyuncu sunucudan ayrýldýðýnda çalýþacak metod
+    // Oyuncu sunucudan ayrÃ½ldÃ½Ã°Ã½nda Ã§alÃ½Ã¾acak metod
     void OnPlayerDisconnected(NetworkConnection conn)
     {
         playerCount--;
@@ -79,7 +79,7 @@ public class PlayerListManager : NetworkBehaviour
     {
         base.OnStopServer();
 
-        // Sunucu durduðunda event'leri temizle
+        // Sunucu durduÃ°unda event'leri temizle
         NetworkServer.OnConnectedEvent -= OnPlayerConnected;
         NetworkServer.OnDisconnectedEvent -= OnPlayerDisconnected;
     }
@@ -107,7 +107,7 @@ public class PlayerListManager : NetworkBehaviour
     //{
     //    Debug.Log("Girdi");
     //    CSteamID steamId = SteamUser.GetSteamID();
-    //    // Oyuncunun adýný çek
+    //    // Oyuncunun adÃ½nÃ½ Ã§ek
     //    playerName = SteamFriends.GetFriendPersonaName(steamId).ToString();
     //    Debug.Log(playerName);
     //    playerCount = SteamMatchmaking.GetNumLobbyMembers((CSteamID)LobbyEnter_t.k_iCallback);
