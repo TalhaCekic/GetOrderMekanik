@@ -147,8 +147,12 @@ public class pickUp : NetworkBehaviour
     [Command]
     public void CMDObjectChangePosition(GameObject hit1)
     {
-        ObjectChangePosition(hit1);
-        RpcObjectChangePositon(hit1);
+        if (!DayManager.instance.dayOn)
+        {
+            handFull = true;
+            ObjectChangePosition(hit1);
+            RpcObjectChangePositon(hit1);
+        }
     }
 
     [ClientRpc]
@@ -181,8 +185,12 @@ public class pickUp : NetworkBehaviour
     [Command]
     public void CMDObjectChangePosition1(GameObject hit1)
     {
-        ObjectChangePosition1(hit1);
-        RpcObjectChangePositon1(hit1);
+        if (!DayManager.instance.dayOn)
+        {
+            handFull = false;
+            ObjectChangePosition1(hit1);
+            RpcObjectChangePositon1(hit1);
+        }
     }
 
     [ClientRpc]
@@ -573,14 +581,12 @@ public class pickUp : NetworkBehaviour
                     if (hit.collider.gameObject.TryGetComponent<counter>(out var counter) && handFull == false &&
                         isTable == true)
                     {
-                        handFull = true;
                         CMDObjectChangePosition(hit.collider.gameObject);
                     }
                 }
-                else if (handFull == true && table.gameObject.transform.parent == this.transform && isTable == false &&
+                else if (handFull && table.gameObject.transform.parent == this.transform && isTable == false &&
                          table.gameObject.GetComponent<OnTriggerTEST>().isStay == false)
                 {
-                    handFull = false;
                     CMDObjectChangePosition1(table);
                 }
             }
