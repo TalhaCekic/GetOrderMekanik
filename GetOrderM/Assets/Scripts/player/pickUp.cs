@@ -584,8 +584,7 @@ public class pickUp : NetworkBehaviour
                         CMDObjectChangePosition(hit.collider.gameObject);
                     }
                 }
-                else if (handFull && table.gameObject.transform.parent == this.transform && isTable == false &&
-                         table.gameObject.GetComponent<OnTriggerTEST>().isStay == false)
+                else if (handFull && table.gameObject.transform.parent == this.transform && isTable == false)
                 {
                     CMDObjectChangePosition1(table);
                 }
