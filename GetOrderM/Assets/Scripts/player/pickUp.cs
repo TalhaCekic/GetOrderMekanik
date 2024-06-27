@@ -235,7 +235,7 @@ public class pickUp : NetworkBehaviour
             this.gameObject.GetComponentInChildren<Cleaner>().transform.parent = null;
         }
 //&& table.gameObject.transform.parent == this.transform
-        if (handFull == true )
+        if (handFull && !DayManager.instance.dayOn&& table.gameObject.transform.parent == this.transform)
         {
             Quaternion currentRotation = table.gameObject.transform.localRotation;
             Quaternion newRotation = Quaternion.Euler(0, 0, 45f);
