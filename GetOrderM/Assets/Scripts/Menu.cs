@@ -27,6 +27,7 @@ public class Menu : NetworkBehaviour
     
     public string DiscordUrl = "";
     public string SocialyLividyUrl = "";
+    public string GetOrderSteamyUrl = "";
  
     private void Start()
     {
@@ -120,6 +121,10 @@ public class Menu : NetworkBehaviour
     public void LoadSocialUrl()
     {
         Application.OpenURL(SocialyLividyUrl);
+    }
+    public void LoadSteamlUrl()
+    {
+        Application.OpenURL(GetOrderSteamyUrl);
     }
 
     private void ButtonAtama()
