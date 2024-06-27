@@ -234,8 +234,8 @@ public class pickUp : NetworkBehaviour
             this.gameObject.GetComponentInChildren<Cleaner>().gameObject.layer = LayerMask.NameToLayer("Cleaner");
             this.gameObject.GetComponentInChildren<Cleaner>().transform.parent = null;
         }
-
-        if (handFull == true && table.gameObject.transform.parent == this.transform)
+//&& table.gameObject.transform.parent == this.transform
+        if (handFull == true )
         {
             Quaternion currentRotation = table.gameObject.transform.localRotation;
             Quaternion newRotation = Quaternion.Euler(0, 0, 45f);
@@ -584,9 +584,12 @@ public class pickUp : NetworkBehaviour
                         CMDObjectChangePosition(hit.collider.gameObject);
                     }
                 }
-                else if (handFull && table.gameObject.transform.parent == this.transform && isTable == false)
+                else if (handFull && isTable == false)
                 {
                     CMDObjectChangePosition1(table);
+                        // && table.gameObject.transform.parent == this.transform
+                    //     &&
+                    // table.gameObject.GetComponent<OnTriggerTEST>().isStay == false
                 }
             }
             // else
